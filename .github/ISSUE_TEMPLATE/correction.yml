@@ -1,0 +1,40 @@
+name: Data correction
+description: Report a wrong or missing spec, name, alias, or variant on a gearbook record
+title: "[correction] "
+labels: [correction]
+body:
+  - type: input
+    id: record
+    attributes:
+      label: Record
+      description: The record's display name (and id if you have it — it's in the page URL)
+      placeholder: "Canon AE-1 Program (camera 1a2b3c4d5e6f7a8b)"
+    validations:
+      required: true
+  - type: input
+    id: field
+    attributes:
+      label: Field
+      description: Which field is wrong or missing (e.g. format, year_introduced, lens_mount, aliases)
+      placeholder: "format"
+    validations:
+      required: true
+  - type: input
+    id: current
+    attributes:
+      label: Current value
+      placeholder: "120"
+  - type: input
+    id: proposed
+    attributes:
+      label: Proposed value
+      placeholder: "127"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: How do you know? A manual page, period ad, or the item in hand all work — the more checkable, the faster it lands.
+    validations:
+      required: true

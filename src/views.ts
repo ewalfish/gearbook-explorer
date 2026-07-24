@@ -3,7 +3,7 @@
 
 import { getEngine, getFacets, loadCatalog, loadRecord } from './data'
 import { fmtFocal } from './format'
-import { slugify } from './normalize'
+import { slugify } from './engine/normalize'
 import {
   esc, navHtml, footerHtml, hitRowHtml, recordHref,
   attachTypeahead, attachNavSearch, SEARCH_ICON, EXTERNAL_ICON,
@@ -11,6 +11,18 @@ import {
 import type { CatalogRecord, GearRecord, Kind, Variant } from './types'
 
 const app = () => document.getElementById('app')!
+
+const REPO_URL = 'https://github.com/ewalfish/gearbook-explorer'
+
+/** Prefilled GitHub issue-form link for a record correction. */
+function correctionIssueHref(name: string, kind: Kind, id: string): string {
+  const params = new URLSearchParams({
+    template: 'correction.yml',
+    title: `[correction] ${name}`,
+    record: `${name} (${kind} ${id})`,
+  })
+  return `${REPO_URL}/issues/new?${params.toString()}`
+}
 
 // ── Landing ────────────────────────────────────────────────────────────────
 
@@ -270,6 +282,8 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
   const partial = rec.confidence !== 'high'
     ? '<span class="text-muted partial-note">Partial specs</span>' : ''
 
+  // (correction links are the second permitted outbound class: the repo's
+  // issue form, prefilled with the record identity)
   // manual_url is the only permitted outbound URL class (PRD §3.3) — and only
   // ever as an http(s) link, never embedded or proxied.
   const manualBtn = d.manual_url && /^https?:\/\//i.test(d.manual_url)
@@ -297,6 +311,9 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
         <div>
           <dl class="spec-dl">${kind === 'camera' ? cameraSpecRows(d) : lensSpecRows(d)}</dl>
           ${variantsHtml(variants)}
+          <p class="text-muted correction-note">Spotted an error?
+            <a href="${esc(correctionIssueHref(rec.name, kind, rec.id))}" target="_blank" rel="noopener">Report a correction ${EXTERNAL_ICON}</a>
+          </p>
         </div>
         <aside class="detail-aside">
           ${relatedListHtml(`More from ${d.manufacturer ?? 'this maker'}`, '', sameMfr)}

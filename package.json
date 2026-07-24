@@ -1,10 +1,29 @@
 {
-  "name": "gearbook-explorer",
-  "private": true,
-  "version": "0.1.0",
+  "name": "gearbook",
+  "version": "0.2.0",
+  "description": "Gearbook — spec index of vintage cameras and lenses: data asset, fuzzy search + batch-match engines, and the Explorer SPA",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ewalfish/gearbook-explorer.git"
+  },
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./data/cameras.jsonl": "./data/gearbook/cameras.jsonl",
+    "./data/lenses.jsonl": "./data/gearbook/lenses.jsonl",
+    "./data/aliases.jsonl": "./data/gearbook/aliases.jsonl",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build:data": "tsx scripts/build-data.ts",
+    "build:lib": "tsc -p tsconfig.lib.json",
+    "prepare": "npm run build:lib",
     "dev": "npm run build:data && vite",
     "build": "npm run build:data && tsc --noEmit && vite build",
     "preview": "vite preview",

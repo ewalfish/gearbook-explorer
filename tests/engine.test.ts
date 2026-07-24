@@ -3,7 +3,7 @@
 
 import { describe, it, expect, beforeAll } from 'vitest'
 import { buildAll } from '../scripts/pipeline'
-import { SearchEngine, buildEngineInputs, type SearchHit } from '../src/engine'
+import { SearchEngine, buildEngineInputs, type SearchHit } from '../src/engine/search'
 
 let engine: SearchEngine
 

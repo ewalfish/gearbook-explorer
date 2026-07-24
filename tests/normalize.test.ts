@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { normalize, queryVariants, tokenize, slugify } from '../src/normalize'
+import { normalize, queryVariants, tokenize, slugify } from '../src/engine/normalize'
 
 describe('normalize (PRD §5.4)', () => {
   it('lowercases and folds diacritics', () => {

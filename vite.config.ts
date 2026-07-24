@@ -7,5 +7,8 @@ export default defineConfig({
   base: './',
   build: {
     target: 'es2022',
+    // dist/ belongs to the LIBRARY build (tsc -p tsconfig.lib.json — the
+    // package.json exports point there). The SPA bundle goes to dist-app/.
+    outDir: 'dist-app',
   },
 })

@@ -11,7 +11,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { normalize } from '../src/normalize'
+import { normalize } from '../src/engine/normalize'
 import { fmtFocal } from '../src/format'
 import type {
   GearRecord, IndexEntryTuple, CatalogRowTuple, CuratedEntry, Kind,

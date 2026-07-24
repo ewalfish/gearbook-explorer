@@ -1,8 +1,8 @@
 // Shared chrome (nav, footer, result rows) + the typeahead combobox.
 
 import { getEngine, getCatalogSync, getFacets } from './data'
-import { slugify } from './normalize'
-import type { SearchHit } from './engine'
+import { slugify } from './engine/normalize'
+import type { SearchHit } from './engine/search'
 import type { CatalogRecord } from './types'
 
 export function esc(s: string): string {

@@ -2,8 +2,8 @@
 // per-token typo correction secondary (§5.1). Corrections generate ADDITIVE
 // candidate queries and never outrank literal matches (§5.5).
 
-import { normalize, tokenize, queryVariants } from './normalize'
-import type { Kind } from './types'
+import { tokenize, queryVariants } from './normalize.js'
+import type { Kind } from './gearbook.js'
 
 export interface IndexEntry {
   n: string //  normalized alias
@@ -307,5 +307,3 @@ export function buildEngineInputs(
     meta,
   }
 }
-
-export { normalize }

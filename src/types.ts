@@ -1,7 +1,9 @@
 // Shapes of the published Gearbook asset (see data/gearbook/README) and the
 // build-pipeline outputs the app consumes.
 
-export type Kind = 'camera' | 'lens'
+import type { Kind } from './engine/gearbook'
+
+export type { Kind }
 export type Confidence = 'high' | 'medium' | 'low'
 
 export interface Variant {

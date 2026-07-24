@@ -1,6 +1,6 @@
 // Client data loading — eager search index, lazy catalog + record shards.
 
-import { SearchEngine, buildEngineInputs } from './engine'
+import { SearchEngine, buildEngineInputs } from './engine/search'
 import type {
   SearchIndexFile, CatalogFile, CatalogRecord, FacetsFile, GearRecord, Kind,
 } from './types'
