@@ -26,7 +26,14 @@ export interface FixedLens {
 
 export interface GearRecord {
   id: string
+  /** Canonical model name — identity, hashing, matching. Never a slash form. */
   name: string
+  /**
+   * What to SHOW a person: "Minolta Riva/Freedom Zoom 105i" where the markets
+   * disagreed, the plain name everywhere else. Contract v1 puts it on EVERY
+   * record so no consumer has to write `?? name`.
+   */
+  recommended_name: string
   gearbook_version: string
   confidence: Confidence
   data: {
@@ -44,12 +51,6 @@ export interface GearRecord {
      * Riva and Freedom twins are both `country: "Japan"`.
      */
     market_names?: MarketName[]
-    /**
-     * The merged human-facing label — "Minolta Riva/Freedom Zoom 105i". Derived
-     * from `market_names` at publish time. Show this; match and key on `name`,
-     * which is the only field hashed into `id` and the DB's UNIQUE column.
-     */
-    display_name?: string
     // camera
     camera_type?: string
     folding?: number

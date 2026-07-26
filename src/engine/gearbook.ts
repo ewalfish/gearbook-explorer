@@ -10,6 +10,12 @@ export type Kind = 'camera' | 'lens'
 export interface GearbookRow {
   id: string
   name: string
+  /**
+   * What to SHOW a person. Contract v1 guarantees it on every record — equal to
+   * `name` unless the markets disagreed — so consumers never write a fallback.
+   * Optional here only so a caller can hand in rows from an older asset.
+   */
+  recommended_name?: string
   gearbook_version?: string
   confidence?: string
   data?: Record<string, unknown>
@@ -19,12 +25,20 @@ export interface GearbookRow {
 export interface AliasRow {
   alias: string
   gearbook_kind: Kind
-  gearbook_slug: string
+  gearbook_id: string
+  /**
+   * How this alias came to exist — see ALIAS_VIA in schema.ts. An anonymous
+   * alias forces every consumer to guess whether a hit was another market's
+   * name, a spelling difference, or an abbreviation; those are three different
+   * questions to put to a reviewer.
+   */
+  via?: 'name' | 'market' | 'superseded' | 'shorthand' | 'punctuation' | 'correction'
   /**
    * Which market this spelling belongs to, where known — lets a result explain
    * itself ("matched Freedom Zoom 105i, the US name") rather than silently
-   * resolving to a name the searcher never typed. Absent on the punctuation and
-   * abbreviation aliases, which belong to no market.
+   * resolving to a name the searcher never typed. Only set when `via` is
+   * 'market', and not always even then (a slash label names two markets without
+   * saying which side is which).
    */
   market?: 'us' | 'intl' | 'eu' | 'jp'
 }
@@ -86,11 +100,11 @@ export function buildMatchCatalog(
 ): MatchCatalog {
   const aliasesBySlug = new Map<string, string[]>()
   for (const a of aliases) {
-    if (!a.gearbook_slug || !a.alias) continue
-    let list = aliasesBySlug.get(a.gearbook_slug)
+    if (!a.gearbook_id || !a.alias) continue
+    let list = aliasesBySlug.get(a.gearbook_id)
     if (!list) {
       list = []
-      aliasesBySlug.set(a.gearbook_slug, list)
+      aliasesBySlug.set(a.gearbook_id, list)
     }
     list.push(a.alias)
   }

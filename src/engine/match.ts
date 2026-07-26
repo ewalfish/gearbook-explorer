@@ -29,6 +29,37 @@ export const DEFAULT_WEIGHTS: number[] = [
 export const AUTO = 0.9
 export const REVIEW = 0.45
 
+/**
+ * The tunable part of matching — and the ONLY part a consumer should need to
+ * change.
+ *
+ * This split exists because the alternative was a fork: camera-inventory
+ * vendored fourteen engine files so that these ten numbers could differ, and
+ * everything else in them is a function of the ASSET'S shape, so it had to be
+ * edited in two repos every time the asset changed.
+ *
+ * Mechanism (normalization, candidate generation, features, alias handling)
+ * versions with the asset and lives here. Policy is tuned against real
+ * inventory that only the consumer has, so it is passed in.
+ */
+export interface MatchPolicy {
+  /** Logistic-regression weights for the 8-feature vector in features(). */
+  weights?: number[]
+  /** Score at or above which a link is taken without asking a person. */
+  auto?: number
+  /** Score below which nothing is proposed at all. */
+  review?: number
+}
+
+export const DEFAULT_POLICY: Required<MatchPolicy> = { weights: DEFAULT_WEIGHTS, auto: AUTO, review: REVIEW }
+
+/** Accepts the legacy bare-weights argument, so existing callers keep working. */
+function resolvePolicy(p?: MatchPolicy | number[]): Required<MatchPolicy> {
+  if (!p) return DEFAULT_POLICY
+  if (Array.isArray(p)) return { ...DEFAULT_POLICY, weights: p }
+  return { weights: p.weights ?? DEFAULT_WEIGHTS, auto: p.auto ?? AUTO, review: p.review ?? REVIEW }
+}
+
 export type MatchDecision = 'auto' | 'review' | 'no-match'
 
 export interface ScoredEntry {
@@ -235,8 +266,9 @@ const score = (w: number[], x: number[]): number => sigmoid(x.reduce((s, xi, i) 
 // --- matching ------------------------------------------------------------------
 
 export function matchOne(
-  query: string, catalog: MatchCatalog, kind?: Kind | null, w: number[] = DEFAULT_WEIGHTS,
+  query: string, catalog: MatchCatalog, kind?: Kind | null, policy?: MatchPolicy | number[],
 ): MatchResult {
+  const { weights: w, auto: AUTO_T, review: REVIEW_T } = resolvePolicy(policy)
   // For cameras, also try US/EU/marketing-name aliases + glued-suffix spacing
   // (F3HP→F3 HP, Rebel 2000→EOS 300, Stylus→mju) and keep the best scorer. The
   // original query is always first, so aliasing can only add matches, not lose them.
@@ -282,7 +314,7 @@ export function matchOne(
   const core = scored.filter((c) => !qualConflict(query, c.entry.title) && queries.some((q) => sameCore(q, c.entry.title)))
   if (core.length) {
     core.sort((a, b) => b.s - a.s)
-    core[0].s = Math.max(core[0].s, AUTO)
+    core[0].s = Math.max(core[0].s, AUTO_T)
     if (!best || core[0].s >= best.s) best = core[0]
   }
   // lens confident rule: identical focal+aperture set AND a shared brand/LINE word
@@ -326,21 +358,21 @@ export function matchOne(
     })
     if (lensConf.length) {
       lensConf.sort((a, b) => b.s - a.s)
-      lensConf[0].s = Math.max(lensConf[0].s, AUTO)
+      lensConf[0].s = Math.max(lensConf[0].s, AUTO_T)
       if (!best || lensConf[0].s >= best.s) best = lensConf[0]
     }
   }
   const runnerUp = scored.find((c) => c !== best)
   // ambiguity guard: two near-identical scores → force review
-  const ambiguous = Boolean(best && runnerUp && best.s - runnerUp.s < 0.05 && runnerUp.s > REVIEW && !core.length)
+  const ambiguous = Boolean(best && runnerUp && best.s - runnerUp.s < 0.05 && runnerUp.s > REVIEW_T && !core.length)
   const s = best?.s ?? 0
-  const decision: MatchDecision = !best || s < REVIEW ? 'no-match' : s >= AUTO ? 'auto' : 'review'
+  const decision: MatchDecision = !best || s < REVIEW_T ? 'no-match' : s >= AUTO_T ? 'auto' : 'review'
   return { best, scored: scored.slice(0, 5), ambiguous, decision }
 }
 
 /** Convenience: match many items at once. */
 export function matchBatch(
-  items: { query: string; kind?: Kind | null }[], catalog: MatchCatalog, w: number[] = DEFAULT_WEIGHTS,
+  items: { query: string; kind?: Kind | null }[], catalog: MatchCatalog, policy?: MatchPolicy | number[],
 ): MatchResult[] {
-  return items.map((it) => matchOne(it.query, catalog, it.kind, w))
+  return items.map((it) => matchOne(it.query, catalog, it.kind, policy))
 }

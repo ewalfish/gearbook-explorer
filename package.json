@@ -1,7 +1,7 @@
 {
   "name": "gearbook",
-  "version": "0.2.0",
-  "description": "Gearbook — spec index of vintage cameras and lenses: data asset, fuzzy search + batch-match engines, and the Explorer SPA",
+  "version": "1.0.0",
+  "description": "Gearbook \u2014 spec index of vintage cameras and lenses: the data asset and its contract, fuzzy search + batch-match engines, and the Explorer SPA",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -18,7 +18,12 @@
     "./data/cameras.jsonl": "./data/gearbook/cameras.jsonl",
     "./data/lenses.jsonl": "./data/gearbook/lenses.jsonl",
     "./data/aliases.jsonl": "./data/gearbook/aliases.jsonl",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./data/redirects.jsonl": "./data/gearbook/redirects.jsonl",
+    "./schema": {
+      "types": "./dist/schema.d.ts",
+      "import": "./dist/schema.js"
+    }
   },
   "scripts": {
     "build:data": "tsx scripts/build-data.ts",
@@ -27,7 +32,8 @@
     "dev": "npm run build:data && vite",
     "build": "npm run build:data && tsc --noEmit && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "validate": "tsx scripts/validate-asset.ts"
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
@@ -35,5 +41,10 @@
     "typescript": "^5.6.3",
     "vite": "^6.0.7",
     "vitest": "^2.1.8"
-  }
+  },
+  "files": [
+    "dist",
+    "data/gearbook",
+    "README.md"
+  ]
 }

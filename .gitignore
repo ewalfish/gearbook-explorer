@@ -1,5 +1,8 @@
 node_modules/
-dist/
+# dist/ IS COMMITTED. This is a git dependency, so npm runs `prepare` (tsc) at
+# install time on every consumer — including the Mac Mini during deploy. That
+# build step was the stated reason camera-inventory forked the engine instead
+# of importing it. Shipping the compiled output removes the reason.
 dist-app/
 public/data/
 *.local

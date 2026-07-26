@@ -31,7 +31,7 @@ function readJsonl<T>(file: string): T[] {
 interface AliasRow {
   alias: string
   gearbook_kind: Kind
-  gearbook_slug: string
+  gearbook_id: string
 }
 
 export const TYPE_LABELS: Record<string, string> = {
@@ -115,13 +115,14 @@ export function buildAll() {
   // Riva/Freedom Zoom 105i"); what it is INDEXED and keyed by stays `name`.
   // Keeping those separate is the whole design: a slash in `name` would change
   // the id hash and cost the record its exact-token match.
-  const titleOf = (rec: GearRecord) => rec.data.display_name ?? rec.name
+  // contract v1: every record carries recommended_name, so no fallback
+  const titleOf = (rec: GearRecord) => rec.recommended_name
   for (const { rec, kind } of byId.values()) push(rec.name, kind, rec.id, titleOf(rec))
   let orphanAliases = 0
   for (const a of aliases) {
-    const target = byId.get(a.gearbook_slug)
+    const target = byId.get(a.gearbook_id)
     if (!target) { orphanAliases++; continue }
-    push(a.alias, a.gearbook_kind, a.gearbook_slug, titleOf(target.rec))
+    push(a.alias, a.gearbook_kind, a.gearbook_id, titleOf(target.rec))
   }
   entries.sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))
 
