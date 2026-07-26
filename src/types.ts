@@ -2,8 +2,9 @@
 // build-pipeline outputs the app consumes.
 
 import type { Kind } from './engine/gearbook'
+import type { Market, MarketName } from './engine/market-names'
 
-export type { Kind }
+export type { Kind, Market, MarketName }
 export type Confidence = 'high' | 'medium' | 'low'
 
 export interface Variant {
@@ -36,6 +37,19 @@ export interface GearRecord {
     year_discontinued?: number
     variants?: Variant[]
     manual_url?: string
+    /**
+     * Every market's name for this camera, when they differ. Present only on
+     * records where a merge happened; absent means the camera had one name
+     * everywhere. Distinct from `country`, which is where it was BUILT — the
+     * Riva and Freedom twins are both `country: "Japan"`.
+     */
+    market_names?: MarketName[]
+    /**
+     * The merged human-facing label — "Minolta Riva/Freedom Zoom 105i". Derived
+     * from `market_names` at publish time. Show this; match and key on `name`,
+     * which is the only field hashed into `id` and the DB's UNIQUE column.
+     */
+    display_name?: string
     // camera
     camera_type?: string
     folding?: number

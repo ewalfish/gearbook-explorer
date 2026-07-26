@@ -20,6 +20,26 @@ export interface AliasRow {
   alias: string
   gearbook_kind: Kind
   gearbook_slug: string
+  /**
+   * Which market this spelling belongs to, where known — lets a result explain
+   * itself ("matched Freedom Zoom 105i, the US name") rather than silently
+   * resolving to a name the searcher never typed. Absent on the punctuation and
+   * abbreviation aliases, which belong to no market.
+   */
+  market?: 'us' | 'intl' | 'eu' | 'jp'
+}
+
+/**
+ * One redirect row (redirects.jsonl) — a record that was merged away, and the
+ * record that absorbed it. Keeps an already-stored `gearbook_id` resolvable
+ * after a twin merge instead of orphaning whatever pointed at it.
+ */
+export interface RedirectRow {
+  from_id: string
+  from_name: string
+  gearbook_kind: Kind
+  to_id: string
+  to_name: string
 }
 
 /** A catalog entry as the batch matcher sees it. */

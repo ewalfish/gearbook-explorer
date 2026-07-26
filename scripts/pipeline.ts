@@ -111,12 +111,17 @@ export function buildAll() {
     seen.add(key)
     entries.push([n, kind === 'camera' ? 'c' : 'l', id, alias === recordName ? '' : alias])
   }
-  for (const { rec, kind } of byId.values()) push(rec.name, kind, rec.id, rec.name)
+  // What a card SHOWS is the merged market label where one exists ("Minolta
+  // Riva/Freedom Zoom 105i"); what it is INDEXED and keyed by stays `name`.
+  // Keeping those separate is the whole design: a slash in `name` would change
+  // the id hash and cost the record its exact-token match.
+  const titleOf = (rec: GearRecord) => rec.data.display_name ?? rec.name
+  for (const { rec, kind } of byId.values()) push(rec.name, kind, rec.id, titleOf(rec))
   let orphanAliases = 0
   for (const a of aliases) {
     const target = byId.get(a.gearbook_slug)
     if (!target) { orphanAliases++; continue }
-    push(a.alias, a.gearbook_kind, a.gearbook_slug, target.rec.name)
+    push(a.alias, a.gearbook_kind, a.gearbook_slug, titleOf(target.rec))
   }
   entries.sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0))
 
@@ -126,7 +131,7 @@ export function buildAll() {
     catalog.push([
       rec.id,
       kind === 'camera' ? 'c' : 'l',
-      rec.name,
+      titleOf(rec),
       rec.data.manufacturer ?? '',
       rec.data.year_introduced ?? 0,
       (rec.confidence?.[0] ?? 'm') as 'h' | 'm' | 'l',

@@ -50,8 +50,12 @@ describe('typo suite — right record in top 3 (PRD §5.3)', () => {
 })
 
 describe('alias / cross-market suite — top result (PRD §5.3)', () => {
-  it('µ-II → Olympus Mju-II', () => expectTop1('µ-II', /mju-?II$/i))
-  it('mju ii → Olympus Mju-II', () => expectTop1('mju ii', /mju-?II$/i))
+  // Anchored at the START, not the end: a card's title is now the merged market
+  // label where one exists, so this record shows as "Olympus Mju-II (Olympus
+  // Infinity Stylus Epic)". `\b` still keeps Mju-III out, so the assertion
+  // pins the same single record the PRD names.
+  it('µ-II → Olympus Mju-II', () => expectTop1('µ-II', /^Olympus Mju-?II\b/i))
+  it('mju ii → Olympus Mju-II', () => expectTop1('mju ii', /^Olympus Mju-?II\b/i))
   it('Autoboy → Sure Shot', () => expectTop3('Autoboy', /sure ?shot/i))
   it('5D Mk II → Canon EOS 5D Mark II', () => expectTop1('5D Mk II', /5D Mark II$/))
   it('5d mkii → Canon EOS 5D Mark II', () => expectTop1('5d mkii', /5D Mark II$/))
@@ -62,6 +66,36 @@ describe('alias / cross-market suite — top result (PRD §5.3)', () => {
     const b = engine.search('Rolleiflex 2.8', 10).map((h) => h.id)
     expect(a).toEqual(b)
     expect(a.length).toBeGreaterThan(0)
+  })
+})
+
+// The search box and the batch matcher used to carry SEPARATE cross-market
+// tables — five groups here against a dozen there. Everything below resolved in
+// batch matching and returned nothing when typed into the search field. They
+// now read one shared table (src/engine/market-names.ts), so a name added for
+// one is a name added for both.
+describe('cross-market names the search box used to miss', () => {
+  it('Minolta Freedom (US) → the Riva record', () => expectTop3('Minolta Freedom Zoom 105i', /riva/i))
+  it('Minolta Capios (JP) → the Riva line', () => expectTop3('Minolta Capios 105i', /riva|capios/i))
+  it('Pentax IQZoom (US) → the Espio record', () => expectTop3('Pentax IQZoom 140', /espio/i))
+  it('Pentax ZX (US) → the MZ record', () => expectTop3('Pentax ZX-M', /MZ-?M/i))
+  it('Nikomat (JP) → the Nikkormat record', () => expectTop3('Nikomat FT2', /nikkormat/i))
+  it('Exakta VX (US) → the Varex record', () => expectTop3('Exakta VX', /varex/i))
+  it('Stylus Epic (US) → Olympus Mju-II', () => expectTop3('Stylus Epic', /mju-?II/i))
+  it('Nikon N90s (US) → the F90X record', () => expectTop3('Nikon N90s', /F90X/i))
+})
+
+describe('merged market names on one record', () => {
+  it('a merged camera carries every market name as a reachable alias', () => {
+    // Riva (intl) and Freedom (US) shipped as two records with contradictory
+    // fixed_lens and year_discontinued until the twin merge folded them.
+    for (const q of ['Minolta Riva Zoom 105i', 'Minolta Freedom Zoom 105i']) {
+      const hits = engine.search(q, 10)
+      expect(hits.length, `"${q}" found nothing`).toBeGreaterThan(0)
+    }
+    const [a] = engine.search('Minolta Riva Zoom 105i', 10)
+    const [b] = engine.search('Minolta Freedom Zoom 105i', 10)
+    expect(a.id, 'both market names must resolve to the SAME record').toBe(b.id)
   })
 })
 

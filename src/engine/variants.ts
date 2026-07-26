@@ -10,62 +10,56 @@
 //
 // queryVariants(brand, model) -> [original, ...alternate names to also try]
 // (callers may pass ('', fullQuery) — the brand is detected from the string).
+//
+// ── WHERE THE MARKET NAMES LIVE ─────────────────────────────────────────────
+// The cross-market groups themselves are in market-names.ts, which the search
+// box reads too. Only SPELLING variants that are not about markets stay below.
+// This file is the SPECULATIVE layer: a swap here is applied to the QUERY, so a
+// wrong guess costs a rejected candidate and nothing more. Names that ship as
+// data must clear a higher bar — see the corroboration rule in market-names.ts.
 
-// Brand-scoped TOKEN swaps: within this brand these words denote the SAME series
-// across markets and the model number is preserved (ZX-5 ⇄ MZ-5). Bidirectional.
-const TOKEN_SWAPS: Record<string, [string, string][]> = {
-  pentax: [['zx', 'mz'], ['iqzoom', 'espio'], ['iq zoom', 'espio'], ['iqzoom', 'zoom'], ['iq zoom', 'zoom']], // early IQZoom line = intl "Zoom" (Zoom 105-R era)
-  minolta: [['maxxum', 'dynax'], ['maxxum', 'alpha'], ['dynax', 'alpha'], ['freedom', 'riva'], ['freedom', 'capios']],
-  olympus: [['stylus', 'mju'], ['stylus', 'µ'], ['mju', 'µ']],
-  nikon: [['nikkormat', 'nikomat']],
-  ricoh: [['kr', 'xr']],
+import { marketTokenSwaps, marketModelMap } from './market-names.js'
+
+// Brand-scoped SPELLING swaps — same market, different way of writing it. The
+// cross-market groups are merged in from the shared table below.
+const SPELLING_SWAPS: Record<string, [string, string][]> = {
+  // early IQZoom line = intl "Zoom" (Zoom 105-R era)
+  pentax: [['iq zoom', 'espio'], ['iqzoom', 'zoom'], ['iq zoom', 'zoom']],
+  olympus: [['stylus', 'µ'], ['mju', 'µ']],
   konica: [['autoreflex', 'auto reflex']],
   yashica: [['mat', 'yashica-mat']],           // "Yashica Mat-124G" ⇄ "Yashica-Mat 124 G"
   mamiya: [['universal', 'press universal']],  // "Mamiya Universal" ⇄ "Mamiya Press Universal"
-  // Samsung sold the same compacts as Maxima (US) / AF Zoom (intl) / Vega (EU)
-  samsung: [['maxima zoom', 'af zoom'], ['af zoom', 'vega'], ['maxima', 'fino']],
-  // Exakta: VX was the US name for Varex (trademark dispute)
-  ihagee: [['vx', 'varex']],
-  exakta: [['vx', 'varex']],
+  samsung: [['maxima zoom', 'af zoom'], ['maxima', 'fino']],
+  // Kiss is Canon's JP name for the Rebel line, but the JP NUMBERING differs
+  // (Kiss X4 = Rebel T2i), so it can only ever be a query-side hint — pairing
+  // the words would mint names like "Canon Kiss T2i" that never existed.
+  canon: [['rebel', 'kiss']],
 }
 
-// Brand-scoped whole-MODEL maps (the number itself differs across markets).
+const TOKEN_SWAPS: Record<string, [string, string][]> = (() => {
+  const brands = new Set([...Object.keys(SPELLING_SWAPS), 'minolta', 'pentax', 'olympus', 'nikon', 'ricoh', 'samsung', 'ihagee', 'exakta', 'canon'])
+  const out: Record<string, [string, string][]> = {}
+  for (const b of brands) out[b] = [...marketTokenSwaps(b), ...(SPELLING_SWAPS[b] ?? [])]
+  return out
+})()
+
+// Brand-scoped whole-MODEL maps for everything that is NOT a market rename —
+// family-record routing, line-name restoration, era disambiguation. The
+// cross-market model pairs (Rebel⇄EOS, N-series⇄F-series, X-570⇄X-500…) are
+// merged in from market-names.ts below.
 // Values may be arrays when one US name spanned two bodies (film vs digital).
 // Applied hyphen-insensitively; suffixes ("Kit", "QD") are preserved.
-const MODEL_MAP: Record<string, Record<string, string | string[]>> = {
+const EXTRA_MODEL_MAP: Record<string, Record<string, string | string[]>> = {
   nikon: {
     'nikonos i': 'nikonos', // the original 1963 body is named plain NIKONOS
-    'n50': 'f50', 'n55': 'f55', 'n60': 'f60', 'n65': 'f65', 'n70': 'f70', 'n75': 'f75',
-    'n80': 'f80', 'n90': 'f90', 'n90s': 'f90x', 'n2000': 'f301', 'n2020': 'f501',
-    'n4004': 'f401', 'n4004s': 'f401s', 'n5005': 'f401x', 'n6000': 'f601m', 'n6006': 'f601',
-    'n8008': 'f801', 'n8008s': 'f801s',
   },
   canon: {
-    // film Rebel ⇄ EOS ####
-    'rebel 2000': 'eos 300', 'rebel ti': 'eos 300v', 'rebel t2': 'eos 300x', 'rebel k2': 'eos 3000v',
-    'rebel g': 'eos 500n', 'rebel gii': 'eos 500n', 'rebel x': 'eos 500', 'rebel s': 'eos 1000f',
-    'rebel sii': 'eos 1000fn', 'rebel ii': 'eos 1000fn',
-    // Elan ⇄ EOS ; A2/A2E ⇄ EOS 5
-    'elan': 'eos 100', 'elan ii': 'eos 50', 'elan iie': 'eos 50e', 'elan 7': 'eos 30',
-    'elan 7e': 'eos 30', 'elan 7n': 'eos 30v', 'elan 7ne': 'eos 30v', 'a2': 'eos 5', 'a2e': 'eos 5',
-    // digital Rebel ⇄ EOS ####D
-    'digital rebel': 'eos 300d', 'rebel xt': 'eos 350d', 'rebel xti': 'eos 400d', 'rebel xsi': 'eos 450d',
-    'rebel t1i': 'eos 500d', 'rebel t2i': 'eos 550d', 'rebel t3i': 'eos 600d', 'rebel t3': 'eos 1100d',
-    'rebel t4i': 'eos 650d', 'rebel t5i': 'eos 700d', 'rebel t5': 'eos 1200d', 'rebel sl1': 'eos 100d',
-    'rebel t6': 'eos 1300d', 'rebel t6i': 'eos 750d', 'rebel t6s': 'eos 760d', 'rebel t7': 'eos 2000d',
-    'rebel t7i': 'eos 800d', 'rebel sl2': 'eos 200d', 'rebel sl3': 'eos 250d',
     // shared US name across eras → try both
     'rebel xs': ['eos 500', 'eos 1000d'],
     // the original AF compact carries its triple-market name
     'af35m': 'sure shot af35m autoboy',
     'sure shot': 'sure shot af35m autoboy',
   },
-  minolta: {
-    'x-570': 'x-500', 'x-370': 'x-300', 'x-370s': 'x-300s', 'xd-11': 'xd-7', 'xe-7': 'xe-1',
-    'xg-7': 'xg-2', 'xg-9': 'xg-s', 'srt-102': 'srt-303', 'srt-202': 'srt-303', 'srt-201': 'srt-101b',
-    'maxxum 7000': 'alpha 7000', 'maxxum 9000': 'alpha 9000',
-  },
-  pentax: { 'super program': 'super a', 'program plus': 'program a' },
   konica: { 'hexar af': 'hexar' },  // the AF body is recorded plain "Hexar"
   mamiya: { '645': 'm645' },        // original 645 body is recorded M645
   leica: { 'r4': 'r4-r7', 'r5': 'r4-r7', 'r6': 'r4-r7', 'r7': 'r4-r7' }, // R bodies live on the family record
@@ -73,15 +67,23 @@ const MODEL_MAP: Record<string, Record<string, string | string[]>> = {
   // plain "Exakta IIa/IIb" designations only exist as Varex models
   exakta: { 'exakta iia': 'exakta varex iia', 'exakta iib': 'exakta varex iib' },
   ihagee: { 'exakta iia': 'exakta varex iia', 'exakta iib': 'exakta varex iib' },
-  // Yashica US marketing names ⇄ international names
-  yashica: { 'sensation zoom': 'microtec zoom', 'imagination micro': 'micro elite' },
   kodak: { 'medalist i': 'medalist' }, // the first Medalist is recorded plain
 }
+
+const BRANDS = ['nikon', 'canon', 'minolta', 'pentax', 'olympus', 'ricoh', 'konica', 'yashica', 'mamiya', 'leica', 'samsung', 'rollei', 'ihagee', 'exakta', 'kodak']
+
+const MODEL_MAP: Record<string, Record<string, string | string[]>> = (() => {
+  const out: Record<string, Record<string, string | string[]>> = {}
+  for (const b of new Set([...BRANDS, ...Object.keys(EXTRA_MODEL_MAP)])) {
+    out[b] = { ...marketModelMap(b), ...(EXTRA_MODEL_MAP[b] ?? {}) }
+  }
+  return out
+})()
 
 const flatten = (s: string): string => s.toLowerCase().replace(/[-_]/g, ' ').replace(/\s+/g, ' ').trim()
 
 function brandOf(low: string): string | null {
-  for (const b of ['nikon', 'canon', 'minolta', 'pentax', 'olympus', 'ricoh', 'konica', 'yashica', 'mamiya', 'leica', 'samsung', 'rollei', 'ihagee', 'exakta', 'kodak']) if (low.includes(b)) return b
+  for (const b of BRANDS) if (low.includes(b)) return b
   if (/\basahi\b/.test(low)) return 'pentax'
   return null
 }
