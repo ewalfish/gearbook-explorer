@@ -49,6 +49,69 @@ describe('the shipped asset satisfies its own contract', () => {
   })
 })
 
+// Findings from an external review (Codex, 2026-07-26). Each of these shipped.
+describe('only ATTESTED names are published as facts', () => {
+  const marketAliasesOf = (id: string) => aliases.filter((a) => a.gearbook_id === id && a.via === 'market').map((a) => a.alias)
+
+  it('a mechanical line rename never invents a model name', () => {
+    // Pentax renamed Espio -> IQZoom across the range, but the Espio 80 was the
+    // IQZoom *835* and the 80V the *EZY-80*. Publishing the mechanical rewrite
+    // asserted two cameras that never existed AND made the real names
+    // unfindable. `systematic` now drives query expansion only.
+    for (const name of ['Pentax Espio 80', 'Pentax Espio 80V']) {
+      const rec = cameras.find((c) => c.name === name)
+      if (!rec) continue
+      expect(marketAliasesOf(rec.id), `${name} must not assert an IQZoom name`).toEqual([])
+      expect(rec.data.market_names ?? []).toEqual([])
+    }
+  })
+
+  it('keeps the attested exception and drops the mechanical guess beside it', () => {
+    // The Espio 115M IS the IQZoom 115V — a per-model row. It used to ship that
+    // correct name AND a fabricated "IQZoom 115M" alongside it.
+    const rec = cameras.find((c) => c.name === 'Pentax Espio 115M')
+    if (!rec) return
+    const al = marketAliasesOf(rec.id)
+    expect(al).toContain('Pentax IQZoom 115V')
+    expect(al).not.toContain('Pentax IQZoom 115M')
+  })
+
+  it('Fuji DL-500 keeps its real US name and not the derived one', () => {
+    const rec = cameras.find((c) => c.name === 'Fuji DL-500 Wide Date')
+    if (!rec) return
+    const al = marketAliasesOf(rec.id)
+    expect(al).toContain('Fuji Discovery Mini Dual Date')
+    expect(al).not.toContain('Fuji Discovery 500 Wide Date')
+  })
+
+  it('no market alias is a multi-name label', () => {
+    // "Canon Photura/Epoca/Photura" came from rewriting one side of an
+    // already-merged name and leaving the rest.
+    const bad = aliases.filter((a) => a.via === 'market' && /[/;]/.test(a.alias))
+    expect(bad.map((a) => a.alias).slice(0, 5)).toEqual([])
+  })
+
+  it('no lens carries a market alias — cross-market naming is camera-only here', () => {
+    const lensIds = new Set(lenses.map((l) => l.id))
+    const bad = aliases.filter((a) => a.via === 'market' && lensIds.has(a.gearbook_id))
+    expect(bad.map((a) => a.alias)).toEqual([])
+  })
+
+  it('redirects are a FUNCTION — one stale id, one destination', () => {
+    // "Nikon Nikomat" was absorbed by both the Nikkormat EL and the FT, giving
+    // one from_id two targets; every resolver is last-writer-wins, so it picked
+    // by emission order.
+    const bySource = new Map<string, Set<string>>()
+    for (const r of redirects) {
+      const k = `${r.gearbook_kind}:${r.from_id}`
+      if (!bySource.has(k)) bySource.set(k, new Set())
+      bySource.get(k)!.add(r.to_id)
+    }
+    const ambiguous = [...bySource.entries()].filter(([, t]) => t.size > 1)
+    expect(ambiguous.map(([k]) => k)).toEqual([])
+  })
+})
+
 describe('names()', () => {
   it('answers "what else is this called" for a merged record', () => {
     // US-first: the surviving record of the merged pair is the Freedom, and

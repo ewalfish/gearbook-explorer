@@ -185,6 +185,20 @@ export function validateAsset(input: AssetInput): ValidationResult {
     if (a.market !== undefined && !MARKETS.includes(a.market as never)) add('aliases', line, 'alias.market', `unknown market ${JSON.stringify(a.market)}`)
     // a market-tagged alias that is not a market alias is a mislabel
     if (a.market !== undefined && a.via !== 'market') add('aliases', line, 'alias.market-via', `market tag on a via=${String(a.via)} alias`)
+    // A market alias is a NAME a camera was sold under. Two things it can
+    // never be:
+    //  - a multi-name label. "Canon Photura/Epoca/Photura" was produced by
+    //    rewriting one side of an already-merged name and leaving the rest;
+    //    nobody types it and no camera is called it.
+    //  - attached to a lens. Cross-market naming is a camera phenomenon here;
+    //    a lens market alias means a camera rule leaked onto the wrong kind
+    //    (it produced "Minolta RF Rokkor-X-570 mm f/8" from the X-570 body).
+    if (a.via === 'market' && /[/;]/.test(String(a.alias))) {
+      add('aliases', line, 'alias.market-multiname', `market alias "${String(a.alias)}" is a multi-name label`)
+    }
+    if (a.via === 'market' && a.gearbook_kind === 'lens') {
+      add('aliases', line, 'alias.market-lens', `lens carries a market alias "${String(a.alias)}"`)
+    }
 
     const key = `${String(a.gearbook_kind)}:${String(a.gearbook_id)}`
     if (isStr(a.gearbook_id) && !ids.has(key)) add('aliases', line, 'alias.orphan', `alias "${String(a.alias)}" points at no record`)
@@ -210,6 +224,21 @@ export function validateAsset(input: AssetInput): ValidationResult {
   }
 
   // ── redirects ─────────────────────────────────────────────────────────────
+  // A redirect table has to be a FUNCTION. Two rows sharing a from_id give a
+  // stale link two destinations, and every resolver is last-writer-wins, so it
+  // silently picks by emission order — "Nikon Nikomat" resolved to the
+  // Nikkormat FT purely because that row came second.
+  const redirectSources = new Map<string, Set<string>>()
+  for (const raw of input.redirects ?? []) {
+    const r = raw as Record<string, unknown>
+    const k = `${String(r?.gearbook_kind)}:${String(r?.from_id)}`
+    if (!redirectSources.has(k)) redirectSources.set(k, new Set())
+    redirectSources.get(k)!.add(String(r?.to_id))
+  }
+  for (const [k, targets] of redirectSources) {
+    if (targets.size > 1) add('redirects', 0, 'redirect.ambiguous', `${k} redirects to ${targets.size} different records`)
+  }
+
   for (const [i, raw] of (input.redirects ?? []).entries()) {
     const line = i + 1
     const r = raw as Record<string, unknown>

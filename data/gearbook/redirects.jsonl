@@ -4,17 +4,15 @@
 {"from_id":"c0f9730e8507d135","from_name":"Canon AF 32/Prima Junior AF","gearbook_kind":"camera","to_id":"361390b885dda425","to_name":"Canon Prima Junior AF"}
 {"from_id":"fa79eb2905afeaa4","from_name":"Canon EOS 100","gearbook_kind":"camera","to_id":"6fd7ddfbc51502af","to_name":"Canon EOS Elan"}
 {"from_id":"eab94625f5f96b96","from_name":"Canon EOS 1000 / EOS Rebel","gearbook_kind":"camera","to_id":"e08e4faa46dbb76f","to_name":"Canon EOS 1000"}
+{"from_id":"3457f2fbd01af521","from_name":"Canon EOS 3000N","gearbook_kind":"camera","to_id":"269446279fd3aacb","to_name":"Canon EOS Rebel GII"}
 {"from_id":"cd0477ed704c5ab6","from_name":"Canon EOS 30","gearbook_kind":"camera","to_id":"7aa400f8bb80d17a","to_name":"Canon EOS Elan 7E"}
 {"from_id":"038f13c0ba1e1a16","from_name":"Canon EOS 30V/33V [ELAN 7NE/7N]","gearbook_kind":"camera","to_id":"6a85ab6918c7989f","to_name":"Canon EOS 30V"}
 {"from_id":"b6e7098396ef43a1","from_name":"Canon EOS 5","gearbook_kind":"camera","to_id":"5c4cebee92e9b3f5","to_name":"Canon EOS A2"}
 {"from_id":"a05dd25491dc780a","from_name":"Canon EOS 500D","gearbook_kind":"camera","to_id":"28182cc34c9c2e56","to_name":"Canon EOS Rebel T1i"}
 {"from_id":"ebf820c3781d9b85","from_name":"Canon EOS 550D","gearbook_kind":"camera","to_id":"be03b1a93a13927a","to_name":"Canon EOS Rebel T2i"}
 {"from_id":"5565b421c07f1313","from_name":"Canon EOS 300V","gearbook_kind":"camera","to_id":"7f4b0389ab8f3c9a","to_name":"Canon EOS Rebel Ti"}
-{"from_id":"7e99956003856ef9","from_name":"Canon EOS 500N","gearbook_kind":"camera","to_id":"269446279fd3aacb","to_name":"Canon EOS Rebel GII"}
 {"from_id":"8957f938e65c234c","from_name":"Canon EOS 600D","gearbook_kind":"camera","to_id":"f18bbdab0854734c","to_name":"Canon EOS Rebel T3i"}
-{"from_id":"d3b497ca992701a8","from_name":"Canon Digital Ixus V","gearbook_kind":"camera","to_id":"ac7b48f1bf4ccf7c","to_name":"Canon PowerShot S110"}
 {"from_id":"26db16f90b27e528","from_name":"Canon Digital Ixus 430","gearbook_kind":"camera","to_id":"bf87ae15d660b014","to_name":"Canon PowerShot S410"}
-{"from_id":"e9f2481f3ee982b8","from_name":"Canon Digital Ixus V2","gearbook_kind":"camera","to_id":"5433346a0557dc06","to_name":"Canon PowerShot S200"}
 {"from_id":"cefbd61bfbff57af","from_name":"Canon Prima Zoom Shot","gearbook_kind":"camera","to_id":"19d088924ab433d1","to_name":"Canon Sure Shot 60 Zoom"}
 {"from_id":"105c67deb63bb7ad","from_name":"Canon Prima Zoom 70F","gearbook_kind":"camera","to_id":"edf14ee21d7edf2c","to_name":"Canon Sure Shot 70 Zoom"}
 {"from_id":"ba43df97668b7de3","from_name":"Canon Prima BF Twin","gearbook_kind":"camera","to_id":"52f253b1b0d26ed1","to_name":"Canon Sure Shot 80 Tele"}
@@ -75,9 +73,7 @@
 {"from_id":"19a36dd8f67a10ee","from_name":"Nikon Nikomat FTN","gearbook_kind":"camera","to_id":"8b0b0a4fa1e180c1","to_name":"Nikon Nikkormat FTn"}
 {"from_id":"7e3c2b40aba7a60c","from_name":"Nikomat/Nikkormat FTN","gearbook_kind":"camera","to_id":"8b0b0a4fa1e180c1","to_name":"Nikon Nikkormat FTn"}
 {"from_id":"1426e0fd2a6ebdb4","from_name":"Nikon Nikomat EL","gearbook_kind":"camera","to_id":"324636abdba3702a","to_name":"Nikon Nikkormat EL"}
-{"from_id":"144c6fe0a1ef8643","from_name":"Nikon Nikomat","gearbook_kind":"camera","to_id":"324636abdba3702a","to_name":"Nikon Nikkormat EL"}
 {"from_id":"f76c711eeda81480","from_name":"Nikomat/Nikkormat EL/ELW","gearbook_kind":"camera","to_id":"324636abdba3702a","to_name":"Nikon Nikkormat EL"}
-{"from_id":"144c6fe0a1ef8643","from_name":"Nikon Nikomat","gearbook_kind":"camera","to_id":"433b0aaa19b77cfb","to_name":"Nikon Nikkormat FT"}
 {"from_id":"8c5e18118def9fa0","from_name":"Nikomat/Nikkormat FT/FS","gearbook_kind":"camera","to_id":"433b0aaa19b77cfb","to_name":"Nikon Nikkormat FT"}
 {"from_id":"6d5257d58d1f6b37","from_name":"Nikon AF200/Fun•Touch 2","gearbook_kind":"camera","to_id":"a547741a701ea75c","to_name":"Nikon AF200"}
 {"from_id":"8096aa55178f7679","from_name":"Nikon AF220/Fun•Touch 4","gearbook_kind":"camera","to_id":"7607da9bfe7e9af3","to_name":"Nikon AF220"}
