@@ -112,6 +112,38 @@ describe('only ATTESTED names are published as facts', () => {
   })
 })
 
+describe('the displayed name speaks the buyer’s language', () => {
+  // The corpus is assembled from French and German catalogues and their
+  // spelling survived into the names: the Rolleiflex 2.8F shipped as
+  // "Rolleiflex 2,8 F" and a Kodak Model 42 as "Kodak Modèle 42". Neither
+  // is what a US buyer types. Normalised for DISPLAY only — `name` keeps the
+  // source spelling, so nothing is re-keyed and the original stays searchable.
+  it('no displayed name carries a decimal comma', () => {
+    const bad = [...cameras, ...lenses].filter((r) => /\d,\d/.test(r.recommended_name))
+    expect(bad.map((r) => r.recommended_name).slice(0, 5)).toEqual([])
+  })
+
+  it('no displayed name carries an accented French common noun', () => {
+    const FR = /(modèle|première|évolution|édition|génération|boîtier)/i
+    const bad = [...cameras, ...lenses].filter((r) => FR.test(r.recommended_name))
+    expect(bad.map((r) => r.recommended_name).slice(0, 5)).toEqual([])
+  })
+
+  it('leaves a MODEL name that merely looks French alone', () => {
+    // The Heiland Premiere is a camera. Translating the word produced
+    // "Heiland First", which is why only ACCENTED forms are translated.
+    const rec = cameras.find((c) => c.name === 'Heiland Premiere')
+    if (rec) expect(rec.recommended_name).toBe('Heiland Premiere')
+  })
+
+  it('the source spelling stays reachable', () => {
+    const rec = cameras.find((c) => /Rolleiflex 2,8 F/.test(c.name))
+    if (!rec) return
+    expect(rec.recommended_name).toMatch(/2\.8 F/)
+    expect(aliases.some((a) => a.gearbook_id === rec.id && a.alias === rec.name)).toBe(true)
+  })
+})
+
 describe('names()', () => {
   it('answers "what else is this called" for a merged record', () => {
     // US-first: the surviving record of the merged pair is the Freedom, and
