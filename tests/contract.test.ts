@@ -541,3 +541,110 @@ describe('the Mamiya and Hasselblad system lines', () => {
     }
   })
 })
+
+// ── what the 2026-07-26 audit found ─────────────────────────────────────────
+// Five defects, each of which shipped silently and none of which any existing
+// test could see. The properties below are the ones that were violated, not
+// the specific rows that violated them — a spot-check on 37 known names would
+// pass again the moment the 38th appeared.
+describe('a LENS name never doubles its own brand', () => {
+  // "Mamiya Mamiya-Sekor Z 50mm f/4.5 W" — the system brand prefixed onto a
+  // line name that already carried it. Ids are a hash of the name, so each of
+  // these shipped a wrong PERMANENT id, and 37 of them reached v3.5.0.
+  //
+  // Lenses only, deliberately. The lens lines are named
+  // <system brand> <line> <spec> and the brand appears exactly once, because
+  // "Mamiya-Sekor" and "Zenzanon-PE" already carry it. Cameras are named
+  // <brand> <model> and 207 of them legitimately repeat the word — the Yashica
+  // -Mat really is called the Yashica-Mat, and the Fed-4 the Fed-4. Asserting
+  // this over both kinds would be asserting something false about cameras.
+  const doubled = (n: string) => /^(\p{L}+)[\s-]+\1[\s-]/iu.test(n)
+
+  it('holds for the identity', () => {
+    const bad = lenses.filter((l) => doubled(l.name)).map((l) => l.name)
+    expect(bad, `lens names repeating their brand: ${bad.slice(0, 5).join(' · ')}`).toEqual([])
+  })
+
+  it('holds for the displayed name too', () => {
+    const bad = lenses.filter((l) => doubled(l.recommended_name)).map((l) => l.recommended_name)
+    expect(bad, `displayed lens names repeating their brand: ${bad.slice(0, 5).join(' · ')}`).toEqual([])
+  })
+})
+
+describe('renaming a record never orphans the id it already published', () => {
+  it('keeps every superseded Mamiya spelling resolvable', () => {
+    // The 37 were renamed AFTER v3.5.0 shipped their ids. A redirect is the
+    // only thing standing between an existing link and a dead end.
+    const from = redirects.filter((r) => /^Mamiya Mamiya-/.test(String(r.from_name)))
+    expect(from.length, 'redirects for the doubled-brand names').toBe(37)
+    for (const r of from) expect(String(r.to_name), `${r.from_name}`).not.toMatch(/^Mamiya Mamiya-/)
+  })
+
+  it('never redirects a record to itself', () => {
+    // A rename that does not move the id needs no redirect, and emitting one
+    // makes the source both redirected and live — the contract rejects it.
+    const self = redirects.filter((r) => r.from_id === r.to_id).map((r) => String(r.from_name))
+    expect(self, `self-redirects: ${self.slice(0, 5).join(' · ')}`).toEqual([])
+  })
+})
+
+describe('the exposure and film-speed facts reach the asset', () => {
+  const val = <T>(c: GearRecord, k: string) => (c.data as Record<string, unknown>)[k] as T | undefined
+  const populated = (k: string) => cameras.filter((c) => {
+    const v = val<unknown>(c, k)
+    return v != null && v !== '' && !(Array.isArray(v) && !v.length)
+  })
+
+  it('publishes all four, which the publisher used to drop', () => {
+    // They were merged and then omitted from cleanCamera's allowlist, so the
+    // count that mattered was zero for every one of them.
+    for (const [field, atLeast] of [
+      ['exposure_modes', 2900], ['iso_manual_range', 1000], ['dx_coding', 1300], ['dx_range', 250],
+    ] as const) {
+      expect(populated(field).length, `${field} records`).toBeGreaterThanOrEqual(atLeast)
+    }
+  })
+
+  it('admits no exposure mode outside the declared vocabulary', () => {
+    // The merged data carried scene modes ('landscape'), drive modes ('burst')
+    // and flash settings under this field. None of them is an exposure mode.
+    const allowed = new Set(['manual', 'aperture-priority', 'shutter-priority', 'program', 'auto', 'bulb'])
+    const bad = new Set<string>()
+    for (const c of cameras) for (const m of val<string[]>(c, 'exposure_modes') ?? []) if (!allowed.has(m)) bad.add(m)
+    expect([...bad], `out-of-vocabulary exposure modes`).toEqual([])
+  })
+
+  it('ships no mojibake in a film-speed range', () => {
+    // An en-dash mangled at ingest turns "100-400" into an unreadable range.
+    const bad = cameras.filter((c) => ['iso_manual_range', 'dx_range'].some((k) => String(val<string>(c, k) ?? '').includes('�')))
+    expect(bad.map((c) => c.name), 'records with U+FFFD in a film-speed range').toEqual([])
+  })
+})
+
+describe('every principal Mamiya body is reachable from its lenses', () => {
+  const camMount = (c: GearRecord) => String((c.data as { lens_mount?: string }).lens_mount ?? '')
+  const lensMount = (l: GearRecord) => String((l.data as { mount?: string }).mount ?? '')
+
+  it('gives all sixteen a mount', () => {
+    // Eleven of sixteen had none, so the hand-transcribed lens lines resolved
+    // from nothing — the data was present and unreachable.
+    const bodies = cameras.filter((c) => /^Mamiya (6|7II|7|645|M645|RB ?67|RZ ?67)\b/.test(c.name))
+    expect(bodies.length, 'principal Mamiya bodies').toBeGreaterThanOrEqual(16)
+    const mountless = bodies.filter((c) => !camMount(c)).map((c) => c.name)
+    expect(mountless, `Mamiya bodies with no mount: ${mountless.join(' · ')}`).toEqual([])
+  })
+
+  it('points each one at a mount that actually has glass', () => {
+    const withGlass = new Set(lenses.map(lensMount).filter(Boolean))
+    for (const c of cameras.filter((c) => /^Mamiya (6|7II|7|645|M645|RB ?67|RZ ?67)\b/.test(c.name))) {
+      expect(withGlass.has(camMount(c)), `${c.name} → mount "${camMount(c)}" has no lenses`).toBe(true)
+    }
+  })
+
+  it('does not put a 6×7 frame on 35mm film, or a lens mount on a fixed-lens body', () => {
+    const m7ii = cameras.find((c) => c.name === 'Mamiya 7II')
+    expect((m7ii!.data as { format?: string }).format, 'Mamiya 7II format').toBe('120')
+    const afd = cameras.find((c) => c.name === 'Mamiya 645 AFD')
+    expect((afd!.data as { fixed_lens?: unknown }).fixed_lens ?? null, 'the 645 AFD is interchangeable-lens').toBeNull()
+  })
+})
