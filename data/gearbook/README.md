@@ -9,10 +9,10 @@ brand/model → known specs). Not to be confused with the public *catalog*
 
 | File | Rows | Imports to |
 |---|---|---|
-| `cameras.jsonl` | ~17,400 | `gearbook_cameras` |
-| `lenses.jsonl` | ~3,600 | `gearbook_lenses` |
-| `aliases.jsonl` | ~49,500 | `gearbook_aliases` (typeahead / match) |
-| `redirects.jsonl` | ~35 | `gearbook_redirects` (merged-away ids) |
+| `cameras.jsonl` | ~17,300 | `gearbook_cameras` |
+| `lenses.jsonl` | ~4,400 | `gearbook_lenses` |
+| `aliases.jsonl` | ~54,900 | `gearbook_aliases` (typeahead / match) |
+| `redirects.jsonl` | ~180 | `gearbook_redirects` (merged-away ids) |
 
 One JSON object per line. Each gearbook row:
 
