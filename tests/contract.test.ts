@@ -479,3 +479,65 @@ describe('Hasselblad and Mamiya mounts are not one mount each', () => {
     expect(cameras.find((c) => c.name === 'Mamiya RZ67') && mountOf(cameras.find((c) => c.name === 'Mamiya RZ67')!)).toBe('Mamiya RZ67')
   })
 })
+
+// ── the hand-transcribed medium-format systems ──────────────────────────────
+// Sourced from period Mamiya/Hasselblad/Zeiss/Schneider literature via a
+// page-cited research handoff. The handoff's review queue is deliberately NOT
+// incorporated — see the assertions at the end.
+describe('the Mamiya and Hasselblad system lines', () => {
+  const mountOf = (r: GearRecord) => String((r.data as { mount?: string }).mount ?? '')
+  const on = (m: string) => lenses.filter((l) => mountOf(l) === m)
+
+  it('covers every Mamiya system, each on its own mount', () => {
+    for (const [mount, atLeast] of [
+      ['Mamiya 6', 3], ['Mamiya 7', 6], ['Mamiya Press', 10], ['Mamiya TLR', 8],
+      ['Mamiya RB67', 33], ['Mamiya RZ67', 25], ['Mamiya 645', 42], ['Mamiya 645 AF', 24],
+    ] as const) {
+      expect(on(mount).length, `${mount} lens count`).toBeGreaterThanOrEqual(atLeast)
+    }
+  })
+
+  it('never puts RB, RZ, 645 manual and 645 AF glass on one mount', () => {
+    // Each pair is genuinely incompatible, or compatible only one way.
+    const seen = new Set<string>()
+    for (const m of ['Mamiya RB67', 'Mamiya RZ67', 'Mamiya 645', 'Mamiya 645 AF']) {
+      for (const l of on(m)) {
+        expect(seen.has(l.name), `${l.name} appears on two Mamiya mounts`).toBe(false)
+        seen.add(l.name)
+      }
+    }
+    // and the generic bucket is gone — "Mamiya" alone said nothing
+    expect(on('Mamiya').length, 'lenses left on a generic "Mamiya" mount').toBe(0)
+  })
+
+  it('keeps Hasselblad F and FE on the V bayonet, with the generation in the name', () => {
+    // They are shutterless lenses for the focal-plane 2000/200 bodies — a body
+    // restriction, not a different mount.
+    const ff = lenses.filter((l) => /^Hasselblad .*\b(F|FE)$/.test(l.name) || l.name === 'Hasselblad FE 60-120mm f/4.8')
+    expect(ff.length, 'F + FE records').toBeGreaterThanOrEqual(15)
+    for (const l of ff) expect(mountOf(l), `${l.name}`).toBe('Hasselblad V')
+    expect(ff.some((l) => l.name.endsWith(' F')), 'no F lenses').toBe(true)
+    expect(ff.some((l) => l.name.endsWith(' FE')), 'no FE lenses').toBe(true)
+  })
+
+  it('leaves the review queue out until it is properly sourced', () => {
+    const names = new Set(lenses.map((l) => l.name))
+    // RB67 NB range: dealer photographs only, no factory master list.
+    for (const n of ['Mamiya-Sekor NB 65mm f/4.5', 'Mamiya-Sekor NB 90mm f/3.8', 'Mamiya-Sekor NB 127mm f/3.8']) {
+      expect(names.has(n), `${n} was incorporated despite being review-only`).toBe(false)
+    }
+    // TLR variants resting on a secondary collector history.
+    expect([...names].some((n) => /TLR/.test(n) && /f\/3\.7/.test(n)), 'the 80/3.7 TLR is secondary-sourced').toBe(false)
+    // The C 500/8's element count is contradicted by two factory catalogs
+    // (6/5 vs 6/6), so it must stay unset rather than pick a side.
+    const c500 = lenses.find((l) => l.name === 'Mamiya Mamiya-Sekor C 500mm f/8')
+    if (c500) expect((c500.data as { elements_groups?: string }).elements_groups ?? null).toBeNull()
+  })
+
+  it('does not invent production years from catalog print dates', () => {
+    // A catalog proves a product was on sale that year, not when it launched.
+    for (const l of [...on('Mamiya 6'), ...on('Mamiya 7'), ...on('Mamiya Press'), ...on('Mamiya 645 AF')]) {
+      expect((l.data as { year_introduced?: number }).year_introduced ?? null, `${l.name}`).toBeNull()
+    }
+  })
+})
