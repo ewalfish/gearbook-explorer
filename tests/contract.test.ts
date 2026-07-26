@@ -275,3 +275,54 @@ describe('hazards()', () => {
     expect(flagged.length).toBeGreaterThan(500)
   })
 })
+
+// ── manufacturer ────────────────────────────────────────────────────────────
+// Upstream derives the maker from the FIRST WORD of the record name, which is
+// wrong whenever the name opens with a coating prefix ("SMC Takumar" → SMC), a
+// series designation ("RE Auto-Topcor" → RE) or half a two-word company
+// ("Carl Zeiss Jena" → Carl). Those shipped as browsable brands. The repair
+// reads the real maker off the name and returns nothing when it cannot tell —
+// an empty manufacturer is a gap, a wrong one is a lie the facet menu repeats.
+describe('manufacturer is a company, not a prefix', () => {
+  const makers = () =>
+    [...cameras, ...lenses].map((r) => (r.data as { manufacturer?: string }).manufacturer).filter(Boolean) as string[]
+
+  it('never ships a coating or series prefix as a brand', () => {
+    // Each of these had records under it before the repair: Carl 181, SMC 116,
+    // MC 35, Super 14, Auto 13, Ernst 6, HD 6.
+    const PREFIX = /^(smc|shmc|mc|мс|ms|sc|hd|re|auto|super|tele|wide|zoom|macro|multi|new|colou?r|reflex|apo|ed|af|mf)$/i
+    const bad = [...new Set(makers().filter((m) => PREFIX.test(m.trim())))]
+    expect(bad, `prefix values shipped as manufacturers: ${bad.join(', ')}`).toEqual([])
+  })
+
+  it('never ships half of a two-word company as a brand', () => {
+    const HALF = /^(carl|ernst|voigt|nippon|aus|au|la|as)$/i
+    const bad = [...new Set(makers().filter((m) => HALF.test(m.trim())))]
+    expect(bad, `truncated makers shipped as manufacturers: ${bad.join(', ')}`).toEqual([])
+  })
+
+  it('never ships a placeholder as a brand', () => {
+    const JUNK = /^(nanars|unknown|inconnue?|sans marque|n\/a|-+|\?+)$/i
+    const bad = [...new Set(makers().filter((m) => JUNK.test(m.trim())))]
+    expect(bad, `placeholder values shipped as manufacturers: ${bad.join(', ')}`).toEqual([])
+  })
+
+  it('keeps the short brands that are genuinely real', () => {
+    // The tempting general fix — "short values are truncated, expand them" —
+    // welded models onto makers and invented 144 brands (Ica Halloh, Fed Fed-4,
+    // 3M Disc, KW Praktica). These must survive intact.
+    const present = new Set(makers())
+    for (const real of ['Ica', 'Zeh', 'Sem', 'KW', '3M', 'FED', 'OIP', 'GAF']) {
+      expect(present.has(real), `real short brand "${real}" was mangled away`).toBe(true)
+    }
+  })
+
+  it('resolves the known prefix cases to their actual maker', () => {
+    const all = [...cameras, ...lenses]
+    const makerOf = (name: string) =>
+      (all.find((r) => r.name === name)?.data as { manufacturer?: string } | undefined)?.manufacturer
+    expect(makerOf('SMC Takumar 50 mm f/ 1.4')).toBe('Asahi Pentax')
+    expect(makerOf('RE Auto-Topcor 58 mm f/ 1.4')).toBe('Topcon')
+    expect(makerOf('Carl Zeiss Jena Werra 1e')).toBe('Carl Zeiss Jena')
+  })
+})
