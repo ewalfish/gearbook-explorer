@@ -1,0 +1,15 @@
+{"name":"Yashica 635","kind":"camera","set":{"also_takes":[{"format":"35mm","frame_size":"24×36 mm","via":"adapter"}]},"aliases":["Yashica-635","Yashica 635 TLR"],"note":"dual-format TLR: 6×6 on 120 natively, 24×36 on 35mm with the factory adapter kit (mask, spool, pressure plate, adapter ring, supporter shaft)."}
+{"name":"Hasselblad H1","kind":"camera","set":{"lens_mount":"Hasselblad H","frame_size":"6×4.5 cm","format":"120"},"note":"was on Hasselblad V; the H system is a different, incompatible mount taking HC/HCD lenses."}
+{"name":"Hasselblad H1D","kind":"camera","set":{"lens_mount":"Hasselblad H","format":"digital"},"note":"was format 35mm — it is a digital medium-format back on the H body."}
+{"name":"Hasselblad H2D","kind":"camera","set":{"lens_mount":"Hasselblad H","format":"digital"}}
+{"name":"Hasselblad H3D-31","kind":"camera","set":{"lens_mount":"Hasselblad H","format":"digital"},"note":"was format 35mm."}
+{"name":"Hasselblad H3DII","kind":"camera","set":{"lens_mount":"Hasselblad H","format":"digital"},"note":"was format 35mm."}
+{"name":"Hasselblad HC 80 mm f/ 2.8","kind":"lens","set":{"mount":"Hasselblad H"},"aliases":["Hasselblad HC 80mm f/2.8","HC 80mm f/2.8"],"note":"HC lenses are the H system's autofocus range; they do not fit the V bayonet."}
+{"name":"Hasselblad HC 100 mm f/ 2.2","kind":"lens","set":{"mount":"Hasselblad H"},"aliases":["Hasselblad HC 100mm f/2.2","HC 100mm f/2.2"]}
+{"name":"Hasselblad HC 120 mm f/ 4 Macro","kind":"lens","set":{"mount":"Hasselblad H"},"aliases":["Hasselblad HC 120mm f/4 Macro","HC 120mm f/4 Macro"]}
+{"name":"Hasselblad HC 150 mm f/ 3.2","kind":"lens","set":{"mount":"Hasselblad H"},"aliases":["Hasselblad HC 150mm f/3.2","HC 150mm f/3.2"]}
+{"name":"Hasselblad Xpan","kind":"camera","set":{"lens_mount":"Hasselblad Xpan","frame_size":"24×65 mm"},"aliases":["Fujifilm TX-1","Fuji TX-1","Hasselblad X-Pan"],"note":"35mm dual-format panoramic, built by Fujifilm and sold as the TX-1 in Japan."}
+{"name":"Hasselblad Xpan II","kind":"camera","set":{"lens_mount":"Hasselblad Xpan","frame_size":"24×65 mm"},"aliases":["Fujifilm TX-2","Fuji TX-2","Hasselblad X-Pan II"]}
+{"name":"Mamiya RZ67","kind":"camera","set":{"lens_mount":"Mamiya RZ67","frame_size":"6×7 cm","format":"120"},"aliases":["Mamiya RZ67 Professional"]}
+{"name":"Mamiya RB67","kind":"camera","set":{"lens_mount":"Mamiya RB67","frame_size":"6×7 cm","format":"120"}}
+{"name":"Mamiya RB67 Professional","kind":"camera","set":{"lens_mount":"Mamiya RB67","frame_size":"6×7 cm","format":"120"}}

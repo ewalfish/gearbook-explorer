@@ -22,6 +22,18 @@ export type Market = (typeof MARKETS)[number];
 export declare const ALIAS_VIA: readonly ["name", "market", "superseded", "shorthand", "punctuation", "correction"];
 export type AliasVia = (typeof ALIAS_VIA)[number];
 export declare const CONFIDENCE: readonly ["high", "medium", "low"];
+/**
+ * How a body reaches a film format that is not its native one.
+ *
+ *   adapter  a purpose-made kit (Yashica 635's 35mm conversion)
+ *   back     an interchangeable magazine (Bronica ETR 35mm and Polaroid backs)
+ *   insert   a different film insert in the same magazine (Hasselblad A16)
+ *   mask     a frame mask that changes the exposed area
+ *   respool  no hardware — the film is the same, wound on another spool.
+ *            This is the 620 case: 620 IS 120 emulsion on a thinner spool.
+ */
+export declare const TAKES_VIA: readonly ["adapter", "back", "insert", "mask", "respool"];
+export type TakesVia = (typeof TAKES_VIA)[number];
 /** Current contract version. Bumped only by a breaking asset change. */
 export declare const ASSET_CONTRACT = 1;
 export interface ValidationIssue {
@@ -68,6 +80,28 @@ export declare const ASSET_SCHEMA: {
                 readonly data: {
                     readonly type: "object";
                     readonly properties: {
+                        readonly also_takes: {
+                            readonly type: "array";
+                            readonly minItems: 1;
+                            readonly items: {
+                                readonly type: "object";
+                                readonly required: readonly ["format"];
+                                readonly additionalProperties: false;
+                                readonly properties: {
+                                    readonly format: {
+                                        readonly type: "string";
+                                        readonly minLength: 1;
+                                    };
+                                    readonly frame_size: {
+                                        readonly type: "string";
+                                        readonly minLength: 1;
+                                    };
+                                    readonly via: {
+                                        readonly enum: readonly ["adapter", "back", "insert", "mask", "respool"];
+                                    };
+                                };
+                            };
+                        };
                         readonly market_names: {
                             readonly type: "array";
                             readonly minItems: 2;

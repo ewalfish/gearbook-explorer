@@ -20,6 +20,17 @@ export const MARKETS = ['us', 'intl', 'eu', 'jp'];
 /** How an alias came to exist. See `validateAsset` for why this matters. */
 export const ALIAS_VIA = ['name', 'market', 'superseded', 'shorthand', 'punctuation', 'correction'];
 export const CONFIDENCE = ['high', 'medium', 'low'];
+/**
+ * How a body reaches a film format that is not its native one.
+ *
+ *   adapter  a purpose-made kit (Yashica 635's 35mm conversion)
+ *   back     an interchangeable magazine (Bronica ETR 35mm and Polaroid backs)
+ *   insert   a different film insert in the same magazine (Hasselblad A16)
+ *   mask     a frame mask that changes the exposed area
+ *   respool  no hardware — the film is the same, wound on another spool.
+ *            This is the 620 case: 620 IS 120 emulsion on a thinner spool.
+ */
+export const TAKES_VIA = ['adapter', 'back', 'insert', 'mask', 'respool'];
 /** Current contract version. Bumped only by a breaking asset change. */
 export const ASSET_CONTRACT = 1;
 /** JSON Schema for the row shapes, for editors and external tooling. */
@@ -39,6 +50,29 @@ export const ASSET_SCHEMA = {
                 data: {
                     type: 'object',
                     properties: {
+                        // Other film this body accepts, and what it takes to get there.
+                        // `format` stays the NATIVE one, so nothing downstream changes
+                        // meaning — this is strictly additional. `data` was already an open
+                        // object, so old consumers ignore the field and old assets still
+                        // validate: no contract bump, no coordinated release.
+                        //
+                        // The case that forced it: the Yashica 635 shoots 6×6 on 120 AND
+                        // 24×36 on 35mm with its adapter kit, and one `format` string can
+                        // only say one of those. It generalises — Bronica ETR/SQ 35mm and
+                        // Polaroid backs, Rolleikin kits, Hasselblad inserts, RB67/RZ67 645
+                        // backs — and most usefully to the 386 records whose native format
+                        // is 620, which is 120 film on a thinner spool.
+                        also_takes: {
+                            type: 'array', minItems: 1,
+                            items: {
+                                type: 'object', required: ['format'], additionalProperties: false,
+                                properties: {
+                                    format: { type: 'string', minLength: 1 },
+                                    frame_size: { type: 'string', minLength: 1 },
+                                    via: { enum: [...TAKES_VIA] },
+                                },
+                            },
+                        },
                         market_names: {
                             type: 'array', minItems: 2,
                             items: {

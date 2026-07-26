@@ -409,3 +409,73 @@ describe('the Bronica system is complete and correctly mounted', () => {
     }
   })
 })
+
+// ── multi-format bodies ─────────────────────────────────────────────────────
+// `format` is one string, so a body that takes more than one film could only
+// ever declare one of them. `also_takes` carries the rest without changing what
+// `format` means, so nothing downstream had to move.
+describe('a body that takes more than one film says so', () => {
+  it('keeps also_takes to the declared shape', () => {
+    const VIA = new Set(['adapter', 'back', 'insert', 'mask', 'respool'])
+    for (const c of cameras) {
+      const takes = (c.data as { also_takes?: { format: string; via?: string }[] }).also_takes
+      if (!takes) continue
+      expect(Array.isArray(takes) && takes.length > 0, `${c.name}`).toBe(true)
+      for (const t of takes) {
+        expect(t.format, `${c.name} also_takes entry needs a format`).toBeTruthy()
+        if (t.via) expect(VIA.has(t.via), `${c.name}: unknown via "${t.via}"`).toBe(true)
+        expect(t.format, `${c.name} lists its native format as an extra`).not.toBe((c.data as { format?: string }).format)
+      }
+    }
+  })
+
+  it('says every 620 camera will shoot 120 respooled', () => {
+    // 620 is 120 emulsion on a thinner spool — a fact about the film, not a
+    // guess about any camera. "620 is discontinued" is what stops these selling.
+    const six20 = cameras.filter((c) => (c.data as { format?: string }).format === '620')
+    expect(six20.length).toBeGreaterThan(300)
+    for (const c of six20) {
+      const takes = (c.data as { also_takes?: { format: string; via?: string }[] }).also_takes ?? []
+      expect(takes.some((t) => t.format === '120' && t.via === 'respool'), `${c.name}`).toBe(true)
+    }
+  })
+
+  it('knows the Yashica 635 shoots 35mm with its adapter kit', () => {
+    const y = cameras.find((c) => c.name === 'Yashica 635')
+    expect((y?.data as { format?: string })?.format, 'native format stays 120').toBe('120')
+    const takes = (y?.data as { also_takes?: { format: string; via?: string }[] })?.also_takes ?? []
+    expect(takes.find((t) => t.format === '35mm')?.via).toBe('adapter')
+  })
+})
+
+// ── Hasselblad and Mamiya mounts ────────────────────────────────────────────
+// Both brands were collapsed to a single mount each, which asserted that
+// physically incompatible glass interchanges.
+describe('Hasselblad and Mamiya mounts are not one mount each', () => {
+  const mountOf = (r: GearRecord) => String((r.data as { mount?: string; lens_mount?: string }).mount ?? (r.data as { lens_mount?: string }).lens_mount ?? '')
+
+  it('keeps H-system lenses off the V bayonet', () => {
+    for (const l of lenses.filter((l) => /^Hasselblad HC /.test(l.name))) {
+      expect(mountOf(l), `${l.name}`).toBe('Hasselblad H')
+    }
+    const h1 = cameras.find((c) => c.name === 'Hasselblad H1')
+    expect(mountOf(h1!), 'the H1 is an H-system body').toBe('Hasselblad H')
+  })
+
+  it('carries a real V-system lens range', () => {
+    const v = lenses.filter((l) => mountOf(l) === 'Hasselblad V')
+    expect(v.length, 'V-system lenses').toBeGreaterThanOrEqual(50)
+    // one per generation, since a C and a CFi of the same focal are different
+    // products at very different prices
+    for (const gen of ['C', 'CF', 'CB', 'CFE', 'CFi']) {
+      expect(v.some((l) => l.name.endsWith(` ${gen}`)), `no ${gen} lenses`).toBe(true)
+    }
+  })
+
+  it('does not claim RB and RZ lenses interchange', () => {
+    const rz = lenses.filter((l) => mountOf(l) === 'Mamiya RZ67')
+    expect(rz.length, 'RZ67 lenses').toBeGreaterThanOrEqual(20)
+    for (const l of rz) expect(l.name).toMatch(/Sekor/)
+    expect(cameras.find((c) => c.name === 'Mamiya RZ67') && mountOf(cameras.find((c) => c.name === 'Mamiya RZ67')!)).toBe('Mamiya RZ67')
+  })
+})
