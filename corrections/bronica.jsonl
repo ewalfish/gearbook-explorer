@@ -1,0 +1,18 @@
+{"name":"Bronica S2A","kind":"camera","set":{"format":"120","frame_size":"6×6 cm","lens_mount":"Bronica S/EC"},"note":"source said format 35mm while carrying frame_size 6×6 cm — self-contradictory. The S2A is a 6×6 focal-plane SLR on 120."}
+{"name":"Bronica GS-1","kind":"camera","set":{"lens_mount":"Bronica GS-1"},"note":"was tagged Bronica S/EC; the GS-1 takes PG lenses on its own mount, not the focal-plane bayonet."}
+{"name":"Bronica Z","kind":"camera","set":{"lens_mount":"Bronica S/EC","frame_size":"6×6 cm"},"aliases":["Zenza Bronica Z","Bronica Zenza"]}
+{"name":"Bronica D","kind":"camera","set":{"lens_mount":"Bronica S/EC"},"aliases":["Bronica Deluxe"]}
+{"name":"Bronica C","kind":"camera","set":{"lens_mount":"Bronica S/EC"},"aliases":["Zenza Bronica C"]}
+{"name":"Bronica S","kind":"camera","set":{"lens_mount":"Bronica S/EC"},"aliases":["Zenza Bronica S"]}
+{"name":"Bronica S2","kind":"camera","set":{"lens_mount":"Bronica S/EC"},"aliases":["Zenza Bronica S2"]}
+{"name":"Bronica EC","kind":"camera","set":{"lens_mount":"Bronica S/EC"},"aliases":["Zenza Bronica EC"]}
+{"name":"Bronica EC-TL","kind":"camera","set":{"lens_mount":"Bronica S/EC"},"aliases":["Zenza Bronica EC-TL","Bronica ECTL"]}
+{"name":"Bronica ETR","kind":"camera","set":{"lens_mount":"Bronica ETR"},"aliases":["Zenza Bronica ETR"]}
+{"name":"Bronica ETR-C","kind":"camera","set":{"lens_mount":"Bronica ETR"},"aliases":["Zenza Bronica ETR-C","Bronica ETRC"]}
+{"name":"Bronica ETRS","kind":"camera","set":{"lens_mount":"Bronica ETR"},"aliases":["Zenza Bronica ETRS","Bronica ETR-S"]}
+{"name":"Bronica ETRSi","kind":"camera","set":{"lens_mount":"Bronica ETR"},"aliases":["Zenza Bronica ETRSi","Bronica ETRSI","Bronica ETR-Si"]}
+{"name":"Bronica SQ","kind":"camera","set":{"lens_mount":"Bronica SQ"},"aliases":["Zenza Bronica SQ"]}
+{"name":"Bronica SQ-A","kind":"camera","set":{"lens_mount":"Bronica SQ"},"aliases":["Zenza Bronica SQ-A","Bronica SQA"]}
+{"name":"Bronica RF645","kind":"camera","set":{"lens_mount":"Bronica RF645"},"aliases":["Zenza Bronica RF645","Bronica RF 645"]}
+{"name":"Bronica EC-TL","kind":"camera","set":{"frame_size":"6×6 cm"},"note":"was 6×4.5 cm; the EC family is 6×6 — 645 arrived with the ETR."}
+{"name":"Bronica EC-TL II","kind":"camera","set":{"frame_size":"6×6 cm"}}

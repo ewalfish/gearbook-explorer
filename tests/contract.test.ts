@@ -326,3 +326,86 @@ describe('manufacturer is a company, not a prefix', () => {
     expect(makerOf('Carl Zeiss Jena Werra 1e')).toBe('Carl Zeiss Jena')
   })
 })
+
+// ── entity hygiene ──────────────────────────────────────────────────────────
+// The scrape harvested encyclopedia INDEX pages as products. "Bronica lenses"
+// and a lens simply called "Bronica" were, until this was fixed, the only two
+// Bronica "lenses" in the asset. They are not rare: 145 lens records and 23
+// camera records were index pages, maker pages, lens DESIGNS ("Cooke triplet"),
+// mounts ("DKL-mount") or formats ("Carte de Visite"), most carrying a year —
+// the company's founding date — which is what made them look like real rows.
+describe('every record is a thing you could own', () => {
+  it('ships no encyclopedia index pages', () => {
+    const bad = [...cameras, ...lenses].filter((r) => /\b(lenses|cameras|lens mounts?)$/i.test(r.name))
+    expect(bad.map((r) => r.name), 'category pages shipped as products').toEqual([])
+  })
+
+  it('ships no lens that states nothing about a lens', () => {
+    const OPTICS = ['mount', 'focal_length', 'focal_min_mm', 'max_aperture', 'min_aperture', 'filter_size', 'elements_groups', 'min_focus', 'lens_type']
+    const bad = lenses.filter((l) => !OPTICS.some((k) => {
+      const v = (l.data as Record<string, unknown>)[k]
+      return v != null && v !== '' && !(Array.isArray(v) && !v.length)
+    }))
+    // A bare "Carl Zeiss" or "Bronica" is a short, common string that outranks
+    // the real lens when the consumer fuzzy-matches an inventory row.
+    expect(bad.slice(0, 8).map((l) => l.name), 'lens records carrying no optical fact').toEqual([])
+  })
+})
+
+// ── Bronica ─────────────────────────────────────────────────────────────────
+// Transcribed by hand because the corpora had the bodies but not one single
+// Zenzanon. Five incompatible mounts across the system, which is exactly the
+// fact a buyer needs and the fact most likely to be got wrong.
+describe('the Bronica system is complete and correctly mounted', () => {
+  const bronicaLenses = () => lenses.filter((l) => /^Bronica /.test(String((l.data as { mount?: string }).mount ?? '')))
+  const byMount = (m: string) => bronicaLenses().filter((l) => (l.data as { mount?: string }).mount === m)
+
+  it('carries every body from the 1958 Z to the 2000 RF645', () => {
+    const names = new Set(cameras.map((c) => c.name))
+    for (const body of [
+      'Bronica Z', 'Bronica D', 'Bronica C', 'Bronica C2', 'Bronica S', 'Bronica S2', 'Bronica S2A',
+      'Bronica EC', 'Bronica EC-TL', 'Bronica EC-TL II',
+      'Bronica ETR', 'Bronica ETR-C', 'Bronica ETRS', 'Bronica ETRSi',
+      'Bronica SQ', 'Bronica SQ-A', 'Bronica SQ-Am', 'Bronica SQ-Ai', 'Bronica SQ-B',
+      'Bronica GS-1', 'Bronica RF645',
+    ]) expect(names.has(body), `missing body: ${body}`).toBe(true)
+  })
+
+  it('has lenses on all five mounts', () => {
+    for (const [mount, atLeast] of [['Bronica S/EC', 25], ['Bronica ETR', 25], ['Bronica SQ', 18], ['Bronica GS-1', 9], ['Bronica RF645', 4]] as const) {
+      expect(byMount(mount).length, `${mount} lens count`).toBeGreaterThanOrEqual(atLeast)
+    }
+  })
+
+  it('keeps the GS-1 off the focal-plane mount', () => {
+    // The taxonomy had no GS-1 branch, so the 6×7 body and all nine PG lenses
+    // fell through to Bronica S/EC — a mount that physically cannot take them.
+    const gs1 = cameras.find((c) => c.name === 'Bronica GS-1')
+    expect((gs1?.data as { lens_mount?: string })?.lens_mount).toBe('Bronica GS-1')
+    for (const l of byMount('Bronica GS-1')) expect(l.name).toMatch(/Zenzanon-PG/)
+  })
+
+  it('does not claim a Bronica shot 35mm', () => {
+    // The S2A shipped as format "35mm" while carrying frame_size "6×6 cm".
+    for (const c of cameras.filter((c) => /^Bronica (Z|D|C|C2|S|S2|S2A|EC|EC-TL|ETR|SQ|GS-1|RF645)/.test(c.name))) {
+      const d = c.data as { format?: string }
+      if (d.format) expect(d.format, `${c.name} format`).toBe('120')
+    }
+  })
+
+  it('finds a lens by the names a seller actually types', () => {
+    const byId = new Map([...cameras, ...lenses].map((r) => [r.id, r.name]))
+    const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+    const idx = new Map(aliases.map((a) => [norm(a.alias), a.gearbook_id]))
+    for (const [query, expected] of [
+      ['Zenza Bronica Zenzanon-PE 150mm f/3.5', 'Bronica Zenzanon-PE 150mm f/3.5'],
+      ['Zenzanon-PE 150mm f/3.5', 'Bronica Zenzanon-PE 150mm f/3.5'],
+      ['Nikkor-P 75mm f/2.8', 'Bronica Nikkor-P 75mm f/2.8'],
+      ['Bronica ETR-S', 'Bronica ETRS'],
+      ['Bronica Deluxe', 'Bronica D'],
+    ] as const) {
+      const id = idx.get(norm(query))
+      expect(id && byId.get(id), `"${query}" should resolve to ${expected}`).toBe(expected)
+    }
+  })
+})
