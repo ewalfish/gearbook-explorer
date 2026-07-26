@@ -76,8 +76,11 @@ describe('cross-market query variants', () => {
     expect(variantStrings('autoboy')).toContain('sure shot')
   })
 
-  it('kiss ↔ rebel', () => {
-    expect(variantStrings('canon kiss')).toContain('canon rebel')
+  it('does NOT word-swap kiss ↔ rebel — the JP numbering is unrelated', () => {
+    // Kiss X4 = Rebel T2i = EOS 550D, so swapping the WORD produced
+    // "Canon Kiss T2i", a camera that never existed. The attested pairs now
+    // ship as alias rows instead; see the engine suite for the real lookup.
+    expect(variantStrings('canon rebel t2i')).not.toContain('canon kiss t2i')
   })
 })
 

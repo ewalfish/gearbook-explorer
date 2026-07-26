@@ -100,6 +100,17 @@ describe('per-model market names (no token rule can derive these)', () => {
   it('Stylus Zoom 105 (US) → the mju Zoom 105', () => expectTop3('Olympus Stylus Zoom 105', /mju zoom 105/i))
 })
 
+// Canon used a third name in Japan whose number matches neither of the others
+// — the EOS 550D is the Rebel T2i and the Kiss X4. No token or number rule can
+// derive that, so every pair is transcribed per model in the forge.
+describe('Canon Kiss (JP) names resolve to the right body', () => {
+  it('Kiss X4 → the EOS 550D', () => expectTop3('Canon EOS Kiss X4', /550D|Rebel T2i/i))
+  it('Kiss Digital N → the EOS 350D', () => expectTop3('Canon EOS Kiss Digital N', /350D|Rebel XT/i))
+  it('Kiss III → the EOS 300 (film)', () => expectTop3('Canon EOS Kiss III', /EOS 300\b|Rebel 2000/i))
+  it('New Kiss → the EOS 500N (film)', () => expectTop3('Canon EOS New Kiss', /500N|Rebel G/i))
+  it('Kiss Lite → the EOS 3000V (film)', () => expectTop3('Canon EOS Kiss Lite', /3000V|Rebel K2/i))
+})
+
 describe('merged market names on one record', () => {
   it('a merged camera carries every market name as a reachable alias', () => {
     // Riva (intl) and Freedom (US) shipped as two records with contradictory

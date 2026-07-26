@@ -28,10 +28,11 @@ const SPELLING_SWAPS = {
     yashica: [['mat', 'yashica-mat']], // "Yashica Mat-124G" ⇄ "Yashica-Mat 124 G"
     mamiya: [['universal', 'press universal']], // "Mamiya Universal" ⇄ "Mamiya Press Universal"
     samsung: [['maxima zoom', 'af zoom'], ['maxima', 'fino']],
-    // Kiss is Canon's JP name for the Rebel line, but the JP NUMBERING differs
-    // (Kiss X4 = Rebel T2i), so it can only ever be a query-side hint — pairing
-    // the words would mint names like "Canon Kiss T2i" that never existed.
-    canon: [['rebel', 'kiss']],
+    // NOTE: rebel/kiss was a query-side hint here until the real per-model table
+    // landed in the forge (canon-eos.tsv). It is gone on purpose — the JP
+    // numbering is unrelated (Kiss X4 = Rebel T2i = EOS 550D), so swapping the
+    // WORD produced "Canon Kiss T2i", a camera that never existed. The attested
+    // names now ship as aliases instead.
 };
 const TOKEN_SWAPS = (() => {
     const brands = new Set([...Object.keys(SPELLING_SWAPS), 'minolta', 'pentax', 'olympus', 'nikon', 'ricoh', 'samsung', 'ihagee', 'exakta', 'canon']);
