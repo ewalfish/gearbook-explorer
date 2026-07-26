@@ -261,6 +261,10 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 .partial-note { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; }
 .detail-h1 { font-size: 46px; line-height: 1; margin: 10px 0 12px; }
 .detail-meta { font-size: 15px; }
+/* "Also sold as …" — the confirmation a buyer who arrived by the other
+   market's name needs before they trust the page is the right camera. */
+.detail-aka { font-size: 15px; margin-top: 6px; }
+.detail-aka strong { color: var(--ink); font-weight: 600; }
 .manual-btn { flex: none; }
 .detail-grid {
   display: grid; grid-template-columns: 1fr 320px; gap: 56px;

@@ -83,6 +83,32 @@ describe('names()', () => {
   })
 })
 
+// The detail page renders `recommended_name` and an "Also sold as" line built
+// from `market_names`. Both must survive into the per-record shards the SPA
+// lazy-loads, or the page silently falls back to a single-market name while
+// search shows the merged one — which is exactly how a buyer who arrived by
+// the US name ends up on a page that never mentions it.
+describe('what the detail page needs is actually on the record', () => {
+  it('a merged record carries both the label and the market list', () => {
+    const rec = cameras.find((c) => c.name === 'Minolta Freedom Zoom 105i')!
+    expect(rec.recommended_name).toBe('Minolta Freedom/Riva Zoom 105i')
+    expect(rec.data.market_names?.map((m) => m.name)).toContain('Minolta Riva Zoom 105i')
+  })
+
+  it('the "also sold as" list is never just the record repeating itself', () => {
+    const bad = cameras
+      .filter((c) => c.data.market_names?.length)
+      .filter((c) => !c.data.market_names!.some((m) => m.name !== c.name))
+    expect(bad.map((c) => c.name).slice(0, 5)).toEqual([])
+  })
+
+  it('every market entry names a market the UI can label', () => {
+    const known = new Set(['us', 'intl', 'eu', 'jp'])
+    const bad = cameras.flatMap((c) => (c.data.market_names ?? []).filter((m) => !known.has(m.market)))
+    expect(bad.slice(0, 5)).toEqual([])
+  })
+})
+
 describe('buildRedirectIndex()', () => {
   it('resolves a merged-away id to the record that absorbed it', () => {
     const r = redirects[0]

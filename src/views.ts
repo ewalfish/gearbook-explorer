@@ -189,6 +189,29 @@ function lensSpecRows(d: GearRecord['data']): string {
   return rows.join('')
 }
 
+const MARKET_LABEL: Record<string, string> = {
+  us: 'US', intl: 'international', eu: 'Europe', jp: 'Japan',
+}
+
+/**
+ * "Also sold as …" under the heading.
+ *
+ * The heading already carries the merged label, but a slash form only tells you
+ * the names exist — not which market each belongs to. A buyer who arrived
+ * searching "Espio 70" needs to see, in words, that this is the same camera
+ * they were looking at somewhere else. That confirmation is the whole reason
+ * the cross-market work exists; without it the page is a dead end for anyone
+ * who came by the other name.
+ */
+function alsoKnownAsHtml(rec: GearRecord): string {
+  const others = (rec.data.market_names ?? []).filter((m) => m.name !== rec.name)
+  if (!others.length) return ''
+  const parts = others.map(
+    (m) => `<strong>${esc(m.name)}</strong>${MARKET_LABEL[m.market] ? ` <span class="text-muted">(${MARKET_LABEL[m.market]})</span>` : ''}`,
+  )
+  return `<div class="detail-aka text-muted">Also sold as ${parts.join(' · ')}</div>`
+}
+
 function variantsHtml(variants: Variant[]): string {
   if (!variants.length) return ''
   const cols = variants.length === 1 ? 1 : variants.length === 2 || variants.length === 4 ? 2 : 3
@@ -301,8 +324,9 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
             <span class="tag ${kind === 'camera' ? 'tag-neutral' : 'tag-outline'}">${kind === 'camera' ? 'CAMERA' : 'LENS'}</span>
             ${partial}
           </div>
-          <h1 class="detail-h1">${esc(rec.name)}</h1>
+          <h1 class="detail-h1">${esc(rec.recommended_name)}</h1>
           <div class="text-muted detail-meta">${esc(metaBits)}</div>
+          ${alsoKnownAsHtml(rec)}
         </div>
         ${manualBtn}
       </div>
