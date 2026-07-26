@@ -97,7 +97,12 @@ describe('per-model market names (no token rule can derive these)', () => {
   it('PowerShot SD800 IS (US) → the Digital IXUS 850 IS', () => expectTop3('Canon PowerShot SD800 IS', /ixus 850|sd800/i))
   it('Discovery (US) → the Fuji DL line', () => expectTop3('Fujifilm Discovery 290 Zoom', /DL-?290/i))
   it('Capios (JP) → the Riva line', () => expectTop3('Minolta Capios 25', /riva zoom 70w/i))
-  it('Stylus Zoom 105 (US) → the mju Zoom 105', () => expectTop3('Olympus Stylus Zoom 105', /mju zoom 105/i))
+  it('Stylus Zoom 105 (US) → the mju Zoom 105', () => expectTop3('Olympus Stylus Zoom 105', /mju.*zoom 105/i))
+  // …and the title carries BOTH names now, which is the point of the exercise:
+  // a buyer who arrived by the US name can see at a glance they have the right
+  // camera, and the listing keyword-matches either spelling.
+  it('…and the title shows both markets', () =>
+    expectTop3('Olympus Stylus Zoom 105', /mju\/stylus zoom 105/i))
 })
 
 // Canon used a third name in Japan whose number matches neither of the others
