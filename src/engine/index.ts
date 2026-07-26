@@ -18,7 +18,7 @@ export {
   parseJsonl, buildMatchCatalog, catalogFromJsonl,
 } from './gearbook.js'
 export type {
-  Kind, GearbookRow, AliasRow, MatchEntry, MatchCatalog,
+  Kind, GearbookRow, AliasRow, RedirectRow, AliasMeta, MatchEntry, MatchCatalog,
 } from './gearbook.js'
 
 export {

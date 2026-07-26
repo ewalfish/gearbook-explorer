@@ -28,7 +28,7 @@ export function buildMatchCatalog(cameras, lenses, aliases = []) {
             list = [];
             aliasesBySlug.set(a.gearbook_id, list);
         }
-        list.push(a.alias);
+        list.push({ alias: a.alias, meta: a.via ? { via: a.via, ...(a.market ? { market: a.market } : {}) } : undefined });
     }
     const entries = [];
     for (const [rows, kind] of [
@@ -39,14 +39,15 @@ export function buildMatchCatalog(cameras, lenses, aliases = []) {
             if (!r.name || !r.id)
                 continue;
             // the record's own name doubles as an alias row in the asset — drop it
-            const aliasList = (aliasesBySlug.get(r.id) ?? []).filter((a) => a !== r.name);
+            const aliasList = (aliasesBySlug.get(r.id) ?? []).filter((a) => a.alias !== r.name);
             entries.push({
                 id: r.id,
                 kind,
                 title: r.name,
                 norm: matchNormalize(r.name),
-                aliases: aliasList,
-                aliasNorms: aliasList.map(matchNormalize),
+                aliases: aliasList.map((a) => a.alias),
+                aliasNorms: aliasList.map((a) => matchNormalize(a.alias)),
+                aliasMeta: aliasList.map((a) => a.meta),
             });
         }
     }

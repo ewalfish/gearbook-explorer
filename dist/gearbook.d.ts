@@ -56,6 +56,20 @@ export interface MatchEntry {
     aliases: string[];
     /** normalized aliases, precomputed at build time */
     aliasNorms: string[];
+    /**
+     * Provenance for each alias, index-aligned with `aliases`.
+     *
+     * Carried on the entry rather than looked up from a module-level map so that
+     * "which KIND of alias matched" stays a pure question about the catalog you
+     * were handed — testable with a fixture, and impossible to answer against the
+     * wrong asset. Entries are `undefined` for an asset older than contract v1.
+     */
+    aliasMeta: (AliasMeta | undefined)[];
+}
+/** How one alias came to exist. Mirrors the alias row's own fields. */
+export interface AliasMeta {
+    via: NonNullable<AliasRow['via']>;
+    market?: AliasRow['market'];
 }
 export interface MatchCatalog {
     entries: MatchEntry[];

@@ -4,7 +4,7 @@ export { normalize, tokenize, slugify, queryVariants } from './normalize.js';
 export type { QueryVariant } from './normalize.js';
 export { matchNormalize, matchTokens, digitSeqs } from './match-normalize.js';
 export { parseJsonl, buildMatchCatalog, catalogFromJsonl, } from './gearbook.js';
-export type { Kind, GearbookRow, AliasRow, MatchEntry, MatchCatalog, } from './gearbook.js';
+export type { Kind, GearbookRow, AliasRow, RedirectRow, AliasMeta, MatchEntry, MatchCatalog, } from './gearbook.js';
 export { matchOne, matchBatch, candidates, features, typoFix, sameCore, qualConflict, DEFAULT_WEIGHTS, DEFAULT_POLICY, AUTO, REVIEW, } from './match.js';
 export type { MatchResult, MatchDecision, ScoredEntry, MatchPolicy } from './match.js';
 export { queryVariants as marketNameVariants, lensVariants } from './variants.js';

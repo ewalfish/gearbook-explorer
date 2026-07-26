@@ -66,6 +66,21 @@ export interface MatchEntry {
   aliases: string[]
   /** normalized aliases, precomputed at build time */
   aliasNorms: string[]
+  /**
+   * Provenance for each alias, index-aligned with `aliases`.
+   *
+   * Carried on the entry rather than looked up from a module-level map so that
+   * "which KIND of alias matched" stays a pure question about the catalog you
+   * were handed — testable with a fixture, and impossible to answer against the
+   * wrong asset. Entries are `undefined` for an asset older than contract v1.
+   */
+  aliasMeta: (AliasMeta | undefined)[]
+}
+
+/** How one alias came to exist. Mirrors the alias row's own fields. */
+export interface AliasMeta {
+  via: NonNullable<AliasRow['via']>
+  market?: AliasRow['market']
 }
 
 export interface MatchCatalog {
@@ -98,7 +113,7 @@ export function buildMatchCatalog(
   lenses: GearbookRow[],
   aliases: AliasRow[] = [],
 ): MatchCatalog {
-  const aliasesBySlug = new Map<string, string[]>()
+  const aliasesBySlug = new Map<string, { alias: string; meta?: AliasMeta }[]>()
   for (const a of aliases) {
     if (!a.gearbook_id || !a.alias) continue
     let list = aliasesBySlug.get(a.gearbook_id)
@@ -106,7 +121,7 @@ export function buildMatchCatalog(
       list = []
       aliasesBySlug.set(a.gearbook_id, list)
     }
-    list.push(a.alias)
+    list.push({ alias: a.alias, meta: a.via ? { via: a.via, ...(a.market ? { market: a.market } : {}) } : undefined })
   }
 
   const entries: MatchEntry[] = []
@@ -117,14 +132,15 @@ export function buildMatchCatalog(
     for (const r of rows) {
       if (!r.name || !r.id) continue
       // the record's own name doubles as an alias row in the asset — drop it
-      const aliasList = (aliasesBySlug.get(r.id) ?? []).filter((a) => a !== r.name)
+      const aliasList = (aliasesBySlug.get(r.id) ?? []).filter((a) => a.alias !== r.name)
       entries.push({
         id: r.id,
         kind,
         title: r.name,
         norm: matchNormalize(r.name),
-        aliases: aliasList,
-        aliasNorms: aliasList.map(matchNormalize),
+        aliases: aliasList.map((a) => a.alias),
+        aliasNorms: aliasList.map((a) => matchNormalize(a.alias)),
+        aliasMeta: aliasList.map((a) => a.meta),
       })
     }
   }
