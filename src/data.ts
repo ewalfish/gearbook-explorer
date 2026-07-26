@@ -7,6 +7,11 @@ import type {
 
 const BASE = import.meta.env.BASE_URL + 'data/'
 
+// Injected by vite (see vite.config.ts). Appended to every data request so a
+// deploy is visible immediately instead of up to ten minutes later.
+declare const __BUILD_STAMP__: string
+const CACHE_BUST = `?v=${__BUILD_STAMP__}`
+
 let engine: SearchEngine | null = null
 let facets: FacetsFile | null = null
 let catalog: CatalogRecord[] | null = null
@@ -79,7 +84,7 @@ function parseCatalog(f: CatalogFile): CatalogRecord[] {
 }
 
 async function fetchJson<T>(path: string): Promise<T> {
-  const res = await fetch(BASE + path)
+  const res = await fetch(BASE + path + CACHE_BUST)
   if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`)
   return res.json()
 }
@@ -87,7 +92,7 @@ async function fetchJson<T>(path: string): Promise<T> {
 async function fetchJsonWithProgress<T>(
   path: string, onProgress: ((frac: number | null) => void) | null,
 ): Promise<T> {
-  const res = await fetch(BASE + path)
+  const res = await fetch(BASE + path + CACHE_BUST)
   if (!res.ok) throw new Error(`${path}: HTTP ${res.status}`)
   const total = Number(res.headers.get('Content-Length')) || 0
   if (!onProgress || !res.body || !total) {

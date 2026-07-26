@@ -50,12 +50,11 @@ describe('typo suite — right record in top 3 (PRD §5.3)', () => {
 })
 
 describe('alias / cross-market suite — top result (PRD §5.3)', () => {
-  // Anchored at the START, not the end: a card's title is now the merged market
-  // label where one exists, so this record shows as "Olympus Mju-II (Olympus
-  // Infinity Stylus Epic)". `\b` still keeps Mju-III out, so the assertion
-  // pins the same single record the PRD names.
-  it('µ-II → Olympus Mju-II', () => expectTop1('µ-II', /^Olympus Mju-?II\b/i))
-  it('mju ii → Olympus Mju-II', () => expectTop1('mju ii', /^Olympus Mju-?II\b/i))
+  // US-first: this record leads with the American name and carries the
+  // international one alongside — "Olympus Infinity Stylus Epic (Mju-II)". The
+  // assertion still pins one record, now by the pair rather than by a prefix.
+  it('µ-II → the mju-II body', () => expectTop1('µ-II', /stylus epic \(mju-?II\)/i))
+  it('mju ii → the mju-II body', () => expectTop1('mju ii', /stylus epic \(mju-?II\)/i))
   it('Autoboy → Sure Shot', () => expectTop3('Autoboy', /sure ?shot/i))
   it('5D Mk II → Canon EOS 5D Mark II', () => expectTop1('5D Mk II', /5D Mark II$/))
   it('5d mkii → Canon EOS 5D Mark II', () => expectTop1('5d mkii', /5D Mark II$/))
@@ -101,8 +100,8 @@ describe('per-model market names (no token rule can derive these)', () => {
   // …and the title carries BOTH names now, which is the point of the exercise:
   // a buyer who arrived by the US name can see at a glance they have the right
   // camera, and the listing keyword-matches either spelling.
-  it('…and the title shows both markets', () =>
-    expectTop3('Olympus Stylus Zoom 105', /mju\/stylus zoom 105/i))
+  it('…and the title shows both markets, US first', () =>
+    expectTop3('Olympus Stylus Zoom 105', /stylus\/mju zoom 105|mju\/stylus zoom 105/i))
 })
 
 // Canon used a third name in Japan whose number matches neither of the others

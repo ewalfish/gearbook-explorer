@@ -51,26 +51,28 @@ describe('the shipped asset satisfies its own contract', () => {
 
 describe('names()', () => {
   it('answers "what else is this called" for a merged record', () => {
-    const riva = cameras.find((c) => c.name === 'Minolta Riva Zoom 105i')!
-    const n = names(riva, aliases)
-    expect(n.canonical).toBe('Minolta Riva Zoom 105i')
-    expect(n.recommended).toBe('Minolta Riva/Freedom Zoom 105i')
-    expect(n.markets.map((m) => m.market)).toContain('us')
-    expect(n.spoken).toContain('Minolta Freedom Zoom 105i')
+    // US-first: the surviving record of the merged pair is the Freedom, and
+    // the label leads with it. The Riva name stays reachable and shown.
+    const rec = cameras.find((c) => c.name === 'Minolta Freedom Zoom 105i')!
+    const n = names(rec, aliases)
+    expect(n.canonical).toBe('Minolta Freedom Zoom 105i')
+    expect(n.recommended).toBe('Minolta Freedom/Riva Zoom 105i')
+    expect(n.markets.map((m) => m.market)).toContain('intl')
+    expect(n.spoken).toContain('Minolta Riva Zoom 105i')
   })
 
   it('leaves punctuation spellings out of what a person is shown', () => {
     // "Olympus MjuII" is a search key, not another name for the camera —
     // offering it as one reads like a mistake.
-    const rec = cameras.find((c) => /^Olympus Mju-II$/.test(c.name))!
+    const rec = cameras.find((c) => /^Olympus Infinity Stylus Epic$/.test(c.name))!
     const n = names(rec, aliases)
     const punct = aliases.filter((a) => a.gearbook_id === rec.id && a.via === 'punctuation').map((a) => a.alias)
     for (const p of punct) expect(n.spoken).not.toContain(p)
   })
 
   it('otherMarketNames excludes the record itself', () => {
-    const riva = cameras.find((c) => c.name === 'Minolta Riva Zoom 105i')!
-    expect(otherMarketNames(riva).map((m) => m.name)).toEqual(['Minolta Freedom Zoom 105i'])
+    const rec = cameras.find((c) => c.name === 'Minolta Freedom Zoom 105i')!
+    expect(otherMarketNames(rec).map((m) => m.name)).toEqual(['Minolta Riva Zoom 105i'])
   })
 
   it('a camera with one name everywhere has no market noise', () => {
@@ -111,10 +113,10 @@ describe('buildRedirectIndex()', () => {
 })
 
 describe('explain()', () => {
-  it('names the market when a US string found an international record', () => {
-    const riva = cameras.find((c) => c.name === 'Minolta Riva Zoom 105i')!
-    const hit = aliases.find((a) => a.gearbook_id === riva.id && a.alias === 'Minolta Freedom Zoom 105i')!
-    expect(explain(riva, hit).text).toBe('matched “Minolta Freedom Zoom 105i” — the US name')
+  it('names the market when an international string found a US-named record', () => {
+    const rec = cameras.find((c) => c.name === 'Minolta Freedom Zoom 105i')!
+    const hit = aliases.find((a) => a.gearbook_id === rec.id && a.alias === 'Minolta Riva Zoom 105i')!
+    expect(explain(rec, hit).text).toBe('matched “Minolta Riva Zoom 105i” — the international name')
   })
 
   it('says nothing extra when the match was the shown name', () => {

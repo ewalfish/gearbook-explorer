@@ -47,7 +47,9 @@ describe('cross-market names', () => {
   it('Olympus Stylus Epic → the mju-II record', () => {
     const r = matchOne('Olympus Stylus Epic', catalog, 'camera')
     expect(r.decision).toBe('auto')
-    expect(r.best?.entry.title).toBe('Olympus Mju-II')
+    // US-first: the surviving record of this merged pair carries the American
+    // name. "Mju-II" is still an alias of it, which is what makes the match.
+    expect(r.best?.entry.title).toBe('Olympus Infinity Stylus Epic')
   })
 })
 
