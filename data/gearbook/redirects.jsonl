@@ -6,6 +6,19 @@
 {"from_id":"7f4b0389ab8f3c9a","from_name":"Canon EOS Rebel Ti","gearbook_kind":"camera","to_id":"5565b421c07f1313","to_name":"Canon EOS 300V"}
 {"from_id":"269446279fd3aacb","from_name":"Canon EOS Rebel GII","gearbook_kind":"camera","to_id":"7e99956003856ef9","to_name":"Canon EOS 500N"}
 {"from_id":"f18bbdab0854734c","from_name":"Canon EOS Rebel T3i","gearbook_kind":"camera","to_id":"8957f938e65c234c","to_name":"Canon EOS 600D"}
+{"from_id":"ac7b48f1bf4ccf7c","from_name":"Canon PowerShot S110","gearbook_kind":"camera","to_id":"d3b497ca992701a8","to_name":"Canon Digital Ixus V"}
+{"from_id":"bf87ae15d660b014","from_name":"Canon PowerShot S410","gearbook_kind":"camera","to_id":"26db16f90b27e528","to_name":"Canon Digital Ixus 430"}
+{"from_id":"5433346a0557dc06","from_name":"Canon PowerShot S200","gearbook_kind":"camera","to_id":"e9f2481f3ee982b8","to_name":"Canon Digital Ixus V2"}
+{"from_id":"cefbd61bfbff57af","from_name":"Canon Prima Zoom Shot","gearbook_kind":"camera","to_id":"19d088924ab433d1","to_name":"Canon Sure Shot 60 Zoom"}
+{"from_id":"105c67deb63bb7ad","from_name":"Canon Prima Zoom 70F","gearbook_kind":"camera","to_id":"edf14ee21d7edf2c","to_name":"Canon Sure Shot 70 Zoom"}
+{"from_id":"ba43df97668b7de3","from_name":"Canon Prima BF Twin","gearbook_kind":"camera","to_id":"52f253b1b0d26ed1","to_name":"Canon Sure Shot 80 Tele"}
+{"from_id":"1850a4909ed77d89","from_name":"Canon Prima AS-1","gearbook_kind":"camera","to_id":"f18ca6340b789e5d","to_name":"Canon Sure Shot A-1"}
+{"from_id":"a7e11869e0fd915c","from_name":"Canon Prima Super 120","gearbook_kind":"camera","to_id":"68a251ad11e09f13","to_name":"Canon Sure Shot Classic 120"}
+{"from_id":"f583ad7d9898a17e","from_name":"Canon Prima Zoom 76","gearbook_kind":"camera","to_id":"ad04f65f6837478a","to_name":"Canon Sure Shot Mega Zoom 76"}
+{"from_id":"0c6671cac69d259d","from_name":"Canon Prima Super 130","gearbook_kind":"camera","to_id":"9e9e55f57c6a990f","to_name":"Canon Sure Shot 130u"}
+{"from_id":"2555189cf592e582","from_name":"Canon Prima Tele","gearbook_kind":"camera","to_id":"1e7cefadcc4cb73c","to_name":"Canon Sure Shot Multi Tele"}
+{"from_id":"5c0d30d9cb054e05","from_name":"Canon Prima Zoom 80u","gearbook_kind":"camera","to_id":"660261ccdbfdb988","to_name":"Canon Sure Shot 80u"}
+{"from_id":"75fd3dcee0a26231","from_name":"Canon Prima Auto Zoom","gearbook_kind":"camera","to_id":"c5e7b21932f606e0","to_name":"Canon Sure Shot Caption Zoom"}
 {"from_id":"fb229fc20c4b7669","from_name":"Minolta Dynax 3000i","gearbook_kind":"camera","to_id":"ae6f055c9784df0c","to_name":"Minolta Maxxum 3000i"}
 {"from_id":"d4bdaede025b5a8a","from_name":"Minolta Alpha-9","gearbook_kind":"camera","to_id":"22ae34277bd1d151","to_name":"Minolta Dynax 9"}
 {"from_id":"428acddc20321ff4","from_name":"Minolta Dynax 700si","gearbook_kind":"camera","to_id":"cf7e1abec1a68bf8","to_name":"Minolta Maxxum 700si"}
@@ -27,9 +40,26 @@
 {"from_id":"4fde86384e7ee318","from_name":"Pentax ZX-M","gearbook_kind":"camera","to_id":"916c8f178ac2e44f","to_name":"Pentax MZ-M"}
 {"from_id":"56b718f72dabb69c","from_name":"Pentax MZ-M/ZX-M","gearbook_kind":"camera","to_id":"916c8f178ac2e44f","to_name":"Pentax MZ-M"}
 {"from_id":"723906d060123873","from_name":"Minolta SRT 201 (type a)","gearbook_kind":"camera","to_id":"2b2a4910ee77c6e3","to_name":"Minolta SRT 101b (type a)"}
+{"from_id":"5f5febbc62200201","from_name":"Canon Autoboy Jet","gearbook_kind":"camera","to_id":"cdd1f9360385298e","to_name":"Canon Photura"}
+{"from_id":"3bfe48387e690dd5","from_name":"Canon Prima Zoom 105","gearbook_kind":"camera","to_id":"5a233fe4717e3e4b","to_name":"Canon Sure Shot Mega Zoom 105"}
+{"from_id":"9294e622663e1fd1","from_name":"Canon Prima Mini II","gearbook_kind":"camera","to_id":"2e86bfc789c03c34","to_name":"Canon Sure Shot Sleek"}
+{"from_id":"35add55e11460736","from_name":"Canon Prima Zoom F","gearbook_kind":"camera","to_id":"d189f7bf32bbdb47","to_name":"Canon Sure Shot Zoom XL"}
 {"from_id":"def7233286f8d237","from_name":"Minolta XE-7","gearbook_kind":"camera","to_id":"9db9302892992296","to_name":"Minolta XE-1"}
+{"from_id":"f21c72824ef2d437","from_name":"Canon Prima Super 155","gearbook_kind":"camera","to_id":"60fcb7d5bb39da65","to_name":"Canon Sure Shot Z155"}
+{"from_id":"afcdf010119bd712","from_name":"Canon Prima Super 90 Wide","gearbook_kind":"camera","to_id":"7a6adae2ac32f4f8","to_name":"Canon Sure Shot Z90W"}
+{"from_id":"e5ab1b10cc85e102","from_name":"Canon Prima Twin S","gearbook_kind":"camera","to_id":"4dbe62dbc9902599","to_name":"Canon Sure Shot Tele Max"}
 {"from_id":"1426e0fd2a6ebdb4","from_name":"Nikon Nikomat EL","gearbook_kind":"camera","to_id":"324636abdba3702a","to_name":"Nikon Nikkormat EL"}
+{"from_id":"32072427a36012ac","from_name":"Canon Prima 4","gearbook_kind":"camera","to_id":"52a47752a396d89b","to_name":"Canon Sure Shot Joy"}
+{"from_id":"937143d8617dd9be","from_name":"Canon Prima Super 28","gearbook_kind":"camera","to_id":"5bb7f3229a3421d6","to_name":"Canon Sure Shot Z70W"}
+{"from_id":"ccf9a69c5630a68c","from_name":"Canon Prima Zoom 90u","gearbook_kind":"camera","to_id":"15098829bb1a1ed9","to_name":"Canon Sure Shot 90u"}
+{"from_id":"7ca9cbb29d43de03","from_name":"Canon Prima Super 115u","gearbook_kind":"camera","to_id":"6bf52b34b486f360","to_name":"Canon Sure Shot 115u"}
 {"from_id":"e14ae035adb7f07c","from_name":"Ihagee Exakta Vx","gearbook_kind":"camera","to_id":"4fe89304ea382a71","to_name":"Ihagee Exakta Varex"}
+{"from_id":"d78cfa4f73b2a23c","from_name":"Canon Prima Super 85","gearbook_kind":"camera","to_id":"5bbbbe7d9a6ae0f1","to_name":"Canon Sure Shot Z85"}
 {"from_id":"ce1782dacbee62d7","from_name":"Canon Autoboy Zoom","gearbook_kind":"camera","to_id":"ce3f5daca0841380","to_name":"Canon Prima Zoom"}
+{"from_id":"b7b9229623dfd9e9","from_name":"Canon Prima Sol","gearbook_kind":"camera","to_id":"35a6a96bfae1711f","to_name":"Canon Sure Shot del Sol"}
+{"from_id":"88a6023df50df5ed","from_name":"Canon PowerShot SD1100 IS","gearbook_kind":"camera","to_id":"76c7351cd0700782","to_name":"Canon Digital Ixus 80 IS"}
+{"from_id":"d8fad98e2b2d1ff6","from_name":"Canon PowerShot SD870 IS","gearbook_kind":"camera","to_id":"899e37d398163c27","to_name":"Canon Digital Ixus 860 IS"}
+{"from_id":"fe8a91776287bba0","from_name":"Canon PowerShot SD790 IS","gearbook_kind":"camera","to_id":"c3c1d0bd41b28ca8","to_name":"Canon Digital Ixus 90 IS"}
+{"from_id":"021a5c7a020ae7da","from_name":"Canon PowerShot SD1200 IS","gearbook_kind":"camera","to_id":"e8e7f9ab73fef37a","to_name":"Canon Digital Ixus 95 IS"}
 {"from_id":"0baedcd3ba9206fe","from_name":"Canon Prima AF-7","gearbook_kind":"camera","to_id":"cfe3a58b0b8177f8","to_name":"Canon Sure Shot AF-7"}
 {"from_id":"e92e32cb89257b5b","from_name":"Minolta Freedom Zoom 90","gearbook_kind":"camera","to_id":"94ba7f689bb81711","to_name":"Minolta Riva Zoom 90"}

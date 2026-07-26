@@ -56,6 +56,19 @@ export const MARKET_TOKENS: Record<string, Partial<Record<Market, string>>[]> = 
 /**
  * Brand-scoped whole-MODEL groups — the model number itself differs across
  * markets, so no token rule can derive them.
+ *
+ * ── WHY THE BIG PER-MODEL TABLES ARE NOT HERE ───────────────────────────────
+ * The forge carries ~130 further pairs transcribed from camera-wiki's Canon
+ * Sure Shot/Prima/Autoboy index and Wikipedia's Digital IXUS correspondence
+ * table (Sure Shot Max = Prima 5 = Autoboy Mini; IXUS 285 HS = ELPH 360 HS).
+ * Those reach this app as shipped ALIAS ROWS, which the search index already
+ * ingests — so the names are findable here with no query rewriting at all.
+ *
+ * Duplicating them as query-side rewrites would only crowd the 24-variant
+ * budget in variants.ts, whose applyMap has no longest-match rule and would
+ * emit the shorter model's foreign name alongside the right one. Keep this
+ * table to pairs that help a PARTIAL or misspelled query, where no exact alias
+ * can match.
  */
 export const MARKET_MODELS: Record<string, Partial<Record<Market, string>>[]> = {
   nikon: [
@@ -95,10 +108,22 @@ export const MARKET_MODELS: Record<string, Partial<Record<Market, string>>[]> = 
     { us: 'srt-102', intl: 'srt-303' }, { us: 'srt-202', intl: 'srt-303' },
     { us: 'srt-201', intl: 'srt-101b' },
     { us: 'maxxum 7000', jp: 'alpha 7000' }, { us: 'maxxum 9000', jp: 'alpha 9000' },
+    // Riva/Freedom/Capios is not a clean token swap: the US name gains words
+    // and the JP number is unrelated (Riva Zoom 70W = Freedom Zoom Explorer 70W
+    // = Capios 25), so the token group alone mislabels most of the line.
+    { intl: 'riva zoom 70w', us: 'freedom zoom explorer 70w', jp: 'capios 25' },
+    { intl: 'riva zoom 75w', us: 'freedom zoom explorer ex', jp: 'capios 75' },
+    { intl: 'riva zoom 140ex', us: 'freedom zoom 140ex', jp: 'capios 140' },
+    { intl: 'riva zoom 150', us: 'freedom zoom 150', jp: 'capios 150' },
+    { intl: 'riva zoom 125', us: 'freedom zoom 125', jp: 'capios 125s' },
   ],
   pentax: [
     { us: 'super program', intl: 'super a' },
     { us: 'program plus', intl: 'program a' },
+    // Espio/IQZoom usually shares its number — these are the documented
+    // exceptions the token rule gets wrong
+    { us: 'iqzoom 70xl', intl: 'espio af zoom' },
+    { us: 'iqzoom 115v', intl: 'espio 115m' },
   ],
   yashica: [
     { us: 'sensation zoom', intl: 'microtec zoom' },
@@ -110,7 +135,17 @@ export const MARKET_MODELS: Record<string, Partial<Record<Market, string>>[]> = 
     { intl: 'mju-ii', us: 'stylus epic' },
     { intl: 'mju-ii', us: 'infinity stylus epic' },
     { intl: 'mju-i', us: 'infinity stylus' },
+    // zoom bodies keep their number, generation bodies do not — so the line is
+    // not systematic and each pair is listed
+    { intl: 'mju zoom 105', us: 'stylus zoom 105' },
+    { intl: 'mju zoom 115', us: 'stylus zoom 115' },
+    { intl: 'mju-ii 170', us: 'stylus epic zoom 170' },
+    { intl: 'mju-iii wide 100', us: 'stylus 100 wide' },
   ],
+  // Fuji's DL line is the US Discovery line, number preserved. Listed here so a
+  // partial query ("discovery 290") still reaches the DL record when the user
+  // has not typed enough for the exact alias to hit.
+  fuji: [{ intl: 'dl', us: 'discovery' }],
 }
 
 /**

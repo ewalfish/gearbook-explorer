@@ -85,6 +85,21 @@ describe('cross-market names the search box used to miss', () => {
   it('Nikon N90s (US) → the F90X record', () => expectTop3('Nikon N90s', /F90X/i))
 })
 
+// Researched from camera-wiki's Canon Sure Shot/Prima/Autoboy family index and
+// Wikipedia's Digital IXUS correspondence table. None of these are derivable by
+// a token swap — the marketing name changes with the market, not just the word
+// — so before the per-model tables landed, each of these US strings found
+// nothing at all despite the camera being in the index under its other name.
+describe('per-model market names (no token rule can derive these)', () => {
+  it('Sure Shot Max (US) → the Prima 5 body', () => expectTop3('Canon Sure Shot Max', /prima 5|sure shot max/i))
+  it('Prima Super 120 (EU) → the Sure Shot Classic 120', () => expectTop3('Canon Prima Super 120', /classic 120|prima super 120/i))
+  it('Autoboy Jet (JP) → the Photura', () => expectTop3('Canon Autoboy Jet', /photura/i))
+  it('PowerShot SD800 IS (US) → the Digital IXUS 850 IS', () => expectTop3('Canon PowerShot SD800 IS', /ixus 850|sd800/i))
+  it('Discovery (US) → the Fuji DL line', () => expectTop3('Fujifilm Discovery 290 Zoom', /DL-?290/i))
+  it('Capios (JP) → the Riva line', () => expectTop3('Minolta Capios 25', /riva zoom 70w/i))
+  it('Stylus Zoom 105 (US) → the mju Zoom 105', () => expectTop3('Olympus Stylus Zoom 105', /mju zoom 105/i))
+})
+
 describe('merged market names on one record', () => {
   it('a merged camera carries every market name as a reachable alias', () => {
     // Riva (intl) and Freedom (US) shipped as two records with contradictory
