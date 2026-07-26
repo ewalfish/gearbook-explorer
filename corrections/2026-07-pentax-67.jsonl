@@ -1,0 +1,2 @@
+{"name":"Pentax 6 x 7","kind":"camera","merge_into":"Pentax 6x7","note":"same camera, spaced spelling. normalize() keys 'Pentax 6 x 7', 'Pentax 6x7' and 'Pentax 6×7' as three different strings, so upstream spellings never cluster on their own."}
+{"name":"Asahi Pentax 6×7 with grip","kind":"camera","merge_into":"Pentax 6x7","note":"not a model — a listing title for a 6x7 sold with the optional left-hand grip. The grip is an accessory available across the whole 6x7/67 line."}
