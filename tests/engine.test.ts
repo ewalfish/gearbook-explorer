@@ -115,6 +115,37 @@ describe('Canon Kiss (JP) names resolve to the right body', () => {
   it('Kiss Lite → the EOS 3000V (film)', () => expectTop3('Canon EOS Kiss Lite', /3000V|Rebel K2/i))
 })
 
+// A word that sits mid-name was unfindable on its own: tier 1 is a prefix of
+// the WHOLE alias, so "owl" reached Owla Stereo and Night Owl Optics and missed
+// every Canon Sure Shot Owl. Single-token queries now use the token-cover tier
+// when the cover is narrow enough to mean something.
+describe('a distinctive word buried mid-name is findable alone', () => {
+  const finds = (q: string, pattern: RegExp) => {
+    const hits = names(engine.search(q, 10))
+    expect(hits.some((n) => pattern.test(n)), `"${q}" -> [${hits.slice(0, 4).join(', ')}]`).toBe(true)
+  }
+  it('owl → the Canon Sure Shot Owl', () => finds('owl', /sure shot owl/i))
+  it('photura → the Canon Photura', () => finds('photura', /photura/i))
+  it('capios → a Minolta Capios, not every Riva', () => finds('capios', /capios/i))
+  it('marlboro → the promotional Sure Shot Owl', () => finds('marlboro', /marlboro/i))
+
+  it('a literal hit outranks a cross-market REWRITE of the query', () => {
+    // "capios" used to rewrite to "riva" with no Minolta in the query to
+    // justify it, matching every Riva in the index — and, ranked level with
+    // literal hits, "Taron Rival" beat the actual Minolta Capios 20.
+    const top = names(engine.search('capios', 10))[0] ?? ''
+    expect(top, `top hit was "${top}"`).toMatch(/capios/i)
+  })
+})
+
+// Buyers drop the maker. Every name a record answers to gets a brand-stripped
+// alias, not just whichever market holds the primary slot.
+describe('the model alone finds the record, in any market', () => {
+  it('mju ii → the mju-II body', () => expectTop1('mju ii', /stylus epic \(mju-?II\)/i))
+  it('riva zoom 105i → the Freedom/Riva', () => expectTop3('riva zoom 105i', /freedom\/riva zoom 105i/i))
+  it('freedom zoom 105i → the same record', () => expectTop3('freedom zoom 105i', /freedom\/riva zoom 105i/i))
+})
+
 describe('merged market names on one record', () => {
   it('a merged camera carries every market name as a reachable alias', () => {
     // Riva (intl) and Freedom (US) shipped as two records with contradictory

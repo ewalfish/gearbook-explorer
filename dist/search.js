@@ -7,9 +7,32 @@ import { tokenize, queryVariants } from './normalize.js';
 const TIER_EXACT = 0;
 const TIER_PREFIX = 1;
 const TIER_TOKENS = 2;
+/**
+ * Tier penalty for a hit found only after a cross-market REWRITE of the query.
+ *
+ * Rewrites are speculative and brand-blind: "capios" becomes "riva" with no
+ * Minolta in the query to justify it, so a bare one-word query matched every
+ * Riva in the index — and, ranked level with literal hits and tie-broken on
+ * shorter alias, "Taron Rival" beat the actual Minolta Capios 20. Likewise
+ * "varex" rewrote to "vx" and surfaced Bronica VX-1 and Vixen VX-1.
+ *
+ * A literal match must always outrank a substituted one. Market names now ship
+ * as real alias rows, so the literal path finds them on its own; the rewrite is
+ * a fallback for partial queries, and it should read like one.
+ */
+const VARIANT_OFFSET = 3;
 const CORRECTED_OFFSET = 10;
 const CONF_RANK = { h: 0, m: 1, l: 2 };
 const MAX_RANGE_SCAN = 6000;
+/**
+ * How broad a SINGLE-token cover may be before it stops being an answer.
+ *
+ * A lone word that appears in hundreds of records ("zoom", "af", "auto") is not
+ * telling us which camera someone means, and its prefix hits already are. The
+ * words this tier exists to rescue are the distinctive ones buried mid-name —
+ * "owl" (19 entries), "epic" (12), "panorama" (77) — all far under the cap.
+ */
+const SINGLE_TOKEN_COVER_MAX = 500;
 const MAX_QUERY_TOKENS = 8;
 const MAX_QUERY_LEN = 80;
 export class SearchEngine {
@@ -53,7 +76,7 @@ export class SearchEngine {
         const candidates = [];
         const variants = queryVariants(tokens);
         for (const v of variants) {
-            this.collect(v.tokens, v.sourceLabel, 0, candidates);
+            this.collect(v.tokens, v.sourceLabel, v.sourceLabel ? VARIANT_OFFSET : 0, candidates);
         }
         // Typo-correction pass — only when the literal + market-name layers came
         // up short (§5.1: "when a token finds no/few prefix hits").
@@ -61,7 +84,7 @@ export class SearchEngine {
         if (literalRecords.size < 3) {
             for (const corrected of this.correctedQueries(tokens, literalRecords.size > 0)) {
                 for (const v of queryVariants(corrected)) {
-                    this.collect(v.tokens, v.sourceLabel, CORRECTED_OFFSET, candidates);
+                    this.collect(v.tokens, v.sourceLabel, CORRECTED_OFFSET + (v.sourceLabel ? VARIANT_OFFSET : 0), candidates);
                 }
             }
         }
@@ -117,10 +140,33 @@ export class SearchEngine {
             });
         }
         // Tier 2: order-free token cover — every query token prefix-matches some
-        // alias token ("5cm f/2 Nikkor" → "Nikkor 50mm f/2"). Only meaningful for
-        // multi-token queries; single tokens are already covered by tier 1.
-        if (tokens.length < 2)
+        // alias token ("5cm f/2 Nikkor" → "Nikkor 50mm f/2").
+        //
+        // This used to skip single-token queries, on the reasoning that tier 1
+        // already covered them. It does not: tier 1 is a prefix of the WHOLE alias,
+        // so a lone word only finds records whose name STARTS with it. "owl"
+        // returned Owla Stereo and Night Owl Optics and missed every Canon Sure
+        // Shot Owl — the word sits third, so no alias began with it. Any word past
+        // the first was unfindable on its own unless a brand-strip alias happened
+        // to promote it.
+        //
+        // Single tokens are admitted, but only when the cover is DISCRIMINATING.
+        // "owl" reaches 19 entries and "epic" 12 — worth ranking. "zoom" reaches
+        // 1,783 and "af" 2,455, which is not an answer to anything; those queries
+        // are served by their prefix hits, and skipping them keeps a per-keystroke
+        // typeahead from sorting thousands of candidates it will never show.
+        if (tokens.length === 1) {
+            const cover = this.entriesWithTokenPrefix(tokens[0]);
+            if (cover === null || cover.size > SINGLE_TOKEN_COVER_MAX)
+                return;
+            for (const idx of cover) {
+                const e = this.entries[idx];
+                if (e.n.startsWith(q))
+                    continue; // already counted in tier 0/1
+                out.push({ entry: e, tier: tierOffset + TIER_TOKENS, sourceLabel });
+            }
             return;
+        }
         let acc = null;
         for (const tok of tokens) {
             const matches = this.entriesWithTokenPrefix(tok);
