@@ -269,6 +269,8 @@
 {"from_id":"41328e59dc7269b9","from_name":"Olympus µ","gearbook_kind":"camera","to_id":"d57c8520ba64b187","to_name":"Olympus Infinity Stylus"}
 {"from_id":"e68d5e430fc40668","from_name":"Olympus Mju-1","gearbook_kind":"camera","to_id":"d57c8520ba64b187","to_name":"Olympus Infinity Stylus"}
 {"from_id":"94ba7f689bb81711","from_name":"Minolta Riva Zoom 90","gearbook_kind":"camera","to_id":"e92e32cb89257b5b","to_name":"Minolta Freedom Zoom 90"}
+{"from_id":"97892a25def90b18","from_name":"Canon FL 400 mm f/ 5.6","gearbook_kind":"lens","to_id":"d19acc1878825afa","to_name":"Canon FL 400 mm f/ 4.5"}
+{"from_id":"b4357a7fc480ac85","from_name":"Canon FL 300 mm f/ 2.8 S.S.C. florite","gearbook_kind":"lens","to_id":"513c5f7b3712af41","to_name":"Canon FL 300 mm f/ 2.8 S.S.C. Fluorite"}
 {"from_id":"808f79701ac06d0a","from_name":"Mamiya Mamiya-Sekor C 37mm f/4.5 Fisheye","gearbook_kind":"lens","to_id":"523ce25cc484d60d","to_name":"Mamiya-Sekor C 37mm f/4.5 Fisheye"}
 {"from_id":"da194be6f162822c","from_name":"Mamiya Mamiya-Sekor C 50mm f/4.5","gearbook_kind":"lens","to_id":"c405efdbe262d6b3","to_name":"Mamiya Sekor C 50 mm f/ 4.5"}
 {"from_id":"f17bfce1533b8eb7","from_name":"Mamiya Mamiya-Sekor C 65mm f/4.5","gearbook_kind":"lens","to_id":"b7c47aeb2f14a1e7","to_name":"Mamiya-Sekor C 65mm f/4.5"}
@@ -329,3 +331,7 @@
 {"from_id":"9d9771b28761403a","from_name":"Zoom Arsat M 80-200 mm f/ 4.5","gearbook_kind":"lens","to_id":"ab23e23248a8654d","to_name":"Granit-11 80-200 mm f/ 4.5"}
 {"from_id":"614db55b3612b63e","from_name":"Granit","gearbook_kind":"lens","to_id":"ab23e23248a8654d","to_name":"Granit-11 80-200 mm f/ 4.5"}
 {"from_id":"6d3ff6e07a2187b1","from_name":"Belomo 17 mm f/ 2.8 МС","gearbook_kind":"lens","to_id":"b5007a0fc8e77a7b","to_name":"MC Peleng 17 mm f/ 2.8 A"}
+{"from_id":"13e6c0e4c29606b1","from_name":"Canon Zoom Lens FD 35-70mm 1:4 AF","gearbook_kind":"lens","to_id":"e9dec673ee88fb00","to_name":"Canon AF Zoom FD 35-70 mm f/ 4"}
+{"from_id":"6bb5154a6b2798f6","from_name":"Canon FD 70-210 mm f/ 4","gearbook_kind":"lens","to_id":"28937712feba1e4f","to_name":"Canon FDn 70-210 mm f/ 4"}
+{"from_id":"93cb7a52fa787f0a","from_name":"Canon FD 85 mm f/ 1.2 SSC Aspherical","gearbook_kind":"lens","to_id":"6b6218c64d176a97","to_name":"Canon FD 85 mm f/ 1.2 S.S.C. Aspherical"}
+{"from_id":"db3c1206a20288d9","from_name":"Canon FL M 50 mm f/ 3.5","gearbook_kind":"lens","to_id":"7e62bec4a4b10adb","to_name":"Canon FL 50 mm f/ 3.5 Macro"}
