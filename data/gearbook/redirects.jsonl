@@ -6,7 +6,65 @@
 {"from_id":"5ef0777748a745aa","from_name":"Sony α NEX-5","gearbook_kind":"camera","to_id":"25c7d2cadb01f858","to_name":"Sony Alpha NEX-5"}
 {"from_id":"5da34298aec08a7d","from_name":"Sony NEX-6","gearbook_kind":"camera","to_id":"9ba20b75680f7252","to_name":"Sony Alpha NEX-6"}
 {"from_id":"95906afb57ee02c1","from_name":"Sony α NEX-7","gearbook_kind":"camera","to_id":"42b94f6039054faf","to_name":"Sony Alpha NEX-7"}
+{"from_id":"12c3c4f4dd937a51","from_name":"Kiev 6S","gearbook_kind":"camera","to_id":"31687d65182f1899","to_name":"Kiev 6C"}
+{"from_id":"290872c1e8b89008","from_name":"Kiev Salyut-S","gearbook_kind":"camera","to_id":"00941ef4257be48b","to_name":"Salyut-S"}
+{"from_id":"cf5f5efeb3ab4a0f","from_name":"Gomz Spoutnik","gearbook_kind":"camera","to_id":"72db6db0d8853b38","to_name":"Sputnik"}
+{"from_id":"b7407efa5985dc65","from_name":"Gomz Junost","gearbook_kind":"camera","to_id":"7a69bb2173129306","to_name":"Junost"}
+{"from_id":"cfbf3c8ccf10bf47","from_name":"Belomo Agat 18K","gearbook_kind":"camera","to_id":"ca005e33a2a8947a","to_name":"Agat 18K"}
+{"from_id":"f6d3ef9b7615b23a","from_name":"Krasnogorsk Horizon","gearbook_kind":"camera","to_id":"39c7d61882feb4f1","to_name":"Horizont"}
+{"from_id":"f82704f6e4c3d16f","from_name":"Krasnogorsk FT-2","gearbook_kind":"camera","to_id":"6bf560a84f23b064","to_name":"FT-2"}
+{"from_id":"060dd7d9248f0e11","from_name":"Belomo Elikon 35SM","gearbook_kind":"camera","to_id":"8267b439bc4de147","to_name":"Elikon 35CM"}
+{"from_id":"67383d339da34ca7","from_name":"Krasnogorsk Moskva 4","gearbook_kind":"camera","to_id":"adcf3a5d941a971e","to_name":"Moskva-4"}
+{"from_id":"f6990b83ce8f4748","from_name":"Gomz Smena 1","gearbook_kind":"camera","to_id":"2a73e8d85adc9044","to_name":"Smena"}
+{"from_id":"83de2ab5baa9d421","from_name":"Gomz Smena 2","gearbook_kind":"camera","to_id":"4d41da3e93a6acf5","to_name":"Smena-2"}
+{"from_id":"8506a0bf24718a1c","from_name":"Gomz Smena 4","gearbook_kind":"camera","to_id":"17846a9686c15bdb","to_name":"Smena-4"}
+{"from_id":"c9711df174c1737a","from_name":"Chajka","gearbook_kind":"camera","to_id":"8c78c0951c3577c9","to_name":"Chaika"}
+{"from_id":"9a39a358d407ccf0","from_name":"Chajka-II","gearbook_kind":"camera","to_id":"d9ae7325f5a8e82b","to_name":"Chaika-2"}
+{"from_id":"1b45c8866b463926","from_name":"Belomo Chaika-II","gearbook_kind":"camera","to_id":"d9ae7325f5a8e82b","to_name":"Chaika-2"}
+{"from_id":"29d52dcd45b63bfc","from_name":"Chajka 3","gearbook_kind":"camera","to_id":"21a4e0ec7fa28ba2","to_name":"Chaika-3"}
+{"from_id":"1109b7982518d8bf","from_name":"Belomo Chaika-III","gearbook_kind":"camera","to_id":"21a4e0ec7fa28ba2","to_name":"Chaika-3"}
+{"from_id":"43956d103f26e0fc","from_name":"Krasnogorsk Zenit","gearbook_kind":"camera","to_id":"e2b666654588eebd","to_name":"Zenit 1"}
+{"from_id":"20c76f718eb4dd66","from_name":"Krasnogorsk Zenit S","gearbook_kind":"camera","to_id":"2aa744cbb8a995b1","to_name":"Zenit C"}
+{"from_id":"2a450243c1d7041b","from_name":"Krasnogorsk Zenit 3","gearbook_kind":"camera","to_id":"c4fc2c23c77cb5dc","to_name":"Zenit 3"}
+{"from_id":"63db86d9eeb7c842","from_name":"Krasnogorsk Zenit 3M","gearbook_kind":"camera","to_id":"ba076df78224e1c5","to_name":"Zenit 3M"}
+{"from_id":"123cc720f2a7ca5d","from_name":"Krasnogorsk Zenit 4","gearbook_kind":"camera","to_id":"fbad6f595899da6f","to_name":"Zenit 4"}
+{"from_id":"ee77f6c1390bb73d","from_name":"Krasnogorsk Zenit 5","gearbook_kind":"camera","to_id":"5ff4fbd2e249f960","to_name":"Zenit 5"}
+{"from_id":"65672e782f9955f4","from_name":"Krasnogorsk Zenit 6","gearbook_kind":"camera","to_id":"706153a11915ba9d","to_name":"Zenit 6"}
+{"from_id":"f3ac943bb4c2c9d0","from_name":"Krasnogorsk Zenit B","gearbook_kind":"camera","to_id":"6d5e4c5a05a0fbc2","to_name":"Zenit B"}
+{"from_id":"b272ca2d052c18d8","from_name":"Krasnogorsk Zenit E","gearbook_kind":"camera","to_id":"4e236fa61c773f5e","to_name":"Zenit E"}
+{"from_id":"cdb3ff581b64e97b","from_name":"Krasnogorsk Zenit ES","gearbook_kind":"camera","to_id":"4e236fa61c773f5e","to_name":"Zenit E"}
+{"from_id":"f979d709d9279bd8","from_name":"Krasnogorsk Zenit EM","gearbook_kind":"camera","to_id":"69e16a763c2d8186","to_name":"Zenit EM"}
+{"from_id":"3210b0defbdffd08","from_name":"Krasnogorsk Zenit ET","gearbook_kind":"camera","to_id":"7005a1f7014caa12","to_name":"Zenit ET"}
+{"from_id":"008050dc46588fbf","from_name":"Krasnogorsk Zenit TTL","gearbook_kind":"camera","to_id":"a7f1780cc727a698","to_name":"Zenit TTL"}
+{"from_id":"3e81260e8b994642","from_name":"Krasnogorsk Zenit 11","gearbook_kind":"camera","to_id":"01221111113650d0","to_name":"Zenit 11"}
+{"from_id":"60b44fd78ba5d698","from_name":"Krasnogorsk Zenit 12","gearbook_kind":"camera","to_id":"17ef34a0632f184e","to_name":"Zenit 12"}
+{"from_id":"02ca0e0a8d45f0bc","from_name":"Krasnogorsk Zenit 122","gearbook_kind":"camera","to_id":"0b33bcf873683853","to_name":"Zenit 122"}
+{"from_id":"41f7a3da96405c1e","from_name":"Krasnogorsk Zenit 212k","gearbook_kind":"camera","to_id":"565d0a7e1fb79a4c","to_name":"Zenit 212k"}
+{"from_id":"cab6378e9a933412","from_name":"Krasnogorsk Zenit Automat","gearbook_kind":"camera","to_id":"4dca33768e78f8e9","to_name":"Zenit Automat"}
+{"from_id":"f3c4d8b9ee73c56d","from_name":"Krasnogorsk Zorki 1c","gearbook_kind":"camera","to_id":"e242fb5a5e8a9000","to_name":"Zorki 1"}
+{"from_id":"bc84f89035d11a5d","from_name":"Krasnogorsk Zorki 1d","gearbook_kind":"camera","to_id":"e242fb5a5e8a9000","to_name":"Zorki 1"}
+{"from_id":"34b3e86a7d867f4b","from_name":"Krasnogorsk Zorki 3","gearbook_kind":"camera","to_id":"58dc994104f1f29b","to_name":"Zorki 3"}
+{"from_id":"db06d28574bda673","from_name":"Krasnogorsk Zorki 4","gearbook_kind":"camera","to_id":"ff8ce6fbf632fd6f","to_name":"Zorki 4"}
+{"from_id":"7300c1df49fb62c0","from_name":"Krasnogorsk Zorki 6","gearbook_kind":"camera","to_id":"4ffd01db61eeb1e2","to_name":"Zorki 6"}
+{"from_id":"7afba28bac7d0b82","from_name":"Krasnogorsk Zorki S","gearbook_kind":"camera","to_id":"b572f0b1bee43d1e","to_name":"Zorki S"}
+{"from_id":"0384f74a8bf61ba3","from_name":"Krasnogorsk Zorki 10","gearbook_kind":"camera","to_id":"e4f490585b2c66aa","to_name":"Zorki 10"}
+{"from_id":"8f3e000110100688","from_name":"Krasnogorsk Zorki 12","gearbook_kind":"camera","to_id":"9bdd906ca6313f56","to_name":"Zorki 12"}
+{"from_id":"45ace45351d72623","from_name":"Fed Fed-2 Type a","gearbook_kind":"camera","to_id":"79b2974d7fef662b","to_name":"FED-2"}
+{"from_id":"f7e49b42875356d4","from_name":"Fed Fed-2 Type b","gearbook_kind":"camera","to_id":"79b2974d7fef662b","to_name":"FED-2"}
+{"from_id":"7bcfafc2ca01cba5","from_name":"Fed Fed-2 Type c","gearbook_kind":"camera","to_id":"79b2974d7fef662b","to_name":"FED-2"}
+{"from_id":"d781400eec4c518b","from_name":"Fed Fed-2 Type d","gearbook_kind":"camera","to_id":"79b2974d7fef662b","to_name":"FED-2"}
+{"from_id":"969cf8e8f0a92317","from_name":"Fed Fed-3 Type a","gearbook_kind":"camera","to_id":"2851fea40322abd9","to_name":"FED-3"}
+{"from_id":"e271db39034d0b16","from_name":"Fed Fed-3 Type b","gearbook_kind":"camera","to_id":"2851fea40322abd9","to_name":"FED-3"}
+{"from_id":"371e1f88624ae19d","from_name":"Fed Fed-4 Type b","gearbook_kind":"camera","to_id":"39ee33c3c1bd2c77","to_name":"FED-4"}
+{"from_id":"f6157b5c7a53bf6f","from_name":"Fed Fed-5","gearbook_kind":"camera","to_id":"6def453bd51561e7","to_name":"FED 5"}
+{"from_id":"687345e9f77a5cf0","from_name":"Fed Fed-50 Automat","gearbook_kind":"camera","to_id":"1417d2c9f81d152a","to_name":"FED 50"}
+{"from_id":"4ac263909dd94cee","from_name":"Fed Fed Micron","gearbook_kind":"camera","to_id":"3ec70682390afa81","to_name":"FED Micron"}
+{"from_id":"c92695eefb96feff","from_name":"Fed Fed Stereo","gearbook_kind":"camera","to_id":"2b85146966023f14","to_name":"Fed Stereo"}
+{"from_id":"4559b827103dd67c","from_name":"Krasnogorsk Start","gearbook_kind":"camera","to_id":"36658c5c65e53f98","to_name":"Start"}
+{"from_id":"3ef727970361e05f","from_name":"Gomz Leningrad","gearbook_kind":"camera","to_id":"f5b861823c6dbfa6","to_name":"Leningrad"}
+{"from_id":"572b45fb10a2b4f5","from_name":"Belomo Agat 18","gearbook_kind":"camera","to_id":"e74eb5c3ed35c5d1","to_name":"Agat 18"}
 {"from_id":"05f8cc1cac6f9896","from_name":"Aires 35-III C","gearbook_kind":"camera","to_id":"84634649b8854e43","to_name":"Aires 35-IIIC"}
+{"from_id":"b5889e5d5173ee74","from_name":"Bell and Howell Autoload 342","gearbook_kind":"camera","to_id":"43fb83a8166115fe","to_name":"Autoload 342"}
 {"from_id":"b943b13c2d0c0316","from_name":"Boots/Bencini Comet 404-X","gearbook_kind":"camera","to_id":"2f1455bf6db71dbb","to_name":"Bencini Comet 404-X"}
 {"from_id":"a31aa49b00c0a1e6","from_name":"Canon Aqua Snappy/AS-6","gearbook_kind":"camera","to_id":"daec12b61fe539d4","to_name":"Canon AS-6"}
 {"from_id":"1ed790b43798b523","from_name":"Canon Canonet QL 17 / QL 19 / QL 25","gearbook_kind":"camera","to_id":"b34be198bed41341","to_name":"Canon Canonet QL 17 (new)"}
@@ -57,15 +115,27 @@
 {"from_id":"937143d8617dd9be","from_name":"Canon Prima Super 28","gearbook_kind":"camera","to_id":"5bb7f3229a3421d6","to_name":"Canon Sure Shot Z70W"}
 {"from_id":"bb7ebab38602c286","from_name":"Canon Prima Super 28N (Caption)","gearbook_kind":"camera","to_id":"5bb7f3229a3421d6","to_name":"Canon Sure Shot Z70W"}
 {"from_id":"3210851614ea1a81","from_name":"Canon Sure Shot Z70W/Prima Super 28N (Caption)","gearbook_kind":"camera","to_id":"5bb7f3229a3421d6","to_name":"Canon Sure Shot Z70W"}
+{"from_id":"c70cce074fbee65f","from_name":"WZFO Druh","gearbook_kind":"camera","to_id":"bb027f0c7c95697a","to_name":"Druh"}
+{"from_id":"0817d493bfb53b88","from_name":"WZFO Druh Synchro","gearbook_kind":"camera","to_id":"4071bf56686361ae","to_name":"Druh synchro"}
+{"from_id":"58ea10ffff930155","from_name":"Belomo Elikon Autofocus","gearbook_kind":"camera","to_id":"3a9a48b39fa54175","to_name":"Elikon Autofocus"}
+{"from_id":"ee0093a44bc07be1","from_name":"Belomo Estafeta","gearbook_kind":"camera","to_id":"08168543bc44c04a","to_name":"Estafeta"}
+{"from_id":"8703951d9c03c5ad","from_name":"Belomo Etude","gearbook_kind":"camera","to_id":"f80c426e8bcae26c","to_name":"Etude"}
 {"from_id":"a885ca3d9fb5e247","from_name":"Exakta EDX 2/EDX 3","gearbook_kind":"camera","to_id":"1474b55218b76272","to_name":"Ihagee (ouest) Exakta EDX 2"}
+{"from_id":"3eff028a9db443d6","from_name":"Federal Fed-Flash","gearbook_kind":"camera","to_id":"06575e965f3c09f4","to_name":"Fed-Flash"}
+{"from_id":"e255188c575a18b8","from_name":"Bell and Howell Foton","gearbook_kind":"camera","to_id":"d8a929eeefa98172","to_name":"Foton"}
 {"from_id":"8b5333ebe50180b7","from_name":"Fuji FZ-3000 Zoom Date","gearbook_kind":"camera","to_id":"50a7caed16202c85","to_name":"Fuji Discovery 3000 Zoom Date"}
 {"from_id":"8ddf01793ac2a200","from_name":"Fujifilm Silvi 70","gearbook_kind":"camera","to_id":"5462d9f7d10ca13b","to_name":"Fujifilm Zoom Date 70"}
+{"from_id":"4bc217000051da41","from_name":"Krasnogorsk Iskra","gearbook_kind":"camera","to_id":"2b392b4d26ca2ae5","to_name":"Iskra"}
 {"from_id":"18ffce26327e3852","from_name":"Konica Minolta Maxxum 5D","gearbook_kind":"camera","to_id":"4734151a88b4d6b5","to_name":"Konica Minolta Dynax 5D"}
 {"from_id":"368c1e23d40d5013","from_name":"Konica Minolta Maxxum/Dynax 5D","gearbook_kind":"camera","to_id":"4734151a88b4d6b5","to_name":"Konica Minolta Dynax 5D"}
 {"from_id":"0c19a477b72a139d","from_name":"Konica Minolta Maxxum 7D","gearbook_kind":"camera","to_id":"1042cb8c5080cc70","to_name":"Konica Minolta Dynax 7D"}
 {"from_id":"d20ba5adfb940fac","from_name":"Konica Minolta Maxxum/Dynax 7D","gearbook_kind":"camera","to_id":"1042cb8c5080cc70","to_name":"Konica Minolta Dynax 7D"}
 {"from_id":"3a0cee3f1b34a271","from_name":"Konipak 300 / Sakurapak 300","gearbook_kind":"camera","to_id":"d44c67509da7e0fc","to_name":"Konica Konipak 300"}
+{"from_id":"4a37dec111fbbbe2","from_name":"Gomz Lomo LC-A","gearbook_kind":"camera","to_id":"0d0e6a3af57f48cf","to_name":"LOMO LC-A"}
 {"from_id":"742cf0dedf3049e2","from_name":"Lordomat C35/SE/SLE","gearbook_kind":"camera","to_id":"192a7a05d48752f7","to_name":"Leidolf Lordomat C35"}
+{"from_id":"14b9c152fa1ca6b2","from_name":"Gomz Lubitel 166B","gearbook_kind":"camera","to_id":"cf306179a26542ba","to_name":"Lubitel 166B"}
+{"from_id":"a22b4ae45fddc706","from_name":"Gomz Lubitel 2","gearbook_kind":"camera","to_id":"b8bd19f6366c59ef","to_name":"Lubitel 2"}
+{"from_id":"c6684455fd045954","from_name":"Gomz Lubitel 166","gearbook_kind":"camera","to_id":"10c7998e6cd5e829","to_name":"Lubitel 166"}
 {"from_id":"2b3432daf34333f4","from_name":"Mamiya RB 67 Professional","gearbook_kind":"camera","to_id":"ef78317f3318ac8a","to_name":"Mamiya RB67 Professional"}
 {"from_id":"5813b9f2bbd5e11c","from_name":"Mamiya RZ 67","gearbook_kind":"camera","to_id":"31d2ef299e31cfb0","to_name":"Mamiya RZ67"}
 {"from_id":"cd182a3cbc2e6471","from_name":"Minolta Alpha 360si","gearbook_kind":"camera","to_id":"d2175f59ae85629c","to_name":"Minolta Dynax 303si"}
@@ -84,6 +154,9 @@
 {"from_id":"0b56f8b13179a14c","from_name":"Minolta X-300","gearbook_kind":"camera","to_id":"ae6720e99b396d3a","to_name":"Minolta X-370"}
 {"from_id":"2d7dbe148f56daf6","from_name":"Minolta X-300S","gearbook_kind":"camera","to_id":"effc964469d6364e","to_name":"Minolta X-370s"}
 {"from_id":"7eec3c104b28efa1","from_name":"Minolta X-500","gearbook_kind":"camera","to_id":"1a28e07bf28f8536","to_name":"Minolta X-570"}
+{"from_id":"ffe5c120dc0677bc","from_name":"Krasnogorsk Moskva 2","gearbook_kind":"camera","to_id":"5df9176a86ac13d8","to_name":"Moskva-2"}
+{"from_id":"fc0658118e2b85bf","from_name":"Krasnogorsk Moskva 5","gearbook_kind":"camera","to_id":"59b3250d485516a3","to_name":"Moskva-5"}
+{"from_id":"b5a87d5a937302b8","from_name":"Krasnogorsk Narciss","gearbook_kind":"camera","to_id":"db1f8b98cbd17e26","to_name":"Narciss"}
 {"from_id":"8a9820489be8668a","from_name":"Nikon Nikomat FT2","gearbook_kind":"camera","to_id":"32ea1ea6a78ea4ce","to_name":"Nikon Nikkormat FT2"}
 {"from_id":"e4f1283d3d44af1c","from_name":"Nikomat/Nikkormat FT2","gearbook_kind":"camera","to_id":"32ea1ea6a78ea4ce","to_name":"Nikon Nikkormat FT2"}
 {"from_id":"b45c1c774f0b1167","from_name":"Nikon Nikomat FT3","gearbook_kind":"camera","to_id":"0e272f59cbac8b3d","to_name":"Nikon Nikkormat FT3"}
@@ -143,6 +216,16 @@
 {"from_id":"640a8f4efaaa4896","from_name":"Asahi Pentax Spotmatic","gearbook_kind":"camera","to_id":"aed21fc4bfbb03ba","to_name":"Pentax Spotmatic"}
 {"from_id":"068d326318f5cf21","from_name":"QRS Devry Corp Kamra","gearbook_kind":"camera","to_id":"81e4b40eba77ba66","to_name":"QRS Kamra"}
 {"from_id":"8d9ef2bd1569129d","from_name":"Ricoh TF-500/TF-900","gearbook_kind":"camera","to_id":"3d32470cb5d6fb4f","to_name":"Ricoh TF-900"}
+{"from_id":"8df9a66d2d451f12","from_name":"Orionwerk Rio 14C","gearbook_kind":"camera","to_id":"984538fe8fa4a92b","to_name":"Rio 14C"}
+{"from_id":"4941bd588d958ab7","from_name":"Druopta Rix","gearbook_kind":"camera","to_id":"96bddde72a9290a4","to_name":"Rix"}
+{"from_id":"038b651029952cf5","from_name":"Belomo Siluet Elektro","gearbook_kind":"camera","to_id":"69ef2ae5dca8469c","to_name":"Siluet Elektro"}
+{"from_id":"3e46029669d1a433","from_name":"Gomz Smena 8","gearbook_kind":"camera","to_id":"5869e72f031c3a51","to_name":"Smena 8"}
+{"from_id":"e1c93db562c3f321","from_name":"Gomz Smena 8M","gearbook_kind":"camera","to_id":"f7ed2287f9eafb2f","to_name":"Smena 8m"}
+{"from_id":"36dc76ec97b837fa","from_name":"Gomz Smena Symbol","gearbook_kind":"camera","to_id":"819d829fd142c0eb","to_name":"Smena Symbol"}
+{"from_id":"8be02fc03d2d1880","from_name":"Gomz Smena 6","gearbook_kind":"camera","to_id":"7119d93f5253def6","to_name":"Smena 6"}
+{"from_id":"78af8082719acf04","from_name":"Ikkosha Co. Start 35","gearbook_kind":"camera","to_id":"86b8ea9c7b274348","to_name":"Start 35"}
+{"from_id":"10ed3735d44d278e","from_name":"Belomo Vilia","gearbook_kind":"camera","to_id":"a8f8a8e9670cc991","to_name":"Vilia"}
+{"from_id":"f9f799f37203aade","from_name":"Gomz Voskhod","gearbook_kind":"camera","to_id":"e6b9e8f249ec8fde","to_name":"Voskhod"}
 {"from_id":"74f5682bdc759fa3","from_name":"Yashica T5","gearbook_kind":"camera","to_id":"837c8e761c962e20","to_name":"Yashica T4 Super"}
 {"from_id":"9b7e78cf3a2f6a32","from_name":"Praktica LLC","gearbook_kind":"camera","to_id":"3d0eb42f9c926f8c","to_name":"Pentacon Praktica LLC"}
 {"from_id":"2b2a4910ee77c6e3","from_name":"Minolta SRT 101b (type a)","gearbook_kind":"camera","to_id":"723906d060123873","to_name":"Minolta SRT 201 (type a)"}
@@ -215,3 +298,15 @@
 {"from_id":"83948a9d5a066e48","from_name":"Mamiya Mamiya-Sekor Zoom Z 100-200mm f/5.2 W","gearbook_kind":"lens","to_id":"af3fb3318b6ff83f","to_name":"Mamiya-Sekor Zoom Z 100-200mm f/5.2 W"}
 {"from_id":"bb4e912850463a84","from_name":"Mamiya Mamiya-Sekor M 75mm f/4.5 L SB Tilt-Shift","gearbook_kind":"lens","to_id":"7ff76817c8950804","to_name":"Mamiya-Sekor M 75mm f/4.5 L SB Tilt-Shift"}
 {"from_id":"dd32a86f81dd2b26","from_name":"Mamiya Mamiya-Sekor M 180mm f/4.5 L SB Tilt-Shift","gearbook_kind":"lens","to_id":"50e17aa961f116ee","to_name":"Mamiya-Sekor M 180mm f/4.5 L SB Tilt-Shift"}
+{"from_id":"f79682d84e4c1732","from_name":"ARSAT-H 50 mm f/ 2","gearbook_kind":"lens","to_id":"6eaa703e0eacf420","to_name":"Helios-81 50 mm f/ 2"}
+{"from_id":"e504112d3ce2a75a","from_name":"ARSAT-H 50 mm f/1.4","gearbook_kind":"lens","to_id":"cafa7d830375a45a","to_name":"Helios-123N 50 mm f/ 1.4 МС"}
+{"from_id":"9cf6eb8bedfda7db","from_name":"Jupiter-3","gearbook_kind":"lens","to_id":"c95ba73ff0d1ab03","to_name":"Jupiter-3 50mm f/1.5 M39 LTM"}
+{"from_id":"1d6c0583a8155622","from_name":"Jupiter-3 50 mm f/ 1.5","gearbook_kind":"lens","to_id":"c95ba73ff0d1ab03","to_name":"Jupiter-3 50mm f/1.5 M39 LTM"}
+{"from_id":"15b697e2e57727e5","from_name":"Jupiter-12 35 mm f/ 2.8","gearbook_kind":"lens","to_id":"b5049f6c5331a736","to_name":"Jupiter-12 35mm f/2.8 M39 LTM"}
+{"from_id":"04d2c10bf4f97b52","from_name":"Tair-3 300mm 1:4.5","gearbook_kind":"lens","to_id":"3bc0a2056d917d78","to_name":"Tair-3 300 mm f/ 4.5"}
+{"from_id":"f41c73978fe976d5","from_name":"Zenitar 16mm f/2.8","gearbook_kind":"lens","to_id":"0751b28976a95345","to_name":"MC Zenitar 16 mm f/ 2.8 Fish-Eye"}
+{"from_id":"c87b9cc9e9d258c5","from_name":"Kaleinar-5N","gearbook_kind":"lens","to_id":"865a46677810dbc1","to_name":"MC Kaleinar-5N 100 mm f/ 2.8"}
+{"from_id":"b3ea98534e74bdc8","from_name":"ARSAT-Н 100 mm f/ 2.8","gearbook_kind":"lens","to_id":"865a46677810dbc1","to_name":"MC Kaleinar-5N 100 mm f/ 2.8"}
+{"from_id":"9d9771b28761403a","from_name":"Zoom Arsat M 80-200 mm f/ 4.5","gearbook_kind":"lens","to_id":"ab23e23248a8654d","to_name":"Granit-11 80-200 mm f/ 4.5"}
+{"from_id":"614db55b3612b63e","from_name":"Granit","gearbook_kind":"lens","to_id":"ab23e23248a8654d","to_name":"Granit-11 80-200 mm f/ 4.5"}
+{"from_id":"6d3ff6e07a2187b1","from_name":"Belomo 17 mm f/ 2.8 МС","gearbook_kind":"lens","to_id":"b5007a0fc8e77a7b","to_name":"MC Peleng 17 mm f/ 2.8 A"}
