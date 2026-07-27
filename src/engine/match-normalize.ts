@@ -27,7 +27,7 @@ export function matchNormalize(s: string): string {
     .replace(/\bno\.?\s+(?=\d)/g, 'n ')
     .replace(/[®™©]/g, '')
     .replace(/\([^)]*\)/g, ' ') // parenthetical descriptors/disambiguators
-    .replace(/\b(body only|body|boxed|box & lens set|outfit|kit|bundle|w\/ ?case|with case|no meter|chrome|black|silver|brown)\b/g, ' ')
+    .replace(/\b(body only|body|boxed|box & lens set|outfit|kit|bundle|lot|w\/ ?case|with case|no meter|chrome|black|silver|brown)\b/g, ' ')
     .replace(/[_/,+&]/g, ' ')
     .replace(/[^a-z0-9.\- ]/g, ' ')
     .replace(/(\d)\s*mm\b/g, '$1mm')
