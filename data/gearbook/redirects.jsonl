@@ -16,7 +16,9 @@
 {"from_id":"ebf820c3781d9b85","from_name":"Canon EOS 550D","gearbook_kind":"camera","to_id":"be03b1a93a13927a","to_name":"Canon EOS Rebel T2i"}
 {"from_id":"5565b421c07f1313","from_name":"Canon EOS 300V","gearbook_kind":"camera","to_id":"7f4b0389ab8f3c9a","to_name":"Canon EOS Rebel Ti"}
 {"from_id":"8957f938e65c234c","from_name":"Canon EOS 600D","gearbook_kind":"camera","to_id":"f18bbdab0854734c","to_name":"Canon EOS Rebel T3i"}
+{"from_id":"d3b497ca992701a8","from_name":"Canon Digital Ixus V","gearbook_kind":"camera","to_id":"ac7b48f1bf4ccf7c","to_name":"Canon PowerShot S110"}
 {"from_id":"26db16f90b27e528","from_name":"Canon Digital Ixus 430","gearbook_kind":"camera","to_id":"bf87ae15d660b014","to_name":"Canon PowerShot S410"}
+{"from_id":"e9f2481f3ee982b8","from_name":"Canon Digital Ixus V2","gearbook_kind":"camera","to_id":"5433346a0557dc06","to_name":"Canon PowerShot S200"}
 {"from_id":"cefbd61bfbff57af","from_name":"Canon Prima Zoom Shot","gearbook_kind":"camera","to_id":"19d088924ab433d1","to_name":"Canon Sure Shot 60 Zoom"}
 {"from_id":"105c67deb63bb7ad","from_name":"Canon Prima Zoom 70F","gearbook_kind":"camera","to_id":"edf14ee21d7edf2c","to_name":"Canon Sure Shot 70 Zoom"}
 {"from_id":"ba43df97668b7de3","from_name":"Canon Prima BF Twin","gearbook_kind":"camera","to_id":"52f253b1b0d26ed1","to_name":"Canon Sure Shot 80 Tele"}
@@ -51,15 +53,19 @@
 {"from_id":"bb7ebab38602c286","from_name":"Canon Prima Super 28N (Caption)","gearbook_kind":"camera","to_id":"5bb7f3229a3421d6","to_name":"Canon Sure Shot Z70W"}
 {"from_id":"3210851614ea1a81","from_name":"Canon Sure Shot Z70W/Prima Super 28N (Caption)","gearbook_kind":"camera","to_id":"5bb7f3229a3421d6","to_name":"Canon Sure Shot Z70W"}
 {"from_id":"a885ca3d9fb5e247","from_name":"Exakta EDX 2/EDX 3","gearbook_kind":"camera","to_id":"1474b55218b76272","to_name":"Ihagee (ouest) Exakta EDX 2"}
+{"from_id":"8b5333ebe50180b7","from_name":"Fuji FZ-3000 Zoom Date","gearbook_kind":"camera","to_id":"50a7caed16202c85","to_name":"Fuji Discovery 3000 Zoom Date"}
+{"from_id":"8ddf01793ac2a200","from_name":"Fujifilm Silvi 70","gearbook_kind":"camera","to_id":"5462d9f7d10ca13b","to_name":"Fujifilm Zoom Date 70"}
 {"from_id":"18ffce26327e3852","from_name":"Konica Minolta Maxxum 5D","gearbook_kind":"camera","to_id":"4734151a88b4d6b5","to_name":"Konica Minolta Dynax 5D"}
 {"from_id":"368c1e23d40d5013","from_name":"Konica Minolta Maxxum/Dynax 5D","gearbook_kind":"camera","to_id":"4734151a88b4d6b5","to_name":"Konica Minolta Dynax 5D"}
 {"from_id":"0c19a477b72a139d","from_name":"Konica Minolta Maxxum 7D","gearbook_kind":"camera","to_id":"1042cb8c5080cc70","to_name":"Konica Minolta Dynax 7D"}
 {"from_id":"d20ba5adfb940fac","from_name":"Konica Minolta Maxxum/Dynax 7D","gearbook_kind":"camera","to_id":"1042cb8c5080cc70","to_name":"Konica Minolta Dynax 7D"}
 {"from_id":"3a0cee3f1b34a271","from_name":"Konipak 300 / Sakurapak 300","gearbook_kind":"camera","to_id":"d44c67509da7e0fc","to_name":"Konica Konipak 300"}
 {"from_id":"742cf0dedf3049e2","from_name":"Lordomat C35/SE/SLE","gearbook_kind":"camera","to_id":"192a7a05d48752f7","to_name":"Leidolf Lordomat C35"}
+{"from_id":"cd182a3cbc2e6471","from_name":"Minolta Alpha 360si","gearbook_kind":"camera","to_id":"d2175f59ae85629c","to_name":"Minolta Dynax 303si"}
 {"from_id":"fb229fc20c4b7669","from_name":"Minolta Dynax 3000i","gearbook_kind":"camera","to_id":"ae6f055c9784df0c","to_name":"Minolta Maxxum 3000i"}
 {"from_id":"ec08fe923db0290e","from_name":"Minolta Dynax 600si","gearbook_kind":"camera","to_id":"7d08dbf066fe5fea","to_name":"Minolta Maxxum 600si"}
 {"from_id":"2ae1389aa3c2c07d","from_name":"Minolta Dynax 600si / Maxxum 600si","gearbook_kind":"camera","to_id":"7d08dbf066fe5fea","to_name":"Minolta Maxxum 600si"}
+{"from_id":"d782b069d21a6256","from_name":"Minolta Dynax 500si","gearbook_kind":"camera","to_id":"e0c7aa3ff863c66d","to_name":"Minolta Maxxum 400si"}
 {"from_id":"d4bdaede025b5a8a","from_name":"Minolta Alpha-9","gearbook_kind":"camera","to_id":"22ae34277bd1d151","to_name":"Minolta Dynax 9"}
 {"from_id":"428acddc20321ff4","from_name":"Minolta Dynax 700si","gearbook_kind":"camera","to_id":"cf7e1abec1a68bf8","to_name":"Minolta Maxxum 700si"}
 {"from_id":"02ecbf87c7f71548","from_name":"Minolta Riva Zoom 105i","gearbook_kind":"camera","to_id":"4dd7aa2ee5771621","to_name":"Minolta Freedom Zoom 105i"}
@@ -88,8 +94,10 @@
 {"from_id":"95897598398875bb","from_name":"Nikon F90X","gearbook_kind":"camera","to_id":"cdba9f43805f156c","to_name":"Nikon N90S"}
 {"from_id":"f0ca213fec705a8d","from_name":"Nikon Zoom 300/Lite•Touch Zoom (QD)","gearbook_kind":"camera","to_id":"ca3ce05a14e146f8","to_name":"Nikon Zoom 300"}
 {"from_id":"8c3c4754bf559302","from_name":"Olympus Accura/Superzoom 700BF","gearbook_kind":"camera","to_id":"c6e2b015696d1869","to_name":"Olympus Superzoom 700BF"}
+{"from_id":"d62e60f8c7b44352","from_name":"Olympus Superzoom 105","gearbook_kind":"camera","to_id":"c6c87647c0cfd2b1","to_name":"Olympus Accura Zoom 105"}
 {"from_id":"63d7dfde70b501ac","from_name":"Olympus FE-115 / X-715","gearbook_kind":"camera","to_id":"d29c8d0e422043ef","to_name":"Olympus FE-115"}
 {"from_id":"eeba77e11b475f63","from_name":"Olympus FE-190 / X-750","gearbook_kind":"camera","to_id":"9a31441f1e5aacd5","to_name":"Olympus FE-190"}
+{"from_id":"ac42fb3aed843be4","from_name":"Olympus OZ 105R","gearbook_kind":"camera","to_id":"a10e85383da95973","to_name":"Olympus Superzoom 105R"}
 {"from_id":"534f4d71d2b798d3","from_name":"Olympus Mju-II","gearbook_kind":"camera","to_id":"1987933955e883a5","to_name":"Olympus Infinity Stylus Epic"}
 {"from_id":"1cae05d674633e59","from_name":"Pentax Espio 140","gearbook_kind":"camera","to_id":"62b6d049e6330d44","to_name":"Pentax IQZoom 140"}
 {"from_id":"2d78d479c607a3be","from_name":"Pentax Espio/IQZoom 140","gearbook_kind":"camera","to_id":"62b6d049e6330d44","to_name":"Pentax IQZoom 140"}
@@ -105,7 +113,9 @@
 {"from_id":"07841a2450a00ebd","from_name":"Pentax Espio/IQZoom 90MC","gearbook_kind":"camera","to_id":"0847c9e66670ca95","to_name":"Pentax Espio 90MC"}
 {"from_id":"6e6eacdf9a3d26ab","from_name":"Pentax IQZoom 110","gearbook_kind":"camera","to_id":"fdfca7c117e30371","to_name":"Pentax Espio 110"}
 {"from_id":"9dea8103e564dae0","from_name":"Pentax Espio/IQZoom 110","gearbook_kind":"camera","to_id":"fdfca7c117e30371","to_name":"Pentax Espio 110"}
+{"from_id":"7ad9f84b7ab4816c","from_name":"Pentax UC-1","gearbook_kind":"camera","to_id":"ef91f6a264ce1faf","to_name":"Pentax Espio mini"}
 {"from_id":"85c2417b54c54d65","from_name":"Pentax Espio Mini / UC-1","gearbook_kind":"camera","to_id":"ef91f6a264ce1faf","to_name":"Pentax Espio mini"}
+{"from_id":"68885b0f0040132e","from_name":"Pentax Espio 738G","gearbook_kind":"camera","to_id":"7584808e290af4a7","to_name":"Pentax IQZoom EZY-R"}
 {"from_id":"7b90bc0a619e533f","from_name":"Pentax Espio 115G","gearbook_kind":"camera","to_id":"5ff01dff4b0f9ecb","to_name":"Pentax IQZoom 115G"}
 {"from_id":"e8033ddd819962a8","from_name":"Pentax IQZoom 95S","gearbook_kind":"camera","to_id":"4e79407c8632abdf","to_name":"Pentax Espio 95S"}
 {"from_id":"f27ba60be90df79e","from_name":"Pentax Espio/IQZoom 95S","gearbook_kind":"camera","to_id":"4e79407c8632abdf","to_name":"Pentax Espio 95S"}
@@ -122,6 +132,7 @@
 {"from_id":"5f5febbc62200201","from_name":"Canon Autoboy Jet","gearbook_kind":"camera","to_id":"cdd1f9360385298e","to_name":"Canon Photura"}
 {"from_id":"3bfe48387e690dd5","from_name":"Canon Prima Zoom 105","gearbook_kind":"camera","to_id":"5a233fe4717e3e4b","to_name":"Canon Sure Shot Mega Zoom 105"}
 {"from_id":"9294e622663e1fd1","from_name":"Canon Prima Mini II","gearbook_kind":"camera","to_id":"2e86bfc789c03c34","to_name":"Canon Sure Shot Sleek"}
+{"from_id":"04e7a138b7195b7a","from_name":"Olympus Mju-III 120","gearbook_kind":"camera","to_id":"6368d71fff9b4b40","to_name":"Olympus Stylus 120"}
 {"from_id":"35add55e11460736","from_name":"Canon Prima Zoom F","gearbook_kind":"camera","to_id":"d189f7bf32bbdb47","to_name":"Canon Sure Shot Zoom XL"}
 {"from_id":"96366b2bc9767e31","from_name":"Ricoh Ricohflex (new) Million","gearbook_kind":"camera","to_id":"ff8bd08154ae1ad3","to_name":"Ricoh Ricohflex New Million"}
 {"from_id":"9db9302892992296","from_name":"Minolta XE-1","gearbook_kind":"camera","to_id":"def7233286f8d237","to_name":"Minolta XE-7"}
@@ -139,6 +150,7 @@
 {"from_id":"899e37d398163c27","from_name":"Canon Digital Ixus 860 IS","gearbook_kind":"camera","to_id":"d8fad98e2b2d1ff6","to_name":"Canon PowerShot SD870 IS"}
 {"from_id":"c3c1d0bd41b28ca8","from_name":"Canon Digital Ixus 90 IS","gearbook_kind":"camera","to_id":"fe8a91776287bba0","to_name":"Canon PowerShot SD790 IS"}
 {"from_id":"e8e7f9ab73fef37a","from_name":"Canon Digital Ixus 95 IS","gearbook_kind":"camera","to_id":"021a5c7a020ae7da","to_name":"Canon PowerShot SD1200 IS"}
+{"from_id":"a838c23a72aaaa37","from_name":"Olympus OZ 140S","gearbook_kind":"camera","to_id":"d344d5f95a00412f","to_name":"Olympus Superzoom 140S"}
 {"from_id":"0baedcd3ba9206fe","from_name":"Canon Prima AF-7","gearbook_kind":"camera","to_id":"cfe3a58b0b8177f8","to_name":"Canon Sure Shot AF-7"}
 {"from_id":"94ba7f689bb81711","from_name":"Minolta Riva Zoom 90","gearbook_kind":"camera","to_id":"e92e32cb89257b5b","to_name":"Minolta Freedom Zoom 90"}
 {"from_id":"808f79701ac06d0a","from_name":"Mamiya Mamiya-Sekor C 37mm f/4.5 Fisheye","gearbook_kind":"lens","to_id":"523ce25cc484d60d","to_name":"Mamiya-Sekor C 37mm f/4.5 Fisheye"}
