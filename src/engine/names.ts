@@ -47,7 +47,10 @@ export interface NameSet {
   spoken: string[]
 }
 
-const HUMAN_VIA: AliasVia[] = ['name', 'market', 'superseded', 'correction']
+// 'maker' is included: a maker-prefixed name ("Showa Kogaku Leotax D IV") is
+// what a seller types, which is the whole reason those aliases exist. It is not
+// punctuation noise like 'MjuII'.
+const HUMAN_VIA: AliasVia[] = ['name', 'market', 'superseded', 'correction', 'maker']
 
 /**
  * Everything this record is called.

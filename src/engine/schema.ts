@@ -20,8 +20,18 @@
 export const MARKETS = ['us', 'intl', 'eu', 'jp'] as const
 export type Market = (typeof MARKETS)[number]
 
-/** How an alias came to exist. See `validateAsset` for why this matters. */
-export const ALIAS_VIA = ['name', 'market', 'superseded', 'shorthand', 'punctuation', 'correction'] as const
+/**
+ * How an alias came to exist. See `validateAsset` for why this matters.
+ *
+ * `maker` (asset 2026-07-27) is the mirror of `shorthand`: where shorthand
+ * drops a maker the name already leads with, maker PREPENDS one the name never
+ * carried. 15% of camera records have a `manufacturer` appearing nowhere in
+ * their name — "Leotax D IV" is made by Shōwa Kōgaku, "Opema" by Meopta — and a
+ * seller types the maker because it is engraved on the camera. Unlike
+ * shorthand, it is a name a person genuinely says, so it counts as spoken
+ * (names.ts HUMAN_VIA).
+ */
+export const ALIAS_VIA = ['name', 'market', 'superseded', 'shorthand', 'punctuation', 'correction', 'maker'] as const
 export type AliasVia = (typeof ALIAS_VIA)[number]
 
 export const CONFIDENCE = ['high', 'medium', 'low'] as const
