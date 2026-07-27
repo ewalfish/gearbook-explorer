@@ -227,6 +227,29 @@ export function queryVariants(brand, model) {
     // "Shanghai Shanghai 58", "Great Wall Great Wall DF-3", "Nikon Nikon S")
     if (/\b(\w[\w-]*)\s+\1\b/i.test(base))
         add(base.replace(/\b(\w[\w-]*)\s+\1\b/gi, '$1'));
+    // Asahi Optical's bodies are ENGRAVED "Asahi Pentax", so that is what sellers
+    // type — but the corpus files them as plain "Pentax X". The maker word is a
+    // third token the record does not have, and on a two-character model it costs
+    // most of the token overlap: "Pentax MX" scores 0.935 and "Asahi Pentax MX"
+    // 0.154. The long names survived it ("Asahi Pentax K1000" 0.918), which is
+    // why this stayed invisible for so long — the failure is concentrated in
+    // exactly the short-designation bodies (MX, ME, KX, S1a) that are workhorse
+    // stock. "Asahiflex" is a real and distinct line, and it is a single token,
+    // so \b cannot reach inside it.
+    if (/\basahi\b/i.test(low)) {
+        add(base.replace(/\basahi\b\s*/i, ''));
+        if (!/\bpentax\b/i.test(low))
+            add(base.replace(/\basahi\b/i, 'Pentax'));
+    }
+    // Olympus wrote the same suffix two ways: "UZ" glued onto the SP-series
+    // ("SP-565UZ") and "Ultra Zoom" spelled out on the Camedia C-series
+    // ("C-750 Ultra Zoom"). Upstream titles mix them, so the query and the record
+    // routinely disagree — "Olympus SP-550UZ" reached its own "SP-550 Ultra Zoom"
+    // record at 0.384, below review. Emit both spellings and let the scorer pick.
+    if (/\d\s*uz\b/i.test(low))
+        add(base.replace(/(\d)\s*uz\b/gi, '$1 Ultra Zoom'));
+    else if (/ultra\s*zoom/i.test(low))
+        add(base.replace(/\s*ultra\s*zoom\b/gi, 'UZ'));
     // Rollei: taking-lens names in seller titles are optics detail, not the model
     // ("2.8E Xenotar", "2.8C CZ Planar") — emit a stripped variant
     if (/\brollei/i.test(low))

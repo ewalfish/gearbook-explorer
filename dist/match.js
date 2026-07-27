@@ -352,6 +352,28 @@ export function matchOne(query, catalog, kind, policy) {
                 best = lensConf[0];
         }
     }
+    // exact-alias confident rule: the query IS one of the record's published
+    // aliases, character for character after normalization.
+    //
+    // The scorer alone cannot see this. It compares the query's digits against
+    // the record's TITLE, and cross-market names routinely disagree on numbers —
+    // "Minolta Freedom Dual C" is the US name of the "Minolta Riva Twin 28", so
+    // the exact-alias feature fired at 1 while the missing "28" dragged the total
+    // to 0.419, below review. Every market pair whose numbering differs (and the
+    // naming tables say that is the normal case: Riva Zoom 70W = Freedom Zoom
+    // Explorer 70W = Capios 25) was unreachable by its own published alias.
+    //
+    // Safe to promote because shipped aliases clear the corroboration rule — a
+    // name only reaches the asset when a source or a human attested it. The one
+    // real risk is a POLLUTED alias, so the promotion is withheld when the same
+    // alias is claimed by more than one record: that is ambiguity, not evidence.
+    const qn = normalize(query);
+    const aliasExact = scored.filter((c) => c.entry.aliases.some((a) => normalize(a) === qn));
+    if (aliasExact.length === 1) {
+        aliasExact[0].s = Math.max(aliasExact[0].s, AUTO_T);
+        if (!best || aliasExact[0].s >= best.s)
+            best = aliasExact[0];
+    }
     const runnerUp = scored.find((c) => c !== best);
     // ambiguity guard: two near-identical scores → force review
     const ambiguous = Boolean(best && runnerUp && best.s - runnerUp.s < 0.05 && runnerUp.s > REVIEW_T && !core.length);
