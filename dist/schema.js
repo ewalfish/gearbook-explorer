@@ -17,8 +17,18 @@
  * wants it; `validateAsset` is the executable version.
  */
 export const MARKETS = ['us', 'intl', 'eu', 'jp'];
-/** How an alias came to exist. See `validateAsset` for why this matters. */
-export const ALIAS_VIA = ['name', 'market', 'superseded', 'shorthand', 'punctuation', 'correction'];
+/**
+ * How an alias came to exist. See `validateAsset` for why this matters.
+ *
+ * `maker` (asset 2026-07-27) is the mirror of `shorthand`: where shorthand
+ * drops a maker the name already leads with, maker PREPENDS one the name never
+ * carried. 15% of camera records have a `manufacturer` appearing nowhere in
+ * their name — "Leotax D IV" is made by Shōwa Kōgaku, "Opema" by Meopta — and a
+ * seller types the maker because it is engraved on the camera. Unlike
+ * shorthand, it is a name a person genuinely says, so it counts as spoken
+ * (names.ts HUMAN_VIA).
+ */
+export const ALIAS_VIA = ['name', 'market', 'superseded', 'shorthand', 'punctuation', 'correction', 'maker'];
 export const CONFIDENCE = ['high', 'medium', 'low'];
 /**
  * How a body reaches a film format that is not its native one.

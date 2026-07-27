@@ -18,8 +18,18 @@
  */
 export declare const MARKETS: readonly ["us", "intl", "eu", "jp"];
 export type Market = (typeof MARKETS)[number];
-/** How an alias came to exist. See `validateAsset` for why this matters. */
-export declare const ALIAS_VIA: readonly ["name", "market", "superseded", "shorthand", "punctuation", "correction"];
+/**
+ * How an alias came to exist. See `validateAsset` for why this matters.
+ *
+ * `maker` (asset 2026-07-27) is the mirror of `shorthand`: where shorthand
+ * drops a maker the name already leads with, maker PREPENDS one the name never
+ * carried. 15% of camera records have a `manufacturer` appearing nowhere in
+ * their name — "Leotax D IV" is made by Shōwa Kōgaku, "Opema" by Meopta — and a
+ * seller types the maker because it is engraved on the camera. Unlike
+ * shorthand, it is a name a person genuinely says, so it counts as spoken
+ * (names.ts HUMAN_VIA).
+ */
+export declare const ALIAS_VIA: readonly ["name", "market", "superseded", "shorthand", "punctuation", "correction", "maker"];
 export type AliasVia = (typeof ALIAS_VIA)[number];
 export declare const CONFIDENCE: readonly ["high", "medium", "low"];
 /**
@@ -143,7 +153,7 @@ export declare const ASSET_SCHEMA: {
                     readonly pattern: "^[0-9a-f]{16}$";
                 };
                 readonly via: {
-                    readonly enum: readonly ["name", "market", "superseded", "shorthand", "punctuation", "correction"];
+                    readonly enum: readonly ["name", "market", "superseded", "shorthand", "punctuation", "correction", "maker"];
                 };
                 readonly market: {
                     readonly enum: readonly ["us", "intl", "eu", "jp"];

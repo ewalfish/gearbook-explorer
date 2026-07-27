@@ -24,7 +24,7 @@ export interface AliasRow {
      * name, a spelling difference, or an abbreviation; those are three different
      * questions to put to a reviewer.
      */
-    via?: 'name' | 'market' | 'superseded' | 'shorthand' | 'punctuation' | 'correction';
+    via?: 'name' | 'market' | 'superseded' | 'shorthand' | 'punctuation' | 'correction' | 'maker';
     /**
      * Which market this spelling belongs to, where known — lets a result explain
      * itself ("matched Freedom Zoom 105i, the US name") rather than silently
