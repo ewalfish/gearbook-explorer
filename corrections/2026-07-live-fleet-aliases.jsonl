@@ -1,0 +1,28 @@
+{"name":"Nishika Optical N8000","kind":"camera","aliases":["Nishika N8000","Nishika N8000 3D"],"note":"the body and box say 'Nishika N8000' and every listing appends '3D'; the record carries the corporate 'Optical' word nobody types."}
+{"name":"Mamiya 528TL","kind":"camera","aliases":["Mamiya/Sekor 528TL","Mamiya Sekor 528TL","Mamiya-Sekor 528TL"],"note":"the top plate is engraved 'Mamiya/Sekor', which US sellers reproduce; the record is filed under the bare brand."}
+{"name":"Mamiya 1000 DTL","kind":"camera","aliases":["Mamiya-Sekor 1000 DTL","Mamiya Sekor 1000 DTL","Mamiya/Sekor 1000 DTL"],"note":"as above — the US-market DTL bodies were sold under the Mamiya/Sekor name."}
+{"name":"Mamiya 500 DTL","kind":"camera","aliases":["Mamiya-Sekor 500 DTL","Mamiya Sekor 500 DTL","Mamiya/Sekor 500 DTL"],"note":"as above."}
+{"name":"Whitehouse Products Beacon II","kind":"camera","aliases":["Whitehouse Beacon II","Beacon II"],"note":"sellers say 'Whitehouse Beacon II' or just 'Beacon II'; no other maker used the Beacon II designation."}
+{"name":"Canonflex","kind":"camera","merge_into":"Canon Canonflex","note":"same 1959 SLR filed with and without the brand word; nothing distinguishes the records but the prefix."}
+{"name":"Canonflex RM","kind":"camera","merge_into":"Canon Canonflex RM","note":"brand-prefix duplicate of the 1962 RM, as above. The prefix-less record carries the meter facts (selenium, metered) and the merge keeps them."}
+{"name":"Canon Canonflex RM","kind":"camera","aliases":["Canon RM"],"note":"the body is engraved 'CANON RM' and that is what sellers type; 'Canonflex' is the line name of the record."}
+{"name":"Canon Canonflex","kind":"camera","set":{"lens_mount":"Canon R"},"note":"the Canonflex line takes the Canon R breech-lock mount (1959-1964, predecessor of FL). The merged-away twin carried 'Canon RF', which is the rangefinder-era screw registry, not this mount."}
+{"name":"Kodak VR35 K400","kind":"camera","aliases":["Kodak K400"],"note":"the VR35 line name is dropped in most listings; K-numbers are unique within Kodak."}
+{"name":"Kodak VR35 Series","kind":"camera","aliases":["Kodak VR35"],"note":"a bare 'Kodak VR35' names the line; route it to the family record rather than leaving it unmatched."}
+{"name":"Kodak EasyLoad 35 KE60","kind":"camera","aliases":["Kodak EasyLoad KE60","Kodak KE60"],"note":"sellers drop the '35' from the line name; KE-numbers are unique within Kodak."}
+{"name":"Yashica 107 MP","kind":"camera","aliases":["Yashica 107 Multi Program"],"note":"MP is the abbreviation of 'Multi Program', spelled out on the body's badge."}
+{"name":"Konica FP-1","kind":"camera","aliases":["Konica FP-1 Program"],"note":"the 1981 FP-1's full marketing name is 'FP-1 program' (program-only exposure); one camera, one record."}
+{"name":"Aires 35-III C","kind":"camera","merge_into":"Aires 35-IIIC","note":"spacing twin of the 35-IIIC (1958); the spaced record is a stub with an empty lens object, the glued one carries the real spec sheet."}
+{"name":"Aires 35-IIIC","kind":"camera","aliases":["Aires IIIC"],"note":"sellers drop the '35' line number; IIIC is unique within Aires."}
+{"name":"Kiev 60 TTL","kind":"camera","aliases":["Kiev 60"],"note":"the body is one camera sold with or without the TTL metering prism; 'Kiev 60' listings are this record."}
+{"name":"Sony Mavica FD88","kind":"camera","aliases":["Sony MVC-FD88","Sony MVC-FD88 Digital Mavica"],"note":"Sony's model code for every floppy Mavica is MVC-FD##, printed on the face of the camera; sellers use it interchangeably with the marketing name."}
+{"name":"Praktica LLC","kind":"camera","merge_into":"Pentacon Praktica LLC","note":"brand-prefix duplicate — identical M42 spec sheets, one with the maker word and one without."}
+{"name":"Pentacon Praktica LLC","kind":"camera","aliases":["Hanimex Praktica LLC"],"note":"Hanimex distributed Prakticas in Commonwealth markets under its own badge; the LLC is the same Pentacon body."}
+{"name":"Argus STL 1000","kind":"camera","aliases":["Argus/Cosina STL 1000","Cosina STL 1000"],"note":"built by Cosina for Argus; sellers title both names, often with the slash."}
+{"name":"Belca Belfoca","kind":"camera","aliases":["Belca Werk Belfoca"],"note":"'Belca-Werk' is the VEB factory name sellers copy off the lens rim; the record uses the short brand."}
+{"name":"Rollei Rolleiflex 3,5 Automat MX (K4A)","kind":"camera","aliases":["Rolleiflex Automat MX","Rollei Rolleiflex Automat MX"],"note":"US sellers name the Automat generations without the 3,5 aperture prefix the German naming carries."}
+{"name":"Rollei Rolleiflex 3,5 Automat MX-EVS (K4B)","kind":"camera","aliases":["Rolleiflex Automat MX-EVS","Rollei Rolleiflex Automat MX-EVS"],"note":"as above."}
+{"name":"Vivitar IC 101 Panorama","kind":"camera","aliases":["Vivitar IC101"],"note":"glued spelling as printed on the shell; the 'Panorama' suffix is on the faceplate but dropped in most listings."}
+{"name":"Premier Instrument Kardon","kind":"camera","aliases":["Premier Instruments Kardon","Kardon"],"note":"the company name appears with and without the plural s in period sources; 'Kardon' alone is unambiguous."}
+{"name":"Ihagee Kine Exakta II","kind":"camera","aliases":["Exakta II","Ihagee Exakta II"],"note":"the 1949 body is the Kine Exakta II; sellers drop 'Kine'."}
+{"name":"Minolta 16 P","kind":"camera","aliases":["Minolta-16 Model P","Minolta 16 Model P","Minolta-16 P"],"note":"the box says 'Minolta-16 model P'; the record name drops the hyphen and the word 'model'."}
