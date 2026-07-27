@@ -180,8 +180,12 @@
 {"from_id":"63d7dfde70b501ac","from_name":"Olympus FE-115 / X-715","gearbook_kind":"camera","to_id":"d29c8d0e422043ef","to_name":"Olympus FE-115"}
 {"from_id":"eeba77e11b475f63","from_name":"Olympus FE-190 / X-750","gearbook_kind":"camera","to_id":"9a31441f1e5aacd5","to_name":"Olympus FE-190"}
 {"from_id":"baaa182d2a8c73fa","from_name":"Olympus SP-565 Ultra Zoom","gearbook_kind":"camera","to_id":"a35901d19468bb97","to_name":"Olympus SP-565UZ"}
+{"from_id":"364930295b7870af","from_name":"Stylus 410","gearbook_kind":"camera","to_id":"2fea635e3c0ed91c","to_name":"Olympus Stylus 410"}
 {"from_id":"ac42fb3aed843be4","from_name":"Olympus OZ 105R","gearbook_kind":"camera","to_id":"a10e85383da95973","to_name":"Olympus Superzoom 105R"}
 {"from_id":"534f4d71d2b798d3","from_name":"Olympus Mju-II","gearbook_kind":"camera","to_id":"1987933955e883a5","to_name":"Olympus Infinity Stylus Epic"}
+{"from_id":"c4d29094593e2227","from_name":"Olympus Mju-II Zoom 115 Deluxe Edition","gearbook_kind":"camera","to_id":"a5e56697b66b7b83","to_name":"Olympus Mju-II Zoom 115"}
+{"from_id":"1ceadba5d0211506","from_name":"Olympus Stylus Epic Zoom 115 Deluxe","gearbook_kind":"camera","to_id":"a5e56697b66b7b83","to_name":"Olympus Mju-II Zoom 115"}
+{"from_id":"ce67c7c8561270f4","from_name":"Olympus Mju-II zoom 80 Deluxe Edition","gearbook_kind":"camera","to_id":"88ac3318c27f75e8","to_name":"Olympus Mju-II Zoom 80"}
 {"from_id":"0974919df4f47bc6","from_name":"Panasonic Lumix DMC-TZ6","gearbook_kind":"camera","to_id":"54a374b9858466d5","to_name":"Panasonic Lumix DMC-ZS1"}
 {"from_id":"1cae05d674633e59","from_name":"Pentax Espio 140","gearbook_kind":"camera","to_id":"62b6d049e6330d44","to_name":"Pentax IQZoom 140"}
 {"from_id":"2d78d479c607a3be","from_name":"Pentax Espio/IQZoom 140","gearbook_kind":"camera","to_id":"62b6d049e6330d44","to_name":"Pentax IQZoom 140"}
@@ -260,6 +264,8 @@
 {"from_id":"a838c23a72aaaa37","from_name":"Olympus OZ 140S","gearbook_kind":"camera","to_id":"d344d5f95a00412f","to_name":"Olympus Superzoom 140S"}
 {"from_id":"2ab6bbc8c08c7154","from_name":"Canonflex RM","gearbook_kind":"camera","to_id":"976be678f5139f8c","to_name":"Canon Canonflex RM"}
 {"from_id":"0baedcd3ba9206fe","from_name":"Canon Prima AF-7","gearbook_kind":"camera","to_id":"cfe3a58b0b8177f8","to_name":"Canon Sure Shot AF-7"}
+{"from_id":"41328e59dc7269b9","from_name":"Olympus µ","gearbook_kind":"camera","to_id":"d57c8520ba64b187","to_name":"Olympus Infinity Stylus"}
+{"from_id":"e68d5e430fc40668","from_name":"Olympus Mju-1","gearbook_kind":"camera","to_id":"d57c8520ba64b187","to_name":"Olympus Infinity Stylus"}
 {"from_id":"94ba7f689bb81711","from_name":"Minolta Riva Zoom 90","gearbook_kind":"camera","to_id":"e92e32cb89257b5b","to_name":"Minolta Freedom Zoom 90"}
 {"from_id":"808f79701ac06d0a","from_name":"Mamiya Mamiya-Sekor C 37mm f/4.5 Fisheye","gearbook_kind":"lens","to_id":"523ce25cc484d60d","to_name":"Mamiya-Sekor C 37mm f/4.5 Fisheye"}
 {"from_id":"da194be6f162822c","from_name":"Mamiya Mamiya-Sekor C 50mm f/4.5","gearbook_kind":"lens","to_id":"c405efdbe262d6b3","to_name":"Mamiya Sekor C 50 mm f/ 4.5"}
