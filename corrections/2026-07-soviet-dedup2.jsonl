@@ -1,0 +1,51 @@
+{"name":"Gomz Spoutnik","kind":"camera","merge_into":"Sputnik","note":"French-transliteration duplicate of the GOMZ Sputnik stereo camera."}
+{"name":"Gomz Smena 1","kind":"camera","merge_into":"Smena","note":"factory-prefixed duplicate of the original Smena (the plain record already carries the same facts)."}
+{"name":"Gomz Smena 2","kind":"camera","merge_into":"Smena-2","note":"factory-prefixed duplicate."}
+{"name":"Gomz Smena 4","kind":"camera","merge_into":"Smena-4","note":"factory-prefixed duplicate folding into the newly curated clean Smena-4 record."}
+{"name":"Krasnogorsk Moskva 4","kind":"camera","merge_into":"Moskva-4","note":"factory-prefixed record folding into the newly curated clean Moskva-4 (the prefixed record carried the doubled-brand 'Industar Industar 23' lens bug)."}
+{"name":"Kiev Salyut-S","kind":"camera","merge_into":"Salyut-S","note":"the domestic Salyut-S under a confusing Kiev-prefixed name — the Kiev badge only appeared later on the Kiev-80. Folds into the newly curated clean Salyut-S record."}
+{"name":"Fed Fed-2 Type a","kind":"camera","merge_into":"FED-2","note":"lettered-type flat record folding into the consolidated FED-2 parent, whose variants[] carries the type tells."}
+{"name":"Fed Fed-2 Type b","kind":"camera","merge_into":"FED-2","note":"as above."}
+{"name":"Fed Fed-2 Type c","kind":"camera","merge_into":"FED-2","note":"as above."}
+{"name":"Fed Fed-2 Type d","kind":"camera","merge_into":"FED-2","note":"as above."}
+{"name":"Fed Fed-3 Type a","kind":"camera","merge_into":"FED-3","note":"as above, FED-3 parent."}
+{"name":"Fed Fed-3 Type b","kind":"camera","merge_into":"FED-3","note":"as above."}
+{"name":"Fed Fed-4 Type b","kind":"camera","merge_into":"FED-4","note":"as above, FED-4 parent."}
+{"name":"Fed Fed-5","kind":"camera","merge_into":"FED 5","note":"doubled-brand duplicate of the plain FED 5 record (FED-5B and FED-5C stay separate — genuinely distinct models)."}
+{"name":"Fed Fed-50 Automat","kind":"camera","merge_into":"FED 50","note":"doubled-brand duplicate."}
+{"name":"Fed Fed Micron","kind":"camera","merge_into":"FED Micron","note":"doubled-brand duplicate."}
+{"name":"Fed Fed Stereo","kind":"camera","merge_into":"Fed Stereo","note":"doubled-brand duplicate."}
+{"name":"Krasnogorsk Zorki 1c","kind":"camera","merge_into":"Zorki 1","note":"collector sub-type now carried as a variants[] entry on the consolidated Zorki 1."}
+{"name":"Krasnogorsk Zorki 1d","kind":"camera","merge_into":"Zorki 1","note":"as above."}
+{"name":"Krasnogorsk Zenit ES","kind":"camera","merge_into":"Zenit E","note":"the Zenit-ES is the Photosniper-outfit fitting of the Zenit E, carried as a variants[] entry on the consolidated record."}
+{"name":"Krasnogorsk Horizon","kind":"camera","merge_into":"Horizont","note":"identical KMZ 1967-1973 span — the same swing-lens Horizont under a de-transliterated spelling. The modern Lomography Horizon 202/Perfekt/Kompakt line stays separate."}
+{"name":"Chajka","kind":"camera","merge_into":"Chaika","note":"transliteration spelling fold into the clean Chaika record (BelOMO half-frame, fixed Industar-69)."}
+{"name":"Chajka-II","kind":"camera","merge_into":"Chaika-2","note":"transliteration spelling fold; the Chaika-2 made the Industar-69 removable (M39 at 27.5mm register — not LTM-compatible)."}
+{"name":"Belomo Chaika-II","kind":"camera","merge_into":"Chaika-2","note":"factory-prefixed spelling of the same camera."}
+{"name":"Chajka 3","kind":"camera","merge_into":"Chaika-3","note":"transliteration spelling fold."}
+{"name":"Belomo Chaika-III","kind":"camera","merge_into":"Chaika-3","note":"factory-prefixed spelling of the same camera."}
+{"name":"Kaleinar-5N","kind":"lens","merge_into":"MC Kaleinar-5N 100 mm f/ 2.8","note":"bare duplicate of the fuller record."}
+{"name":"ARSAT-Н 100 mm f/ 2.8","kind":"lens","merge_into":"MC Kaleinar-5N 100 mm f/ 2.8","note":"post-1991 Arsenal rename of the Kaleinar-5N (note the Cyrillic Н in the shipped name) — one lens, one record, Arsat spellings ride as aliases."}
+{"name":"Zoom Arsat M 80-200 mm f/ 4.5","kind":"lens","merge_into":"Granit-11 80-200 mm f/ 4.5","note":"post-1991 rename of the Granit-11 zoom."}
+{"name":"Granit","kind":"lens","merge_into":"Granit-11 80-200 mm f/ 4.5","note":"bare placeholder with a corrupted 58mm focal value — the only Granit consumer zoom that shipped is the 80-200."}
+{"name":"ARSAT-H 50 mm f/ 2","kind":"lens","merge_into":"Helios-81 50 mm f/ 2","note":"post-1991 rename of the Helios-81 (Arsenal's Nikon-F-mount normal)."}
+{"name":"ARSAT-H 50 mm f/1.4","kind":"lens","merge_into":"Helios-123N 50 mm f/ 1.4 МС","note":"post-1991 rename of the Helios-123N."}
+{"name":"Zenitar 16mm f/2.8","kind":"lens","merge_into":"MC Zenitar 16 mm f/ 2.8 Fish-Eye","note":"bare duplicate of the MC fisheye record."}
+{"name":"Belomo 17 mm f/ 2.8 МС","kind":"lens","merge_into":"MC Peleng 17 mm f/ 2.8 A","note":"factory-name duplicate of the Peleng 17mm fisheye."}
+{"name":"Jupiter-3","kind":"lens","merge_into":"Jupiter-3 50mm f/1.5 M39 LTM","note":"bare umbrella record with a scrape-junk mount list (Contax/Yashica, Leica M, M42 — none real for this lens); folds into the dominant LTM record, with the Kiev-mount generation as its own separate record."}
+{"name":"Jupiter-3 50 mm f/ 1.5","kind":"lens","merge_into":"Jupiter-3 50mm f/1.5 M39 LTM","note":"combined-mount record superseded by the explicit per-mount split."}
+{"name":"Jupiter-12 35 mm f/ 2.8","kind":"lens","merge_into":"Jupiter-12 35mm f/2.8 M39 LTM","note":"combined-mount record superseded by the explicit per-mount split (LTM + Kiev-Contax records)."}
+{"name":"Zenit 510","kind":"camera","set":{"manufacturer":null},"note":"a 2000s Taiwanese-made point-and-shoot wearing the Zenit badge — no manufacturing connection to KMZ; the KMZ attribution was wrong and the real maker is not confidently sourced, so the field is blanked."}
+{"name":"Zenit 520","kind":"camera","set":{"manufacturer":null},"note":"as Zenit 510."}
+{"name":"Zenit 610","kind":"camera","set":{"manufacturer":null},"note":"as Zenit 510."}
+{"name":"Zenit 620","kind":"camera","set":{"manufacturer":null},"note":"as Zenit 510."}
+{"name":"Krasnogorsk Zenit 130","kind":"camera","set":{"manufacturer":"BelOMO"},"note":"the Zenit 130 is a BelOMO product; the Krasnogorsk prefix in the name is wrong but renaming is deferred."}
+{"name":"Zenit EM","kind":"camera","set":{"fixed_lens":null,"lens_mount":"M42"},"note":"an M42 interchangeable-lens SLR shipping with a doubled-brand fixed_lens ('Hélios Helios 44M' — the kit lens); cleared together with setting the mount so the gate contradiction count cannot rise."}
+{"name":"Kristall (KMZ)","kind":"camera","set":{"fixed_lens":null},"note":"interchangeable-lens SLR (M39 Zenit); the Industar-50 was a kit lens, not fixed."}
+{"name":"Salyut","kind":"camera","set":{"fixed_lens":null},"note":"interchangeable-lens system camera; clearing the pre-existing fixed_lens removes a mount_and_fixed_lens contradiction."}
+{"name":"Almaz","kind":"camera","set":{"iso_manual_range":null},"note":"stale meter-range value on a camera corrected to metered:0 (the Almaz-103 has no meter)."}
+{"name":"Chaika","kind":"camera","set":{"lens_mount":null},"note":"the Chaika-1's Industar-69 is NOT removable; the folded-in Chajka record carried a wrong M39/LTM mount alongside its fixed lens."}
+{"name":"Chaika-2","kind":"camera","set":{"fixed_lens":null,"lens_mount":"M39 Chaika"},"note":"removable Industar-69 — M39 thread at a 27.5mm register, deliberately NOT labeled M39/LTM (cross-threads but cannot focus on Leica-thread bodies). Clears the folded-in doubled-brand fixed_lens."}
+{"name":"Chaika-3","kind":"camera","set":{"fixed_lens":null,"lens_mount":"M39 Chaika"},"note":"as Chaika-2."}
+{"name":"MC Kaleinar-5N 100 mm f/ 2.8","kind":"lens","set":{"mount":"Nikon F"},"note":"pins the mount after the bare-record fold — the Kaleinar-5N was manufactured only in Nikon F mount; the folded duplicate's M42 token was wrong."}
+{"name":"Granit-11 80-200 mm f/ 4.5","kind":"lens","set":{"manufacturer":"Granit"},"note":"pins the line-name manufacturer — the designation-string value 'Granit-11' is exactly what the gate's brand_line_values check flags, and the curated row's fix did not outrank the source."}
