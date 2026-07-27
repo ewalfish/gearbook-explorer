@@ -321,7 +321,9 @@ describe('manufacturer is a company, not a prefix', () => {
     const all = [...cameras, ...lenses]
     const makerOf = (name: string) =>
       (all.find((r) => r.name === name)?.data as { manufacturer?: string } | undefined)?.manufacturer
-    expect(makerOf('SMC Takumar 50 mm f/ 1.4')).toBe('Asahi Pentax')
+    // 'Asahi Pentax' until v3.14.0 — the brand-hygiene pass folded the whole
+    // Asahi/Takumar family to the marketed brand (forge docs/brand-cleanup-2026-07-27.md)
+    expect(makerOf('SMC Takumar 50 mm f/ 1.4')).toBe('Pentax')
     expect(makerOf('RE Auto-Topcor 58 mm f/ 1.4')).toBe('Topcon')
     expect(makerOf('Carl Zeiss Jena Werra 1e')).toBe('Carl Zeiss Jena')
   })
