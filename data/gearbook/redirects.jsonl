@@ -281,6 +281,17 @@
 {"from_id":"5c7fca49aedfa7f8","from_name":"Mamiya Mamiya-Sekor C 360mm f/6.3","gearbook_kind":"lens","to_id":"5aadd8691fab175d","to_name":"Mamiya-Sekor C 360mm f/6.3"}
 {"from_id":"13c19be3af1dbf00","from_name":"Mamiya Mamiya-Sekor C 500mm f/8","gearbook_kind":"lens","to_id":"ef8b0093e0d704cf","to_name":"Mamiya-Sekor C 500mm f/8"}
 {"from_id":"e25c53e1b7a152c3","from_name":"Mamiya Mamiya-Sekor Zoom C 100-200mm f/5.2 W","gearbook_kind":"lens","to_id":"278e223ea7c60878","to_name":"Mamiya-Sekor Zoom C 100-200mm f/5.2 W"}
+{"from_id":"647b23506d116be0","from_name":"Carl Zeiss Planar T* F 110mm f/2","gearbook_kind":"lens","to_id":"5de913b0833dcc6e","to_name":"Hasselblad Zeiss Planar 110mm f/2 F"}
+{"from_id":"495ad006701f3093","from_name":"Carl Zeiss Sonnar C 150 mm f/ 4 T*","gearbook_kind":"lens","to_id":"c37a10444deb6b42","to_name":"Hasselblad Sonnar 150mm f/4 C"}
+{"from_id":"f4524ebf455c65dc","from_name":"Hasselblad Distagon 24mm f/3.5 CF","gearbook_kind":"lens","to_id":"6e3f9f0e57e19970","to_name":"Hasselblad F-Distagon 24mm f/3.5 CF"}
+{"from_id":"5ebed87f71b7c919","from_name":"Carl Zeiss F-Distagon CF 30 mm f/ 3.5","gearbook_kind":"lens","to_id":"1fff65b2ea0931ff","to_name":"Hasselblad F-Distagon 30mm f/3.5 CF"}
+{"from_id":"4022ee3b62c80097","from_name":"Carl Zeiss Distagon T* 50 mm f/ 4 CF","gearbook_kind":"lens","to_id":"25d368be91d94515","to_name":"Hasselblad Distagon 50mm f/4 CF"}
+{"from_id":"0413ccd9476f21e1","from_name":"Carl Zeiss Planar T* 80 mm f/ 2.8","gearbook_kind":"lens","to_id":"58d50dec34c9506a","to_name":"Hasselblad Planar 80mm f/2.8 CF"}
+{"from_id":"fd49da5af68517d0","from_name":"Carl Zeiss Planar T* 80 mm f/ 2.8 CF","gearbook_kind":"lens","to_id":"58d50dec34c9506a","to_name":"Hasselblad Planar 80mm f/2.8 CF"}
+{"from_id":"b3fe2827de82dd06","from_name":"Carl Zeiss Sonnar T* 150 mm f/ 4 CF","gearbook_kind":"lens","to_id":"c375395ce2a2f8ee","to_name":"Hasselblad Sonnar 150mm f/4 CF"}
+{"from_id":"7ff8dac4d3de9864","from_name":"Carl Zeiss Sonnar T* 250 mm f/ 5.6 CF","gearbook_kind":"lens","to_id":"a5427d05f7bb0eff","to_name":"Hasselblad Sonnar 250mm f/5.6 CF"}
+{"from_id":"33f40b737c434a1f","from_name":"Carl Zeiss Distagon 50 mm f/ 4","gearbook_kind":"lens","to_id":"0f2a06727c118d82","to_name":"Hasselblad Distagon 50mm f/4 CF FLE"}
+{"from_id":"7a5ed05b97e4e7d1","from_name":"Hasselblad Sonnar Superachromat 250mm f/5.6 CFi","gearbook_kind":"lens","to_id":"f1bfb0cac5606bf2","to_name":"Hasselblad Sonnar Superachromat 250mm f/5.6 CFE"}
 {"from_id":"4c49291ec77d297f","from_name":"Mamiya Mamiya-Sekor Z 37mm f/4.5 Fisheye","gearbook_kind":"lens","to_id":"c334b346e90299a9","to_name":"Mamiya-Sekor Z 37mm f/4.5 Fisheye"}
 {"from_id":"be74fd3f484310f5","from_name":"Mamiya Mamiya-Sekor Z 50mm f/4.5 W","gearbook_kind":"lens","to_id":"56e4816ef872fa92","to_name":"Mamiya-Sekor Z 50mm f/4.5 W"}
 {"from_id":"07b41a7b5f9fa58a","from_name":"Mamiya Mamiya-Sekor M 50mm f/4 L-A ULD","gearbook_kind":"lens","to_id":"8730a6fb4f3a1c46","to_name":"Mamiya-Sekor M 50mm f/4 L-A ULD"}
