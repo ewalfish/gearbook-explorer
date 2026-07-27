@@ -93,6 +93,9 @@ const LENS_LINE = [
     [/\bminolta\b/i, /rokkor|maxxum|dynax|\baf\b/i, 'Minolta Rokkor'],
     [/\bolympus\b/i, /zuiko/i, 'Olympus Zuiko'],
     [/\bkonica\b/i, /hexanon/i, 'Konica Hexanon'],
+    // Fuji glass is recorded under "Fujinon" ("Fujinon GX M 100mm f/4"); sellers
+    // write the house brand ("Fuji GX 100mm f/4")
+    [/\bfuji(film)?\b/i, /fujinon/i, 'Fujinon'],
 ];
 export function lensVariants(query) {
     const base = String(query || '').trim();
@@ -112,6 +115,10 @@ export function lensVariants(query) {
     // Rangefinder-era Nikkors/Zeiss are routinely listed in cm.
     if (/\d\s*cm\b/i.test(base))
         add(base.replace(/(\d+(?:\.\d+)?)\s*cm\b/gi, (_m, n) => `${Math.round(parseFloat(n) * 10)}mm`));
+    // zoom ranges typed with a dot ("70.200mm" for 70-200mm) — both bounds are
+    // 2-3 digits, so a real decimal focal ("13.5cm", "42.5mm") never matches
+    if (/\b\d{2,3}\.\d{2,3}\s*mm\b/i.test(base))
+        add(base.replace(/\b(\d{2,3})\.(\d{2,3})\s*mm\b/gi, '$1-$2mm'));
     // Nikkor element-count letter codes (-S, -P.C, -H.C, W-, -Q…) are engraving
     // detail, not the record's naming — emit a plain-Nikkor variant, composed
     // over the cm→mm form above
@@ -207,7 +214,10 @@ export function queryVariants(brand, model) {
     add(base.replace(/\b([a-zA-Z]{1,4})[- ](\d{1,4})\b/g, '$1$2'));
     // holding-company / factory prefixes the records drop: Pignons (Alpa),
     // Konishiroku (Konica), Krasnogorsk (KMZ/Zenit), Ihagee kept on Exakta
-    add(base.replace(/\b(pignons|konishiroku|krasnogorsk|kmz|gomz|mmz|belomo|riken|tokyo kogaku|kowa optical works|chongqing musical instrument( factory)?|chongqing|sichuan)\b\s*/gi, ''));
+    // Kyocera owned Yashica/Contax and sellers title both names ("Kyocera Yashica
+    // T2D"); "Roebuck" rides along on Sears ("Sears Roebuck Tower 57") — both are
+    // corporate words the records drop.
+    add(base.replace(/\b(pignons|konishiroku|krasnogorsk|kmz|gomz|mmz|belomo|riken|tokyo kogaku|kowa optical works|chongqing musical instrument( factory)?|chongqing|sichuan|kyocera|roebuck)\b\s*/gi, ''));
     // Cyrillic С transliterates as both C and S ("Zorki C" = "Zorki S", Kiev 6C/6S)
     if (/\b(zorki|zorkii|kiev|fed)\b/i.test(low) && /\bc\b/i.test(low))
         add(base.replace(/\bc\b/i, 'S'));
@@ -241,6 +251,16 @@ export function queryVariants(brand, model) {
         if (!/\bpentax\b/i.test(low))
             add(base.replace(/\basahi\b/i, 'Pentax'));
     }
+    // Fuji has used three house names and the corpus mixes all three inside one
+    // product line — "Fuji DL-190 Zoom" sits beside "Fujifilm DL-312 Zoom". A
+    // seller types whichever is on the body, so the brand word alone decided
+    // whether a match landed: "Fujifilm Discovery 185 Zoom" reached its own
+    // record at 0.503 while the 312 next to it hit 0.917. Fujica is the older
+    // marque and joins the same rotation.
+    if (/\bfuji(film|ca)?\b/i.test(low)) {
+        for (const b of ['Fuji', 'Fujifilm', 'Fujica'])
+            add(base.replace(/\bfuji(film|ca)?\b/i, b));
+    }
     // Olympus wrote the same suffix two ways: "UZ" glued onto the SP-series
     // ("SP-565UZ") and "Ultra Zoom" spelled out on the Camedia C-series
     // ("C-750 Ultra Zoom"). Upstream titles mix them, so the query and the record
@@ -250,6 +270,22 @@ export function queryVariants(brand, model) {
         add(base.replace(/(\d)\s*uz\b/gi, '$1 Ultra Zoom'));
     else if (/ultra\s*zoom/i.test(low))
         add(base.replace(/\s*ultra\s*zoom\b/gi, 'UZ'));
+    // Polaroid stamped "Land" (after Edwin Land) on two decades of bodies and
+    // sellers faithfully type it, but the records are filed without it
+    // ("Polaroid SX-70 Land Alpha 1" vs record "Polaroid SX-70 Alpha 1"). The
+    // word appears mid-name at any position, so no alias row can chase every
+    // phrasing — strip it as a variant.
+    if (/\bpolaroid\b/i.test(low) && /\bland\b/i.test(low)) {
+        add(base.replace(/\bland( camera)?\b/gi, ' ').replace(/\s+/g, ' ').trim());
+    }
+    // Nikon's compact lines are recorded with a DOT ("Lite.Touch Zoom 105",
+    // "Nice.Touch Zoom QD", "Tele.Touch 300" — print renders of the • mark);
+    // sellers type a space. '.' survives normalization, so "lite touch" and
+    // "lite.touch" are different tokens. Emit both spellings.
+    if (/\b(tele|lite|nice|one|zoom)[\s.•]+touch\b/i.test(low)) {
+        add(base.replace(/\b(tele|lite|nice|one|zoom)[\s.•]+touch\b/gi, '$1.Touch'));
+        add(base.replace(/\b(tele|lite|nice|one|zoom)[\s.•]+touch\b/gi, '$1 Touch'));
+    }
     // Rollei: taking-lens names in seller titles are optics detail, not the model
     // ("2.8E Xenotar", "2.8C CZ Planar") — emit a stripped variant
     if (/\brollei/i.test(low))
@@ -343,6 +379,13 @@ export function queryVariants(brand, model) {
         .replace(/\s\+.*$/, ' ')
         .replace(/"[^"]{2,30}"|“[^”]{2,30}”/g, ' ') // quoted nicknames ("US NAVY", "feathered arrow")
         .replace(/\b(cla'?d[^,]*|red dial|single stroke|double stroke|self[- ]?timer|leicavit|refurbished|body only|kit|mint|boxed|converted to \w+|elc|stepper|as[- ]is|tested|working|iob|dlx|quartz\s?date|quartzdate|thick font|mod\.? \d+|late model|whiteface|prototype( ver\.? \d+)?|domestic|english ver\.?|grey|gray|tlr|subminiature|panoramic|half[- ]frame|nub|variant|early|late|edition|waist[- ]level|eye[- ]level|t scope|purple|maroon|burgundy|tan|beige|folding camera|box camera)\b/gi, ' ')
+        // shutter engravings sellers read off the lens rim ("Contessa 35 Synchro
+        // Compur") and generic film-format/segment words — none of them are model
+        // tokens. "pronto" alone is NOT in this list: it names Polaroid bodies.
+        .replace(/\b(synchro[- ]?compur|compur([- ]rapid)?|prontor(\s?svs?)?|35mm|p&s|anniversary)\b/gi, ' ')
+        // "Mod II"/"Model 1" style suffixes with roman or arabic numbers (the
+        // letter-model rule below only covers "Model G" shapes)
+        .replace(/\bmod(el)?\.?\s+(i{1,3}|iv|v|\d)\b/gi, ' ')
         // marketing suffixes that name the SAME body ("Mamiya C220 Professional",
         // "Leica IIIa Model G") — additive variant only; when a distinct
         // letter-model record exists, its exact-name score still outranks this
@@ -351,6 +394,12 @@ export function queryVariants(brand, model) {
         .replace(/\s+/g, ' ').trim();
     if (denoise && denoise.toLowerCase() !== low)
         add(denoise);
+    // compose the doubled-brand collapse over the denoised form — "Tower (Sears)
+    // Tower 45" only becomes a doubled brand AFTER the parenthetical is stripped,
+    // and single-transform variants do not compose on their own
+    if (denoise && /\b(\w[\w-]*)\s+\1\b/i.test(denoise)) {
+        add(denoise.replace(/\b(\w[\w-]*)\s+\1\b/gi, '$1'));
+    }
     if (bk) {
         // token swaps (number preserved), applied in both directions. Each swap
         // result also gets the glue-spacing variants — a swap alone can leave a

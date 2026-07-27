@@ -377,8 +377,12 @@ export function matchOne(
   // name only reaches the asset when a source or a human attested it. The one
   // real risk is a POLLUTED alias, so the promotion is withheld when the same
   // alias is claimed by more than one record: that is ambiguity, not evidence.
-  const qn = normalize(query)
-  const aliasExact = scored.filter((c) => c.entry.aliases.some((a) => normalize(a) === qn))
+  // Checked against every VARIANT, not just the original query. The variants
+  // are the whole point: "Fujifilm Discovery 185 Zoom" is not an alias of
+  // anything, but the brand-word variant "Fuji Discovery 185 Zoom" is an exact
+  // one — comparing only the raw query left that at 0.503.
+  const qns = new Set(queries.map((q) => normalize(q)))
+  const aliasExact = scored.filter((c) => c.entry.aliases.some((a) => qns.has(normalize(a))))
   if (aliasExact.length === 1) {
     aliasExact[0].s = Math.max(aliasExact[0].s, AUTO_T)
     if (!best || aliasExact[0].s >= best.s) best = aliasExact[0]
