@@ -1,0 +1,24 @@
+{"name":"Zenit 1","kind":"camera","set":{"lens_mount":"M39 Zenit"},"note":"the early Zenit M39 thread sits at a 45.2mm register — same thread pitch as Leica/Zorki M39 (28.8mm) but optically incompatible. The taxonomy now splits the two; this record carried the rangefinder token."}
+{"name":"Zenit C","kind":"camera","set":{"lens_mount":"M39 Zenit"},"note":"as Zenit 1 — early Zenit SLR thread, not rangefinder LTM."}
+{"name":"Zenit 3","kind":"camera","set":{"lens_mount":"M39 Zenit"},"note":"as Zenit 1."}
+{"name":"Zenit 3M","kind":"camera","set":{"lens_mount":"M39 Zenit"},"note":"as Zenit 1 — the last of the M39-thread Zenits before the M42 switch."}
+{"name":"Kristall (KMZ)","kind":"camera","set":{"lens_mount":"M39 Zenit"},"note":"the KMZ Kristall (1961) is a Zenit-3-family SLR — Zenit M39 thread. NOT the Italian Kristall rangefinders (Kristall 2a etc.), which are genuine M39/LTM and stay untouched."}
+{"name":"Start","kind":"camera","set":{"lens_mount":"Start bayonet"},"note":"the KMZ Start uses its own breech-lock bayonet (sold with a bayonet-tail Helios-44); nothing else takes it."}
+{"name":"Kiev 88","kind":"camera","set":{"lens_mount":"Kiev-88 screw"},"note":"the stock Kiev-88 uses the Salyut interrupted-screw B mount inherited from the Hasselblad 1600F copy lineage — NOT Pentacon Six. Only the Kiev-88CM took the P6 bayonet."}
+{"name":"Kiev 88 TTL","kind":"camera","set":{"lens_mount":"Kiev-88 screw"},"note":"as Kiev 88 — the TTL prism is a metering upgrade, not a mount change."}
+{"name":"Salyut","kind":"camera","set":{"lens_mount":"Kiev-88 screw"},"note":"the 1957 Salyut is the Hasselblad-1600F-copy ancestor of the Kiev-88 — its mount is the interrupted-screw B mount the family kept, not Hasselblad V (the copy is mechanical, not mount-compatible)."}
+{"name":"Kiev 80","kind":"camera","set":{"lens_mount":"Kiev-88 screw"},"note":"the Kiev-80 sits between Salyut-S and Kiev-88 in the same screw-mount lineage; the record carried no mount at all."}
+{"name":"Helios-44","kind":"lens","set":{"mount":"M39 Zenit, M42, Pentax K"},"note":"the Helios-44's M39 generation is the Zenit SLR thread (it is a Zenit kit lens), never rangefinder LTM. M42 from 44-2/44M onward, Pentax K on the 44K-4."}
+{"name":"Helios-44M 58 mm f/ 2","kind":"lens","set":{"mount":"M42"},"note":"the 44M is the M42 auto-diaphragm generation only — the M39 and Pentax K tokens belonged to other generations of the line."}
+{"name":"Helios-65 52 mm f/ 2","kind":"lens","set":{"mount":"M39/LTM, M39 Zenit, Kiev-10/15 bayonet"},"note":"the Helios-65 was made in three genuinely different fittings: Leica-thread M39, Zenit-thread M39, and the Kiev-10/15 Automat bayonet. The Pentax K token had no basis."}
+{"name":"Mir-1","kind":"lens","set":{"mount":"M39 Zenit, M42"},"note":"the Mir-1's M39 version is a Zenit-SLR-thread lens (37mm f/2.8 for Zenit bodies), never rangefinder-mount; later production is M42."}
+{"name":"Mir-10 28 mm f/ 3.5","kind":"lens","set":{"mount":"M39 Zenit, M42"},"note":"SLR wide-angle — its M39 is the Zenit thread."}
+{"name":"Jupiter-6","kind":"lens","set":{"mount":"M39 Zenit, M42"},"note":"the 180/2.8 SLR telephoto — its M39 is the Zenit thread."}
+{"name":"Jupiter-9","kind":"lens","set":{"mount":"M39/LTM, Contax RF, M42"},"note":"the umbrella Jupiter-9 record spans the rangefinder LTM version, the Kiev/Contax RF bayonet version, and the M42 SLR version. 'Contax/Yashica' was the wrong Contax — the C/Y SLR bayonet did not exist for this lens."}
+{"name":"Jupiter-9 85 mm f/ 2.0 (SLR)","kind":"lens","set":{"mount":"M39 Zenit, M42"},"note":"the SLR-generation record — its M39 is the Zenit thread."}
+{"name":"Jupiter-11 135 mm f/ 4 M39 SLR","kind":"lens","set":{"mount":"M39 Zenit, M42"},"note":"the record's own name says M39 SLR; the mount field said rangefinder LTM. Now consistent."}
+{"name":"Jupiter-21A 200 mm f/ 4","kind":"lens","set":{"mount":"M39 Zenit, M42, Nikon F, Pentax K"},"note":"the A-suffix interchangeable-tail system reaches several SLR mounts; the M39 leg is the Zenit thread."}
+{"name":"Tair-11A 135 mm f/ 2.8","kind":"lens","set":{"mount":"M39 Zenit, M42"},"note":"SLR lens with the A-system tail — its M39 is the Zenit thread."}
+{"name":"Tair-3 300 mm f/ 4.5","kind":"lens","set":{"mount":"M39 Zenit, M42"},"note":"SLR telephoto (the Photosniper lens) — its M39 is the Zenit thread."}
+{"name":"APO Tair-1 300 mm f/ 4.5","kind":"lens","set":{"mount":"M39 Zenit, M42"},"note":"as Tair-3 — SLR-side M39."}
+{"name":"Industar-50-2 50 mm f/ 3.5","kind":"lens","set":{"mount":"M42"},"note":"the -2 is specifically the M42 pancake redesign; the plain Industar-50's rangefinder and Zenit-thread versions are separate records."}

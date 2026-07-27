@@ -1,6 +1,6 @@
 {
   "name": "gearbook",
-  "version": "3.14.0",
+  "version": "3.15.0",
   "description": "Gearbook — spec index of vintage cameras and lenses: the data asset and its contract, fuzzy search + batch-match engines, and the Explorer SPA",
   "license": "MIT",
   "repository": {

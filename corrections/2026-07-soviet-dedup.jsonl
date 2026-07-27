@@ -1,0 +1,90 @@
+{"name":"Krasnogorsk Zorki 6","kind":"camera","merge_into":"Zorki 6","note":"factory-prefixed duplicate — Krasnogorsk IS KMZ; same camera scraped twice, once under the factory city and once under the plain model name."}
+{"name":"Krasnogorsk Zorki 4","kind":"camera","merge_into":"Zorki 4","note":"factory-prefixed duplicate, as above."}
+{"name":"Krasnogorsk Zorki 3","kind":"camera","merge_into":"Zorki 3","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zorki S","kind":"camera","merge_into":"Zorki S","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zorki 12","kind":"camera","merge_into":"Zorki 12","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zorki 10","kind":"camera","merge_into":"Zorki 10","note":"factory-prefixed duplicate; the prefixed record also carries the doubled-brand fixed-lens bug ('Industar Industar 63') — the plain record's clean value should survive."}
+{"name":"Krasnogorsk Zenit 3","kind":"camera","merge_into":"Zenit 3","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit 3M","kind":"camera","merge_into":"Zenit 3M","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit 4","kind":"camera","merge_into":"Zenit 4","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit 5","kind":"camera","merge_into":"Zenit 5","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit 6","kind":"camera","merge_into":"Zenit 6","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit 11","kind":"camera","merge_into":"Zenit 11","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit 12","kind":"camera","merge_into":"Zenit 12","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit 122","kind":"camera","merge_into":"Zenit 122","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit 212k","kind":"camera","merge_into":"Zenit 212k","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit B","kind":"camera","merge_into":"Zenit B","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit E","kind":"camera","merge_into":"Zenit E","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit EM","kind":"camera","merge_into":"Zenit EM","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit ET","kind":"camera","merge_into":"Zenit ET","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit TTL","kind":"camera","merge_into":"Zenit TTL","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Zenit Automat","kind":"camera","merge_into":"Zenit Automat","note":"factory-prefixed duplicate."}
+{"name":"Krasnogorsk Iskra","kind":"camera","merge_into":"Iskra","note":"factory-prefixed duplicate (the Iskra 6x6 folder is KMZ)."}
+{"name":"Krasnogorsk Start","kind":"camera","merge_into":"Start","note":"factory-prefixed duplicate of the KMZ Start SLR (1958-1964, 35mm). NOT to be confused with the Polish WZFO Start TLR, which is a different camera and stays a separate record."}
+{"name":"Krasnogorsk FT-2","kind":"camera","merge_into":"FT-2","note":"factory-prefixed duplicate of the KMZ spring-motor panoramic."}
+{"name":"Krasnogorsk Narciss","kind":"camera","merge_into":"Narciss","note":"factory-prefixed duplicate of the KMZ 16mm subminiature SLR."}
+{"name":"Krasnogorsk Zenit S","kind":"camera","merge_into":"Zenit C","note":"same camera under two transliterations of Зенит-С — Cyrillic С reads as S; the asset's canonical spelling for this record is 'Zenit C' (1955-1961), and both records carry identical facts."}
+{"name":"Krasnogorsk Zenit","kind":"camera","merge_into":"Zenit 1","note":"the original 1952-1956 KMZ Zenit filed under the factory prefix; 'Zenit 1' is the asset's record for the same body (the '1' is collector shorthand — the camera was marketed as just 'Zenit'). The prefixed record's M42 mount value is wrong (original Zenit is M39 SLR-thread) and should lose to the winner's."}
+{"name":"Krasnogorsk Moskva 2","kind":"camera","merge_into":"Moskva-2","note":"factory-prefixed duplicate of the KMZ Moskva-2 folder (6x9 folding rangefinder, 1947-1956); prefixed record carries the doubled-brand lens bug ('Industar Industar 23')."}
+{"name":"Krasnogorsk Moskva 5","kind":"camera","merge_into":"Moskva-5","note":"factory-prefixed duplicate; prefixed record carries the doubled-brand lens bug ('Industar Industar 24')."}
+{"name":"Gomz Smena 8","kind":"camera","merge_into":"Smena 8","note":"factory-prefixed duplicate (GOMZ/LOMO Smena line)."}
+{"name":"Gomz Smena 6","kind":"camera","merge_into":"Smena 6","note":"factory-prefixed duplicate."}
+{"name":"Gomz Smena 8M","kind":"camera","merge_into":"Smena 8m","note":"factory-prefixed duplicate; the prefixed record's 1965-1965 year span is wrong (Smena 8M ran 1970-1995), corrected on the survivor in a separate set row."}
+{"name":"Gomz Voskhod","kind":"camera","merge_into":"Voskhod","note":"factory-prefixed duplicate of the 1964-1968 GOMZ/LOMO Voskhod viewfinder camera."}
+{"name":"Gomz Junost","kind":"camera","merge_into":"Junost","note":"factory-prefixed duplicate of the 1957 GOMZ Yunost leaf-shutter rangefinder."}
+{"name":"Gomz Leningrad","kind":"camera","merge_into":"Leningrad","note":"factory-prefixed duplicate of the GOMZ spring-motor rangefinder."}
+{"name":"Gomz Lubitel 2","kind":"camera","merge_into":"Lubitel 2","note":"factory-prefixed duplicate."}
+{"name":"Gomz Lubitel 166","kind":"camera","merge_into":"Lubitel 166","note":"factory-prefixed duplicate."}
+{"name":"Gomz Lubitel 166B","kind":"camera","merge_into":"Lubitel 166B","note":"factory-prefixed duplicate."}
+{"name":"Gomz Smena Symbol","kind":"camera","merge_into":"Smena Symbol","note":"factory-prefixed duplicate."}
+{"name":"Gomz Lomo LC-A","kind":"camera","merge_into":"LOMO LC-A","note":"same camera; the prefixed record also mis-attributes the LC-A (a LOMO product, 1984 on) to GOMZ — GOMZ was renamed LOMO in 1965, long before the LC-A existed."}
+{"name":"Belomo Siluet Elektro","kind":"camera","merge_into":"Siluet Elektro","note":"factory-prefixed duplicate (BelOMO)."}
+{"name":"Belomo Agat 18","kind":"camera","merge_into":"Agat 18","note":"factory-prefixed duplicate."}
+{"name":"Belomo Agat 18K","kind":"camera","merge_into":"Agat 18K","note":"factory-prefixed duplicate."}
+{"name":"Belomo Etude","kind":"camera","merge_into":"Etude","note":"factory-prefixed duplicate."}
+{"name":"Belomo Estafeta","kind":"camera","merge_into":"Estafeta","note":"factory-prefixed duplicate."}
+{"name":"Belomo Vilia","kind":"camera","merge_into":"Vilia","note":"factory-prefixed duplicate."}
+{"name":"Belomo Elikon Autofocus","kind":"camera","merge_into":"Elikon Autofocus","note":"factory-prefixed duplicate."}
+{"name":"Belomo Elikon 35SM","kind":"camera","merge_into":"Elikon 35CM","note":"same camera under two Latinizations of Эликон-35СМ (Cyrillic С reads as both C and S); both records are BelOMO with the same Industar-95 lens and ~1990 era. No source describes a distinct 35SM model alongside the 35CM."}
+{"name":"Kiev 6S","kind":"camera","merge_into":"Kiev 6C","note":"same camera under two Latinizations of Киев-6С (1971-1980, 120 SLR, Pentacon Six bayonet); no source describes a 6S distinct from the 6C. The 6C spelling is the common English usage (pentaconsix.com)."}
+{"name":"Federal Fed-Flash","kind":"camera","merge_into":"Fed-Flash","note":"same camera — the American Federal Mfg & Engineering 'Fed-Flash' 127 camera (Brooklyn, late 1940s). Unrelated to the Soviet FED factory despite the name; keeping it out of any Soviet FED consolidation is the point of noting this here."}
+{"name":"Bell and Howell Foton","kind":"camera","merge_into":"Foton","note":"same camera — the 1948 Bell & Howell Foton, the American clockwork-motor rangefinder. The surviving record's Soviet-looking fixed-lens value and 1976 discontinuation are pollution from an unrelated source and are blanked in separate set rows."}
+{"name":"WZFO Druh","kind":"camera","merge_into":"Druh","note":"maker-prefixed duplicate of the Polish WZFO Druh (120 viewfinder, 1950s)."}
+{"name":"WZFO Druh Synchro","kind":"camera","merge_into":"Druh synchro","note":"maker-prefixed duplicate."}
+{"name":"Druopta Rix","kind":"camera","merge_into":"Rix","note":"maker-prefixed duplicate of the Czech Druopta Rix (120 TLR, ~1950)."}
+{"name":"Orionwerk Rio 14C","kind":"camera","merge_into":"Rio 14C","note":"maker-prefixed duplicate of the German Orionwerk Rio 14C plate folder (1920s). Orionwerk is the pre-war German maker — unrelated to the Soviet Orion lens line or BelOMO's Orion-EE."}
+{"name":"Ikkosha Co. Start 35","kind":"camera","merge_into":"Start 35","note":"maker-prefixed duplicate of the Japanese Ikkosha Start 35 (Bolta-film viewfinder camera, ~1950). Unrelated to the KMZ Start SLR or the Polish WZFO Start TLR. The prefixed record's '35mm' format is wrong (it is a Bolta-film camera) — format pinned on the survivor in a set row."}
+{"name":"Bell and Howell Autoload 342","kind":"camera","merge_into":"Autoload 342","note":"maker-prefixed duplicate of the Bell & Howell (Canon-built) Autoload 342, 126 film."}
+{"name":"Tair-3 300mm 1:4.5","kind":"lens","merge_into":"Tair-3 300 mm f/ 4.5","note":"same lens under the legacy ratio notation and the canonical f/N notation. Tair-3S and APO Tair-1 are genuinely distinct generations and stay separate records."}
+{"name":"Start","kind":"camera","set":{"fixed_lens":null},"note":"the KMZ Start (1958-1964) is an interchangeable-lens SLR (its own breech bayonet, sold with a Helios-44); the 'Euktar or Emitar' fixed-lens value belongs to the Polish WZFO Start TLR — an earlier conflation of two different cameras that share a name."}
+{"name":"Foton","kind":"camera","set":{"fixed_lens":null,"year_discontinued":null,"year_introduced":1948,"manufacturer":"Bell & Howell"},"note":"the Bell & Howell Foton (introduced 1948) takes interchangeable screw-mount lenses (Taylor-Hobson Cooke Amotal standard); the 'Industar-77' fixed-lens value and the 1976 discontinuation are pollution from an unrelated (apparently Soviet) source — the Foton was a famous commercial flop dropped around 1950. Discontinuation blanked rather than guessed; the maker value had been split down to bare 'Bell'."}
+{"name":"Smena 8m","kind":"camera","set":{"camera_type":"viewfinder","year_introduced":1970,"year_discontinued":1995,"manufacturer":"LOMO"},"note":"the Smena 8M is a mass-market LOMO viewfinder camera (with the Smena-8 among the most-produced cameras ever, 21M+ units), not a toy; produced 1970-1995 (camera-wiki). The merged-in duplicate's 1965-1965 span had overwritten the discontinuation."}
+{"name":"Start 35","kind":"camera","set":{"format":"Bolta"},"note":"pins the Bolta-film format against the merged-in duplicate's wrong '35mm' value."}
+{"name":"Voskhod","kind":"camera","set":{"shutter_type":"leaf"},"note":"the LOMO Voskhod has a central leaf shutter (1-1/250), not a focal-plane shutter; the merged-in duplicate record agrees (leaf)."}
+{"name":"Kiev 30","kind":"camera","set":{"fixed_lens":{"name":"Industar-M","focal_length":23,"focal_min_mm":23,"focal_max_mm":23,"max_aperture":"f/3.5"}},"note":"repairs the '- Industar M' junk-prefix lens name; the Kiev-30 subminiature's lens is the Industar-M 23mm f/3.5."}
+{"name":"Kiev Vega","kind":"camera","set":{"fixed_lens":{"name":"Industar-M","focal_length":23,"focal_min_mm":23,"focal_max_mm":23,"max_aperture":"f/3.5"}},"note":"repairs the doubled-brand 'Industar Industar M' lens name; same Industar-M 23mm f/3.5 as the Kiev-30 that succeeded it."}
+{"name":"Industar-55U","kind":"lens","set":{"manufacturer":"BelOMO"},"note":"the Industar-55U is the BelOMO/MMZ 140mm f/4.5 enlarging lens for 9x12cm — sources agree on BelOMO/MMZ, not KMZ. It has no camera mount; the record correctly carries none."}
+{"name":"Zorki 10","kind":"camera","set":{"fixed_lens":{"name":"Industar-63","focal_length":45,"focal_min_mm":45,"focal_max_mm":45,"max_aperture":"f/2.8"}},"note":"pins the clean lens value — the merged-in duplicate's doubled-brand 'Industar Industar 63' outranked the plain record's 'Industar-63' at fold time. The Zorki-10's lens is the Industar-63 45mm f/2.8."}
+{"name":"Zorki 12","kind":"camera","set":{"fixed_lens":{"name":"Helios-98","focal_length":28,"focal_min_mm":28,"focal_max_mm":28,"max_aperture":"f/2.8"},"year_introduced":1967,"year_discontinued":1968},"note":"the Zorki-12 half-frame's fixed lens is the Helios-98 28mm f/2.8 — the only camera that lens ever appeared on (~7,200 units, 1967-1968)."}
+{"name":"Moskva-2","kind":"camera","set":{"fixed_lens":{"name":"Industar-23","focal_length":110,"focal_min_mm":110,"focal_max_mm":110,"max_aperture":"f/4.5"}},"note":"repairs the doubled-brand 'Industar Industar 23' that won the fold; the Moskva-2 6x9 folder carries the Industar-23 110mm f/4.5."}
+{"name":"Moskva-5","kind":"camera","set":{"fixed_lens":{"name":"Industar-24","focal_length":105,"focal_min_mm":105,"focal_max_mm":105,"max_aperture":"f/3.5"}},"note":"repairs the doubled-brand 'Industar Industar 24'; the Moskva-5 carries the Industar-24 105mm f/3.5."}
+{"name":"FT-2","kind":"camera","set":{"fixed_lens":{"name":"Industar-50","focal_length":50,"focal_min_mm":50,"focal_max_mm":50,"max_aperture":"f/5"}},"note":"repairs the 'Industar industar' junk name; the KMZ FT-2 swing-lens panoramic carries an Industar-50 50mm (fixed at f/5 working aperture on this body)."}
+{"name":"Iskra","kind":"camera","set":{"fixed_lens":{"name":"Industar-58","focal_length":75,"focal_min_mm":75,"focal_max_mm":75,"max_aperture":"f/3.5"}},"note":"normalizes the lens value; the Iskra 6x6 folder carries the Industar-58 75mm f/3.5."}
+{"name":"LOMO LC-A","kind":"camera","set":{"manufacturer":"LOMO","year_introduced":1984,"year_discontinued":2005,"fixed_lens":{"name":"Minitar-1","focal_length":32,"focal_min_mm":32,"focal_max_mm":32,"max_aperture":"f/2.8"}},"note":"restores the plain record's correct values after the fold — the LC-A is a LOMO product (1984-2005, Russian production; Lomography's LC-A+ continued in China) with the Minitar-1 32mm f/2.8. The merged-in duplicate's GOMZ/1988-1989/'- Minitar' values had won."}
+{"name":"Smena 8","kind":"camera","set":{"year_introduced":1963},"note":"Smena-8 production started 1963 (to 1971, then replaced by the 8M); the merged-in duplicate's 1969 intro had won the fold."}
+{"name":"Smena Symbol","kind":"camera","set":{"manufacturer":"LOMO"},"note":"the Smena Symbol (1973-1993) is LOMO-era — GOMZ was renamed LOMO in 1965."}
+{"name":"Lubitel 2","kind":"camera","set":{"year_introduced":1955},"note":"Lubitel-2 production started 1955; the 1949 date belongs to the original Lubitel."}
+{"name":"Lubitel 166","kind":"camera","set":{"manufacturer":"LOMO"},"note":"the Lubitel-166 (1976-1986) is LOMO-era."}
+{"name":"Lubitel 166B","kind":"camera","set":{"manufacturer":"LOMO"},"note":"the Lubitel-166B (1980s) is LOMO-era."}
+{"name":"Agat 18","kind":"camera","set":{"fixed_lens":{"name":"Industar-104","focal_length":28,"focal_min_mm":28,"focal_max_mm":28,"max_aperture":"f/2.8"}},"note":"normalizes the lens value; the BelOMO Agat-18 half-frame carries the Industar-104 28mm f/2.8."}
+{"name":"Agat 18K","kind":"camera","set":{"fixed_lens":{"name":"Industar-104","focal_length":28,"focal_min_mm":28,"focal_max_mm":28,"max_aperture":"f/2.8"},"year_discontinued":null},"note":"repairs the doubled-brand 'Industar Industar 104' and blanks the 1988-1988 span's bogus discontinuation (the 18K ran from 1988 well into the 1990s; end year genuinely uncertain, so null)."}
+{"name":"Vilia","kind":"camera","set":{"fixed_lens":{"name":"Triplet 69-3","focal_length":40,"focal_min_mm":40,"focal_max_mm":40,"max_aperture":"f/4"},"year_discontinued":1985},"note":"repairs the '- Triplet 69-3' junk prefix; the BelOMO Vilia (1973-1985) carries the Triplet 69-3 40mm f/4."}
+{"name":"Siluet Elektro","kind":"camera","set":{"fixed_lens":{"name":"Triplet 69-3","focal_length":40,"focal_min_mm":40,"focal_max_mm":40,"max_aperture":"f/4"}},"note":"repairs the '- Triplet 69-3' junk prefix; same Triplet 69-3 40mm f/4 as the Vilia."}
+{"name":"Estafeta","kind":"camera","set":{"fixed_lens":{"name":"T-35"}},"note":"repairs the '- T - 35' junk spacing; the BelOMO Estafeta's lens is the T-35 triplet."}
+{"name":"Elikon 35CM","kind":"camera","set":{"fixed_lens":{"name":"Industar-95","focal_length":38,"focal_min_mm":38,"focal_max_mm":38,"max_aperture":"f/2.8"}},"note":"repairs the 'Industar -' junk left after the 35SM fold; the Elikon 35CM carries the Industar-95 38mm f/2.8."}
+{"name":"Elikon Autofocus","kind":"camera","set":{"fixed_lens":{"name":"Industar-95","focal_length":38,"focal_min_mm":38,"focal_max_mm":38,"max_aperture":"f/2.8"},"year_discontinued":null},"note":"repairs the doubled-brand 'Industar Industar-95'; same Industar-95 38mm f/2.8 as the 35C — autofocus is the sole difference. The 1986-1986 span's discontinuation is bogus, blanked."}
+{"name":"Fed-Flash","kind":"camera","set":{"fixed_lens":{"name":"Ultar"}},"note":"repairs the '- Ultar' junk prefix on the American Federal Fed-Flash's lens name."}
+{"name":"Druh","kind":"camera","set":{"fixed_lens":{"name":"Bilar"}},"note":"repairs the maker-prefixed 'WZFO Bilar' lens name."}
+{"name":"Druh synchro","kind":"camera","set":{"fixed_lens":{"name":"Bilar"}},"note":"repairs the '- Bilar' junk prefix."}
+{"name":"Autoload 342","kind":"camera","set":{"manufacturer":"Bell & Howell","fixed_lens":{"name":"Bell & Howell 40mm f/2.8","focal_length":40,"focal_min_mm":40,"focal_max_mm":40,"max_aperture":"f/2.8"}},"note":"restores the maker (split down to bare 'Bell' at fold time) and the lens spec the plain record originally carried ('Bell & Howell -' junk had won)."}
+{"name":"Zenit 1","kind":"camera","set":{"fixed_lens":null},"note":"the original Zenit is an interchangeable-lens SLR (M39 SLR thread); the Industar-22 was its kit lens, not a fixed lens."}
