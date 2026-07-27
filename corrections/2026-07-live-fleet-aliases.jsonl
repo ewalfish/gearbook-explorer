@@ -26,3 +26,27 @@
 {"name":"Premier Instrument Kardon","kind":"camera","aliases":["Premier Instruments Kardon","Kardon"],"note":"the company name appears with and without the plural s in period sources; 'Kardon' alone is unambiguous."}
 {"name":"Ihagee Kine Exakta II","kind":"camera","aliases":["Exakta II","Ihagee Exakta II"],"note":"the 1949 body is the Kine Exakta II; sellers drop 'Kine'."}
 {"name":"Minolta 16 P","kind":"camera","aliases":["Minolta-16 Model P","Minolta 16 Model P","Minolta-16 P"],"note":"the box says 'Minolta-16 model P'; the record name drops the hyphen and the word 'model'."}
+{"name":"Sony α NEX-7","kind":"camera","merge_into":"Sony Alpha NEX-7","note":"brand-glyph duplicate — α and Alpha are one word; the records differ only in the spelling of it."}
+{"name":"Sony α NEX-5","kind":"camera","merge_into":"Sony Alpha NEX-5","note":"as above."}
+{"name":"Sony NEX-6","kind":"camera","merge_into":"Sony Alpha NEX-6","note":"brand-word duplicate of the Alpha-prefixed record; NEX-6 is the same body."}
+{"name":"Olympus Pen E-P1","kind":"camera","set":{"fixed_lens":null},"note":"interchangeable Micro Four Thirds body; the fixed_lens object was corpus junk (kit-lens detail filed as a fixed lens) and pairs contradictorily with lens_mount."}
+{"name":"Olympus OM-D E-M5","kind":"camera","set":{"fixed_lens":null},"note":"as above — MFT body, kit-lens junk in fixed_lens."}
+{"name":"Panasonic Lumix DMC-G1","kind":"camera","set":{"fixed_lens":null},"note":"as above."}
+{"name":"Panasonic Lumix DMC-GH3","kind":"camera","set":{"fixed_lens":null},"note":"as above."}
+{"name":"Panasonic Lumix DMC-G2","kind":"camera","set":{"medium":"digital","format":"digital"},"note":"MFT mirrorless (2010); the corpus carried medium 'film', which now contradicts the sensor facts."}
+{"name":"Panasonic Lumix DMC-GH1","kind":"camera","set":{"medium":"digital","format":"digital"},"note":"as above (2009)."}
+{"name":"Canon Digital Ixus 60","kind":"camera","set":{"medium":"digital","format":"digital"},"note":"2006 digital compact; medium said 'film'. Pre-existing defect surfaced by the gate's film_with_sensor_facts check."}
+{"name":"Canon Powershot A480","kind":"camera","set":{"medium":"digital","format":"digital"},"note":"2009 digital compact; medium said 'film'. As above."}
+{"name":"QRS Devry Corp Kamra","kind":"camera","merge_into":"QRS Kamra","note":"one 1928 camera: QRS Co. merged with DeVry in 1929 and resold the same body; camera-wiki treats the DeVry name as a redirect to the QRS Kamra article."}
+{"name":"QRS Kamra","kind":"camera","aliases":["DeVry QRS Kamra","QRS-DeVry Kamra","De Vry Still Camera Model K-1"],"note":"post-merger commercial names for the same camera."}
+{"name":"Chrislin Insta-Camera Model 100","kind":"camera","aliases":["Chrislin Insta Camera","Chrislin Insta-Camera"],"note":"sellers drop the model number; Chrislin made one camera."}
+{"name":"Samsung AF Zoom 777i","kind":"camera","aliases":["Samsung Maxima Zoom 77i","Maxima Zoom 77i"],"note":"one camera under two regional names — collectiblend files it as 'Maxima Zoom 77i (AF Zoom 777i)'; Maxima is Samsung's North-American branding."}
+{"name":"Fujifilm Clear Shot Plus","kind":"camera","aliases":["Fujifilm Smart Shot Deluxe","Fuji Smart Shot Deluxe"],"note":"camera-wiki: 'in some countries, it appears to have been called the Smart Shot Deluxe.' No 'Deluxe II' is documented anywhere — deliberately not added."}
+{"name":"Olympus AF-10 Mini","kind":"camera","aliases":["Olympus Infinity Hi-Lite","Olympus Infinity Hi-Lite AF"],"note":"Infinity Hi-Lite is the US market name of the AF-10 Mini (1995)."}
+{"name":"Olympus AFL Quick Flash","kind":"camera","aliases":["Olympus AFL","Olympus AFL Picasso"],"note":"the 1983 AFL — 'Quick Flash' is its tagline, 'Picasso' its Japanese nickname per camera-wiki."}
+{"name":"Canon Snappy 50","kind":"camera","aliases":["Canon 50 Snappy"],"note":"word-order variant sellers type; the Snappy line is always 'Snappy [number]'."}
+{"name":"Canon Z60 IX","kind":"camera","aliases":["Canon ELPH 260Z","Canon IXY 25"],"note":"three market names for the 1997 APS compact: ELPH 260Z (Americas), Z60 IX (Europe), IXY 25 (Japan) — camera-wiki Z60 IX / IXUS APS pages."}
+{"name":"Minolta Freedom Dual Quartz Date","kind":"camera","aliases":["Minolta Freedom Dual","Minolta AF-DL","Minolta Freedom DL"],"note":"the 1987 AF-DL sold as Freedom DL / Freedom Dual in the US; the record carries the date-back suffix, sellers usually do not."}
+{"name":"Olympus Camedia C-740 Ultra Zoom","kind":"camera","aliases":["Olympus C-740","Olympus C-740UZ"],"note":"bare designation and the UZ abbreviation, both commoner in listings than the expanded record name."}
+{"name":"Sony DSC-F717","kind":"camera","merge_into":"Sony Cyber-shot DSC-F717","note":"line-name duplicate — same 2002 bridge camera with and without the Cyber-shot prefix."}
+{"name":"Sony DSC-F828","kind":"camera","merge_into":"Sony Cyber-shot DSC-F828","note":"as above (2003)."}
