@@ -286,6 +286,19 @@ export function queryVariants(brand, model) {
         add(base.replace(/\b(tele|lite|nice|one|zoom)[\s.•]+touch\b/gi, '$1.Touch'));
         add(base.replace(/\b(tele|lite|nice|one|zoom)[\s.•]+touch\b/gi, '$1 Touch'));
     }
+    // Panasonic digitals are recorded under the full "Lumix DMC-/DC-" designation
+    // ("Panasonic Lumix DMC-ZS3"); sellers type "Panasonic ZS3" or "Panasonic
+    // Lumix ZS3". Emit the prefixed forms so the exact market alias can match.
+    // DC- took over from DMC- in 2017, so both are emitted and the scorer picks.
+    if (/\bpanasonic\b/i.test(low) && !/\b(dmc|dc)-/i.test(low)) {
+        const m = base.match(/\b((?:zs|tz|fz|fh|fs|fx|ts|lx|zr|zx|gf|gh|gx|gm|g)\d+\w*)\b/i);
+        if (m) {
+            for (const pre of ['DMC-', 'DC-']) {
+                const withPre = base.replace(m[1], pre + m[1]);
+                add(/\blumix\b/i.test(low) ? withPre : withPre.replace(/\bpanasonic\b/i, 'Panasonic Lumix'));
+            }
+        }
+    }
     // Rollei: taking-lens names in seller titles are optics detail, not the model
     // ("2.8E Xenotar", "2.8C CZ Planar") — emit a stripped variant
     if (/\brollei/i.test(low))

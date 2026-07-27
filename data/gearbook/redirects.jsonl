@@ -109,6 +109,7 @@
 {"from_id":"baaa182d2a8c73fa","from_name":"Olympus SP-565 Ultra Zoom","gearbook_kind":"camera","to_id":"a35901d19468bb97","to_name":"Olympus SP-565UZ"}
 {"from_id":"ac42fb3aed843be4","from_name":"Olympus OZ 105R","gearbook_kind":"camera","to_id":"a10e85383da95973","to_name":"Olympus Superzoom 105R"}
 {"from_id":"534f4d71d2b798d3","from_name":"Olympus Mju-II","gearbook_kind":"camera","to_id":"1987933955e883a5","to_name":"Olympus Infinity Stylus Epic"}
+{"from_id":"0974919df4f47bc6","from_name":"Panasonic Lumix DMC-TZ6","gearbook_kind":"camera","to_id":"54a374b9858466d5","to_name":"Panasonic Lumix DMC-ZS1"}
 {"from_id":"1cae05d674633e59","from_name":"Pentax Espio 140","gearbook_kind":"camera","to_id":"62b6d049e6330d44","to_name":"Pentax IQZoom 140"}
 {"from_id":"2d78d479c607a3be","from_name":"Pentax Espio/IQZoom 140","gearbook_kind":"camera","to_id":"62b6d049e6330d44","to_name":"Pentax IQZoom 140"}
 {"from_id":"9c5a08dbabcdcd97","from_name":"Pentax IQZoom 928","gearbook_kind":"camera","to_id":"19309f422a6a14b4","to_name":"Pentax Espio 928"}
@@ -142,6 +143,7 @@
 {"from_id":"640a8f4efaaa4896","from_name":"Asahi Pentax Spotmatic","gearbook_kind":"camera","to_id":"aed21fc4bfbb03ba","to_name":"Pentax Spotmatic"}
 {"from_id":"068d326318f5cf21","from_name":"QRS Devry Corp Kamra","gearbook_kind":"camera","to_id":"81e4b40eba77ba66","to_name":"QRS Kamra"}
 {"from_id":"8d9ef2bd1569129d","from_name":"Ricoh TF-500/TF-900","gearbook_kind":"camera","to_id":"3d32470cb5d6fb4f","to_name":"Ricoh TF-900"}
+{"from_id":"74f5682bdc759fa3","from_name":"Yashica T5","gearbook_kind":"camera","to_id":"837c8e761c962e20","to_name":"Yashica T4 Super"}
 {"from_id":"9b7e78cf3a2f6a32","from_name":"Praktica LLC","gearbook_kind":"camera","to_id":"3d0eb42f9c926f8c","to_name":"Pentacon Praktica LLC"}
 {"from_id":"2b2a4910ee77c6e3","from_name":"Minolta SRT 101b (type a)","gearbook_kind":"camera","to_id":"723906d060123873","to_name":"Minolta SRT 201 (type a)"}
 {"from_id":"5f5febbc62200201","from_name":"Canon Autoboy Jet","gearbook_kind":"camera","to_id":"cdd1f9360385298e","to_name":"Canon Photura"}
@@ -154,6 +156,7 @@
 {"from_id":"9db9302892992296","from_name":"Minolta XE-1","gearbook_kind":"camera","to_id":"def7233286f8d237","to_name":"Minolta XE-7"}
 {"from_id":"e0f6f679a885aa2b","from_name":"Canonflex","gearbook_kind":"camera","to_id":"3cb9d9e10c598478","to_name":"Canon Canonflex"}
 {"from_id":"f21c72824ef2d437","from_name":"Canon Prima Super 155","gearbook_kind":"camera","to_id":"60fcb7d5bb39da65","to_name":"Canon Sure Shot Z155"}
+{"from_id":"6ad4fd96753b1934","from_name":"Konica Autorex","gearbook_kind":"camera","to_id":"ece5447985df4f3c","to_name":"Konica Auto-Reflex"}
 {"from_id":"afcdf010119bd712","from_name":"Canon Prima Super 90 Wide","gearbook_kind":"camera","to_id":"7a6adae2ac32f4f8","to_name":"Canon Sure Shot Z90W"}
 {"from_id":"e5ab1b10cc85e102","from_name":"Canon Prima Twin S","gearbook_kind":"camera","to_id":"4dbe62dbc9902599","to_name":"Canon Sure Shot Tele Max"}
 {"from_id":"32072427a36012ac","from_name":"Canon Prima 4","gearbook_kind":"camera","to_id":"52a47752a396d89b","to_name":"Canon Sure Shot Joy"}
@@ -170,6 +173,7 @@
 {"from_id":"899e37d398163c27","from_name":"Canon Digital Ixus 860 IS","gearbook_kind":"camera","to_id":"d8fad98e2b2d1ff6","to_name":"Canon PowerShot SD870 IS"}
 {"from_id":"c3c1d0bd41b28ca8","from_name":"Canon Digital Ixus 90 IS","gearbook_kind":"camera","to_id":"fe8a91776287bba0","to_name":"Canon PowerShot SD790 IS"}
 {"from_id":"e8e7f9ab73fef37a","from_name":"Canon Digital Ixus 95 IS","gearbook_kind":"camera","to_id":"021a5c7a020ae7da","to_name":"Canon PowerShot SD1200 IS"}
+{"from_id":"3a19c7158ba8dfda","from_name":"Panasonic Lumix DMC-FZ38","gearbook_kind":"camera","to_id":"920613c8e826dd5c","to_name":"Panasonic Lumix DMC-FZ35"}
 {"from_id":"a838c23a72aaaa37","from_name":"Olympus OZ 140S","gearbook_kind":"camera","to_id":"d344d5f95a00412f","to_name":"Olympus Superzoom 140S"}
 {"from_id":"2ab6bbc8c08c7154","from_name":"Canonflex RM","gearbook_kind":"camera","to_id":"976be678f5139f8c","to_name":"Canon Canonflex RM"}
 {"from_id":"0baedcd3ba9206fe","from_name":"Canon Prima AF-7","gearbook_kind":"camera","to_id":"cfe3a58b0b8177f8","to_name":"Canon Sure Shot AF-7"}

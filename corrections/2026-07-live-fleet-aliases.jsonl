@@ -50,3 +50,14 @@
 {"name":"Olympus Camedia C-740 Ultra Zoom","kind":"camera","aliases":["Olympus C-740","Olympus C-740UZ"],"note":"bare designation and the UZ abbreviation, both commoner in listings than the expanded record name."}
 {"name":"Sony DSC-F717","kind":"camera","merge_into":"Sony Cyber-shot DSC-F717","note":"line-name duplicate — same 2002 bridge camera with and without the Cyber-shot prefix."}
 {"name":"Sony DSC-F828","kind":"camera","merge_into":"Sony Cyber-shot DSC-F828","note":"as above (2003)."}
+{"name":"Yashica T5","kind":"camera","merge_into":"Yashica T4 Super","note":"one camera, two market names — T4 Super in the US, T5 in Europe, T Proof in Japan (camera-wiki Yashica T4). The records differ only by market."}
+{"name":"Yashica T4 Super","kind":"camera","aliases":["Yashica T5","Yashica T5 D","Yashica T Proof"],"note":"the European and Japanese names of the T4 Super."}
+{"name":"Yashica T3","kind":"camera","aliases":["Yashica T Scope","Kyocera T Scope"],"note":"T Scope is the Japanese name of the T3 (camera-wiki Yashica T3)."}
+{"name":"Yashica T4","kind":"camera","aliases":["Yashica Slim T","Kyocera Slim T"],"note":"Slim T is the Japanese name of the T4."}
+{"name":"Bronica SQ-A","kind":"camera","set":{"shutter_speeds":"8s-1/500 + T","batteries":["PX28A"],"metered":false},"note":"Seiko #0 leaf shutters in the SQ lenses, 8s-1/500 plus T; one 6V PX28A in the body base; no built-in meter (metering only via accessory prism finders). camera-wiki Bronica SQ."}
+{"name":"Mamiya M645 1000S","kind":"camera","set":{"shutter_type":"focal-plane","shutter_speeds":"B-1/1000","batteries":["PX28"]},"note":"moving-coil electronic focal-plane shutter, cloth vertical-travel, B to 1/1000; one 6V PX28. camera-wiki Mamiya M645."}
+{"name":"Pentax PC35 AF-M","kind":"camera","set":{"batteries":["AA","AA"],"metered":true,"exposure_modes":["program"],"dx_coding":true},"note":"the -M adds the built-in winder over the base PC35AF; programmed AE; DX reading to ISO 1600. 2x AA per Wikipedia's explicit base-vs-M split (camera-wiki's page conflates the variants and says AAA — the AA figure also matches the winder's current draw)."}
+{"name":"Horizont","kind":"camera","set":{"country":"USSR"},"aliases":["KMZ Horizont","Horizont Panoramic","Horizont Panorama"],"note":"KMZ, 1967-1973, 24x58mm swing-lens panoramic; sellers title it with the factory name and the word panoramic."}
+{"name":"Pentax PC35 AF-M","kind":"camera","aliases":["Pentax PC35AF-M","Pentax PC35AFM","Pentax PC35 AFM"],"note":"the body is engraved PC35AF-M with no space; sellers glue it fully. The record's spaced 'AF-M' tokenizes differently from every glued spelling."}
+{"name":"Pentax PC35 AF-M SE","kind":"camera","aliases":["Pentax PC35AF-M SE","Pentax PC35AFM SE"],"note":"as above, date-back variant."}
+{"name":"Pentax PC35 AF","kind":"camera","aliases":["Pentax PC35AF"],"note":"as above, base model."}
