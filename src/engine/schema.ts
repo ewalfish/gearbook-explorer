@@ -49,6 +49,53 @@ export const CONFIDENCE = ['high', 'medium', 'low'] as const
 export const TAKES_VIA = ['adapter', 'back', 'insert', 'mask', 'respool'] as const
 export type TakesVia = (typeof TAKES_VIA)[number]
 
+/**
+ * The VIEWING/FOCUSING system — how the photographer sees and focuses the shot.
+ * Single-valued: a camera has exactly one finder, or we do not know it.
+ *
+ * This is half of the replacement for `camera_type`, which collapsed four
+ * independent questions into one field and therefore could not say "folding
+ * SLR" at all. `traits` is the other half. See TRAITS.
+ *
+ * `other` means "we looked and it is none of these", which is a different fact
+ * from `null` ("not known") — 357 records depend on that distinction.
+ * `pinhole` is here rather than in TRAITS because a pinhole IS the finder-less
+ * focusing system, not a modifier on one. `pseudo-tlr` likewise: its whole
+ * point is that the top lens is NOT a taking-lens reflex, so calling it a `tlr`
+ * with a modifier would make the finder axis say something false.
+ */
+export const BODY_TYPES = [
+  'slr', 'tlr', 'pseudo-tlr', 'rangefinder', 'viewfinder', 'view', 'box',
+  'point-and-shoot', 'bridge', 'mirrorless', 'pinhole', 'other',
+] as const
+export type BodyType = (typeof BODY_TYPES)[number]
+
+/**
+ * Orthogonal modifiers — form factor and purpose. Multi-valued, because a
+ * `klapp stéréo` is genuinely both folding and stereo, and the old model made
+ * that unsayable: 425 records in the source corpus name two axes and shipped
+ * with one.
+ *
+ * NOT here: anything another field already answers. `instant` and `digital`
+ * belong to `medium`, `dslr`/`mirrorless` restated `medium` and are now
+ * `body_type` + `medium`, and film size belongs to `format`. A trait that
+ * duplicates a field is how the original defect started.
+ *
+ * `half-frame` and `motorized` are declared but unpopulated from the corpus
+ * today: `half-frame` is properly `frame_size: 18x24mm`, and no source states
+ * motorisation. They are in the vocabulary so the app's hand-typed values have
+ * somewhere to land without a second vocabulary change.
+ */
+export const TRAITS = [
+  // form factor
+  'folding', 'subminiature', 'panoramic', 'stereo', 'half-frame',
+  // purpose / genre
+  'press', 'aerial', 'detective', 'movie', 'underwater', 'toy', 'magazine',
+  // mechanism
+  'motorized',
+] as const
+export type Trait = (typeof TRAITS)[number]
+
 /** Current contract version. Bumped only by a breaking asset change. */
 export const ASSET_CONTRACT = 1
 
@@ -107,6 +154,13 @@ export const ASSET_SCHEMA = {
                 },
               },
             },
+            // The two type axes that replace `camera_type` (cameras only).
+            // Additive: `camera_type` and `folding` still ship, derived, until
+            // the major that removes them — so old consumers keep working and
+            // this arrives as a minor the app adopts without a coordinated
+            // release. See BODY_TYPES / TRAITS.
+            body_type: { enum: [...BODY_TYPES] },
+            traits: { type: 'array', minItems: 1, uniqueItems: true, items: { enum: [...TRAITS] } },
             market_names: {
               type: 'array', minItems: 2,
               items: {
@@ -210,6 +264,53 @@ export function validateAsset(input: AssetInput): ValidationResult {
           for (const m of mn as { name?: string; market?: string }[]) {
             if (!isStr(m?.name)) add(file, line, 'market_names.name', 'market entry missing name')
             if (!MARKETS.includes(m?.market as never)) add(file, line, 'market_names.market', `unknown market ${JSON.stringify(m?.market)}`)
+          }
+        }
+      }
+
+      // ── the type axes ────────────────────────────────────────────────────
+      // Cameras only; a lens carrying them means a camera rule leaked onto the
+      // wrong kind, which has happened before with market aliases.
+      const data = (r.data ?? {}) as Record<string, unknown>
+      const bt = data.body_type
+      const tr = data.traits
+      if (kind === 'lens') {
+        if (bt !== undefined) add(file, line, 'body_type.on-lens', 'body_type is a camera field')
+        if (tr !== undefined) add(file, line, 'traits.on-lens', 'traits is a camera field')
+      } else {
+        if (bt !== undefined && !BODY_TYPES.includes(bt as never)) {
+          add(file, line, 'body_type.enum', `body_type ${JSON.stringify(bt)} is not in the vocabulary`)
+        }
+        if (tr !== undefined) {
+          if (!Array.isArray(tr) || tr.length === 0) {
+            add(file, line, 'traits.shape', 'traits must be a non-empty array or absent')
+          } else {
+            const seen = new Set<string>()
+            for (const t of tr as unknown[]) {
+              if (!TRAITS.includes(t as never)) add(file, line, 'traits.enum', `trait ${JSON.stringify(t)} is not in the vocabulary`)
+              if (seen.has(String(t))) add(file, line, 'traits.duplicate', `trait ${JSON.stringify(t)} listed twice`)
+              seen.add(String(t))
+            }
+            // Sorted on the wire so a diff of two asset builds shows real
+            // changes, not reordering.
+            const sorted = [...(tr as string[])].map(String).sort()
+            if (sorted.join(' ') !== (tr as string[]).map(String).join(' ')) {
+              add(file, line, 'traits.unsorted', 'traits must be sorted')
+            }
+          }
+        }
+        // The deprecated `folding` boolean and the `folding` trait are two
+        // spellings of one fact for as long as both ship. Disagreeing is the
+        // original defect wearing new clothes — 26 records said `folder` with
+        // folding=0 before the decomposition and nobody noticed for months.
+        // Only once the axes ship on a record: a pre-decomposition asset has
+        // `folding` and no `traits`, and that is not a contradiction, it is the
+        // state we are migrating out of.
+        const hasTrait = Array.isArray(tr) && (tr as unknown[]).includes('folding')
+        if (tr !== undefined && data.folding !== undefined && data.folding !== null) {
+          const flag = data.folding === 1 || data.folding === true
+          if (flag !== hasTrait) {
+            add(file, line, 'folding.contradiction', `folding=${JSON.stringify(data.folding)} but traits ${hasTrait ? 'has' : 'lacks'} "folding"`)
           }
         }
       }

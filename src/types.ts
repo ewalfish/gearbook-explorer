@@ -52,7 +52,13 @@ export interface GearRecord {
      */
     market_names?: MarketName[]
     // camera
+    /** The viewing/focusing system — single-valued. See BODY_TYPES. */
+    body_type?: string
+    /** Orthogonal form-factor / purpose modifiers, sorted. See TRAITS. */
+    traits?: string[]
+    /** @deprecated derived from body_type + traits; removed in contract v2. */
     camera_type?: string
+    /** @deprecated use `traits` ∋ 'folding'; removed in contract v2. */
     folding?: number
     medium?: string
     format?: string

@@ -4,7 +4,7 @@
 // loud in all three places on the same day.
 
 import { describe, it, expect, beforeAll } from 'vitest'
-import { readFileSync } from 'node:fs'
+import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   validateAsset, formatValidation, ASSET_CONTRACT,
@@ -651,5 +651,79 @@ describe('every principal Mamiya body is reachable from its lenses', () => {
     expect((m7ii!.data as { format?: string }).format, 'Mamiya 7II format').toBe('120')
     const afd = cameras.find((c) => c.name === 'Mamiya 645 AFD')
     expect((afd!.data as { fixed_lens?: unknown }).fixed_lens ?? null, 'the 645 AFD is interchangeable-lens').toBeNull()
+  })
+})
+
+// ── the type axes ───────────────────────────────────────────────────────────
+// `camera_type` collapsed four independent questions into one field, so it
+// could not say "folding SLR" and 26 records said `folder` with folding=0.
+// body_type answers one question (the finder), traits answer the others, and
+// the contract's job is to stop the two from disagreeing the way the old field
+// disagreed with itself.
+describe('body_type + traits', () => {
+  const rec = (data: Record<string, unknown>) => ({
+    id: '0123456789abcdef', name: 'X', recommended_name: 'X',
+    gearbook_version: '2026-07-28', confidence: 'high', data,
+  })
+  const check = (data: Record<string, unknown>) =>
+    validateAsset({ cameras: [rec(data)], lenses: [], aliases: [] })
+  const codes = (data: Record<string, unknown>) => check(data).issues.map((i) => i.code)
+
+  it('accepts a folding rangefinder — the shape the old model could not express', () => {
+    const r = check({ body_type: 'rangefinder', traits: ['folding'], folding: 1 })
+    expect(r.ok, formatValidation(r, 'folding rangefinder')).toBe(true)
+  })
+
+  it('rejects a value outside either vocabulary', () => {
+    expect(codes({ body_type: 'folder' })).toContain('body_type.enum')
+    expect(codes({ traits: ['instant'] })).toContain('traits.enum')
+  })
+
+  it('rejects the deprecated flag disagreeing with the trait', () => {
+    // The 26 pre-decomposition rows that said folder + folding=0, in contract form.
+    expect(codes({ body_type: 'viewfinder', traits: ['folding'], folding: 0 })).toContain('folding.contradiction')
+    expect(codes({ body_type: 'rangefinder', traits: ['stereo'], folding: 1 })).toContain('folding.contradiction')
+  })
+
+  it('does not call a not-yet-decomposed record contradictory', () => {
+    // `folding: 1` with no traits is the state we are migrating OUT of, on
+    // 2,032 shipped records. Flagging it would fail the contract on the very
+    // asset it exists to protect.
+    expect(check({ camera_type: 'folder', folding: 1 }).ok).toBe(true)
+  })
+
+  it('requires traits sorted, unique and non-empty — so an asset diff shows changes, not reordering', () => {
+    expect(codes({ traits: ['stereo', 'folding'] })).toContain('traits.unsorted')
+    expect(codes({ traits: ['folding', 'folding'], folding: 1 })).toContain('traits.duplicate')
+    expect(codes({ traits: [] })).toContain('traits.shape')
+  })
+
+  it('keeps the axes off lenses', () => {
+    const r = validateAsset({ cameras: [], lenses: [rec({ body_type: 'slr' })], aliases: [] })
+    expect(r.issues.map((i) => i.code)).toContain('body_type.on-lens')
+  })
+
+  it('treats an absent axis as "not known" rather than a violation', () => {
+    // Recovery fills these over several releases; a record without them is
+    // incomplete, never invalid. Same convention as every other spec field.
+    expect(check({}).ok).toBe(true)
+  })
+
+  it('the match engine never reads the type field — which is why this change is safe', () => {
+    // camera_type appears in display, the catalog tuple and curated counts, and
+    // NOWHERE in matching. That is the whole risk assessment for decomposing
+    // it: no score, no candidate, no decision moves. Keep it that way.
+    const dir = join(__dirname, '..', 'src', 'engine')
+    const offenders = readdirSync(dir)
+      .filter((f) => f.endsWith('.ts') && !['schema.ts', 'index.ts'].includes(f))
+      .filter((f) => /camera_type|body_type|traits/.test(readFileSync(join(dir, f), 'utf8')))
+    expect(offenders, 'matching must not depend on the type axes').toEqual([])
+  })
+
+  it('holds on the shipped asset wherever the axes are present', () => {
+    // Passes vacuously until the decomposition ships, then guards it for real.
+    const withAxes = cameras.filter((c) => (c.data as { body_type?: string }).body_type || (c.data as { traits?: string[] }).traits)
+    const r = validateAsset({ cameras: withAxes, lenses: [], aliases: [] })
+    expect(r.ok, formatValidation(r, 'shipped asset axes')).toBe(true)
   })
 })

@@ -34,8 +34,9 @@ export { queryVariants as marketNameVariants, lensVariants } from './variants.js
 // verify the dependency it actually installed. One artifact, three checkpoints.
 export {
   validateAsset, formatValidation, ASSET_SCHEMA, ASSET_CONTRACT, MARKETS, ALIAS_VIA, CONFIDENCE,
+  BODY_TYPES, TRAITS,
 } from './schema.js'
-export type { Market, AliasVia, ValidationResult, ValidationIssue, AssetInput } from './schema.js'
+export type { Market, AliasVia, BodyType, Trait, ValidationResult, ValidationIssue, AssetInput } from './schema.js'
 
 // ── Answers, not rows ───────────────────────────────────────────────────────
 // What is this also called · does this stale id still resolve · why did that
