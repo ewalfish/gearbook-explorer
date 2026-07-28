@@ -319,6 +319,19 @@
 {"from_id":"83948a9d5a066e48","from_name":"Mamiya Mamiya-Sekor Zoom Z 100-200mm f/5.2 W","gearbook_kind":"lens","to_id":"af3fb3318b6ff83f","to_name":"Mamiya-Sekor Zoom Z 100-200mm f/5.2 W"}
 {"from_id":"bb4e912850463a84","from_name":"Mamiya Mamiya-Sekor M 75mm f/4.5 L SB Tilt-Shift","gearbook_kind":"lens","to_id":"7ff76817c8950804","to_name":"Mamiya-Sekor M 75mm f/4.5 L SB Tilt-Shift"}
 {"from_id":"dd32a86f81dd2b26","from_name":"Mamiya Mamiya-Sekor M 180mm f/4.5 L SB Tilt-Shift","gearbook_kind":"lens","to_id":"50e17aa961f116ee","to_name":"Mamiya-Sekor M 180mm f/4.5 L SB Tilt-Shift"}
+{"from_id":"891a3d4ad6bd759d","from_name":"Nikon Z DX 16-50mm f/3.5-6.3 VR","gearbook_kind":"lens","to_id":"c84ce9af807c7a89","to_name":"Nikon Nikkor Z DX 16-50 mm f/ 3.5-6.3 VR"}
+{"from_id":"a39de286dab57eca","from_name":"Nikon Z 24-70mm f/4 S","gearbook_kind":"lens","to_id":"7f0006b659b35891","to_name":"Nikon Nikkor Z 24-70 mm f/ 4 S"}
+{"from_id":"25daec9b631930ec","from_name":"Nikon Z 40mm f/2","gearbook_kind":"lens","to_id":"b546a880302e2cb7","to_name":"Nikon Nikkor Z 40 mm f/ 2"}
+{"from_id":"3ac701a64cc94996","from_name":"Nikon Z 50mm f/1.8 S","gearbook_kind":"lens","to_id":"0a422450d4291c48","to_name":"Nikon Nikkor Z 50 mm f/ 1.8 S"}
+{"from_id":"fe3c36bcbac4d5b6","from_name":"Nikon Z MC 105mm f/2.8 VR S","gearbook_kind":"lens","to_id":"0772a48d7d9c5fe4","to_name":"Nikon Nikkor Z MC 105 mm f/ 2.8 VR S"}
+{"from_id":"8963510784d52519","from_name":"Nikon Z DX 50-250mm f/4.5-6.3 VR","gearbook_kind":"lens","to_id":"93eea5a5ea042264","to_name":"Nikon Nikkor Z DX 50-250 mm f/ 4.5-6.3 VR"}
+{"from_id":"805c209c0aae0de8","from_name":"Nikon Z 28mm f/2.8","gearbook_kind":"lens","to_id":"38cc392ad47b270f","to_name":"Nikon Nikkor Z 28 mm f/ 2.8"}
+{"from_id":"48068e1761054183","from_name":"Nikon Nikkor-H.C 50 mm f / 2 non-Ai","gearbook_kind":"lens","to_id":"5321da8eb171e5fc","to_name":"Nikon Nikkor-H 50 mm f/ 2 non-Ai"}
+{"from_id":"8fc21679482c26cf","from_name":"Nikon Nikkor 50 mm f/ 2 non-Ai","gearbook_kind":"lens","to_id":"5321da8eb171e5fc","to_name":"Nikon Nikkor-H 50 mm f/ 2 non-Ai"}
+{"from_id":"b1b18c2bee628c88","from_name":"Nikon Micro Nikkor 55 mm f/ 3.5 non-Ai","gearbook_kind":"lens","to_id":"e8a08860a6c8624f","to_name":"Nikon Micro-Nikkor-P 55 mm f/ 3.5 non-Ai"}
+{"from_id":"94405d1e97635732","from_name":"Nikon Micro Nikkor-P.C 55 mm f/ 3.5 non-Ai","gearbook_kind":"lens","to_id":"e8a08860a6c8624f","to_name":"Nikon Micro-Nikkor-P 55 mm f/ 3.5 non-Ai"}
+{"from_id":"bfbd40805548a811","from_name":"Micro-Nikkor-PC 55 mm f/ 3.5 Auto","gearbook_kind":"lens","to_id":"e8a08860a6c8624f","to_name":"Nikon Micro-Nikkor-P 55 mm f/ 3.5 non-Ai"}
+{"from_id":"20dfc033c996089d","from_name":"Nikon Nikkor-P.C 105 mm f/ 2.5 non-Ai","gearbook_kind":"lens","to_id":"9bae068702fc7eec","to_name":"Nikon Nikkor-P 105 mm f/ 2.5 non-Ai (II)"}
 {"from_id":"f79682d84e4c1732","from_name":"ARSAT-H 50 mm f/ 2","gearbook_kind":"lens","to_id":"6eaa703e0eacf420","to_name":"Helios-81 50 mm f/ 2"}
 {"from_id":"e504112d3ce2a75a","from_name":"ARSAT-H 50 mm f/1.4","gearbook_kind":"lens","to_id":"cafa7d830375a45a","to_name":"Helios-123N 50 mm f/ 1.4 МС"}
 {"from_id":"9cf6eb8bedfda7db","from_name":"Jupiter-3","gearbook_kind":"lens","to_id":"c95ba73ff0d1ab03","to_name":"Jupiter-3 50mm f/1.5 M39 LTM"}
@@ -331,6 +344,14 @@
 {"from_id":"9d9771b28761403a","from_name":"Zoom Arsat M 80-200 mm f/ 4.5","gearbook_kind":"lens","to_id":"ab23e23248a8654d","to_name":"Granit-11 80-200 mm f/ 4.5"}
 {"from_id":"614db55b3612b63e","from_name":"Granit","gearbook_kind":"lens","to_id":"ab23e23248a8654d","to_name":"Granit-11 80-200 mm f/ 4.5"}
 {"from_id":"6d3ff6e07a2187b1","from_name":"Belomo 17 mm f/ 2.8 МС","gearbook_kind":"lens","to_id":"b5007a0fc8e77a7b","to_name":"MC Peleng 17 mm f/ 2.8 A"}
+{"from_id":"1e4a97f05e32d755","from_name":"Nikon AF-S Nikkor 8-15 mm f/ 3.5-4.6 E ED Fisheye","gearbook_kind":"lens","to_id":"b43a8ee0791e53c4","to_name":"Nikon AF-S Fisheye Nikkor 8-15 mm f/ 3.5-4.5 E ED"}
+{"from_id":"ca3702fe8bf839f4","from_name":"Nikon Nikkor-N.C 24 mm f/ 2.8 non-Ai","gearbook_kind":"lens","to_id":"6acb2a91a6d79065","to_name":"Nikon Nikkor-N 24 mm f/ 2.8 non-Ai"}
+{"from_id":"d1ff250d38bf608c","from_name":"Nikon Nikkor 28 mm f/ 3.5 non-Ai","gearbook_kind":"lens","to_id":"1e1e3ecab16adcfe","to_name":"Nikon Nikkor-H 28 mm f/ 3.5 non-Ai"}
+{"from_id":"d099d36dbb51ade9","from_name":"Nikon AF Nikkor 28-80mm F3.3-5.6G","gearbook_kind":"lens","to_id":"5b2cad6cca4c3db5","to_name":"Nikon AF Nikkor 28-80 mm f/ 3.3-5.6 G"}
+{"from_id":"bfec696abf63c4b0","from_name":"Nikon Nikkor-S.C 50 mm f/ 1.4 non-Ai","gearbook_kind":"lens","to_id":"47b22b374b4e560d","to_name":"Nikon Nikkor-S 50 mm f/ 1.4 non-Ai"}
+{"from_id":"65cc670a87a2f2b5","from_name":"Nikon Nikkor 55 mm f/ 1.2 non-Ai","gearbook_kind":"lens","to_id":"881de96e96c1530c","to_name":"Nikon Nikkor-S 55 mm f/ 1.2 non-Ai"}
+{"from_id":"a50d9fd3dcff8171","from_name":"Nikon AF Nikkor 70-300 mm f/ 4.5-5.6 G","gearbook_kind":"lens","to_id":"debf5b99b953006c","to_name":"Nikon AF Nikkor 70-300 mm f/ 4-5.6 G"}
+{"from_id":"ab44923a149a395e","from_name":"Nikon Zoom-Nikkor 70-210 mm f/4.5-5.6 Ai-S","gearbook_kind":"lens","to_id":"2bcf39043e340bb5","to_name":"Nikon Nikkor 70-210 mm f/ 4.5-5.6 Ai-S"}
 {"from_id":"dd3b99b1eb20816b","from_name":"Pentax-A 24-50 mm f/ 4 SMC","gearbook_kind":"lens","to_id":"64017ce857e7d005","to_name":"SMC Pentax-A 24-50 mm f/ 4"}
 {"from_id":"76b672b84e8b9cd5","from_name":"Pentax-A 28-80 mm f/ 3.5-4.5","gearbook_kind":"lens","to_id":"90cf8239a13e9d68","to_name":"SMC Pentax-A 28-80 mm f/ 3.5-4.5"}
 {"from_id":"1ca9db3ed5bc4c3d","from_name":"Pentax-A 28-135 mm f/ 4 SMC","gearbook_kind":"lens","to_id":"44a0125c090b5672","to_name":"SMC Pentax-A 28-135 mm f/ 4"}
