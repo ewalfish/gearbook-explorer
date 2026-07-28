@@ -528,8 +528,11 @@ describe('the Mamiya and Hasselblad system lines', () => {
     for (const n of ['Mamiya-Sekor NB 65mm f/4.5', 'Mamiya-Sekor NB 90mm f/3.8', 'Mamiya-Sekor NB 127mm f/3.8']) {
       expect(names.has(n), `${n} was incorporated despite being review-only`).toBe(false)
     }
-    // TLR variants resting on a secondary collector history.
-    expect([...names].some((n) => /TLR/.test(n) && /f\/3\.7/.test(n)), 'the 80/3.7 TLR is secondary-sourced').toBe(false)
+    // The 80/3.7 TLR graduated from the review queue in v3.23.0: KEH stocks
+    // the physical lens in both shutter variants (Seiko {40.5} and Copal {46})
+    // and the Williams Photographic black-series list carries it — physical
+    // retail stock is primary evidence, not collector history.
+    expect([...names].some((n) => /TLR/.test(n) && /f\/3\.7/.test(n)), 'the 80/3.7 TLR should now ship').toBe(true)
     // The C 500/8's element count is contradicted by two factory catalogs
     // (6/5 vs 6/6), so it must stay unset rather than pick a side.
     const c500 = lenses.find((l) => l.name === 'Mamiya Mamiya-Sekor C 500mm f/8')
