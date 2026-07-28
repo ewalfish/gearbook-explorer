@@ -382,7 +382,14 @@ export function matchOne(
   // anything, but the brand-word variant "Fuji Discovery 185 Zoom" is an exact
   // one — comparing only the raw query left that at 0.503.
   const qns = new Set(queries.map((q) => normalize(q)))
-  const aliasExact = scored.filter((c) => c.entry.aliases.some((a) => qns.has(normalize(a))))
+  // qualConflict-capped candidates are excluded here exactly as in the
+  // same-core and lens-confident rules above: the cap's contract is that NO
+  // downstream confidence path can promote a generation-qualified record for
+  // an unqualified query. This path was the one that forgot — after the New
+  // Canonet rename (v3.25.0), the record's superseded old title normalized to
+  // a plain-name alias and this promotion pushed the capped record to AUTO
+  // ("Canonet QL17" auto-linked "Canon New Canonet QL 17").
+  const aliasExact = scored.filter((c) => !qualConflict(query, c.entry.title) && c.entry.aliases.some((a) => qns.has(normalize(a))))
   if (aliasExact.length === 1) {
     aliasExact[0].s = Math.max(aliasExact[0].s, AUTO_T)
     if (!best || aliasExact[0].s >= best.s) best = aliasExact[0]
