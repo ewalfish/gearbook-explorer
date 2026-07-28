@@ -443,6 +443,8 @@
 {"from_id":"e648220937aa4d23","from_name":"Carl Zeiss Jena Pancolar (Prakticar) 80 mm f/ 1.8 MC","gearbook_kind":"lens","to_id":"ca27d4009d46c8b5","to_name":"Carl Zeiss Jena Pancolar 80 mm f/ 1.8"}
 {"from_id":"f3a0a0b054545167","from_name":"Carl Zeiss Jena Tessar 80 mm f/ 2.8 T","gearbook_kind":"lens","to_id":"0af44e658c2dba4a","to_name":"Carl Zeiss Jena Tessar 80 mm f/ 2.8"}
 {"from_id":"d55a561b709df507","from_name":"aus Jena 135 mm f/ 3.5","gearbook_kind":"lens","to_id":"4b095ec9994b684d","to_name":"Carl Zeiss Jena Sonnar 135 mm f/ 3.5"}
+{"from_id":"77dc53f8edc2fb0c","from_name":"ЗM-6A 500 mm f/ 6.3","gearbook_kind":"lens","to_id":"867f87b7346d03e2","to_name":"3M-6A 500 mm f/ 6.3"}
+{"from_id":"45372fdedde8db1d","from_name":"ZM-6A 500mm f/6.3","gearbook_kind":"lens","to_id":"867f87b7346d03e2","to_name":"3M-6A 500 mm f/ 6.3"}
 {"from_id":"dd3b99b1eb20816b","from_name":"Pentax-A 24-50 mm f/ 4 SMC","gearbook_kind":"lens","to_id":"64017ce857e7d005","to_name":"SMC Pentax-A 24-50 mm f/ 4"}
 {"from_id":"76b672b84e8b9cd5","from_name":"Pentax-A 28-80 mm f/ 3.5-4.5","gearbook_kind":"lens","to_id":"90cf8239a13e9d68","to_name":"SMC Pentax-A 28-80 mm f/ 3.5-4.5"}
 {"from_id":"1ca9db3ed5bc4c3d","from_name":"Pentax-A 28-135 mm f/ 4 SMC","gearbook_kind":"lens","to_id":"44a0125c090b5672","to_name":"SMC Pentax-A 28-135 mm f/ 4"}
@@ -474,3 +476,4 @@
 {"from_id":"fb2458b16d37ce0a","from_name":"75-300 f4.5-5.6 Macro Jenazoom Super","gearbook_kind":"lens","to_id":"b1b08bc5072bb2de","to_name":"Carl Zeiss Jena Jenazoom Super 75-300 mm f/ 4.5-5.6"}
 {"from_id":"cb965559038f3cb5","from_name":"Carl Zeiss Jena Biometar 80 mm f/ 2.8 T 1Q","gearbook_kind":"lens","to_id":"205d815fab6cd07d","to_name":"Carl Zeiss Jena Biometar 80 mm f/ 2.8"}
 {"from_id":"b7ac91c5d0e59e3d","from_name":"Carl Zeiss Jena MC Sonnar 180 mm f/ 2.8","gearbook_kind":"lens","to_id":"895ab45421f82e5e","to_name":"Carl Zeiss Jena Sonnar 180 mm f/ 2.8"}
+{"from_id":"562589bab2758559","from_name":"Сanon EF 28-70 mm f/ 3.5-4.5 II","gearbook_kind":"lens","to_id":"ea6babb3a7341af8","to_name":"Canon EF 28-70mm f/3.5-4.5 II"}
