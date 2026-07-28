@@ -283,6 +283,8 @@
 {"from_id":"5c7fca49aedfa7f8","from_name":"Mamiya Mamiya-Sekor C 360mm f/6.3","gearbook_kind":"lens","to_id":"5aadd8691fab175d","to_name":"Mamiya-Sekor C 360mm f/6.3"}
 {"from_id":"13c19be3af1dbf00","from_name":"Mamiya Mamiya-Sekor C 500mm f/8","gearbook_kind":"lens","to_id":"ef8b0093e0d704cf","to_name":"Mamiya-Sekor C 500mm f/8"}
 {"from_id":"e25c53e1b7a152c3","from_name":"Mamiya Mamiya-Sekor Zoom C 100-200mm f/5.2 W","gearbook_kind":"lens","to_id":"278e223ea7c60878","to_name":"Mamiya-Sekor Zoom C 100-200mm f/5.2 W"}
+{"from_id":"5a61c8cbf0bd075b","from_name":"Mamiya Sekor K/L 127 mm f/ 3.5","gearbook_kind":"lens","to_id":"e4e5da31aa41ddd3","to_name":"Mamiya K/L 127mm f/3.5 L"}
+{"from_id":"f0cb08942cd5bd4c","from_name":"Mamiya Sekor K/L 180 mm f/ 4.5","gearbook_kind":"lens","to_id":"7cef828f4fd2338f","to_name":"Mamiya K/L 180mm f/4.5 L-A"}
 {"from_id":"647b23506d116be0","from_name":"Carl Zeiss Planar T* F 110mm f/2","gearbook_kind":"lens","to_id":"5de913b0833dcc6e","to_name":"Hasselblad Zeiss Planar 110mm f/2 F"}
 {"from_id":"495ad006701f3093","from_name":"Carl Zeiss Sonnar C 150 mm f/ 4 T*","gearbook_kind":"lens","to_id":"c37a10444deb6b42","to_name":"Hasselblad Sonnar 150mm f/4 C"}
 {"from_id":"f4524ebf455c65dc","from_name":"Hasselblad Distagon 24mm f/3.5 CF","gearbook_kind":"lens","to_id":"6e3f9f0e57e19970","to_name":"Hasselblad F-Distagon 24mm f/3.5 CF"}
@@ -293,10 +295,12 @@
 {"from_id":"b3fe2827de82dd06","from_name":"Carl Zeiss Sonnar T* 150 mm f/ 4 CF","gearbook_kind":"lens","to_id":"c375395ce2a2f8ee","to_name":"Hasselblad Sonnar 150mm f/4 CF"}
 {"from_id":"7ff8dac4d3de9864","from_name":"Carl Zeiss Sonnar T* 250 mm f/ 5.6 CF","gearbook_kind":"lens","to_id":"a5427d05f7bb0eff","to_name":"Hasselblad Sonnar 250mm f/5.6 CF"}
 {"from_id":"33f40b737c434a1f","from_name":"Carl Zeiss Distagon 50 mm f/ 4","gearbook_kind":"lens","to_id":"0f2a06727c118d82","to_name":"Hasselblad Distagon 50mm f/4 CF FLE"}
+{"from_id":"3e2db1656f352eba","from_name":"Zeiss CFE Distagon f/4 40 mm FLE","gearbook_kind":"lens","to_id":"1d24f20ef5efda28","to_name":"Hasselblad Distagon 40mm f/4 CFE"}
 {"from_id":"7a5ed05b97e4e7d1","from_name":"Hasselblad Sonnar Superachromat 250mm f/5.6 CFi","gearbook_kind":"lens","to_id":"f1bfb0cac5606bf2","to_name":"Hasselblad Sonnar Superachromat 250mm f/5.6 CFE"}
 {"from_id":"4c49291ec77d297f","from_name":"Mamiya Mamiya-Sekor Z 37mm f/4.5 Fisheye","gearbook_kind":"lens","to_id":"c334b346e90299a9","to_name":"Mamiya-Sekor Z 37mm f/4.5 Fisheye"}
 {"from_id":"be74fd3f484310f5","from_name":"Mamiya Mamiya-Sekor Z 50mm f/4.5 W","gearbook_kind":"lens","to_id":"56e4816ef872fa92","to_name":"Mamiya-Sekor Z 50mm f/4.5 W"}
-{"from_id":"07b41a7b5f9fa58a","from_name":"Mamiya Mamiya-Sekor M 50mm f/4 L-A ULD","gearbook_kind":"lens","to_id":"8730a6fb4f3a1c46","to_name":"Mamiya-Sekor M 50mm f/4 L-A ULD"}
+{"from_id":"07b41a7b5f9fa58a","from_name":"Mamiya Mamiya-Sekor M 50mm f/4 L-A ULD","gearbook_kind":"lens","to_id":"5686a8bdb304060a","to_name":"Mamiya-Sekor M 50mm f/4.5 ULD L"}
+{"from_id":"8730a6fb4f3a1c46","from_name":"Mamiya-Sekor M 50mm f/4 L-A ULD","gearbook_kind":"lens","to_id":"5686a8bdb304060a","to_name":"Mamiya-Sekor M 50mm f/4.5 ULD L"}
 {"from_id":"ebed82d6b492e3d0","from_name":"Mamiya Mamiya-Sekor Z 65mm f/4 W","gearbook_kind":"lens","to_id":"f25024b759e8a77d","to_name":"Mamiya-Sekor Z 65mm f/4 W"}
 {"from_id":"4cb6aca9eeeb66a4","from_name":"Mamiya Mamiya-Sekor M 65mm f/4 L-A","gearbook_kind":"lens","to_id":"6bc7e96162e486b1","to_name":"Mamiya-Sekor M 65mm f/4 L-A"}
 {"from_id":"64c7a6c9a00b17ac","from_name":"Mamiya Mamiya-Sekor Z 75mm f/4.5 W Shift","gearbook_kind":"lens","to_id":"08479f5e65dc6c24","to_name":"Mamiya-Sekor Z 75mm f/4.5 W Shift"}
@@ -347,17 +351,23 @@
 {"from_id":"1e4a97f05e32d755","from_name":"Nikon AF-S Nikkor 8-15 mm f/ 3.5-4.6 E ED Fisheye","gearbook_kind":"lens","to_id":"b43a8ee0791e53c4","to_name":"Nikon AF-S Fisheye Nikkor 8-15 mm f/ 3.5-4.5 E ED"}
 {"from_id":"ca3702fe8bf839f4","from_name":"Nikon Nikkor-N.C 24 mm f/ 2.8 non-Ai","gearbook_kind":"lens","to_id":"6acb2a91a6d79065","to_name":"Nikon Nikkor-N 24 mm f/ 2.8 non-Ai"}
 {"from_id":"d1ff250d38bf608c","from_name":"Nikon Nikkor 28 mm f/ 3.5 non-Ai","gearbook_kind":"lens","to_id":"1e1e3ecab16adcfe","to_name":"Nikon Nikkor-H 28 mm f/ 3.5 non-Ai"}
+{"from_id":"cf07ce50e53794f1","from_name":"Carl Zeiss Jena II 28 mm f/ 2.8 MC Macro","gearbook_kind":"lens","to_id":"8ecd87c41606f825","to_name":"Carl Zeiss Jena 28 mm f/ 2.8 MC"}
 {"from_id":"d099d36dbb51ade9","from_name":"Nikon AF Nikkor 28-80mm F3.3-5.6G","gearbook_kind":"lens","to_id":"5b2cad6cca4c3db5","to_name":"Nikon AF Nikkor 28-80 mm f/ 3.3-5.6 G"}
 {"from_id":"bfec696abf63c4b0","from_name":"Nikon Nikkor-S.C 50 mm f/ 1.4 non-Ai","gearbook_kind":"lens","to_id":"47b22b374b4e560d","to_name":"Nikon Nikkor-S 50 mm f/ 1.4 non-Ai"}
 {"from_id":"65cc670a87a2f2b5","from_name":"Nikon Nikkor 55 mm f/ 1.2 non-Ai","gearbook_kind":"lens","to_id":"881de96e96c1530c","to_name":"Nikon Nikkor-S 55 mm f/ 1.2 non-Ai"}
+{"from_id":"0915a999d89b8c57","from_name":"Zeiss Otus 1.4/55 ZF.2","gearbook_kind":"lens","to_id":"0fdbd1d6bc059fd1","to_name":"Zeiss Otus 55 mm f/ 1.4 Apo Distagon T* ZE/ZF.2"}
 {"from_id":"a50d9fd3dcff8171","from_name":"Nikon AF Nikkor 70-300 mm f/ 4.5-5.6 G","gearbook_kind":"lens","to_id":"debf5b99b953006c","to_name":"Nikon AF Nikkor 70-300 mm f/ 4-5.6 G"}
 {"from_id":"ab44923a149a395e","from_name":"Nikon Zoom-Nikkor 70-210 mm f/4.5-5.6 Ai-S","gearbook_kind":"lens","to_id":"2bcf39043e340bb5","to_name":"Nikon Nikkor 70-210 mm f/ 4.5-5.6 Ai-S"}
+{"from_id":"8ab8d2e8b2b7bfb0","from_name":"Carl Zeiss Jena Q1 Flektogon 25 mm f/ 4","gearbook_kind":"lens","to_id":"16f0af29f9c77f3d","to_name":"Carl Zeiss Jena Flektogon 25 mm f/ 4"}
+{"from_id":"02cadad5c5d3f0ba","from_name":"MC Carl Zeiss Jena Pancolar 50 mm f/ 1.8","gearbook_kind":"lens","to_id":"5012e5dd87f192d6","to_name":"Carl Zeiss Jena Pancolar 50 mm f/ 1.8"}
+{"from_id":"d55a561b709df507","from_name":"aus Jena 135 mm f/ 3.5","gearbook_kind":"lens","to_id":"4b095ec9994b684d","to_name":"Carl Zeiss Jena Sonnar 135 mm f/ 3.5"}
 {"from_id":"dd3b99b1eb20816b","from_name":"Pentax-A 24-50 mm f/ 4 SMC","gearbook_kind":"lens","to_id":"64017ce857e7d005","to_name":"SMC Pentax-A 24-50 mm f/ 4"}
 {"from_id":"76b672b84e8b9cd5","from_name":"Pentax-A 28-80 mm f/ 3.5-4.5","gearbook_kind":"lens","to_id":"90cf8239a13e9d68","to_name":"SMC Pentax-A 28-80 mm f/ 3.5-4.5"}
 {"from_id":"1ca9db3ed5bc4c3d","from_name":"Pentax-A 28-135 mm f/ 4 SMC","gearbook_kind":"lens","to_id":"44a0125c090b5672","to_name":"SMC Pentax-A 28-135 mm f/ 4"}
 {"from_id":"dd8ad1ff5b555f9d","from_name":"Pentax-A Zoom 35-70 mm f/ 4.0 SMC","gearbook_kind":"lens","to_id":"bb6689fa3cacaa4b","to_name":"SMC Pentax-A 35-70 mm f/ 4"}
 {"from_id":"3dce05cb4af26914","from_name":"Pentax-A Zoom 70-200 mm f/ 4","gearbook_kind":"lens","to_id":"dda8706cca7e003b","to_name":"SMC Pentax-A 70-200 mm f/ 4"}
 {"from_id":"cfd764621c1204e4","from_name":"Pentax-A* 85 mm f/ 1.4","gearbook_kind":"lens","to_id":"2bb77ae9672926f2","to_name":"SMC Pentax-A* 85 mm f/ 1.4"}
+{"from_id":"57b5d69af9456e60","from_name":"Carl Zeiss S-Planar 60 mm f/ 2.8 C/Y","gearbook_kind":"lens","to_id":"7929b5f039b1007f","to_name":"Carl Zeiss Makro-Planar 60 mm f/ 2.8 C/Y"}
 {"from_id":"13e6c0e4c29606b1","from_name":"Canon Zoom Lens FD 35-70mm 1:4 AF","gearbook_kind":"lens","to_id":"e9dec673ee88fb00","to_name":"Canon AF Zoom FD 35-70 mm f/ 4"}
 {"from_id":"6bb5154a6b2798f6","from_name":"Canon FD 70-210 mm f/ 4","gearbook_kind":"lens","to_id":"28937712feba1e4f","to_name":"Canon FDn 70-210 mm f/ 4"}
 {"from_id":"93cb7a52fa787f0a","from_name":"Canon FD 85 mm f/ 1.2 SSC Aspherical","gearbook_kind":"lens","to_id":"6b6218c64d176a97","to_name":"Canon FD 85 mm f/ 1.2 S.S.C. Aspherical"}
@@ -365,3 +375,9 @@
 {"from_id":"bedf03acc7f9ee24","from_name":"Olympus OM-System H-Zuiko Auto-W 24 mm f/ 2.8","gearbook_kind":"lens","to_id":"1f45ec0b1cdd95df","to_name":"Olympus OM-System Zuiko MC Auto-W 24 mm f/ 2.8"}
 {"from_id":"27d327f178a23e49","from_name":"OM-System Zuiko 50mm f/1.8 Auto-S","gearbook_kind":"lens","to_id":"8e14f9a6840a16a5","to_name":"Olympus OM-System Zuiko Auto-S 50 mm f/ 1.8"}
 {"from_id":"5fe895ed7372cc61","from_name":"Olympus G.Zuiko 50 mm f/ 1.4 Auto-S","gearbook_kind":"lens","to_id":"0adf990e98569182","to_name":"Olympus OM-System Zuiko Auto-S 50 mm f/ 1.4"}
+{"from_id":"e9fd786a6e107ddc","from_name":"Carl Zeiss Jena DDR Tessar 50 mm f/ 2.8","gearbook_kind":"lens","to_id":"4ec7e929c2d1589a","to_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8"}
+{"from_id":"d2142d38b8476ecc","from_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8 semi-auto","gearbook_kind":"lens","to_id":"4ec7e929c2d1589a","to_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8"}
+{"from_id":"cc92d294cb4a57e4","from_name":"Carl Zeiss Jena Tessar T 50 mm f/ 2.8","gearbook_kind":"lens","to_id":"4ec7e929c2d1589a","to_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8"}
+{"from_id":"63ee1f51858d0658","from_name":"Carl Zeiss Jena T 50 mm f/ 2.8","gearbook_kind":"lens","to_id":"4ec7e929c2d1589a","to_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8"}
+{"from_id":"0879c09282d7510a","from_name":"Sonnar 50mm","gearbook_kind":"lens","to_id":"99c4cd3656589fc4","to_name":"Carl Zeiss Jena Sonnar 50 mm f/ 1.5"}
+{"from_id":"7568602d6ad8ab51","from_name":"Carl Zeiss Jena Sonnar T 50 mm f/ 1.5","gearbook_kind":"lens","to_id":"99c4cd3656589fc4","to_name":"Carl Zeiss Jena Sonnar 50 mm f/ 1.5"}

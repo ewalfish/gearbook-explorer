@@ -1,0 +1,7 @@
+{"name":"Mamiya Sekor K/L 127 mm f/ 3.5","kind":"lens","merge_into":"Mamiya K/L 127mm f/3.5 L","note":"the K/L series had exactly one 127/3.5; spaced 'Sekor K/L' spelling never clustered with the curated row."}
+{"name":"Mamiya Sekor K/L 180 mm f/ 4.5","kind":"lens","merge_into":"Mamiya K/L 180mm f/4.5 L-A","note":"same cause — one K/L 180/4.5 exists (the L-A)."}
+{"name":"Mamiya-Sekor Zoom C 100-200mm f/5.2 W","kind":"lens","set":{"mount":"Mamiya RB67"},"aliases":["Mamiya-Sekor C 100-200mm f/5.2 W"],"note":"the RB67 zoom really does carry both C and W in its product name (lens-db, KEH); no 645 100-200 ever existed. The RZ's Zoom Z 100-200/5.2 W is a separate record."}
+{"name":"Mamiya Sekor C 50 mm f/ 4.5","kind":"lens","set":{"mount":"Mamiya RB67"},"note":"the 645 line has no 50/4.5 (wides are 35/3.5 and 45/2.8; the 645 50mm is the f/4 Shift) — this is the RB67 Sekor C 50/4.5."}
+{"name":"Mamiya-Sekor Shift C 50mm f/4","kind":"lens","set":{"mount":"Mamiya 645"},"note":"the only Mamiya 50/4 shift is the 645 lens; RB67's only shift is the 75/4.5 S/L."}
+{"name":"Mamiya-Sekor SF C 145mm f/4 Soft Focus","kind":"lens","set":{"mount":"Mamiya 645"},"note":"the 145/4 SF is 645; the RB soft-focus is the separate SF C 150/4."}
+{"name":"Mamiya-Sekor SF C 150mm f/4 Soft Focus","kind":"lens","set":{"mount":"Mamiya RB67"},"note":"RB67 soft-focus with interchangeable discs; distinct from the 645 SF C 145/4."}
