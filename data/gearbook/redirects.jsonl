@@ -68,7 +68,8 @@
 {"from_id":"b5889e5d5173ee74","from_name":"Bell and Howell Autoload 342","gearbook_kind":"camera","to_id":"43fb83a8166115fe","to_name":"Autoload 342"}
 {"from_id":"b943b13c2d0c0316","from_name":"Boots/Bencini Comet 404-X","gearbook_kind":"camera","to_id":"2f1455bf6db71dbb","to_name":"Bencini Comet 404-X"}
 {"from_id":"a31aa49b00c0a1e6","from_name":"Canon Aqua Snappy/AS-6","gearbook_kind":"camera","to_id":"daec12b61fe539d4","to_name":"Canon AS-6"}
-{"from_id":"1ed790b43798b523","from_name":"Canon Canonet QL 17 / QL 19 / QL 25","gearbook_kind":"camera","to_id":"b34be198bed41341","to_name":"Canon Canonet QL 17 (new)"}
+{"from_id":"1ed790b43798b523","from_name":"Canon Canonet QL 17 / QL 19 / QL 25","gearbook_kind":"camera","to_id":"73aa04389b8675ef","to_name":"Canon New Canonet QL 17"}
+{"from_id":"b34be198bed41341","from_name":"Canon Canonet QL 17 (new)","gearbook_kind":"camera","to_id":"73aa04389b8675ef","to_name":"Canon New Canonet QL 17"}
 {"from_id":"c0f9730e8507d135","from_name":"Canon AF 32/Prima Junior AF","gearbook_kind":"camera","to_id":"361390b885dda425","to_name":"Canon Prima Junior AF"}
 {"from_id":"fa79eb2905afeaa4","from_name":"Canon EOS 100","gearbook_kind":"camera","to_id":"6fd7ddfbc51502af","to_name":"Canon EOS Elan"}
 {"from_id":"eab94625f5f96b96","from_name":"Canon EOS 1000 / EOS Rebel","gearbook_kind":"camera","to_id":"e08e4faa46dbb76f","to_name":"Canon EOS 1000"}
@@ -359,17 +360,25 @@
 {"from_id":"0915a999d89b8c57","from_name":"Zeiss Otus 1.4/55 ZF.2","gearbook_kind":"lens","to_id":"0fdbd1d6bc059fd1","to_name":"Zeiss Otus 55 mm f/ 1.4 Apo Distagon T* ZE/ZF.2"}
 {"from_id":"a50d9fd3dcff8171","from_name":"Nikon AF Nikkor 70-300 mm f/ 4.5-5.6 G","gearbook_kind":"lens","to_id":"debf5b99b953006c","to_name":"Nikon AF Nikkor 70-300 mm f/ 4-5.6 G"}
 {"from_id":"ab44923a149a395e","from_name":"Nikon Zoom-Nikkor 70-210 mm f/4.5-5.6 Ai-S","gearbook_kind":"lens","to_id":"2bcf39043e340bb5","to_name":"Nikon Nikkor 70-210 mm f/ 4.5-5.6 Ai-S"}
+{"from_id":"59ab2867d0386723","from_name":"Carl Zeiss Jens MC Flektogon 20 mm f/ 2.8","gearbook_kind":"lens","to_id":"2ac3c16738ead9bb","to_name":"Carl Zeiss Jena Flektogon 20 mm f/ 2.8"}
 {"from_id":"8ab8d2e8b2b7bfb0","from_name":"Carl Zeiss Jena Q1 Flektogon 25 mm f/ 4","gearbook_kind":"lens","to_id":"16f0af29f9c77f3d","to_name":"Carl Zeiss Jena Flektogon 25 mm f/ 4"}
+{"from_id":"6da286a34f1fd474","from_name":"Carl Zeiss Jena DDR Flektogon MC 35/2.4","gearbook_kind":"lens","to_id":"17e8226d2038edfd","to_name":"Carl Zeiss Jena Flektogon 35 mm f/ 2.4"}
 {"from_id":"02cadad5c5d3f0ba","from_name":"MC Carl Zeiss Jena Pancolar 50 mm f/ 1.8","gearbook_kind":"lens","to_id":"5012e5dd87f192d6","to_name":"Carl Zeiss Jena Pancolar 50 mm f/ 1.8"}
+{"from_id":"eaa1ffeda235a6ac","from_name":"Carl Zeiss Jena Tessar T 50 mm f/ 3.5","gearbook_kind":"lens","to_id":"dc17a9fd1af459ea","to_name":"Carl Zeiss Jena Tessar 50 mm f/ 3.5"}
+{"from_id":"e648220937aa4d23","from_name":"Carl Zeiss Jena Pancolar (Prakticar) 80 mm f/ 1.8 MC","gearbook_kind":"lens","to_id":"ca27d4009d46c8b5","to_name":"Carl Zeiss Jena Pancolar 80 mm f/ 1.8"}
+{"from_id":"f3a0a0b054545167","from_name":"Carl Zeiss Jena Tessar 80 mm f/ 2.8 T","gearbook_kind":"lens","to_id":"0af44e658c2dba4a","to_name":"Carl Zeiss Jena Tessar 80 mm f/ 2.8"}
 {"from_id":"d55a561b709df507","from_name":"aus Jena 135 mm f/ 3.5","gearbook_kind":"lens","to_id":"4b095ec9994b684d","to_name":"Carl Zeiss Jena Sonnar 135 mm f/ 3.5"}
 {"from_id":"dd3b99b1eb20816b","from_name":"Pentax-A 24-50 mm f/ 4 SMC","gearbook_kind":"lens","to_id":"64017ce857e7d005","to_name":"SMC Pentax-A 24-50 mm f/ 4"}
 {"from_id":"76b672b84e8b9cd5","from_name":"Pentax-A 28-80 mm f/ 3.5-4.5","gearbook_kind":"lens","to_id":"90cf8239a13e9d68","to_name":"SMC Pentax-A 28-80 mm f/ 3.5-4.5"}
 {"from_id":"1ca9db3ed5bc4c3d","from_name":"Pentax-A 28-135 mm f/ 4 SMC","gearbook_kind":"lens","to_id":"44a0125c090b5672","to_name":"SMC Pentax-A 28-135 mm f/ 4"}
 {"from_id":"dd8ad1ff5b555f9d","from_name":"Pentax-A Zoom 35-70 mm f/ 4.0 SMC","gearbook_kind":"lens","to_id":"bb6689fa3cacaa4b","to_name":"SMC Pentax-A 35-70 mm f/ 4"}
+{"from_id":"96ca5c5e4eb14bf2","from_name":"Carl Zeiss Jena MF 35-70 mm f/ 3.5-4.5 MC Macro Jenazoom","gearbook_kind":"lens","to_id":"b74511eb0701ea2a","to_name":"Carl Zeiss Jena Jenazoom 35-70 mm f/ 3.5-4.5"}
 {"from_id":"3dce05cb4af26914","from_name":"Pentax-A Zoom 70-200 mm f/ 4","gearbook_kind":"lens","to_id":"dda8706cca7e003b","to_name":"SMC Pentax-A 70-200 mm f/ 4"}
 {"from_id":"cfd764621c1204e4","from_name":"Pentax-A* 85 mm f/ 1.4","gearbook_kind":"lens","to_id":"2bb77ae9672926f2","to_name":"SMC Pentax-A* 85 mm f/ 1.4"}
 {"from_id":"407841cf55a3d712","from_name":"Carl Zeiss Distagon-F Fisheye T* 16 mm f/ 2.8 C/Y","gearbook_kind":"lens","to_id":"94e4830b66ba5fb3","to_name":"Carl Zeiss F-Distagon 16 mm f/ 2.8 C/Y"}
+{"from_id":"a109affc924a98d7","from_name":"Carl Zeiss Jena 28-200 mm f/ 3.8 MC Macro Jenazoom II","gearbook_kind":"lens","to_id":"5548de8d0baceab3","to_name":"Carl Zeiss Jena Jenazoom II 28-200 mm f/ 3.8-5.6"}
 {"from_id":"57b5d69af9456e60","from_name":"Carl Zeiss S-Planar 60 mm f/ 2.8 C/Y","gearbook_kind":"lens","to_id":"7929b5f039b1007f","to_name":"Carl Zeiss Makro-Planar 60 mm f/ 2.8 C/Y"}
+{"from_id":"86f6fa9b84fd7fd0","from_name":"CARL ZEISS JENA 70-210 F2.8-4 MC MACRO JENAZOOM II","gearbook_kind":"lens","to_id":"a90fb8860bc12142","to_name":"Carl Zeiss Jena Jenazoom II 70-210 mm f/ 2.8-4"}
 {"from_id":"13e6c0e4c29606b1","from_name":"Canon Zoom Lens FD 35-70mm 1:4 AF","gearbook_kind":"lens","to_id":"e9dec673ee88fb00","to_name":"Canon AF Zoom FD 35-70 mm f/ 4"}
 {"from_id":"6bb5154a6b2798f6","from_name":"Canon FD 70-210 mm f/ 4","gearbook_kind":"lens","to_id":"28937712feba1e4f","to_name":"Canon FDn 70-210 mm f/ 4"}
 {"from_id":"93cb7a52fa787f0a","from_name":"Canon FD 85 mm f/ 1.2 SSC Aspherical","gearbook_kind":"lens","to_id":"6b6218c64d176a97","to_name":"Canon FD 85 mm f/ 1.2 S.S.C. Aspherical"}
@@ -381,5 +390,11 @@
 {"from_id":"d2142d38b8476ecc","from_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8 semi-auto","gearbook_kind":"lens","to_id":"4ec7e929c2d1589a","to_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8"}
 {"from_id":"cc92d294cb4a57e4","from_name":"Carl Zeiss Jena Tessar T 50 mm f/ 2.8","gearbook_kind":"lens","to_id":"4ec7e929c2d1589a","to_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8"}
 {"from_id":"63ee1f51858d0658","from_name":"Carl Zeiss Jena T 50 mm f/ 2.8","gearbook_kind":"lens","to_id":"4ec7e929c2d1589a","to_name":"Carl Zeiss Jena Tessar 50 mm f/ 2.8"}
+{"from_id":"06feb9f0db0aaac4","from_name":"Prakticar 135 mm f/ 2.8 MC Pentacon","gearbook_kind":"lens","to_id":"e87d5494ed27c0a4","to_name":"Prakticar 135 mm f/ 2.8 MC"}
+{"from_id":"1e64f10754d9341e","from_name":"Prakticar 135 f2,8 MC","gearbook_kind":"lens","to_id":"e87d5494ed27c0a4","to_name":"Prakticar 135 mm f/ 2.8 MC"}
+{"from_id":"ea46e77ab7afd7e4","from_name":"Carl Zeiss Jena 135 mm f/ 2.8","gearbook_kind":"lens","to_id":"e87d5494ed27c0a4","to_name":"Prakticar 135 mm f/ 2.8 MC"}
 {"from_id":"0879c09282d7510a","from_name":"Sonnar 50mm","gearbook_kind":"lens","to_id":"99c4cd3656589fc4","to_name":"Carl Zeiss Jena Sonnar 50 mm f/ 1.5"}
 {"from_id":"7568602d6ad8ab51","from_name":"Carl Zeiss Jena Sonnar T 50 mm f/ 1.5","gearbook_kind":"lens","to_id":"99c4cd3656589fc4","to_name":"Carl Zeiss Jena Sonnar 50 mm f/ 1.5"}
+{"from_id":"fb2458b16d37ce0a","from_name":"75-300 f4.5-5.6 Macro Jenazoom Super","gearbook_kind":"lens","to_id":"b1b08bc5072bb2de","to_name":"Carl Zeiss Jena Jenazoom Super 75-300 mm f/ 4.5-5.6"}
+{"from_id":"cb965559038f3cb5","from_name":"Carl Zeiss Jena Biometar 80 mm f/ 2.8 T 1Q","gearbook_kind":"lens","to_id":"205d815fab6cd07d","to_name":"Carl Zeiss Jena Biometar 80 mm f/ 2.8"}
+{"from_id":"b7ac91c5d0e59e3d","from_name":"Carl Zeiss Jena MC Sonnar 180 mm f/ 2.8","gearbook_kind":"lens","to_id":"895ab45421f82e5e","to_name":"Carl Zeiss Jena Sonnar 180 mm f/ 2.8"}
