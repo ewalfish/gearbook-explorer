@@ -14,7 +14,7 @@ export { queryVariants as marketNameVariants, lensVariants } from './variants.js
 // ── The contract ────────────────────────────────────────────────────────────
 // Shipped so the forge can gate on it before publishing and a consumer can
 // verify the dependency it actually installed. One artifact, three checkpoints.
-export { validateAsset, formatValidation, ASSET_SCHEMA, ASSET_CONTRACT, MARKETS, ALIAS_VIA, CONFIDENCE, } from './schema.js';
+export { validateAsset, formatValidation, ASSET_SCHEMA, ASSET_CONTRACT, MARKETS, ALIAS_VIA, CONFIDENCE, BODY_TYPES, TRAITS, } from './schema.js';
 // ── Answers, not rows ───────────────────────────────────────────────────────
 // What is this also called · does this stale id still resolve · why did that
 // match · is there something a buyer must be told. Every consumer was deriving

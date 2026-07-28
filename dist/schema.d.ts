@@ -44,6 +44,41 @@ export declare const CONFIDENCE: readonly ["high", "medium", "low"];
  */
 export declare const TAKES_VIA: readonly ["adapter", "back", "insert", "mask", "respool"];
 export type TakesVia = (typeof TAKES_VIA)[number];
+/**
+ * The VIEWING/FOCUSING system — how the photographer sees and focuses the shot.
+ * Single-valued: a camera has exactly one finder, or we do not know it.
+ *
+ * This is half of the replacement for `camera_type`, which collapsed four
+ * independent questions into one field and therefore could not say "folding
+ * SLR" at all. `traits` is the other half. See TRAITS.
+ *
+ * `other` means "we looked and it is none of these", which is a different fact
+ * from `null` ("not known") — 357 records depend on that distinction.
+ * `pinhole` is here rather than in TRAITS because a pinhole IS the finder-less
+ * focusing system, not a modifier on one. `pseudo-tlr` likewise: its whole
+ * point is that the top lens is NOT a taking-lens reflex, so calling it a `tlr`
+ * with a modifier would make the finder axis say something false.
+ */
+export declare const BODY_TYPES: readonly ["slr", "tlr", "pseudo-tlr", "rangefinder", "viewfinder", "view", "box", "point-and-shoot", "bridge", "mirrorless", "pinhole", "other"];
+export type BodyType = (typeof BODY_TYPES)[number];
+/**
+ * Orthogonal modifiers — form factor and purpose. Multi-valued, because a
+ * `klapp stéréo` is genuinely both folding and stereo, and the old model made
+ * that unsayable: 425 records in the source corpus name two axes and shipped
+ * with one.
+ *
+ * NOT here: anything another field already answers. `instant` and `digital`
+ * belong to `medium`, `dslr`/`mirrorless` restated `medium` and are now
+ * `body_type` + `medium`, and film size belongs to `format`. A trait that
+ * duplicates a field is how the original defect started.
+ *
+ * `half-frame` and `motorized` are declared but unpopulated from the corpus
+ * today: `half-frame` is properly `frame_size: 18x24mm`, and no source states
+ * motorisation. They are in the vocabulary so the app's hand-typed values have
+ * somewhere to land without a second vocabulary change.
+ */
+export declare const TRAITS: readonly ["folding", "subminiature", "panoramic", "stereo", "half-frame", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "motorized"];
+export type Trait = (typeof TRAITS)[number];
 /** Current contract version. Bumped only by a breaking asset change. */
 export declare const ASSET_CONTRACT = 1;
 export interface ValidationIssue {
@@ -110,6 +145,17 @@ export declare const ASSET_SCHEMA: {
                                         readonly enum: readonly ["adapter", "back", "insert", "mask", "respool"];
                                     };
                                 };
+                            };
+                        };
+                        readonly body_type: {
+                            readonly enum: readonly ["slr", "tlr", "pseudo-tlr", "rangefinder", "viewfinder", "view", "box", "point-and-shoot", "bridge", "mirrorless", "pinhole", "other"];
+                        };
+                        readonly traits: {
+                            readonly type: "array";
+                            readonly minItems: 1;
+                            readonly uniqueItems: true;
+                            readonly items: {
+                                readonly enum: readonly ["folding", "subminiature", "panoramic", "stereo", "half-frame", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "motorized"];
                             };
                         };
                         readonly market_names: {

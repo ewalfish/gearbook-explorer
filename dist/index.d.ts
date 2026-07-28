@@ -8,8 +8,8 @@ export type { Kind, GearbookRow, AliasRow, RedirectRow, AliasMeta, MatchEntry, M
 export { matchOne, matchBatch, candidates, features, typoFix, sameCore, qualConflict, DEFAULT_WEIGHTS, DEFAULT_POLICY, AUTO, REVIEW, } from './match.js';
 export type { MatchResult, MatchDecision, ScoredEntry, MatchPolicy } from './match.js';
 export { queryVariants as marketNameVariants, lensVariants } from './variants.js';
-export { validateAsset, formatValidation, ASSET_SCHEMA, ASSET_CONTRACT, MARKETS, ALIAS_VIA, CONFIDENCE, } from './schema.js';
-export type { Market, AliasVia, ValidationResult, ValidationIssue, AssetInput } from './schema.js';
+export { validateAsset, formatValidation, ASSET_SCHEMA, ASSET_CONTRACT, MARKETS, ALIAS_VIA, CONFIDENCE, BODY_TYPES, TRAITS, } from './schema.js';
+export type { Market, AliasVia, BodyType, Trait, ValidationResult, ValidationIssue, AssetInput } from './schema.js';
 export { names, otherMarketNames, buildRedirectIndex, explain } from './names.js';
 export type { NameSet, NamedRecord, AliasLike, RedirectLike, RedirectIndex, MatchExplanation } from './names.js';
 export { hazards, hasHazard } from './hazards.js';
