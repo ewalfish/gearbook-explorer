@@ -16,8 +16,7 @@
 {"name":"Aires 35-IIIC","kind":"camera","aliases":["Aires IIIC"],"note":"sellers drop the '35' line number; IIIC is unique within Aires."}
 {"name":"Kiev 60 TTL","kind":"camera","aliases":["Kiev 60"],"note":"the body is one camera sold with or without the TTL metering prism; 'Kiev 60' listings are this record."}
 {"name":"Sony Mavica FD88","kind":"camera","aliases":["Sony MVC-FD88","Sony MVC-FD88 Digital Mavica"],"note":"Sony's model code for every floppy Mavica is MVC-FD##, printed on the face of the camera; sellers use it interchangeably with the marketing name."}
-{"name":"Praktica LLC","kind":"camera","merge_into":"Pentacon Praktica LLC","note":"brand-prefix duplicate — identical M42 spec sheets, one with the maker word and one without."}
-{"name":"Pentacon Praktica LLC","kind":"camera","aliases":["Hanimex Praktica LLC"],"note":"Hanimex distributed Prakticas in Commonwealth markets under its own badge; the LLC is the same Pentacon body."}
+{"name":"Praktica LLC","kind":"camera","aliases":["Hanimex Praktica LLC"],"note":"Hanimex distributed Prakticas in Commonwealth markets under its own badge; the LLC is the same Pentacon body. (Canonical direction flipped by the 2026-07 Pentacon push: bare name is now the record, the maker-prefixed duplicate folds in via 2026-07-pentacon-dedup.jsonl.)"}
 {"name":"Argus STL 1000","kind":"camera","aliases":["Argus/Cosina STL 1000","Cosina STL 1000"],"note":"built by Cosina for Argus; sellers title both names, often with the slash."}
 {"name":"Belca Belfoca","kind":"camera","aliases":["Belca Werk Belfoca"],"note":"'Belca-Werk' is the VEB factory name sellers copy off the lens rim; the record uses the short brand."}
 {"name":"Rollei Rolleiflex 3,5 Automat MX (K4A)","kind":"camera","aliases":["Rolleiflex Automat MX","Rollei Rolleiflex Automat MX"],"note":"US sellers name the Automat generations without the 3,5 aperture prefix the German naming carries."}
