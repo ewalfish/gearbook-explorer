@@ -267,7 +267,23 @@ const score = (w, x) => sigmoid(x.reduce((s, xi, i) => s + xi * w[i], 0));
  * globally would disarm that guard. This runs in the fallback only, and the
  * caller re-applies qualConflict against the ORIGINAL query.
  */
-const DESCRIPTORS = /\b(rangefinder|rf|slr|dslr|tlr|pseudo[- ]tlr|film camera|digital camera|instant camera|pocket camera|box camera|folding camera|view camera|field camera|press camera|movie camera|cine camera|toy camera|point[- ]and[- ]shoot|compact camera|monorail|professional|camera|35\s?mm|120|medium format|large format|half[- ]frame|panoramic)\b/gi;
+const DESCRIPTORS = new RegExp([
+    // body class
+    'rangefinder', 'rf', 'slr', 'dslr', 'tlr', 'pseudo[- ]tlr', 'point[- ]and[- ]shoot',
+    // "<something> camera"
+    'film camera', 'digital camera', 'instant camera', 'pocket camera', 'box camera',
+    'folding camera', 'view camera', 'field camera', 'press camera', 'movie camera',
+    'cine camera', 'toy camera', 'compact camera', 'technical camera', 'camera',
+    // format / gauge — a seller states these, a catalogue name rarely does.
+    // "Sinar F 4x5 monorail" must reach the record called "Sinar F".
+    '35\\s?mm', '120', '620', '127', '110', '126', '16\\s?mm', '8\\s?mm', '9\\.5\\s?mm',
+    'super\\s?8', 'single[- ]8', 'double\\s?8', 'standard\\s?8',
+    '\\d{1,2}\\s?[x×]\\s?\\d{1,2}(\\s?(in|inch|cm|mm))?',
+    'medium format', 'large format', 'half[- ]frame', 'panoramic',
+    // build / provenance noise
+    'monorail', 'professional', 'titanium', 'vintage', 'dual lens',
+    'ussr', 'soviet', 'russian', 'east german', 'leica copy', 'made in \\w+',
+].join('|').replace(/^/, '\\b(').replace(/$/, ')\\b'), 'gi');
 function stripDescriptors(query) {
     const out = query.replace(DESCRIPTORS, ' ').replace(/\s+/g, ' ').trim();
     if (!out || out === query.trim())
