@@ -81,18 +81,21 @@ export type BodyType = (typeof BODY_TYPES)[number]
  * `body_type` + `medium`, and film size belongs to `format`. A trait that
  * duplicates a field is how the original defect started.
  *
- * `half-frame` and `motorized` are declared but unpopulated from the corpus
- * today: `half-frame` is properly `frame_size: 18x24mm`, and no source states
- * motorisation. They are in the vocabulary so the app's hand-typed values have
- * somewhere to land without a second vocabulary change.
+ * `half-frame` was in this list for one release and is the rule proving itself:
+ * it is a `frame_size` (18×24 mm), and shipping it as a trait too meant 60 of
+ * 68 records stated the same fact twice, 4 stated it in contradiction with
+ * their own frame_size (one of them 24×36 mm — full frame), and 101 records
+ * with an 18×24 frame_size never got the trait, so it was useless as a filter
+ * as well. One fact, one field.
+ *
+ * `motorized` is likewise absent: no source states it, and a vocabulary value
+ * nothing can populate is a promise the asset does not keep.
  */
 export const TRAITS = [
   // form factor
-  'folding', 'subminiature', 'panoramic', 'stereo', 'half-frame',
+  'folding', 'subminiature', 'panoramic', 'stereo',
   // purpose / genre
   'press', 'aerial', 'detective', 'movie', 'underwater', 'toy', 'magazine',
-  // mechanism
-  'motorized',
 ] as const
 export type Trait = (typeof TRAITS)[number]
 
