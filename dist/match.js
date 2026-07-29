@@ -255,6 +255,32 @@ const score = (w, x) => sigmoid(x.reduce((s, xi, i) => s + xi * w[i], 0));
  * of the tail. Windows are bounded and every candidate keeps the brand, so this
  * cannot wander to another maker.
  */
+/**
+ * Category words a SELLER adds and a catalogue name does not carry: "Canon P
+ * rangefinder", "Zenit-E 35mm SLR", "Polaroid Impulse Instant Camera", "Sinar F
+ * 4x5 monorail". The record is present under the bare name and the descriptor
+ * dilutes the overlap — "Canon P" scored 0.09 against a record literally called
+ * Canon P.
+ *
+ * Deliberately NOT part of matchNormalize: qualConflict() reads `rangefinder`
+ * and `slr` out of the RAW query to catch RF/SLR mismatches, and stripping them
+ * globally would disarm that guard. This runs in the fallback only, and the
+ * caller re-applies qualConflict against the ORIGINAL query.
+ */
+const DESCRIPTORS = /\b(rangefinder|rf|slr|dslr|tlr|pseudo[- ]tlr|film camera|digital camera|instant camera|pocket camera|box camera|folding camera|view camera|field camera|press camera|movie camera|cine camera|toy camera|point[- ]and[- ]shoot|compact camera|monorail|professional|camera|35\s?mm|120|medium format|large format|half[- ]frame|panoramic)\b/gi;
+function stripDescriptors(query) {
+    const out = query.replace(DESCRIPTORS, ' ').replace(/\s+/g, ' ').trim();
+    if (!out || out === query.trim())
+        return null;
+    // Must leave a real NAME behind — a bare brand would match half the corpus.
+    // A single token qualifies only when it carries a model part: "Zenit-E" and
+    // "F3HP" are whole names, "Canon" is not. Counting whitespace tokens alone
+    // was too strict and dropped "Zenit-E 35mm SLR" on the floor.
+    const words = out.split(/\s+/);
+    if (words.length < 2 && !/[\d-]/.test(out))
+        return null;
+    return out;
+}
 function marketSplits(query) {
     const out = new Set();
     const brand = query.trim().split(/\s+/)[0] ?? '';
@@ -434,8 +460,16 @@ export function matchOne(query, catalog, kind, policy, depth = 0) {
     // `review` and never auto-links. `depth` bounds the recursion at one level.
     if (decision === 'no-match' && depth === 0) {
         let alt = null;
-        for (const sub of marketSplits(query)) {
+        const stripped = stripDescriptors(query);
+        const subs = stripped ? [stripped, ...marketSplits(stripped), ...marketSplits(query)] : marketSplits(query);
+        for (const sub of subs) {
             const r = matchOne(sub, catalog, kind, policy, 1);
+            // qualConflict against the ORIGINAL query, not the stripped one: the
+            // descriptor strip removes exactly the rangefinder/SLR words that guard
+            // reads, so re-applying it here is what keeps an RF query off an SLR
+            // record when the fallback is the thing that found it.
+            if (r.best && qualConflict(query, r.best.entry.title))
+                continue;
             if (r.decision !== 'no-match' && (!alt || (r.best?.s ?? 0) > (alt.best?.s ?? 0)))
                 alt = r;
         }

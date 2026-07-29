@@ -80,6 +80,21 @@ describe('cross-market names', () => {
     const r = matchOne('Sony Alpha A77', catalog, 'camera')
     expect(r.decision).not.toBe('no-match')
   })
+
+  // A seller appends the category; a catalogue name does not carry it. "Canon
+  // P rangefinder" scored 0.09 against a record literally called "Canon P".
+  it('a seller category descriptor does not hide the record', () => {
+    for (const q of ['Canon P rangefinder', 'Zorki 4 rangefinder', 'Zenit-E 35mm SLR']) {
+      expect(matchOne(q, catalog, 'camera').decision, q).not.toBe('no-match')
+    }
+  })
+
+  // The strip removes exactly the words qualConflict reads, so the guard is
+  // re-applied against the ORIGINAL query. An RF query must not land on an SLR.
+  it('stripping descriptors does not disarm the RF/SLR guard', () => {
+    const r = matchOne('Canon P rangefinder', catalog, 'camera')
+    expect(r.best?.entry.title ?? '').not.toMatch(/\bSLR\b/i)
+  })
 })
 
 describe('typo tolerance', () => {
