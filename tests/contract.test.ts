@@ -679,6 +679,24 @@ describe('body_type + traits', () => {
     expect(codes({ traits: ['instant'] })).toContain('traits.enum')
   })
 
+  it('keeps the finder and the automation on separate axes', () => {
+    // An Olympus Mju-II is both: its source NAMES a fixed internal finder, and
+    // it is a snapshot camera. While point-and-shoot was a body_type the two
+    // competed for one slot and the finder lost on 1,262 records.
+    const r = check({ body_type: 'viewfinder', traits: ['point-and-shoot'] })
+    expect(r.ok, formatValidation(r, 'mju-ii')).toBe(true)
+  })
+
+  it('rejects point-and-shoot as a body_type — it is a trait now', () => {
+    expect(codes({ body_type: 'point-and-shoot' })).toContain('body_type.enum')
+  })
+
+  it('accepts compact as the finder-less body', () => {
+    // A Canon IXUS: composed on a screen, so there is no finder to name.
+    const r = check({ body_type: 'compact', traits: ['point-and-shoot'] })
+    expect(r.ok, formatValidation(r, 'ixus')).toBe(true)
+  })
+
   it('rejects the deprecated flag disagreeing with the trait', () => {
     // The 26 pre-decomposition rows that said folder + folding=0, in contract form.
     expect(codes({ body_type: 'viewfinder', traits: ['folding'], folding: 0 })).toContain('folding.contradiction')

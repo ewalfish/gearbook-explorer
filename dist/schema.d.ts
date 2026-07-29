@@ -58,8 +58,23 @@ export type TakesVia = (typeof TAKES_VIA)[number];
  * focusing system, not a modifier on one. `pseudo-tlr` likewise: its whole
  * point is that the top lens is NOT a taking-lens reflex, so calling it a `tlr`
  * with a modifier would make the finder axis say something false.
+ *
+ * `compact` replaced `point-and-shoot` here, and the swap is the same lesson as
+ * `half-frame` below, one axis over. Every other value answers "how do you AIM
+ * it"; point-and-shoot answered "how much does it do for you" — a different
+ * question competing for the same single-valued slot. An Olympus Mju-II had to
+ * choose between having an optical finder and being a snapshot camera, and the
+ * data chose wrong 1,262 times: cameras whose source record NAMES a fixed
+ * internal finder shipped as point-and-shoot with that finder discarded. The
+ * automation fact is now the `point-and-shoot` TRAIT, so both ship.
+ *
+ * `compact` is admittedly not a viewing system either — but this list has never
+ * been purely that. `box` is a form factor and `bridge` is a market segment,
+ * both here because they are what those bodies honestly are. PRECEDENCE: a
+ * compact that states an optical finder gets that finder; `compact` is what
+ * body_type says when there is no finder to name.
  */
-export declare const BODY_TYPES: readonly ["slr", "tlr", "pseudo-tlr", "rangefinder", "viewfinder", "view", "box", "point-and-shoot", "bridge", "mirrorless", "pinhole", "other"];
+export declare const BODY_TYPES: readonly ["slr", "tlr", "pseudo-tlr", "rangefinder", "viewfinder", "view", "box", "compact", "bridge", "mirrorless", "pinhole", "other"];
 export type BodyType = (typeof BODY_TYPES)[number];
 /**
  * Orthogonal modifiers — form factor and purpose. Multi-valued, because a
@@ -79,10 +94,10 @@ export type BodyType = (typeof BODY_TYPES)[number];
  * with an 18×24 frame_size never got the trait, so it was useless as a filter
  * as well. One fact, one field.
  *
- * `motorized` is likewise absent: no source states it, and a vocabulary value
- * nothing can populate is a promise the asset does not keep.
+ * `motorized` was retired on that same reasoning and then restored — see the
+ * note on the value itself. The rule was right; the premise was not.
  */
-export declare const TRAITS: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "instant-print"];
+export declare const TRAITS: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "instant-print", "motorized", "point-and-shoot"];
 export type Trait = (typeof TRAITS)[number];
 /**
  * A lens is sold in the mounts it is sold in — that is a SET, and it was
@@ -174,14 +189,14 @@ export declare const ASSET_SCHEMA: {
                             };
                         };
                         readonly body_type: {
-                            readonly enum: readonly ["slr", "tlr", "pseudo-tlr", "rangefinder", "viewfinder", "view", "box", "point-and-shoot", "bridge", "mirrorless", "pinhole", "other"];
+                            readonly enum: readonly ["slr", "tlr", "pseudo-tlr", "rangefinder", "viewfinder", "view", "box", "compact", "bridge", "mirrorless", "pinhole", "other"];
                         };
                         readonly traits: {
                             readonly type: "array";
                             readonly minItems: 1;
                             readonly uniqueItems: true;
                             readonly items: {
-                                readonly enum: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "instant-print"];
+                                readonly enum: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "instant-print", "motorized", "point-and-shoot"];
                             };
                         };
                         readonly mounts: {

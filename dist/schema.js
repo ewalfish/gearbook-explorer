@@ -55,10 +55,25 @@ export const TAKES_VIA = ['adapter', 'back', 'insert', 'mask', 'respool'];
  * focusing system, not a modifier on one. `pseudo-tlr` likewise: its whole
  * point is that the top lens is NOT a taking-lens reflex, so calling it a `tlr`
  * with a modifier would make the finder axis say something false.
+ *
+ * `compact` replaced `point-and-shoot` here, and the swap is the same lesson as
+ * `half-frame` below, one axis over. Every other value answers "how do you AIM
+ * it"; point-and-shoot answered "how much does it do for you" — a different
+ * question competing for the same single-valued slot. An Olympus Mju-II had to
+ * choose between having an optical finder and being a snapshot camera, and the
+ * data chose wrong 1,262 times: cameras whose source record NAMES a fixed
+ * internal finder shipped as point-and-shoot with that finder discarded. The
+ * automation fact is now the `point-and-shoot` TRAIT, so both ship.
+ *
+ * `compact` is admittedly not a viewing system either — but this list has never
+ * been purely that. `box` is a form factor and `bridge` is a market segment,
+ * both here because they are what those bodies honestly are. PRECEDENCE: a
+ * compact that states an optical finder gets that finder; `compact` is what
+ * body_type says when there is no finder to name.
  */
 export const BODY_TYPES = [
     'slr', 'tlr', 'pseudo-tlr', 'rangefinder', 'viewfinder', 'view', 'box',
-    'point-and-shoot', 'bridge', 'mirrorless', 'pinhole', 'other',
+    'compact', 'bridge', 'mirrorless', 'pinhole', 'other',
 ];
 /**
  * Orthogonal modifiers — form factor and purpose. Multi-valued, because a
@@ -78,8 +93,8 @@ export const BODY_TYPES = [
  * with an 18×24 frame_size never got the trait, so it was useless as a filter
  * as well. One fact, one field.
  *
- * `motorized` is likewise absent: no source states it, and a vocabulary value
- * nothing can populate is a promise the asset does not keep.
+ * `motorized` was retired on that same reasoning and then restored — see the
+ * note on the value itself. The rule was right; the premise was not.
  */
 export const TRAITS = [
     // form factor
@@ -92,6 +107,21 @@ export const TRAITS = [
     // this trait is where the printing lives. ZINK is the tell: dye-crystal
     // thermal paper, no emulsion, no development — never a capture medium.
     'instant-print',
+    // Restored after being retired for want of a source: collection-appareils'
+    // `Avancement` field states the film transport on 16,315 records, and 2,037
+    // of them say a motor drives it. The rule held — a value nothing can
+    // populate does not belong — it was the premise that was wrong.
+    'motorized',
+    // automation — moved off body_type, where it was the odd member of a list of
+    // viewing systems. Asserted only where BOTH halves are stated: the source
+    // files the camera under Compact AND names the focus as autofocus or
+    // fix-focus (3,545 records). The 1,442 manual scale-focus compacts are
+    // excluded on purpose — on a Penti I you set the distance yourself, which is
+    // the opposite of the claim — as are fix-focus box cameras, which the source
+    // never files under Compact. Note this does NOT duplicate `compact`: an
+    // Mju-II is body_type `viewfinder` (its finder is stated) AND trait
+    // point-and-shoot, so neither value implies the other.
+    'point-and-shoot',
 ];
 /**
  * A lens is sold in the mounts it is sold in — that is a SET, and it was
