@@ -460,9 +460,25 @@ export function matchOne(query, catalog, kind, policy, depth = 0) {
     // `review` and never auto-links. `depth` bounds the recursion at one level.
     if (decision === 'no-match' && depth === 0) {
         let alt = null;
+        let altSafe = false;
         const stripped = stripDescriptors(query);
-        const subs = stripped ? [stripped, ...marketSplits(stripped), ...marketSplits(query)] : marketSplits(query);
-        for (const sub of subs) {
+        // Two kinds of sub-query, and they do NOT deserve the same confidence.
+        //
+        // A DESCRIPTOR strip removes category words only ("Canon P rangefinder" →
+        // "Canon P"): nothing model-distinguishing is lost, so if the remainder
+        // matches outright it is as good a link as the bare query would have been.
+        // A MARKET SPLIT drops tokens that may carry the model ("… Rebel T3 1100D
+        // Kiss X50" → "… Rebel T3"), which can land on a sibling — T3 vs T3i — so
+        // it stays capped at review however well it scores.
+        const subs = [];
+        if (stripped)
+            subs.push({ q: stripped, safe: true });
+        for (const s of marketSplits(stripped ?? query))
+            subs.push({ q: s, safe: false });
+        if (stripped)
+            for (const s of marketSplits(query))
+                subs.push({ q: s, safe: false });
+        for (const { q: sub, safe } of subs) {
             const r = matchOne(sub, catalog, kind, policy, 1);
             // qualConflict against the ORIGINAL query, not the stripped one: the
             // descriptor strip removes exactly the rangefinder/SLR words that guard
@@ -470,11 +486,24 @@ export function matchOne(query, catalog, kind, policy, depth = 0) {
             // record when the fallback is the thing that found it.
             if (r.best && qualConflict(query, r.best.entry.title))
                 continue;
-            if (r.decision !== 'no-match' && (!alt || (r.best?.s ?? 0) > (alt.best?.s ?? 0)))
+            if (r.decision !== 'no-match' && (!alt || (r.best?.s ?? 0) > (alt.best?.s ?? 0))) {
                 alt = r;
+                altSafe = safe;
+            }
         }
-        if (alt?.best)
-            return { best: alt.best, scored: alt.scored, ambiguous: true, decision: 'review' };
+        if (alt?.best) {
+            // A descriptor-only strip that the recursive call rated `auto`, and that
+            // is unambiguous, keeps that rating. Everything else is review.
+            //
+            // Plus the digit gate: removing a category word cannot change a model
+            // NUMBER, so if the matched title's digits differ from the stripped
+            // query's, the link was found by something other than the strip and has
+            // not earned auto. This is the guard that keeps "Maxxum 500si" off the
+            // "Maxxum 400si" record — a different camera that scored 0.90.
+            const sameDigits = digitSeqs(stripped ?? '').join(',') === digitSeqs(alt.best.entry.title).join(',');
+            const keepAuto = altSafe && alt.decision === 'auto' && !alt.ambiguous && sameDigits;
+            return { best: alt.best, scored: alt.scored, ambiguous: !keepAuto, decision: keepAuto ? 'auto' : 'review' };
+        }
     }
     return { best, scored: scored.slice(0, 5), ambiguous, decision };
 }
