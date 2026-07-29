@@ -45,7 +45,7 @@ export declare function candidates(query: string, catalog: MatchCatalog, kind: K
     shared: number;
 }[];
 export declare function features(query: string, entry: MatchEntry): number[];
-export declare function matchOne(query: string, catalog: MatchCatalog, kind?: Kind | null, policy?: MatchPolicy | number[]): MatchResult;
+export declare function matchOne(query: string, catalog: MatchCatalog, kind?: Kind | null, policy?: MatchPolicy | number[], depth?: number): MatchResult;
 /** Convenience: match many items at once. */
 export declare function matchBatch(items: {
     query: string;

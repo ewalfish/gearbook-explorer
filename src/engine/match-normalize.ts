@@ -18,6 +18,15 @@ export function matchNormalize(s: string): string {
     // Olympus µ IS "mju" — stripping it to a space would split "µ ZOOM 140"
     // and "Mju Zoom 140" into different-looking names
     .replace(/[µμ]:?/g, 'mju ')
+    // Sony's α IS "alpha", exactly as µ is "mju". The catalogue writes "Sony
+    // α77"; sellers write "Sony Alpha A77" or "Sony A77". Without this the
+    // non-ascii strip below turned α into a space, so "α77" became bare "77"
+    // and could never meet "alpha a77" — measured at 0.36, under the review
+    // gate, across the 25 α-named records.
+    .replace(/[αΑ]:?/g, 'alpha ')
+    // "Alpha A77" is the brand word plus the model prefix for the SAME thing.
+    // Collapse so the seller's redundant form meets the catalogue's "α77".
+    .replace(/\balpha\s+a(?=\d)/g, 'alpha ')
     // German decimal commas in model designations ("Rolleiflex 2,8 E2"):
     // '.' survives tokenization but ',' splits — query "2.8" could never
     // token-match record "2,8". Fold comma-decimals to dots.

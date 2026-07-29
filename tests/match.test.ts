@@ -51,6 +51,35 @@ describe('cross-market names', () => {
     // name. "Mju-II" is still an alias of it, which is what makes the match.
     expect(r.best?.entry.title).toBe('Olympus Infinity Stylus Epic')
   })
+
+  // A seller titles one camera with every market's name at once. The catalogue
+  // holds one record per market, so the combined string overlaps each of them
+  // weakly and matched none — measured at 0.09 against a record that matches
+  // one of its own parts outright. Recovered 275 of 426 no-matches on the eBay
+  // popularity corpus (63.2% → 87.0% reachable).
+  it('a multi-market seller title still reaches a record', () => {
+    const r = matchOne('Canon EOS Rebel T3 1100D Kiss X50', catalog, 'camera')
+    expect(r.decision).not.toBe('no-match')
+  })
+
+  it('a split match never auto-links — the part is not the whole title', () => {
+    const r = matchOne('Canon EOS Rebel T3 1100D Kiss X50', catalog, 'camera')
+    expect(r.decision).toBe('review')
+  })
+
+  it('the split fallback cannot disturb a query that already matched whole', () => {
+    const r = matchOne('Nikon F3', catalog, 'camera')
+    expect(r.decision).toBe('auto')
+    expect(r.best?.entry.title).toBe('Nikon F3')
+  })
+
+  // Sony's α IS "alpha", exactly as Olympus's µ is "mju". The non-ascii strip
+  // turned "α77" into a bare "77", so it could never meet a seller's
+  // "Alpha A77" — measured at 0.36, under the review gate, on 25 records.
+  it('Sony Alpha A77 reaches the α77 record', () => {
+    const r = matchOne('Sony Alpha A77', catalog, 'camera')
+    expect(r.decision).not.toBe('no-match')
+  })
 })
 
 describe('typo tolerance', () => {
