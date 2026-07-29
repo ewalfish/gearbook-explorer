@@ -84,6 +84,27 @@ export type BodyType = (typeof BODY_TYPES)[number];
  */
 export declare const TRAITS: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "instant-print"];
 export type Trait = (typeof TRAITS)[number];
+/**
+ * A lens is sold in the mounts it is sold in — that is a SET, and it was
+ * shipping as a comma-joined string.
+ *
+ * 1,292 of 5,013 lenses carry more than one: a third-party zoom exists as
+ * "Contax/Yashica, Canon FD, Konica AR, M42, Nikon F, Olympus OM, Pentax K,
+ * Minolta SR", one value, unsearchable. So the most valuable question anyone
+ * asks of this index — *what fits my camera?* — could only be answered by
+ * string equality, and equality hides most of the answer:
+ *
+ *   Nikon F      412 lenses by equality    1,320 by membership    908 hidden
+ *   Pentax K     323                       1,038                  715
+ *   Canon EF     168                         701                   533
+ *
+ * `mounts` is that set. `mount` still ships, derived by joining it, so nothing
+ * downstream breaks while consumers move over — and because it is derived from
+ * the same array, the two can no longer disagree.
+ *
+ * Cameras keep singular `lens_mount`: a body has one native mount.
+ */
+export declare const MOUNTS_FIELD = "mounts";
 /** Current contract version. Bumped only by a breaking asset change. */
 export declare const ASSET_CONTRACT = 1;
 export interface ValidationIssue {
@@ -161,6 +182,15 @@ export declare const ASSET_SCHEMA: {
                             readonly uniqueItems: true;
                             readonly items: {
                                 readonly enum: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "instant-print"];
+                            };
+                        };
+                        readonly mounts: {
+                            readonly type: "array";
+                            readonly minItems: 1;
+                            readonly uniqueItems: true;
+                            readonly items: {
+                                readonly type: "string";
+                                readonly minLength: 1;
                             };
                         };
                         readonly market_names: {

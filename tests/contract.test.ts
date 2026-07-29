@@ -727,3 +727,40 @@ describe('body_type + traits', () => {
     expect(r.ok, formatValidation(r, 'shipped asset axes')).toBe(true)
   })
 })
+
+// ── mounts ──────────────────────────────────────────────────────────────────
+// A lens is sold in a SET of mounts and it shipped as a comma-joined string, so
+// the question this index exists to answer — what fits my camera? — could only
+// be asked by equality, and equality hid 908 of the 1,320 lenses that fit a
+// Nikon F.
+describe('lens mounts', () => {
+  it('every multi-mount lens is reachable by each of its mounts', () => {
+    // Vacuous until the asset carrying `mounts` is released, then real: the
+    // data/gearbook in THIS repo is the published asset, which the forge
+    // regenerates and a release copies in.
+    const multi = lenses.filter((l) => ((l.data as { mounts?: string[] }).mounts ?? []).length > 1)
+    if (!multi.length) return
+    const reachable = (m: string) => lenses.filter((l) => ((l.data as { mounts?: string[] }).mounts ?? []).includes(m)).length
+    const byEquality = (m: string) => lenses.filter((l) => (l.data as { mount?: string }).mount === m).length
+    expect(reachable('Nikon F')).toBeGreaterThan(byEquality('Nikon F'))
+  })
+
+  it('no entry is itself a joined list', () => {
+    const joined = lenses.filter((l) => ((l.data as { mounts?: string[] }).mounts ?? []).some((m) => m.includes(',')))
+    expect(joined.map((l) => l.name)).toEqual([])
+  })
+
+  it('the deprecated string is exactly the array joined, on every lens', () => {
+    // Derived, not computed alongside — which is what makes them unable to drift.
+    const drifted = lenses.filter((l) => {
+      const d = l.data as { mounts?: string[]; mount?: string }
+      return d.mounts && d.mount !== d.mounts.join(', ')
+    })
+    expect(drifted.map((l) => l.name)).toEqual([])
+  })
+
+  it('keeps mounts off cameras — a body has one lens_mount', () => {
+    const wrong = cameras.filter((c) => (c.data as { mounts?: unknown }).mounts !== undefined)
+    expect(wrong.map((c) => c.name)).toEqual([])
+  })
+})

@@ -74,7 +74,11 @@ export interface GearRecord {
     sensor_size?: string
     sensor_tech?: string
     sensor_resolution_mp?: number
-    // lens
+    // lens — `mounts` is every mount this lens was sold in; `mount` is that
+    // array joined, kept while consumers move over. 1,292 lenses have more
+    // than one, and as a string they were unfindable.
+    mounts?: string[]
+    /** @deprecated `mounts.join(', ')`. */
     mount?: string
     focal_length?: string | number
     focal_min_mm?: number

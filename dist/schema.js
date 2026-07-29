@@ -93,6 +93,27 @@ export const TRAITS = [
     // thermal paper, no emulsion, no development — never a capture medium.
     'instant-print',
 ];
+/**
+ * A lens is sold in the mounts it is sold in — that is a SET, and it was
+ * shipping as a comma-joined string.
+ *
+ * 1,292 of 5,013 lenses carry more than one: a third-party zoom exists as
+ * "Contax/Yashica, Canon FD, Konica AR, M42, Nikon F, Olympus OM, Pentax K,
+ * Minolta SR", one value, unsearchable. So the most valuable question anyone
+ * asks of this index — *what fits my camera?* — could only be answered by
+ * string equality, and equality hides most of the answer:
+ *
+ *   Nikon F      412 lenses by equality    1,320 by membership    908 hidden
+ *   Pentax K     323                       1,038                  715
+ *   Canon EF     168                         701                   533
+ *
+ * `mounts` is that set. `mount` still ships, derived by joining it, so nothing
+ * downstream breaks while consumers move over — and because it is derived from
+ * the same array, the two can no longer disagree.
+ *
+ * Cameras keep singular `lens_mount`: a body has one native mount.
+ */
+export const MOUNTS_FIELD = 'mounts';
 /** Current contract version. Bumped only by a breaking asset change. */
 export const ASSET_CONTRACT = 1;
 /** JSON Schema for the row shapes, for editors and external tooling. */
@@ -142,6 +163,9 @@ export const ASSET_SCHEMA = {
                         // release. See BODY_TYPES / TRAITS.
                         body_type: { enum: [...BODY_TYPES] },
                         traits: { type: 'array', minItems: 1, uniqueItems: true, items: { enum: [...TRAITS] } },
+                        // Lenses only: every mount this lens was sold in. `mount` is the
+                        // same set joined, kept for the transition. See MOUNTS_FIELD.
+                        mounts: { type: 'array', minItems: 1, uniqueItems: true, items: { type: 'string', minLength: 1 } },
                         market_names: {
                             type: 'array', minItems: 2,
                             items: {
@@ -257,8 +281,35 @@ export function validateAsset(input) {
                     add(file, line, 'body_type.on-lens', 'body_type is a camera field');
                 if (tr !== undefined)
                     add(file, line, 'traits.on-lens', 'traits is a camera field');
+                // ── mounts ────────────────────────────────────────────────────────
+                const ms = data.mounts;
+                if (ms !== undefined) {
+                    if (!Array.isArray(ms) || ms.length === 0) {
+                        add(file, line, 'mounts.shape', 'mounts must be a non-empty array or absent');
+                    }
+                    else {
+                        if (new Set(ms.map(String)).size !== ms.length)
+                            add(file, line, 'mounts.duplicate', 'a mount is listed twice');
+                        for (const m of ms) {
+                            if (!isStr(m))
+                                add(file, line, 'mounts.value', 'mount entries must be non-empty strings');
+                            // A single entry containing a comma means a SET leaked back in as
+                            // a string — the exact defect this field exists to retire.
+                            else if (String(m).includes(','))
+                                add(file, line, 'mounts.joined', `mount ${JSON.stringify(m)} is a joined list, not one mount`);
+                        }
+                        // `mount` is this array joined. Deriving it from the array is what
+                        // makes them incapable of disagreeing; this checks the producer
+                        // actually did that rather than computing each separately.
+                        if (data.mount !== undefined && data.mount !== ms.join(', ')) {
+                            add(file, line, 'mount.derived-mismatch', `mount ${JSON.stringify(data.mount)} is not mounts.join(', ')`);
+                        }
+                    }
+                }
             }
             else {
+                if (data.mounts !== undefined)
+                    add(file, line, 'mounts.on-camera', 'mounts is a lens field; a body has one lens_mount');
                 if (bt !== undefined && !BODY_TYPES.includes(bt)) {
                     add(file, line, 'body_type.enum', `body_type ${JSON.stringify(bt)} is not in the vocabulary`);
                 }
