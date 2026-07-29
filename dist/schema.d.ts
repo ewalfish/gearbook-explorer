@@ -82,7 +82,7 @@ export type BodyType = (typeof BODY_TYPES)[number];
  * `motorized` is likewise absent: no source states it, and a vocabulary value
  * nothing can populate is a promise the asset does not keep.
  */
-export declare const TRAITS: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine"];
+export declare const TRAITS: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "instant-print"];
 export type Trait = (typeof TRAITS)[number];
 /** Current contract version. Bumped only by a breaking asset change. */
 export declare const ASSET_CONTRACT = 1;
@@ -160,7 +160,7 @@ export declare const ASSET_SCHEMA: {
                             readonly minItems: 1;
                             readonly uniqueItems: true;
                             readonly items: {
-                                readonly enum: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine"];
+                                readonly enum: readonly ["folding", "subminiature", "panoramic", "stereo", "press", "aerial", "detective", "movie", "underwater", "toy", "magazine", "instant-print"];
                             };
                         };
                         readonly market_names: {

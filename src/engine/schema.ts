@@ -96,6 +96,12 @@ export const TRAITS = [
   'folding', 'subminiature', 'panoramic', 'stereo',
   // purpose / genre
   'press', 'aerial', 'detective', 'movie', 'underwater', 'toy', 'magazine',
+  // output — NOT a medium. A camera that exposes a sensor and prints on ZINK
+  // paper captures digitally; the instant part happens afterwards. `medium`
+  // answers what the image is captured ON, so these are medium=digital, and
+  // this trait is where the printing lives. ZINK is the tell: dye-crystal
+  // thermal paper, no emulsion, no development — never a capture medium.
+  'instant-print',
 ] as const
 export type Trait = (typeof TRAITS)[number]
 
