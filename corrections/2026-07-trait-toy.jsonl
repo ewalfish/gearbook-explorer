@@ -1,0 +1,5 @@
+{"name":"Suntone MM250","kind":"camera","set":{"traits":[]},"note":"Remove toy trait: Budget compact camera, not a plastic-lensed intentional toy camera. Audit 2026-07-30."}
+{"name":"Smena 8m","kind":"camera","set":{"traits":[]},"note":"Remove toy trait: Soviet rangefinder camera with proper optics, not a toy camera. Audit 2026-07-30."}
+{"name":"Holga 135","kind":"camera","set":{"traits":["point-and-shoot","toy"]},"note":"Add toy trait: 35mm plastic-lens toy camera, classic in lomography/experimental photography. Audit 2026-07-30."}
+{"name":"Vivitar Ultra Wide & Slim","kind":"camera","set":{"traits":["point-and-shoot","toy"]},"note":"Add toy trait: Plastic-lensed wide-angle toy camera, popular in lomography. Audit 2026-07-30."}
+{"name":"Superheadz Golden Half","kind":"camera","set":{"traits":["toy"]},"note":"Add toy trait: Plastic half-frame toy camera. Audit 2026-07-30."}

@@ -1,17 +1,7 @@
 {"name":"Panasonic Lumix DMC-G2","kind":"camera","set":{"traits":null},"note":"mirrorless with Micro Four Thirds mount; point-and-shoot is for fixed-lens cameras only"}
 {"name":"Canon EOS 60D","kind":"camera","set":{"traits":null},"note":"slr with Canon EF mount; point-and-shoot is for fixed-lens cameras only"}
 {"name":"Nikon D3000","kind":"camera","set":{"traits":null},"note":"slr with Nikon F mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Fuji DL-150","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Manufrance Luminor","kind":"camera","set":{"traits":["detective","folding"]},"note":"view with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
 {"name":"Minolta Maxxum 3000i","kind":"camera","set":{"traits":["motorized"]},"note":"slr with Minolta/Sony A mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Panasonic Lumix DMC-FX700","kind":"camera","set":{"traits":null},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Spartus Super R-I","kind":"camera","set":{"traits":null},"note":"tlr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Splendidflex","kind":"camera","set":{"traits":["toy"]},"note":"pseudo-tlr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Minolta 110 Zoom","kind":"camera","set":{"traits":["motorized","subminiature"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Ricoh Shotmaster Ultra Dual Date","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Ricoh RZ-125","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Ricoh RZ-115","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
-{"name":"Ricoh Shotmaster Zoom 70 Date","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
 {"name":"Fujifilm Instax Mini 7","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
 {"name":"Fujifilm Instax Mini 7s","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
 {"name":"Fujifilm Instax Mini 7 Plus","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
