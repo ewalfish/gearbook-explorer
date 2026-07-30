@@ -1,0 +1,153 @@
+{"name":"Archimedes","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Detective Le Radieux","kind":"camera","set":{"traits":[]},"note":"explicit_detective_in_name"}
+{"name":"Eastman Detective Camera","kind":"camera","set":{"traits":[]},"note":"explicit_detective_in_name"}
+{"name":"Murer's Express Newness","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Scovill Waterbury Detective Camera","kind":"camera","set":{"traits":[]},"note":"explicit_detective_in_name"}
+{"name":"Vélocigraphe","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Huttig Detective Monopole","kind":"camera","set":{"traits":[]},"note":"explicit_detective_in_name"}
+{"name":"Leroy Stéréo-Panoramique","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Derogy Le Stéréostène","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Photo-Opera Mignon Stereo","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Target Favori-Stéréo","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Ica Plaskop (602)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Ica Stéréofix (604)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Cadot Ticket N° 2","kind":"camera","set":{"traits":["folding","stereo"]},"note":"stereo_false_positive"}
+{"name":"Gaumont Stéréospido","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Gaumont Stéréospido Métallique (mod A)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Caillon Bioscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Hermagis La Stéréo-Complète Modèle A","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Hermagis La Stéréo-Complète Modèle B","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Contessa-Nettel Steroco","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria Jules Jidé Stéréo","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa CN","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa AJ","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa BJ","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Ica Polyscope Stéréo Panoramique (609/1)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Ica Polyskop (606/1)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Joux Stéréo-Pochette N° 2","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Leroy Stéréo Minimus","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Summum Summum Modèle C","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Summum Summum Minimum","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mackenstein Iconoscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mackenstein Kallista","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mackenstein Sumo","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Macris-Boucher Nil Melior","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Lièbe Monobloc","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Murer et Duroni Express Newness I","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Grands magasins du Louvre Stéréo-Bloc Louvre","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa A","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Tiranty Stéréo-Pocket Sigma","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Gaumont Stéréo Block-Notes Rigide","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Target Le Céleste Stéréoscopique","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa BN","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa AN","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa KN","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Zion Zionscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Rietzschel Kosmo-Clack","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Voigtlander Stereophotoskop","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Jeanneret et Cie Monobloc simplifié","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope Simplifié N° 3","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria Jules Scénoscope type I","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria Jules Scénoscope type II","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria Jules Scénoscope type III","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria Jules Scénoscope type IV","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria Jules Scenoscope modèle S.C.","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Korsten Litote","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria Jules Scenoscope Stéréo-panoramique","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Rollei Heidoscop","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Photo-Plait Platoscope N° 2","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Cabossel et Hude Graphoscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mattioli La Gamine","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Clément et Gilmer Clegil","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mazo Hakaniscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Tiranty Aristographe modèle B","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Suter Detective","kind":"camera","set":{"traits":[]},"note":"explicit_detective_in_name"}
+{"name":"Union Stéréo-Union de Luxe","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Aubertin Lithloscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Boucher Monobloc","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Valette et Cie Discope Colmont","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Gaumont PhotoPlastik","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Hanau Le Marsouin N° 1","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Artis-Photo Podor","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mackenstein Francia N° 4 (Stéréo-Panoramique)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Summum Summum Special","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mattioli Le Lutece","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Photo-Amateur Photo-Amateur","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Zion Star-Stereo","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Lioret Aplinex","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Orama","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Zeiss Ikon Plaskop (602)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Murer et Duroni Express Newness P","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Franceville Express-Franceville Stéréoscopique","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Hanau Hermosa N° 1","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Joux Alethoscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mackenstein Francia N° 8 (stéréo-panoramique)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Rollei Rolleidoscop (K.St.3 131)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Sigriste Sigriste stéréo","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Zulauf Polyskop","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"A.F.B. Oloscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Zulauf Polyscop","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Hasselblad Svenska Stereoskop Express","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Ilex Camera Works Detective","kind":"camera","set":{"traits":[]},"note":"explicit_detective_in_name"}
+{"name":"Le Docte Exell Detective universel","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Le Docte Lilliput Detective Stereoscopique","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Dumont Stéréo-Indiscret","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Auguin Luciphote","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Voigtlander Stereflektoskop","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Photographie Vulgarisatrice La Vulga N° 193","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Jeanneret et Cie Monobloc","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mackenstein Francia N° 6c (stéréo-panoramique)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Mackenstein Francia N° 5 (stéréo-panoramique)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Summum Summum Stéréo-Panoramique (modèle 1927)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Krugener Delta Magazine Detective","kind":"camera","set":{"traits":[]},"note":"explicit_detective_in_name"}
+{"name":"Richard Jules Homeoscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Sterea","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Boucher Monobloc Simplifié","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Macris-Boucher Nil Melior Colonial","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Darlot Monobloc","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Darlot Monobloc simplifié","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Demaria-Lapierre Capsa K","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Cadot Scénographe","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Caillon Binopé","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Caillon Biopta","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Caillon Bioscope série K N°1","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Caillon Megascope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Caillon Scopéa","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Central-Photo Noviscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Grands magasins du Louvre Omniscope Louvre Panoramique","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Leroy Stéréocycle","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Manufrance Luminor Stéréo à chassis magasin","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Manufrance Luminor Stéréo à chassis simple","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Manufrance Luminor Stéréo panoramique à chassis magasin","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Manufrance Stéréo Bloc","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Photo-Hall Stéréo Focal Plane","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Photo-Plait Platoscope N° 1","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Photo-Plait Studioscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 1","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 10","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 11","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 1A","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 2","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 2A","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 2b","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 3","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 3A","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 4","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 4A","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 53","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 54","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 5A","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 5L","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 6A","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 6B","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 6BL","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 7B","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 7BP","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Richard Jules Vérascope N° 94","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Suter Polyscope","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Tiranty Vérographe","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Tiranty Vérographe Tropical","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Zeiss Ikon Stereo-Polyscop (609/4)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
+{"name":"Zeiss Ikon Steroco (612/1)","kind":"camera","set":{"traits":["stereo"]},"note":"stereo_false_positive"}
