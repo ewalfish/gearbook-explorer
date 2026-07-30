@@ -1,0 +1,52 @@
+{"name":"Panasonic Lumix DMC-G2","kind":"camera","set":{"traits":null},"note":"mirrorless with Micro Four Thirds mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Canon EOS 60D","kind":"camera","set":{"traits":null},"note":"slr with Canon EF mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Nikon D3000","kind":"camera","set":{"traits":null},"note":"slr with Nikon F mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Fuji DL-150","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Manufrance Luminor","kind":"camera","set":{"traits":["detective","folding"]},"note":"view with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Minolta Maxxum 3000i","kind":"camera","set":{"traits":["motorized"]},"note":"slr with Minolta/Sony A mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Panasonic Lumix DMC-FX700","kind":"camera","set":{"traits":null},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Spartus Super R-I","kind":"camera","set":{"traits":null},"note":"tlr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Splendidflex","kind":"camera","set":{"traits":["toy"]},"note":"pseudo-tlr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Minolta 110 Zoom","kind":"camera","set":{"traits":["motorized","subminiature"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Ricoh Shotmaster Ultra Dual Date","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Ricoh RZ-125","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Ricoh RZ-115","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Ricoh Shotmaster Zoom 70 Date","kind":"camera","set":{"traits":["motorized"]},"note":"slr with interchangeable mount; point-and-shoot is for fixed-lens cameras only"}
+{"name":"Fujifilm Instax Mini 7","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 7s","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 7 Plus","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 8","kind":"camera","set":{"traits":["instant-print","motorized"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 8 Plus","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 9","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 11","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 12","kind":"camera","set":{"traits":["instant-print","motorized"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 13","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 25","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 26","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 40","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 41","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 50S","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 70","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 90","kind":"camera","set":{"traits":["instant-print","motorized"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 99","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini LiPlay","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini LiPlay Plus","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini Evo","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Wide 200","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Wide 210","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Wide 300","kind":"camera","set":{"traits":["instant-print","motorized"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Wide 400","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Wide Evo","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Square SQ1","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Square SQ6","kind":"camera","set":{"traits":["instant-print","motorized"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Square SQ10","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=digital"}
+{"name":"Fujifilm Instax Square SQ20","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=digital"}
+{"name":"Fujifilm Instax Square SQ40","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax 100","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax 200 series","kind":"camera","set":{"traits":["instant-print","motorized"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 10","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 20","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax 500AF","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax Mini 50","kind":"camera","set":{"traits":["instant-print","motorized"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Fujifilm Instax 200","kind":"camera","set":{"traits":["instant-print","motorized"]},"note":"Instax prints instantly on special film; medium=instant"}
+{"name":"Instax Mini 9","kind":"camera","set":{"traits":["instant-print"]},"note":"Instax prints instantly on special film; medium=instant"}

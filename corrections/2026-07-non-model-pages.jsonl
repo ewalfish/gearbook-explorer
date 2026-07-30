@@ -1,0 +1,88 @@
+{"name":"Advantix","kind":"camera","set":{"entity_kind":"format"},"note":"known film format"}
+{"name":"Alpa","kind":"camera","set":{"entity_kind":"system"},"note":"system page without product specs"}
+{"name":"Argentum","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Argus","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Bertram","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Bolta","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Box camera","kind":"camera","set":{"entity_kind":"category"},"note":"category page pattern"}
+{"name":"Camerabau Frankfurt-Main","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Chicago Aerial Industries","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Chamonix","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Compco","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Exakta","kind":"camera","set":{"entity_kind":"system"},"note":"system page without product specs"}
+{"name":"FATIF","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Field camera","kind":"camera","set":{"entity_kind":"category"},"note":"category page pattern"}
+{"name":"Filma","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Four Thirds","kind":"camera","set":{"entity_kind":"system"},"note":"system page without product specs"}
+{"name":"Fuji Super CCD","kind":"camera","set":{"entity_kind":"technology"},"note":"sensor/tech term"}
+{"name":"Instamatic","kind":"camera","set":{"entity_kind":"format"},"note":"known film format"}
+{"name":"Instant camera","kind":"camera","set":{"entity_kind":"category"},"note":"category page pattern"}
+{"name":"Kingston","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Klein","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Linex","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Micro Four Thirds","kind":"camera","set":{"entity_kind":"system"},"note":"system page without product specs"}
+{"name":"Minox","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Nedinsco","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Nimslo","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Noon","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"ONDU","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Okam","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Oaxis","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Omera-Segid","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Pentax","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Polaroid","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Proud","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Rangefinder camera","kind":"camera","set":{"entity_kind":"category"},"note":"category page pattern"}
+{"name":"Rectaflex","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Reflex Camera","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Rocket Camera","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Single-use camera","kind":"camera","set":{"entity_kind":"category"},"note":"category page pattern"}
+{"name":"Speed-O-Matic","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"toy camera","kind":"camera","set":{"entity_kind":"category"},"note":"category page pattern"}
+{"name":"Tynar","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"View camera","kind":"camera","set":{"entity_kind":"category"},"note":"category page pattern"}
+{"name":"Zeiss Ikon","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Powerflex","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Trix","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Welta","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Jousset","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Photo-Traber","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Mecaoptic","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Hacquart","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Soennecken","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Chéron","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Keystone","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"ActionSampler","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Kyron","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Spill","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Giraud","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Cord","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Wafer","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Photavit","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Fotonette","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Maniga","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Amica","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Marcilly","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Lekium","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Auchan","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Benetfink","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"DigiGR8","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"FKD","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Soundstar","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"e Tech","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Jota","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Spartus","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Nuro","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"JAP","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Leullier","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Bénévolo","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Lacour-Berthiot","kind":"camera","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Canon EOS 300D; Canon EOS Digital Rebel; Canon EOS Kiss Digital","kind":"camera","merge_into":"Canon EOS 300D","note":"Semicolon-joined market-name list, not a product name. A clean \"Canon EOS 300D\" record already exists, so this folds into it and its published id survives as a redirect. 2026-07-29 non-model pass."}
+{"name":"Canon EOS 350D; Canon EOS Digital Rebel XT; Canon EOS Kiss Digital N","kind":"camera","merge_into":"Canon EOS 350D","note":"Semicolon-joined market-name list, not a product name. A clean \"Canon EOS 350D\" record already exists, so this folds into it and its published id survives as a redirect. 2026-07-29 non-model pass."}
+{"name":"Canon EOS 400D; Canon EOS Digital Rebel XTi; Canon EOS Kiss Digital X","kind":"camera","merge_into":"Canon EOS 400D","note":"Semicolon-joined market-name list, not a product name. A clean \"Canon EOS 400D\" record already exists, so this folds into it and its published id survives as a redirect. 2026-07-29 non-model pass."}
+{"name":"Canon EOS 1000D; Canon EOS Rebel XS; Canon EOS Kiss F","kind":"camera","merge_into":"Canon EOS 1000D","note":"Semicolon-joined market-name list, not a product name. A clean \"Canon EOS 1000D\" record already exists, so this folds into it and its published id survives as a redirect. 2026-07-29 non-model pass."}
+{"name":"Canon EOS 450D; Canon EOS Rebel XSi; Canon EOS Kiss X2","kind":"camera","merge_into":"Canon EOS 450D","note":"Semicolon-joined market-name list, not a product name. A clean \"Canon EOS 450D\" record already exists, so this folds into it and its published id survives as a redirect. 2026-07-29 non-model pass."}
+{"name":"Cindo","kind":"lens","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Sun","kind":"lens","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Kenlock","kind":"lens","set":{"entity_kind":"company"},"note":"name === manufacturer"}
+{"name":"Soligor","kind":"lens","set":{"entity_kind":"company"},"note":"name === manufacturer"}
