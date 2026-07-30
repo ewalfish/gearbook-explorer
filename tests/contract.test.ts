@@ -7,7 +7,7 @@ import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import {
-  validateAsset, formatValidation, ASSET_CONTRACT,
+  validateAsset, formatValidation, ASSET_CONTRACT, BODY_TYPES, TRAITS,
   names, otherMarketNames, buildRedirectIndex, explain, hazards, hasHazard,
   parseJsonl, type AliasLike, type RedirectLike,
 } from '../src/engine/index'
@@ -613,7 +613,16 @@ describe('the exposure and film-speed facts reach the asset', () => {
   it('admits no exposure mode outside the declared vocabulary', () => {
     // The merged data carried scene modes ('landscape'), drive modes ('burst')
     // and flash settings under this field. None of them is an exposure mode.
-    const allowed = new Set(['manual', 'aperture-priority', 'shutter-priority', 'program', 'auto', 'bulb'])
+    // `semi-auto` is match-needle metering: the meter reads and YOU move both
+    // aperture and shutter until the needle centres. It is a genuine exposure
+    // mode and a synonym of nothing else here — not `manual` (a coupled meter
+    // drives the decision) and not a priority or `program` mode (the camera
+    // sets neither control). The Praktica LTL/LLC/VLC and the Penti II are the
+    // classic cases; 340 records carry it. The forge's schema has always
+    // allowed it and this vocabulary never learned it — the "rule written
+    // twice" trap, where the forge gate passes while the shipped contract
+    // rejects the same asset.
+    const allowed = new Set(['manual', 'semi-auto', 'aperture-priority', 'shutter-priority', 'program', 'auto', 'bulb'])
     const bad = new Set<string>()
     for (const c of cameras) for (const m of val<string[]>(c, 'exposure_modes') ?? []) if (!allowed.has(m)) bad.add(m)
     expect([...bad], `out-of-vocabulary exposure modes`).toEqual([])
@@ -740,9 +749,25 @@ describe('body_type + traits', () => {
 
   it('holds on the shipped asset wherever the axes are present', () => {
     // Passes vacuously until the decomposition ships, then guards it for real.
-    const withAxes = cameras.filter((c) => (c.data as { body_type?: string }).body_type || (c.data as { traits?: string[] }).traits)
-    const r = validateAsset({ cameras: withAxes, lenses: [], aliases: [] })
-    expect(r.ok, formatValidation(r, 'shipped asset axes')).toBe(true)
+    // This used to call validateAsset on a FILTERED camera list with empty
+    // side tables, which can never pass once the asset is real: validateAsset
+    // also does CROSS-TABLE integrity, so `aliases: []` reports every
+    // market_name as unreachable (859 failures) and real aliases report every
+    // alias pointing at a filtered-out camera (23,280). Neither number says
+    // anything about the axes. It stayed green only while almost nothing
+    // carried market_names.
+    //
+    // Whole-asset validation already has its own test above ('validates
+    // clean'). This one checks the AXES themselves, directly, which is what it
+    // always claimed to do.
+    const bodyOk = new Set<string>(BODY_TYPES), traitOk = new Set<string>(TRAITS)
+    const bad: string[] = []
+    for (const c of cameras) {
+      const d = c.data as { body_type?: string; traits?: string[] }
+      if (d.body_type && !bodyOk.has(d.body_type)) bad.push(`${c.name}: body_type "${d.body_type}"`)
+      for (const t of d.traits ?? []) if (!traitOk.has(t)) bad.push(`${c.name}: trait "${t}"`)
+    }
+    expect(bad, 'out-of-vocabulary type axes').toEqual([])
   })
 })
 
