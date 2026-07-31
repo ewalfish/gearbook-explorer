@@ -115,6 +115,14 @@ export function attachTypeahead(container: HTMLElement, opts: TypeaheadOpts = {}
         <span class="ta-keys">↑↓ navigate · ↵ open · esc dismiss</span>
         <a href="#/search?q=${encodeURIComponent(q)}">See all results →</a>
       </div>`
+    // The CSS cap (min(60vh, 520px)) ignores the listbox's own top offset,
+    // so on short windows the last row clipped and the footer fell below
+    // the fold — clamp to the room actually left, keeping the footer's.
+    const listbox = dropdown.querySelector<HTMLElement>('.ta-listbox')
+    if (listbox) {
+      const room = window.innerHeight - listbox.getBoundingClientRect().top - 56
+      listbox.style.maxHeight = `${Math.max(180, Math.min(520, room))}px`
+    }
     if (active >= 0) {
       input.setAttribute('aria-activedescendant', `ta-opt-${hits[active].id}`)
       dropdown.querySelector('.is-selected')?.scrollIntoView({ block: 'nearest' })

@@ -507,7 +507,10 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
       next.delete(f.param)
     }
     const qs = next.toString()
-    return `<a class="chip" data-facet="${esc(`${f.param}:${identityValue}`)}" href="#/browse${qs ? `?${qs}` : ''}">${esc(f.label)} ✕</a>`
+    // `data-chip`, not `data-facet`: the restore query prefers the sidebar
+    // link, and a chip sharing the identity attribute would shadow it — the
+    // chip sits in the header, usually far above the preserved scroll.
+    return `<a class="chip" data-chip="${esc(`${f.param}:${identityValue}`)}" href="#/browse${qs ? `?${qs}` : ''}">${esc(f.label)} ✕</a>`
   }
 
   const facetLink = (param: string, value: string, label: string, count: number) => {
@@ -555,18 +558,21 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
   const collapseLink = () => {
     const next = new URLSearchParams(params)
     next.delete('expand')
-    return `<a class="facet-link facet-more" href="#/browse?${next.toString()}">Show fewer</a>`
+    const qs = next.toString()
+    return `<a class="facet-link facet-more" href="#/browse${qs ? `?${qs}` : ''}">Show fewer</a>`
   }
   const truncate = (
     groupKey: string, sorted: [string, number][], isActive: (value: string) => boolean,
-  ): { entries: [string, number][]; footer: string } => {
-    if (sorted.length <= 10) return { entries: sorted, footer: '' }
-    if (expand === groupKey) return { entries: sorted, footer: collapseLink() }
+  ): { entries: [string, number][]; lead: string; footer: string } => {
+    if (sorted.length <= 10) return { entries: sorted, lead: '', footer: '' }
+    // An expanded group can run to thousands of rows — the collapse control
+    // renders at both ends so neither direction of regret needs a scroll.
+    if (expand === groupKey) return { entries: sorted, lead: collapseLink(), footer: collapseLink() }
     const top = sorted.slice(0, 10)
     const kept = new Set(top.map(([v]) => v))
     const missingActive = sorted.filter(([v]) => isActive(v) && !kept.has(v))
     const entries = [...top, ...missingActive].sort((a, b) => b[1] - a[1])
-    return { entries, footer: expandLink(groupKey, sorted.length) }
+    return { entries, lead: '', footer: expandLink(groupKey, sorted.length) }
   }
 
   // Body type / Traits / Medium are camera-only axes; Lens type is
@@ -585,12 +591,12 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
 
   const mfrSorted = countBy((r) => r.manufacturer, mfrBase)
   const mfrTrunc = truncate('manufacturer', mfrSorted, (v) => manufacturer !== null && slugify(v) === manufacturer)
-  const mfrFacet = mfrTrunc.entries.map(([v, n]) => facetLink('manufacturer', slugify(v), v, n)).join('')
+  const mfrFacet = mfrTrunc.lead + mfrTrunc.entries.map(([v, n]) => facetLink('manufacturer', slugify(v), v, n)).join('')
   const mfrFooter = `${mfrTrunc.footer}<a class="facet-link facet-directory" href="#/browse?facet=manufacturer">All manufacturers →</a>`
 
   const bodySorted = countBy((r) => r.type, bodyBase)
   const bodyTrunc = truncate('body', bodySorted, (v) => v === body)
-  const bodyFacet = bodyTrunc.entries.map(([v, n]) => facetLink('body', v, BODY_TYPE_LABELS[v as BodyType] ?? v, n)).join('')
+  const bodyFacet = bodyTrunc.lead + bodyTrunc.entries.map(([v, n]) => facetLink('body', v, BODY_TYPE_LABELS[v as BodyType] ?? v, n)).join('')
 
   // Traits is multi-valued with AND semantics, so a group-wide countBy over
   // one base isn't enough — per the finding, the count for candidate trait T
@@ -610,23 +616,23 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
     .filter(([v, n]) => n > 0 || traits.includes(v))
     .sort((a, b) => b[1] - a[1])
   const traitsTrunc = truncate('traits', traitsSorted, (v) => traits.includes(v))
-  const traitsFacet = traitsTrunc.entries.map(([v, n]) => traitLink(v, n)).join('')
+  const traitsFacet = traitsTrunc.lead + traitsTrunc.entries.map(([v, n]) => traitLink(v, n)).join('')
 
   const ltypeSorted = countBy((r) => r.type, ltypeBase)
   const ltypeTrunc = truncate('ltype', ltypeSorted, (v) => v === ltype)
-  const ltypeFacet = ltypeTrunc.entries.map(([v, n]) => facetLink('ltype', v, prettyType(v), n)).join('')
+  const ltypeFacet = ltypeTrunc.lead + ltypeTrunc.entries.map(([v, n]) => facetLink('ltype', v, prettyType(v), n)).join('')
 
   const formatSorted = countBy((r) => r.format, formatBase)
   const formatTrunc = truncate('format', formatSorted, (v) => v === format)
-  const formatFacet = formatTrunc.entries.map(([v, n]) => facetLink('format', v, v, n)).join('')
+  const formatFacet = formatTrunc.lead + formatTrunc.entries.map(([v, n]) => facetLink('format', v, v, n)).join('')
 
   const mediumSorted = countBy((r) => r.medium, mediumBase)
   const mediumTrunc = truncate('medium', mediumSorted, (v) => v === medium)
-  const mediumFacet = mediumTrunc.entries.map(([v, n]) => facetLink('medium', v, cap(v), n)).join('')
+  const mediumFacet = mediumTrunc.lead + mediumTrunc.entries.map(([v, n]) => facetLink('medium', v, cap(v), n)).join('')
 
   const mountSorted = countBy((r) => r.mounts, mountBase)
   const mountTrunc = truncate('mount', mountSorted, (v) => mount !== null && slugify(v) === mount)
-  const mountFacet = mountTrunc.entries.map(([v, n]) => facetLink('mount', slugify(v), v, n)).join('')
+  const mountFacet = mountTrunc.lead + mountTrunc.entries.map(([v, n]) => facetLink('mount', slugify(v), v, n)).join('')
 
   // 'Name' is the pipeline's default order (no param); 'Year' is a view
   // preference, so — unlike a facet pick — it survives on `params` untouched
@@ -711,8 +717,8 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
   // is discarded — and its listener with it — on the next render, so this
   // never double-attaches).
   app().querySelector<HTMLElement>('.browse')?.addEventListener('click', (e) => {
-    const target = (e.target as HTMLElement).closest<HTMLElement>('[data-facet]')
-    if (target) pendingRestore = { facet: target.dataset.facet!, scrollY: window.scrollY }
+    const target = (e.target as HTMLElement).closest<HTMLElement>('[data-facet], [data-chip]')
+    if (target) pendingRestore = { facet: (target.dataset.facet ?? target.dataset.chip)!, scrollY: window.scrollY }
   })
 
   if (pendingRestore) {
