@@ -4,11 +4,14 @@
 import { getEngine, getFacets, loadCatalog, loadRecord } from './data'
 import { fmtFocal } from './format'
 import { slugify } from './engine/normalize'
+import { BODY_TYPE_LABELS, TRAIT_LABELS } from './engine/schema'
+import { mapLegacyParams } from './legacy-params'
 import {
   esc, navHtml, footerHtml, hitRowHtml, recordHref,
   attachTypeahead, attachNavSearch, SEARCH_ICON, EXTERNAL_ICON,
 } from './ui'
 import type { CatalogRecord, GearRecord, Kind, Variant } from './types'
+import type { BodyType, Trait } from './engine/schema'
 
 const app = () => document.getElementById('app')!
 
@@ -126,9 +129,17 @@ function browseMountHref(mount: string): string {
 
 function cameraSpecRows(d: GearRecord['data']): string {
   const rows: string[] = []
-  const typeBits = [d.format && d.format !== 'digital' ? d.format : '', prettyType(d.camera_type)]
-    .filter(Boolean).join(' ')
+  const typeBits = [
+    d.format && d.format !== 'digital' ? d.format : '',
+    d.body_type ? (BODY_TYPE_LABELS[d.body_type as BodyType] ?? d.body_type) : '',
+  ].filter(Boolean).join(' ')
   if (typeBits) rows.push(dtDd('Type', esc(typeBits)))
+  if (d.traits?.length) {
+    const links = d.traits
+      .map((t) => `<a href="#/browse?traits=${encodeURIComponent(t)}">${esc(TRAIT_LABELS[t as Trait] ?? t)}</a>`)
+      .join(', ')
+    rows.push(dtDd('Traits', links))
+  }
   if (d.medium) {
     const fmt = [
       d.medium === 'film' ? (d.format && d.format !== 'digital' ? `${d.format} film` : 'film') : d.medium,
@@ -170,9 +181,8 @@ function cameraSpecRows(d: GearRecord['data']): string {
 
 function lensSpecRows(d: GearRecord['data']): string {
   const rows: string[] = []
-  if (d.mount) {
-    const links = d.mount.split(',').map((m) => m.trim()).filter(Boolean)
-      .map((m) => `<a href="${browseMountHref(m)}">${esc(m)}</a>`).join(', ')
+  if (d.mounts?.length) {
+    const links = d.mounts.map((m) => `<a href="${browseMountHref(m)}">${esc(m)}</a>`).join(', ')
     rows.push(dtDd('Mount', links))
   }
   const focal = fmtFocal(d.focal_length, d.focal_min_mm, d.focal_max_mm, ' – ')
@@ -250,12 +260,17 @@ function cap(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-const PRETTY_TYPE: Record<string, string> = {
-  'slr': 'SLR', 'tlr': 'TLR', 'point-and-shoot': 'point-and-shoot',
-}
+/**
+ * Freeform-value fallback formatter — dash-to-space, no casing table. Used
+ * for lens types (never enumerated, so there is no label map for them) and
+ * as the fallback for anything BODY_TYPE_LABELS/TRAIT_LABELS doesn't cover.
+ * Used to also carry `slr`/`tlr`/`point-and-shoot` camera_type casing; that
+ * vocabulary has its own label maps now (BODY_TYPE_LABELS, TRAIT_LABELS),
+ * so this function no longer needs to know it.
+ */
 function prettyType(t?: string): string {
   if (!t) return ''
-  return PRETTY_TYPE[t] ?? t.replace(/-/g, ' ')
+  return t.replace(/-/g, ' ')
 }
 
 export async function renderDetail(kind: Kind, id: string): Promise<void> {
@@ -273,13 +288,14 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
 
   const metaBits = [
     d.manufacturer,
-    kind === 'lens' && d.mount ? `${d.mount.split(',')[0].trim()} mount` : '',
+    kind === 'lens' && d.mounts?.length ? `${d.mounts[0]} mount` : '',
     d.country,
     yearsRange(d).replace(/ /g, ''),
   ].filter(Boolean).join(' · ')
 
-  const mounts = (kind === 'camera' ? d.lens_mount : d.mount)?.split(',').map((m) => m.trim()).filter(Boolean) ?? []
-  const recType = kind === 'camera' ? (d.camera_type ?? '') : (d.lens_type ?? '')
+  const mounts = kind === 'camera' ? (d.lens_mount ? [d.lens_mount] : []) : (d.mounts ?? [])
+  const recType = kind === 'camera' ? (d.body_type ?? '') : (d.lens_type ?? '')
+  const recTraits = d.traits ?? []
   const recYear = d.year_introduced ?? 0
   const sameMfr = catalog
     .filter((r) => r.manufacturer === d.manufacturer && r.kind === kind && r.id !== id)
@@ -287,6 +303,10 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
       const ta = a.type === recType ? 0 : 1
       const tb = b.type === recType ? 0 : 1
       if (ta !== tb) return ta - tb
+      // Trait overlap tiebreak: more shared traits sorts first.
+      const oa = recTraits.filter((t) => a.traits.includes(t)).length
+      const ob = recTraits.filter((t) => b.traits.includes(t)).length
+      if (oa !== ob) return ob - oa
       if (recYear) return Math.abs((a.year || recYear) - recYear) - Math.abs((b.year || recYear) - recYear)
       return 0
     })
@@ -369,8 +389,15 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
     return
   }
 
+  // Legacy `?type=` links keep resolving — mapped once, up front, so
+  // filtering, chips and facet links downstream all agree with the modern
+  // params instead of the old ones.
+  params = mapLegacyParams(params)
+
   const kind = params.get('kind')
-  const type = params.get('type')
+  const body = params.get('body')
+  const ltype = params.get('ltype')
+  const traits = (params.get('traits') ?? '').split(',').map((t) => t.trim()).filter(Boolean)
   const format = params.get('format')
   const mount = params.get('mount')
   const manufacturer = params.get('manufacturer')
@@ -378,15 +405,20 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
 
   let rows = catalog
   if (kind) rows = rows.filter((r) => r.kind === kind)
-  if (type) rows = rows.filter((r) => r.type === type)
+  if (body) rows = rows.filter((r) => r.kind === 'camera' && r.type === body)
+  if (ltype) rows = rows.filter((r) => r.kind === 'lens' && r.type === ltype)
+  // AND semantics: a record must hold every selected trait, not just one.
+  if (traits.length) rows = rows.filter((r) => traits.every((t) => r.traits.includes(t)))
   if (format) rows = rows.filter((r) => r.format === format)
   if (medium) rows = rows.filter((r) => r.medium === medium)
   if (mount) rows = rows.filter((r) => r.mounts.some((m) => slugify(m) === mount))
   if (manufacturer) rows = rows.filter((r) => slugify(r.manufacturer) === manufacturer)
 
-  const filters: { label: string; param: string }[] = []
+  const filters: { label: string; param: string; value?: string }[] = []
   if (kind) filters.push({ label: kind === 'camera' ? 'Cameras' : 'Lenses', param: 'kind' })
-  if (type) filters.push({ label: prettyType(type), param: 'type' })
+  if (body) filters.push({ label: BODY_TYPE_LABELS[body as BodyType] ?? body, param: 'body' })
+  if (ltype) filters.push({ label: prettyType(ltype), param: 'ltype' })
+  for (const t of traits) filters.push({ label: TRAIT_LABELS[t as Trait] ?? t, param: 'traits', value: t })
   if (format) filters.push({ label: format, param: 'format' })
   if (medium) filters.push({ label: medium, param: 'medium' })
   if (mount) filters.push({ label: rows[0]?.mounts.find((m) => slugify(m) === mount) ?? mount, param: 'mount' })
@@ -396,9 +428,16 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
     ? `${filters.map((f) => f.label).join(' · ')} — Gearbook`
     : 'Browse — Gearbook'
 
-  const chip = (f: { label: string; param: string }) => {
+  const chip = (f: { label: string; param: string; value?: string }) => {
     const next = new URLSearchParams(params)
-    next.delete(f.param)
+    if (f.param === 'traits' && f.value !== undefined) {
+      // Remove just this trait — the others stay selected.
+      const remaining = traits.filter((t) => t !== f.value)
+      if (remaining.length) next.set('traits', remaining.join(','))
+      else next.delete('traits')
+    } else {
+      next.delete(f.param)
+    }
     const qs = next.toString()
     return `<a class="chip" href="#/browse${qs ? `?${qs}` : ''}">${esc(f.label)} ✕</a>`
   }
@@ -409,9 +448,22 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
     return `<a class="facet-link${params.get(param) === value ? ' is-active' : ''}" href="#/browse?${next.toString()}">${esc(label)} <span class="text-muted">${count.toLocaleString('en-US')}</span></a>`
   }
 
-  const countBy = (fn: (r: CatalogRecord) => string | string[]) => {
+  // Traits toggle rather than replace: clicking an unselected trait adds it
+  // to the AND set, clicking a selected one removes it, everything else on
+  // the URL is untouched.
+  const traitLink = (value: string, count: number) => {
+    const active = traits.includes(value)
+    const next = new URLSearchParams(params)
+    const nextTraits = active ? traits.filter((t) => t !== value) : [...traits, value]
+    if (nextTraits.length) next.set('traits', nextTraits.join(','))
+    else next.delete('traits')
+    const label = TRAIT_LABELS[value as Trait] ?? value
+    return `<a class="facet-link${active ? ' is-active' : ''}" href="#/browse?${next.toString()}">${esc(label)} <span class="text-muted">${count.toLocaleString('en-US')}</span></a>`
+  }
+
+  const countBy = (fn: (r: CatalogRecord) => string | string[], source: CatalogRecord[] = rows) => {
     const m = new Map<string, number>()
-    for (const r of rows) {
+    for (const r of source) {
       const v = fn(r)
       for (const x of Array.isArray(v) ? v : [v]) {
         if (x) m.set(x, (m.get(x) ?? 0) + 1)
@@ -420,14 +472,26 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
     return [...m.entries()].sort((a, b) => b[1] - a[1])
   }
 
-  const typeFacet = countBy((r) => r.type).slice(0, 10)
-    .map(([v, n]) => facetLink('type', v, prettyType(v), n)).join('')
-  const formatFacet = countBy((r) => r.format).slice(0, 10)
-    .map(([v, n]) => facetLink('format', v, v, n)).join('')
-  const mountFacet = countBy((r) => r.mounts).slice(0, 10)
-    .map(([v, n]) => facetLink('mount', slugify(v), v, n)).join('')
+  // Body type / Traits / Medium are camera-only axes; Lens type is
+  // lens-only. Scoping the source rows (not just hiding the rendered group)
+  // keeps a camera body_type value from ever showing up as a "lens type".
+  const cameraRows = rows.filter((r) => r.kind === 'camera')
+  const lensRows = rows.filter((r) => r.kind === 'lens')
+
   const mfrFacet = countBy((r) => r.manufacturer).slice(0, 10)
     .map(([v, n]) => facetLink('manufacturer', slugify(v), v, n)).join('')
+  const bodyFacet = kind === 'lens' ? '' : countBy((r) => r.type, cameraRows).slice(0, 10)
+    .map(([v, n]) => facetLink('body', v, BODY_TYPE_LABELS[v as BodyType] ?? v, n)).join('')
+  const traitsFacet = kind === 'lens' ? '' : countBy((r) => r.traits, cameraRows).slice(0, 10)
+    .map(([v, n]) => traitLink(v, n)).join('')
+  const ltypeFacet = kind === 'camera' ? '' : countBy((r) => r.type, lensRows).slice(0, 10)
+    .map(([v, n]) => facetLink('ltype', v, prettyType(v), n)).join('')
+  const formatFacet = countBy((r) => r.format).slice(0, 10)
+    .map(([v, n]) => facetLink('format', v, v, n)).join('')
+  const mediumFacet = kind === 'lens' ? '' : countBy((r) => r.medium, cameraRows).slice(0, 10)
+    .map(([v, n]) => facetLink('medium', v, cap(v), n)).join('')
+  const mountFacet = countBy((r) => r.mounts).slice(0, 10)
+    .map(([v, n]) => facetLink('mount', slugify(v), v, n)).join('')
 
   const shown = rows.slice(0, PAGE_SIZE)
   const listRows = shown.map((r) => browseRowHtml(r)).join('')
@@ -444,8 +508,11 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
       <div class="browse-grid">
         <aside class="facet-col">
           ${facetGroup('Manufacturer', mfrFacet)}
-          ${facetGroup('Type', typeFacet)}
+          ${facetGroup('Body type', bodyFacet)}
+          ${facetGroup('Traits', traitsFacet)}
+          ${facetGroup('Lens type', ltypeFacet)}
           ${facetGroup('Film format', formatFacet)}
+          ${facetGroup('Medium', mediumFacet)}
           ${facetGroup('Mount', mountFacet)}
         </aside>
         <div class="browse-list" id="browse-list">${listRows || '<p class="text-muted empty-note">Nothing matches this combination.</p>'}

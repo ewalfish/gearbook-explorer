@@ -106,10 +106,12 @@ export interface SearchIndexFile {
 }
 
 /** catalog.json — one lite row per record, for typeahead display, browse and related lists:
- *  [id, kind, name, manufacturer, yearIntroduced, confidence ('h'|'m'|'l'), factsLine, type, format, mounts, medium] */
+ *  [id, kind, name, manufacturer, yearIntroduced, confidence ('h'|'m'|'l'), factsLine, type, format, mounts, medium, traits]
+ *  `type` is body_type for cameras, lens_type for lenses — camera_type is never read.
+ *  `traits` is cameras only ([] for lenses). */
 export type CatalogRowTuple = [
   string, 'c' | 'l', string, string, number | 0, 'h' | 'm' | 'l', string,
-  string, string, string[], string,
+  string, string, string[], string, string[],
 ]
 
 export interface CatalogFile {
@@ -129,6 +131,7 @@ export interface CatalogRecord {
   format: string
   mounts: string[]
   medium: string
+  traits: string[]
 }
 
 export interface CuratedEntry {

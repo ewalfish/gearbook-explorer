@@ -80,6 +80,7 @@ function parseCatalog(f: CatalogFile): CatalogRecord[] {
     format: r[8],
     mounts: r[9],
     medium: r[10],
+    traits: r[11] ?? [],
   }))
 }
 

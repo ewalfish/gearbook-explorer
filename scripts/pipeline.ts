@@ -12,6 +12,8 @@ import { readFileSync, writeFileSync, mkdirSync, rmSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { normalize } from '../src/engine/normalize'
+import { BODY_TYPE_LABELS, TRAIT_LABELS, TRAITS } from '../src/engine/schema'
+import type { BodyType } from '../src/engine/schema'
 import { fmtFocal } from '../src/format'
 import type {
   GearRecord, IndexEntryTuple, CatalogRowTuple, CuratedEntry, Kind,
@@ -34,26 +36,15 @@ interface AliasRow {
   gearbook_id: string
 }
 
-export const TYPE_LABELS: Record<string, string> = {
-  'slr': 'SLR',
-  'tlr': 'TLR',
-  'point-and-shoot': 'compact',
-  'rangefinder': 'rangefinder',
-  'view': 'view camera',
-  'box': 'box camera',
-  'folding': 'folding',
-  'instant': 'instant',
-  'half-frame': 'half-frame',
-  'pinhole': 'pinhole',
-  'stereo': 'stereo',
-  'subminiature': 'subminiature',
-  'bridge': 'bridge',
-  'mirrorless': 'mirrorless',
-}
-
-function typeLabel(t?: string): string {
-  if (!t) return ''
-  return TYPE_LABELS[t] ?? t
+// Traits shown in the facts line, in TRAITS vocab order (not alphabetical —
+// form factor first), capped at two: true multi-trait records are rare, and
+// a facts line is a one-liner. `point-and-shoot` reads as stuttering next to
+// a `compact` body label, so it is dropped there and shown for every other
+// body_type.
+function factsTraits(d: GearRecord['data']): string[] {
+  const set = new Set(d.traits ?? [])
+  if (d.body_type === 'compact') set.delete('point-and-shoot')
+  return TRAITS.filter((t) => set.has(t)).slice(0, 2).map((t) => TRAIT_LABELS[t] ?? t)
 }
 
 /** The 2–3-fact one-liner shown under a result row. */
@@ -61,12 +52,13 @@ export function factsLine(rec: GearRecord, kind: Kind): string {
   const d = rec.data
   const parts: string[] = []
   if (kind === 'camera') {
+    const bodyLabel = d.body_type ? (BODY_TYPE_LABELS[d.body_type as BodyType] ?? d.body_type) : ''
     if (d.medium === 'digital') {
-      parts.push(`Digital ${typeLabel(d.camera_type) || 'camera'}`.trim())
+      parts.push(`Digital ${bodyLabel || 'camera'}`.trim())
       if (d.sensor_resolution_mp) parts.push(`${d.sensor_resolution_mp}MP`)
     } else {
       const fmt = d.format && d.format !== 'digital' ? d.format : ''
-      parts.push([fmt, typeLabel(d.camera_type)].filter(Boolean).join(' '))
+      parts.push([fmt, ...factsTraits(d), bodyLabel].filter(Boolean).join(' '))
       const fl = d.fixed_lens
       if (fl) {
         let focal = fmtFocal(fl.focal_length, fl.focal_min_mm, fl.focal_max_mm)
@@ -78,16 +70,19 @@ export function factsLine(rec: GearRecord, kind: Kind): string {
   } else {
     const focal = fmtFocal(d.focal_length, d.focal_min_mm, d.focal_max_mm)
     if (focal || d.max_aperture) parts.push([focal, d.max_aperture].filter(Boolean).join(' '))
-    if (d.mount) parts.push(d.mount.split(',')[0].trim())
+    if (d.mounts?.length) parts.push(d.mounts[0])
   }
   if (rec.data.year_introduced) parts.push(String(rec.data.year_introduced))
   return parts.filter(Boolean).join(' · ')
 }
 
 function mountsOf(rec: GearRecord, kind: Kind): string[] {
-  const raw = kind === 'camera' ? rec.data.lens_mount : rec.data.mount
-  if (!raw) return []
-  return raw.split(',').map((m) => m.trim()).filter(Boolean)
+  if (kind === 'camera') {
+    const raw = rec.data.lens_mount
+    if (!raw) return []
+    return raw.split(',').map((m) => m.trim()).filter(Boolean)
+  }
+  return rec.data.mounts ?? []
 }
 
 export function buildAll() {
@@ -137,10 +132,11 @@ export function buildAll() {
       rec.data.year_introduced ?? 0,
       (rec.confidence?.[0] ?? 'm') as 'h' | 'm' | 'l',
       factsLine(rec, kind),
-      (kind === 'camera' ? rec.data.camera_type : rec.data.lens_type) ?? '',
+      (kind === 'camera' ? rec.data.body_type : rec.data.lens_type) ?? '',
       rec.data.format && rec.data.format !== 'digital' ? rec.data.format : '',
       mountsOf(rec, kind),
       kind === 'camera' ? (rec.data.medium ?? '') : '',
+      kind === 'camera' ? (rec.data.traits ?? []) : [],
     ])
     // eslint-disable-next-line no-empty
   }
@@ -165,8 +161,8 @@ export function buildAll() {
       count: manufacturers.length, unit: 'makes',
     },
     {
-      kicker: 'Collection', title: '120 film TLRs', href: '#/browse?format=120&type=tlr',
-      count: count((r, k) => k === 'camera' && r.data.format === '120' && r.data.camera_type === 'tlr'),
+      kicker: 'Collection', title: '120 film TLRs', href: '#/browse?format=120&body=tlr',
+      count: count((r, k) => k === 'camera' && r.data.format === '120' && r.data.body_type === 'tlr'),
       unit: 'cameras',
     },
     {
@@ -175,18 +171,28 @@ export function buildAll() {
       unit: 'lenses',
     },
     {
-      kicker: 'Collection', title: '35mm rangefinders', href: '#/browse?format=35mm&type=rangefinder',
-      count: count((r, k) => k === 'camera' && r.data.format === '35mm' && r.data.camera_type === 'rangefinder'),
+      kicker: 'Collection', title: '35mm rangefinders', href: '#/browse?format=35mm&body=rangefinder',
+      count: count((r, k) => k === 'camera' && r.data.format === '35mm' && r.data.body_type === 'rangefinder'),
       unit: 'cameras',
     },
     {
-      kicker: 'Collection', title: 'Digital SLRs', href: '#/browse?medium=digital&type=slr',
-      count: count((r, k) => k === 'camera' && r.data.medium === 'digital' && r.data.camera_type === 'slr'),
+      kicker: 'Collection', title: 'Digital SLRs', href: '#/browse?medium=digital&body=slr',
+      count: count((r, k) => k === 'camera' && r.data.medium === 'digital' && r.data.body_type === 'slr'),
       unit: 'cameras',
     },
     {
-      kicker: 'Collection', title: 'Instant cameras', href: '#/browse?type=instant',
-      count: count((r, k) => k === 'camera' && r.data.camera_type === 'instant'),
+      kicker: 'Collection', title: 'Instant cameras', href: '#/browse?medium=instant',
+      count: count((r, k) => k === 'camera' && r.data.medium === 'instant'),
+      unit: 'cameras',
+    },
+    {
+      kicker: 'Collection', title: 'Folding cameras', href: '#/browse?traits=folding',
+      count: count((r, k) => k === 'camera' && (r.data.traits ?? []).includes('folding')),
+      unit: 'cameras',
+    },
+    {
+      kicker: 'Collection', title: 'Stereo cameras', href: '#/browse?traits=stereo',
+      count: count((r, k) => k === 'camera' && (r.data.traits ?? []).includes('stereo')),
       unit: 'cameras',
     },
   ]
