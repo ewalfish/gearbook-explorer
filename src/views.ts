@@ -17,6 +17,17 @@ const app = () => document.getElementById('app')!
 
 const REPO_URL = 'https://github.com/ewalfish/gearbook-explorer'
 
+/**
+ * Finding 8: every facet/chip/sort click re-renders the whole browse page,
+ * and main.ts's route() unconditionally scrolls to top afterward — dropping
+ * a keyboard user back to page 1 after every refinement. Set by the click
+ * (see renderBrowse's delegated listener) just before the browser's own
+ * hash navigation fires; read once by the render that follows, then
+ * cleared. A route-level entry into browse (landing search, a pasted URL)
+ * never sets this, so it keeps the normal scroll-to-top.
+ */
+let pendingRestore: { facet: string; scrollY: number } | null = null
+
 /** Prefilled GitHub issue-form link for a record correction. */
 function correctionIssueHref(name: string, kind: Kind, id: string): string {
   const params = new URLSearchParams({
@@ -135,10 +146,14 @@ function cameraSpecRows(d: GearRecord['data']): string {
   ].filter(Boolean).join(' ')
   if (typeBits) rows.push(dtDd('Type', esc(typeBits)))
   if (d.traits?.length) {
+    // Finding 11: plain comma-separated red text didn't read as clickable.
+    // The .chip pill (already the browse page's language for "this filters
+    // the catalog") signals it; .chip-link adds a hover state since these,
+    // unlike a chip's usual ✕-to-remove use, are plain navigation.
     const links = d.traits
-      .map((t) => `<a href="#/browse?traits=${encodeURIComponent(t)}">${esc(TRAIT_LABELS[t as Trait] ?? t)}</a>`)
-      .join(', ')
-    rows.push(dtDd('Traits', links))
+      .map((t) => `<a class="chip chip-link" href="#/browse?traits=${encodeURIComponent(t)}">${esc(TRAIT_LABELS[t as Trait] ?? t)}</a>`)
+      .join('')
+    rows.push(dtDd('Traits', `<span class="chip-row">${links}</span>`))
   }
   if (d.medium) {
     const fmt = [
@@ -261,6 +276,19 @@ function cap(s: string): string {
 }
 
 /**
+ * Year-proximity distance for relatedness sorts (finding 9) — a record with
+ * no year is always farthest away, never mistaken for a same-year match by
+ * collapsing to a 0 diff. `baseYear` of 0 (the anchor record itself has no
+ * year) makes proximity meaningless, so every dated record ties at 0 rather
+ * than one arbitrarily outranking another.
+ */
+function yearDistance(year: number, baseYear: number): number {
+  if (!year) return Infinity
+  if (!baseYear) return 0
+  return Math.abs(year - baseYear)
+}
+
+/**
  * Freeform-value fallback formatter — dash-to-space, no casing table. Used
  * for lens types (never enumerated, so there is no label map for them) and
  * as the fallback for anything BODY_TYPE_LABELS/TRAIT_LABELS doesn't cover.
@@ -312,8 +340,21 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
     })
     .slice(0, 4)
   const crossKind: Kind = kind === 'camera' ? 'lens' : 'camera'
+  // Finding 9: catalog order is arbitrary (import order, not relevance) —
+  // sort so a same-maker match leads, then by closeness in time to this
+  // record, before slicing to 4. Same comparator shape as `sameMfr` above
+  // (bucket first, numeric tiebreak second) but with its own bucket
+  // (manufacturer, not type/traits) since these are cross-kind matches.
   const mountMatches = mounts.length
-    ? catalog.filter((r) => r.kind === crossKind && r.mounts.some((m) => mounts.some((mm) => m.toLowerCase() === mm.toLowerCase()))).slice(0, 4)
+    ? catalog
+        .filter((r) => r.kind === crossKind && r.mounts.some((m) => mounts.some((mm) => m.toLowerCase() === mm.toLowerCase())))
+        .sort((a, b) => {
+          const ma = a.manufacturer === d.manufacturer ? 0 : 1
+          const mb = b.manufacturer === d.manufacturer ? 0 : 1
+          if (ma !== mb) return ma - mb
+          return yearDistance(a.year, recYear) - yearDistance(b.year, recYear)
+        })
+        .slice(0, 4)
     : []
   const primaryMount = mounts[0] ?? ''
 
@@ -402,17 +443,37 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
   const mount = params.get('mount')
   const manufacturer = params.get('manufacturer')
   const medium = params.get('medium')
+  const sort = params.get('sort') === 'year' ? 'year' : 'name'
+  const expand = params.get('expand')
 
-  let rows = catalog
-  if (kind) rows = rows.filter((r) => r.kind === kind)
-  if (body) rows = rows.filter((r) => r.kind === 'camera' && r.type === body)
-  if (ltype) rows = rows.filter((r) => r.kind === 'lens' && r.type === ltype)
-  // AND semantics: a record must hold every selected trait, not just one.
-  if (traits.length) rows = rows.filter((r) => traits.every((t) => r.traits.includes(t)))
-  if (format) rows = rows.filter((r) => r.format === format)
-  if (medium) rows = rows.filter((r) => r.medium === medium)
-  if (mount) rows = rows.filter((r) => r.mounts.some((m) => slugify(m) === mount))
-  if (manufacturer) rows = rows.filter((r) => slugify(r.manufacturer) === manufacturer)
+  // One predicate per facet param. The results list applies every one of
+  // them; a facet GROUP's own counts apply every one EXCEPT its own — so
+  // selecting a value narrows every OTHER group instead of collapsing the
+  // group it came from to just itself (disjunctive counting). `kind` isn't
+  // a facet group rendered in the sidebar, so it's never excluded — it
+  // always applies, to every group including its own scoping below.
+  const predicates: Record<string, ((r: CatalogRecord) => boolean) | null> = {
+    kind: kind ? (r) => r.kind === kind : null,
+    body: body ? (r) => r.kind === 'camera' && r.type === body : null,
+    ltype: ltype ? (r) => r.kind === 'lens' && r.type === ltype : null,
+    // AND semantics: a record must hold every selected trait, not just one.
+    traits: traits.length ? (r) => traits.every((t) => r.traits.includes(t)) : null,
+    format: format ? (r) => r.format === format : null,
+    medium: medium ? (r) => r.medium === medium : null,
+    mount: mount ? (r) => r.mounts.some((m) => slugify(m) === mount) : null,
+    manufacturer: manufacturer ? (r) => slugify(r.manufacturer) === manufacturer : null,
+  }
+  function filterExcept(...exclude: string[]): CatalogRecord[] {
+    const active = Object.entries(predicates).filter(([k, p]) => p && !exclude.includes(k)).map(([, p]) => p!)
+    return catalog.filter((r) => active.every((p) => p(r)))
+  }
+
+  let rows = filterExcept()
+  if (sort === 'year') {
+    // A historical index: oldest first, unknown/zero years pushed to the
+    // end. Array#sort is stable, so ties keep the pipeline's default order.
+    rows = [...rows].sort((a, b) => (a.year || Infinity) - (b.year || Infinity))
+  }
 
   const filters: { label: string; param: string; value?: string }[] = []
   if (kind) filters.push({ label: kind === 'camera' ? 'Cameras' : 'Lenses', param: 'kind' })
@@ -428,8 +489,15 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
     ? `${filters.map((f) => f.label).join(' · ')} — Gearbook`
     : 'Browse — Gearbook'
 
+  // `data-facet="param:value"` below is a stable click identity (finding 8)
+  // — captured on click, then used by the render that follows to put focus
+  // back where the click left it. A chip's identity is the same string its
+  // corresponding facet-link would carry (the value being removed), so
+  // removing a filter tries to land focus back on that value's toggle.
   const chip = (f: { label: string; param: string; value?: string }) => {
     const next = new URLSearchParams(params)
+    next.delete('expand') // a filter change is never momentary — expansion doesn't survive it
+    const identityValue = f.value ?? params.get(f.param) ?? ''
     if (f.param === 'traits' && f.value !== undefined) {
       // Remove just this trait — the others stay selected.
       const remaining = traits.filter((t) => t !== f.value)
@@ -439,13 +507,14 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
       next.delete(f.param)
     }
     const qs = next.toString()
-    return `<a class="chip" href="#/browse${qs ? `?${qs}` : ''}">${esc(f.label)} ✕</a>`
+    return `<a class="chip" data-facet="${esc(`${f.param}:${identityValue}`)}" href="#/browse${qs ? `?${qs}` : ''}">${esc(f.label)} ✕</a>`
   }
 
   const facetLink = (param: string, value: string, label: string, count: number) => {
     const next = new URLSearchParams(params)
+    next.delete('expand')
     next.set(param, value)
-    return `<a class="facet-link${params.get(param) === value ? ' is-active' : ''}" href="#/browse?${next.toString()}">${esc(label)} <span class="text-muted">${count.toLocaleString('en-US')}</span></a>`
+    return `<a class="facet-link${params.get(param) === value ? ' is-active' : ''}" data-facet="${esc(`${param}:${value}`)}" href="#/browse?${next.toString()}">${esc(label)} <span class="text-muted">${count.toLocaleString('en-US')}</span></a>`
   }
 
   // Traits toggle rather than replace: clicking an unselected trait adds it
@@ -454,14 +523,15 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
   const traitLink = (value: string, count: number) => {
     const active = traits.includes(value)
     const next = new URLSearchParams(params)
+    next.delete('expand')
     const nextTraits = active ? traits.filter((t) => t !== value) : [...traits, value]
     if (nextTraits.length) next.set('traits', nextTraits.join(','))
     else next.delete('traits')
     const label = TRAIT_LABELS[value as Trait] ?? value
-    return `<a class="facet-link${active ? ' is-active' : ''}" href="#/browse?${next.toString()}">${esc(label)} <span class="text-muted">${count.toLocaleString('en-US')}</span></a>`
+    return `<a class="facet-link${active ? ' is-active' : ''}" data-facet="${esc(`traits:${value}`)}" href="#/browse?${next.toString()}">${esc(label)} <span class="text-muted">${count.toLocaleString('en-US')}</span></a>`
   }
 
-  const countBy = (fn: (r: CatalogRecord) => string | string[], source: CatalogRecord[] = rows) => {
+  const countBy = (fn: (r: CatalogRecord) => string | string[], source: CatalogRecord[]) => {
     const m = new Map<string, number>()
     for (const r of source) {
       const v = fn(r)
@@ -472,50 +542,143 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
     return [...m.entries()].sort((a, b) => b[1] - a[1])
   }
 
+  // Top-10 + "Show all (N)" per group, driven by `expand=<groupKey>` — one
+  // group at a time. An active value that fell outside the top 10 is folded
+  // back in: a selected filter must never disappear from its own group.
+  // Expansion is momentary — chip/facetLink/traitLink above all drop
+  // `expand`, so picking any other filter collapses it back.
+  const expandLink = (groupKey: string, total: number) => {
+    const next = new URLSearchParams(params)
+    next.set('expand', groupKey)
+    return `<a class="facet-link facet-more" href="#/browse?${next.toString()}">Show all (${total.toLocaleString('en-US')})</a>`
+  }
+  const collapseLink = () => {
+    const next = new URLSearchParams(params)
+    next.delete('expand')
+    return `<a class="facet-link facet-more" href="#/browse?${next.toString()}">Show fewer</a>`
+  }
+  const truncate = (
+    groupKey: string, sorted: [string, number][], isActive: (value: string) => boolean,
+  ): { entries: [string, number][]; footer: string } => {
+    if (sorted.length <= 10) return { entries: sorted, footer: '' }
+    if (expand === groupKey) return { entries: sorted, footer: collapseLink() }
+    const top = sorted.slice(0, 10)
+    const kept = new Set(top.map(([v]) => v))
+    const missingActive = sorted.filter(([v]) => isActive(v) && !kept.has(v))
+    const entries = [...top, ...missingActive].sort((a, b) => b[1] - a[1])
+    return { entries, footer: expandLink(groupKey, sorted.length) }
+  }
+
   // Body type / Traits / Medium are camera-only axes; Lens type is
   // lens-only. Scoping the source rows (not just hiding the rendered group)
-  // keeps a camera body_type value from ever showing up as a "lens type".
-  const cameraRows = rows.filter((r) => r.kind === 'camera')
-  const lensRows = rows.filter((r) => r.kind === 'lens')
+  // keeps a camera body_type value from ever showing up as a "lens type" —
+  // and, combined with `kind` always being one of the active predicates,
+  // means a `kind` filter empties the wrong-kind groups without a separate
+  // `kind === 'lens' ? '' : …` guard at every call site.
+  const mfrBase = filterExcept('manufacturer')
+  const bodyBase = filterExcept('body').filter((r) => r.kind === 'camera')
+  const traitsBase = filterExcept('traits').filter((r) => r.kind === 'camera')
+  const ltypeBase = filterExcept('ltype').filter((r) => r.kind === 'lens')
+  const formatBase = filterExcept('format')
+  const mediumBase = filterExcept('medium').filter((r) => r.kind === 'camera')
+  const mountBase = filterExcept('mount')
 
-  const mfrFacet = countBy((r) => r.manufacturer).slice(0, 10)
-    .map(([v, n]) => facetLink('manufacturer', slugify(v), v, n)).join('')
-  const bodyFacet = kind === 'lens' ? '' : countBy((r) => r.type, cameraRows).slice(0, 10)
-    .map(([v, n]) => facetLink('body', v, BODY_TYPE_LABELS[v as BodyType] ?? v, n)).join('')
-  const traitsFacet = kind === 'lens' ? '' : countBy((r) => r.traits, cameraRows).slice(0, 10)
-    .map(([v, n]) => traitLink(v, n)).join('')
-  const ltypeFacet = kind === 'camera' ? '' : countBy((r) => r.type, lensRows).slice(0, 10)
-    .map(([v, n]) => facetLink('ltype', v, prettyType(v), n)).join('')
-  const formatFacet = countBy((r) => r.format).slice(0, 10)
-    .map(([v, n]) => facetLink('format', v, v, n)).join('')
-  const mediumFacet = kind === 'lens' ? '' : countBy((r) => r.medium, cameraRows).slice(0, 10)
-    .map(([v, n]) => facetLink('medium', v, cap(v), n)).join('')
-  const mountFacet = countBy((r) => r.mounts).slice(0, 10)
-    .map(([v, n]) => facetLink('mount', slugify(v), v, n)).join('')
+  const mfrSorted = countBy((r) => r.manufacturer, mfrBase)
+  const mfrTrunc = truncate('manufacturer', mfrSorted, (v) => manufacturer !== null && slugify(v) === manufacturer)
+  const mfrFacet = mfrTrunc.entries.map(([v, n]) => facetLink('manufacturer', slugify(v), v, n)).join('')
+  const mfrFooter = `${mfrTrunc.footer}<a class="facet-link facet-directory" href="#/browse?facet=manufacturer">All manufacturers →</a>`
+
+  const bodySorted = countBy((r) => r.type, bodyBase)
+  const bodyTrunc = truncate('body', bodySorted, (v) => v === body)
+  const bodyFacet = bodyTrunc.entries.map(([v, n]) => facetLink('body', v, BODY_TYPE_LABELS[v as BodyType] ?? v, n)).join('')
+
+  // Traits is multi-valued with AND semantics, so a group-wide countBy over
+  // one base isn't enough — per the finding, the count for candidate trait T
+  // is "rows matching all other facets AND all currently selected traits AND
+  // T" (adding T narrows to N). A selected trait shows the AND-set's actual
+  // size, since adding it back to itself is a no-op.
+  const traitsSelected = traits.length
+    ? traitsBase.filter((r) => traits.every((t) => r.traits.includes(t)))
+    : traitsBase
+  const traitValues = new Set<string>()
+  for (const r of traitsBase) for (const t of r.traits) traitValues.add(t)
+  const traitsSorted: [string, number][] = [...traitValues]
+    .map((t): [string, number] => [
+      t,
+      traits.includes(t) ? traitsSelected.length : traitsSelected.filter((r) => r.traits.includes(t)).length,
+    ])
+    .filter(([v, n]) => n > 0 || traits.includes(v))
+    .sort((a, b) => b[1] - a[1])
+  const traitsTrunc = truncate('traits', traitsSorted, (v) => traits.includes(v))
+  const traitsFacet = traitsTrunc.entries.map(([v, n]) => traitLink(v, n)).join('')
+
+  const ltypeSorted = countBy((r) => r.type, ltypeBase)
+  const ltypeTrunc = truncate('ltype', ltypeSorted, (v) => v === ltype)
+  const ltypeFacet = ltypeTrunc.entries.map(([v, n]) => facetLink('ltype', v, prettyType(v), n)).join('')
+
+  const formatSorted = countBy((r) => r.format, formatBase)
+  const formatTrunc = truncate('format', formatSorted, (v) => v === format)
+  const formatFacet = formatTrunc.entries.map(([v, n]) => facetLink('format', v, v, n)).join('')
+
+  const mediumSorted = countBy((r) => r.medium, mediumBase)
+  const mediumTrunc = truncate('medium', mediumSorted, (v) => v === medium)
+  const mediumFacet = mediumTrunc.entries.map(([v, n]) => facetLink('medium', v, cap(v), n)).join('')
+
+  const mountSorted = countBy((r) => r.mounts, mountBase)
+  const mountTrunc = truncate('mount', mountSorted, (v) => mount !== null && slugify(v) === mount)
+  const mountFacet = mountTrunc.entries.map(([v, n]) => facetLink('mount', slugify(v), v, n)).join('')
+
+  // 'Name' is the pipeline's default order (no param); 'Year' is a view
+  // preference, so — unlike a facet pick — it survives on `params` untouched
+  // (expand included) rather than being explicitly carried forward.
+  const sortLink = (value: 'name' | 'year', label: string) => {
+    const next = new URLSearchParams(params)
+    if (value === 'year') next.set('sort', 'year')
+    else next.delete('sort')
+    return `<a class="sort-link${sort === value ? ' is-active' : ''}" data-facet="${esc(`sort:${value}`)}" href="#/browse?${next.toString()}">${label}</a>`
+  }
+  const sortControl = `<div class="sort-control"><span class="text-muted sort-control-label">Sort</span>${sortLink('name', 'Name')}${sortLink('year', 'Year')}</div>`
+
+  // Finding 2a: at phone width, ~70 facet values ahead of the first result
+  // is a wall — render each group as a native <details> accordion instead.
+  // Decided at render time (not persisted): a group holding an active
+  // filter value opens by default so that context stays visible even though
+  // the rest re-collapse on the next render.
+  const isMobile = window.matchMedia('(max-width: 760px)').matches
 
   const shown = rows.slice(0, PAGE_SIZE)
   const listRows = shown.map((r) => browseRowHtml(r)).join('')
+  // Zero results used to leave chips as the only way out, because every
+  // facet group counts to zero too — disjunctive counting above already
+  // fixes most of that, but a direct exit still belongs here. `kind` is the
+  // one facet that isn't itself a sidebar group, so it's the one worth
+  // preserving (Cameras vs. Lenses is closer to a section choice than a
+  // filter).
+  const emptyNote = `<p class="text-muted empty-note">Nothing matches this combination.
+    <a class="empty-clear" href="#/browse${kind ? `?kind=${kind}` : ''}">Clear all filters</a></p>`
 
   app().innerHTML = `
   <div class="page">
+    <a class="skip-link" href="#browse-list">Skip to results</a>
     ${navHtml('browse', true)}
     <div class="browse">
       <div class="browse-head">
         <h2>Browse</h2>
         <div class="chips">${filters.map(chip).join('')}</div>
         <span class="text-muted browse-count">${rows.length.toLocaleString('en-US')} records</span>
+        ${sortControl}
       </div>
       <div class="browse-grid">
         <aside class="facet-col">
-          ${facetGroup('Manufacturer', mfrFacet)}
-          ${facetGroup('Body type', bodyFacet)}
-          ${facetGroup('Traits', traitsFacet)}
-          ${facetGroup('Lens type', ltypeFacet)}
-          ${facetGroup('Film format', formatFacet)}
-          ${facetGroup('Medium', mediumFacet)}
-          ${facetGroup('Mount', mountFacet)}
+          ${facetGroup('Manufacturer', mfrFacet, mfrFooter, { groupKey: 'manufacturer', active: manufacturer !== null, mobile: isMobile })}
+          ${facetGroup('Body type', bodyFacet, bodyTrunc.footer, { groupKey: 'body', active: body !== null, mobile: isMobile })}
+          ${facetGroup('Traits', traitsFacet, traitsTrunc.footer, { groupKey: 'traits', active: traits.length > 0, mobile: isMobile })}
+          ${facetGroup('Lens type', ltypeFacet, ltypeTrunc.footer, { groupKey: 'ltype', active: ltype !== null, mobile: isMobile })}
+          ${facetGroup('Film format', formatFacet, formatTrunc.footer, { groupKey: 'format', active: format !== null, mobile: isMobile })}
+          ${facetGroup('Medium', mediumFacet, mediumTrunc.footer, { groupKey: 'medium', active: medium !== null, mobile: isMobile })}
+          ${facetGroup('Mount', mountFacet, mountTrunc.footer, { groupKey: 'mount', active: mount !== null, mobile: isMobile })}
         </aside>
-        <div class="browse-list" id="browse-list">${listRows || '<p class="text-muted empty-note">Nothing matches this combination.</p>'}
+        <div class="browse-list" id="browse-list" tabindex="-1">${listRows || emptyNote}
           ${rows.length > PAGE_SIZE ? `<button class="btn btn-secondary load-more" id="load-more">Show more (${(rows.length - PAGE_SIZE).toLocaleString('en-US')} remaining)</button>` : ''}
         </div>
       </div>
@@ -533,6 +696,37 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
     if (offset >= rows.length) btn.remove()
     else btn.textContent = `Show more (${(rows.length - offset).toLocaleString('en-US')} remaining)`
   })
+
+  // Finding 2b: manually managed so the router (hash-based) never sees
+  // `#browse-list` as a route — a real anchor jump here would set
+  // location.hash to a string parseRoute doesn't recognize and land on
+  // `landing` instead of the results.
+  app().querySelector<HTMLAnchorElement>('.skip-link')?.addEventListener('click', (e) => {
+    e.preventDefault()
+    document.getElementById('browse-list')?.focus()
+  })
+
+  // Finding 8: capture the clicked identity + scroll position before the
+  // browser's default hash navigation runs (delegated on `.browse`, which
+  // is discarded — and its listener with it — on the next render, so this
+  // never double-attaches).
+  app().querySelector<HTMLElement>('.browse')?.addEventListener('click', (e) => {
+    const target = (e.target as HTMLElement).closest<HTMLElement>('[data-facet]')
+    if (target) pendingRestore = { facet: target.dataset.facet!, scrollY: window.scrollY }
+  })
+
+  if (pendingRestore) {
+    const { facet, scrollY } = pendingRestore
+    pendingRestore = null
+    // main.ts's route() calls `window.scrollTo(0, 0)` synchronously right
+    // after this render's promise settles (there is no `await` between
+    // them) — a macrotask runs after that microtask-chained call, which is
+    // what lets this restore win instead of being immediately undone.
+    setTimeout(() => {
+      window.scrollTo(0, scrollY)
+      restoreFacetFocus(facet)
+    }, 0)
+  }
 
   function renderManufacturerDirectory(): void {
     const f = getFacets()
@@ -553,9 +747,50 @@ export async function renderBrowse(params: URLSearchParams): Promise<void> {
   }
 }
 
-function facetGroup(title: string, linksHtml: string): string {
+interface FacetGroupOpts {
+  /** URL param this group filters on — also the `data-facet-group` used by
+   *  restoreFacetFocus's group-heading fallback (finding 8). */
+  groupKey?: string
+  /** Group holds a currently-selected value — keeps a mobile <details> open
+   *  across re-renders instead of collapsing away the active context. */
+  active?: boolean
+  /** Render as a native <details>/<summary> accordion (finding 2a). */
+  mobile?: boolean
+}
+
+function facetGroup(title: string, linksHtml: string, footer = '', opts: FacetGroupOpts = {}): string {
   if (!linksHtml) return ''
-  return `<div class="facet-group"><h6>${esc(title)}</h6>${linksHtml}</div>`
+  const { groupKey = '', active = false, mobile = false } = opts
+  const groupAttr = groupKey ? ` data-facet-group="${esc(groupKey)}"` : ''
+  if (mobile) {
+    return `<details class="facet-group"${groupAttr}${active ? ' open' : ''}><summary>${esc(title)}</summary>${linksHtml}${footer}</details>`
+  }
+  // tabindex so restoreFacetFocus can land here when the exact clicked
+  // element (e.g. a removed chip) no longer exists after the re-render.
+  return `<div class="facet-group"${groupAttr}><h6 tabindex="-1">${esc(title)}</h6>${linksHtml}${footer}</div>`
+}
+
+/**
+ * Finding 8's landing spot: the element carrying `facet` ("param:value") if
+ * it still exists post-render, else the heading of the group it belonged
+ * to, else the results container. `facet` is always one of our own
+ * `data-facet` values (slugs, enum keys, or the fixed 'kind'/'sort' params)
+ * — never arbitrary text — so it's safe to drop straight into an attribute
+ * selector.
+ */
+function restoreFacetFocus(facet: string): void {
+  const exact = app().querySelector<HTMLElement>(`[data-facet="${facet}"]`)
+  if (exact) {
+    exact.focus({ preventScroll: true })
+    return
+  }
+  const [groupKey] = facet.split(':')
+  const heading = app().querySelector<HTMLElement>(`[data-facet-group="${groupKey}"] h6, [data-facet-group="${groupKey}"] summary`)
+  if (heading) {
+    heading.focus({ preventScroll: true })
+    return
+  }
+  document.getElementById('browse-list')?.focus({ preventScroll: true })
 }
 
 function browseRowHtml(r: CatalogRecord): string {

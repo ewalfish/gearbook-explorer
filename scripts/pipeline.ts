@@ -40,25 +40,44 @@ interface AliasRow {
 // form factor first), capped at two: true multi-trait records are rare, and
 // a facts line is a one-liner. `point-and-shoot` reads as stuttering next to
 // a `compact` body label, so it is dropped there and shown for every other
-// body_type.
+// body_type. Lowercased for sentence position — see `caseForLine`.
 function factsTraits(d: GearRecord['data']): string[] {
   const set = new Set(d.traits ?? [])
   if (d.body_type === 'compact') set.delete('point-and-shoot')
-  return TRAITS.filter((t) => set.has(t)).slice(0, 2).map((t) => TRAIT_LABELS[t] ?? t)
+  return TRAITS.filter((t) => set.has(t)).slice(0, 2).map((t) => caseForLine(TRAIT_LABELS[t] ?? t))
 }
 
-/** The 2–3-fact one-liner shown under a result row. */
+// A vocab label is Title Case for standalone display (facet chips, filter
+// pills). Mid-sentence in factsLine that reads as a capitalized pileup
+// ("35mm Motorized Point & Shoot Viewfinder") — word salad, not a sentence.
+// The three acronym body labels are an explicit exception, kept whole: "TLR"
+// lowercased is unreadable, and "pseudo tlr" loses the acronym entirely.
+const KEEP_LABEL_CASE = new Set(['SLR', 'TLR', 'Pseudo TLR'])
+function caseForLine(label: string): string {
+  if (KEEP_LABEL_CASE.has(label)) return label
+  return label.charAt(0).toLowerCase() + label.slice(1)
+}
+
+/** The fact one-liner shown under a result row. Never carries the year — every
+ *  row that shows this line ALSO right-aligns the year itself. */
 export function factsLine(rec: GearRecord, kind: Kind): string {
   const d = rec.data
   const parts: string[] = []
   if (kind === 'camera') {
-    const bodyLabel = d.body_type ? (BODY_TYPE_LABELS[d.body_type as BodyType] ?? d.body_type) : ''
+    const rawBodyLabel = d.body_type ? (BODY_TYPE_LABELS[d.body_type as BodyType] ?? d.body_type) : ''
+    const bodyLabel = caseForLine(rawBodyLabel)
     if (d.medium === 'digital') {
       parts.push(`Digital ${bodyLabel || 'camera'}`.trim())
       if (d.sensor_resolution_mp) parts.push(`${d.sensor_resolution_mp}MP`)
     } else {
       const fmt = d.format && d.format !== 'digital' ? d.format : ''
-      parts.push([fmt, ...factsTraits(d), bodyLabel].filter(Boolean).join(' '))
+      const traits = factsTraits(d)
+      // The trait words glue to the front (format + traits read as one
+      // phrase — "35mm motorized point & shoot"); a ' · ' separates that
+      // phrase from the body label only when both are present, so a
+      // traits-only or body-only record doesn't get a dangling separator.
+      const front = [fmt, ...traits].filter(Boolean).join(' ')
+      parts.push([front, bodyLabel].filter(Boolean).join(' · '))
       const fl = d.fixed_lens
       if (fl) {
         let focal = fmtFocal(fl.focal_length, fl.focal_min_mm, fl.focal_max_mm)
@@ -72,7 +91,6 @@ export function factsLine(rec: GearRecord, kind: Kind): string {
     if (focal || d.max_aperture) parts.push([focal, d.max_aperture].filter(Boolean).join(' '))
     if (d.mounts?.length) parts.push(d.mounts[0])
   }
-  if (rec.data.year_introduced) parts.push(String(rec.data.year_introduced))
   return parts.filter(Boolean).join(' · ')
 }
 
@@ -140,7 +158,26 @@ export function buildAll() {
     ])
     // eslint-disable-next-line no-empty
   }
-  catalog.sort((a, b) => a[2].localeCompare(b[2]))
+  // Plain name-sort put quoted names ("Carmen") and digit-led names (135mm
+  // f/2.8 Revuenon) ahead of everything alphabetic — the ASCII order of `"`
+  // and digits is below `A`-`z` — so the first unfiltered Browse screen was
+  // led by the corpus's least representative records. Sort by a sanity tier
+  // first (manufacturer + high confidence, then manufacturer at any
+  // confidence, then no manufacturer at all), and within a tier by name with
+  // leading punctuation/digits stripped FOR THE KEY ONLY — the display name
+  // (row[2]) is never touched.
+  const sortKey = (row: CatalogRowTuple) => {
+    const hasMfr = row[3] !== ''
+    const tier = !hasMfr ? 2 : row[5] === 'h' ? 0 : 1
+    const stripped = row[2].replace(/^[^\p{L}]+/u, '')
+    return { tier, stripped }
+  }
+  catalog.sort((a, b) => {
+    const ka = sortKey(a)
+    const kb = sortKey(b)
+    if (ka.tier !== kb.tier) return ka.tier - kb.tier
+    return ka.stripped.localeCompare(kb.stripped) || a[2].localeCompare(b[2]) || a[0].localeCompare(b[0])
+  })
 
   // ── Facets / curated counts ──────────────────────────────────────────────
   const mfrCounts = new Map<string, number>()
@@ -193,6 +230,11 @@ export function buildAll() {
     {
       kicker: 'Collection', title: 'Stereo cameras', href: '#/browse?traits=stereo',
       count: count((r, k) => k === 'camera' && (r.data.traits ?? []).includes('stereo')),
+      unit: 'cameras',
+    },
+    {
+      kicker: 'Collection', title: 'Subminiature cameras', href: '#/browse?traits=subminiature',
+      count: count((r, k) => k === 'camera' && (r.data.traits ?? []).includes('subminiature')),
       unit: 'cameras',
     },
   ]

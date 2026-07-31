@@ -51,7 +51,7 @@ h4 { font-size: 20px; }
 h5 { font-size: 16px; }
 h6 { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
 p { margin: 0 0 12px; }
-a { color: var(--color-accent); text-underline-offset: 3px; }
+a { color: var(--color-accent-700); text-underline-offset: 3px; }
 
 .text-muted { color: color-mix(in srgb, var(--color-text) 55%, transparent); }
 
@@ -60,6 +60,20 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
 
 .hr { height: 2px; border: 0; margin: 16px 0; background: var(--color-divider); }
+
+/* — skip link — */
+/* Visually hidden until it receives focus: the first tab stop on browse,
+   where the facet sidebar can otherwise put ~70 stops between nav and the
+   first result (finding 2b). Handled entirely in JS (see renderBrowse) —
+   never a real hash jump, since this app's `#` is the router. */
+.skip-link {
+  position: absolute; top: -100px; left: 8px; z-index: 100;
+  background: var(--color-text); color: var(--color-bg);
+  padding: 10px 16px; border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 700; text-decoration: none;
+  transition: top 0.12s ease;
+}
+.skip-link:focus { top: 8px; outline: 2px solid var(--color-accent); outline-offset: 2px; }
 
 /* — buttons — */
 .btn {
@@ -83,7 +97,7 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 }
 .tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
 .tag-neutral { background: var(--color-neutral-100); color: var(--color-neutral-800); }
-.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent); }
+.tag-outline { border: 1px solid var(--color-accent); color: var(--color-accent-700); }
 
 /* — nav — */
 .nav {
@@ -98,7 +112,7 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 }
 .brand-mark { width: 15px; height: 15px; background: var(--color-accent); display: block; border-radius: 4px; }
 .nav a { color: inherit; text-decoration: none; font-size: 14px; }
-.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent); }
+.nav a:hover, .nav a[aria-current='page'] { color: var(--color-accent-700); }
 .nav-search {
   display: flex; align-items: center; gap: 8px;
   background: var(--color-surface); border: 1px solid var(--color-divider);
@@ -164,6 +178,10 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   overflow: hidden;
   margin-top: 6px;
 }
+/* the listbox itself scrolls; .ta-footer sits outside it (below, always
+   visible) so a keyboard selection past the fold is reachable and the
+   listbox never contains non-option content. */
+.ta-listbox { max-height: min(60vh, 520px); overflow-y: auto; }
 .hero-search.ta-container { border-radius: var(--radius-lg); }
 .hero-search.ta-container:has(.ta-dropdown:not([hidden])) {
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
@@ -225,11 +243,11 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   min-height: 132px; transition: background 0.12s ease;
 }
 .gb-entry:hover { background: var(--color-accent-100); }
-.gb-entry:hover .gb-arrow { transform: translateX(4px); color: var(--color-accent); }
+.gb-entry:hover .gb-arrow { transform: translateX(4px); color: var(--color-accent-700); }
 .gb-arrow { transition: transform 0.15s ease; display: inline-block; }
 .gb-entry-kicker {
   font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-700);
 }
 .gb-entry-title { font-family: var(--font-heading); font-weight: 800; font-size: 19px; line-height: 1.15; }
 .gb-entry-meta {
@@ -282,6 +300,13 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 }
 .spec-dl dt:last-of-type, .spec-dl dd:last-of-type { border-bottom: 1px solid var(--color-divider); }
 .spec-dl a { text-decoration: none; }
+/* Traits row (finding 11): .chip pill is already the browse page's language
+   for "this filters the catalog" — reused here so the spec sheet's trait
+   links read as clickable instead of plain comma-separated red text.
+   .chip-link adds a hover state since, unlike a chip's usual ✕-to-remove
+   use, these are plain navigation with nothing to dismiss. */
+.chip-row { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.chip-link:hover { background: var(--color-accent-800); color: var(--color-neutral-100); }
 
 .variants { margin-top: 36px; }
 .variants .section-label { margin-bottom: 0; }
@@ -311,13 +336,21 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   transition: background 0.12s ease;
 }
 .gb-related:hover { background: var(--color-accent-100); }
-.gb-related:hover .gb-arrow { transform: translateX(4px); color: var(--color-accent); }
+.gb-related:hover .gb-arrow { transform: translateX(4px); color: var(--color-accent-700); }
 
 /* — browse — */
 .browse { padding: 32px 48px 44px; }
 .browse-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
 .browse-head h2 { margin: 0; }
 .browse-count { font-size: 13px; margin-left: auto; }
+/* the sort control rides along with browse-count on the auto-margin's right
+   group — Name (default, no param) / Year, a view preference that survives
+   facet changes unlike `expand`. */
+.sort-control { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.sort-control-label { font-size: 12px; }
+.sort-link { color: inherit; text-decoration: none; padding: 3px 6px; border-radius: var(--radius-sm); }
+.sort-link:hover { background: var(--color-accent-100); color: var(--color-accent-700); }
+.sort-link.is-active { color: var(--color-accent-700); font-weight: 600; }
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }
 .chip {
   display: inline-flex; align-items: center; gap: 6px;
@@ -333,8 +366,16 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   font-size: 13px; text-decoration: none; color: inherit;
   padding: 5px 4px; border-radius: var(--radius-sm);
 }
-.facet-link:hover { background: var(--color-accent-100); color: var(--color-accent); }
-.facet-link.is-active { color: var(--color-accent); font-weight: 600; }
+.facet-link:hover { background: var(--color-accent-100); color: var(--color-accent-700); }
+.facet-link.is-active { color: var(--color-accent-700); font-weight: 600; }
+/* "Show all (N)" / "Show fewer" (the expand toggle) and "All manufacturers →"
+   (the directory) — footer links inside a facet-group, below its values. */
+.facet-more, .facet-directory {
+  display: block; font-size: 12px; text-decoration: none;
+  color: var(--color-accent-700); padding: 6px 4px 0;
+}
+.facet-more:hover, .facet-directory:hover { text-decoration: underline; }
+.empty-clear { margin-left: 6px; }
 .browse-list {
   background: var(--color-surface); border: 1px solid var(--color-divider);
   border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
@@ -347,6 +388,9 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
 
 /* — mobile (the thrift-store lookup) — */
 @media (max-width: 760px) {
+  /* nav overflows at 375px otherwise (brand + 3 links + search > viewport) —
+     wrap, and push the search box to its own full-width row. */
+  .nav { flex-wrap: wrap; row-gap: 10px; }
   .hero { padding: 36px 20px 28px; }
   .hero-h1 { font-size: 32px; line-height: 1.02; margin: 0 0 14px; }
   .hero-sub { font-size: 14px; margin-bottom: 20px; }
@@ -375,9 +419,24 @@ a { color: var(--color-accent); text-underline-offset: 3px; }
   .variants-grid.cols-2, .variants-grid.cols-3 { grid-template-columns: 1fr; }
   .browse { padding: 20px 16px 32px; }
   .browse-grid { grid-template-columns: 1fr; gap: 20px; }
-  .facet-col { flex-direction: row; flex-wrap: wrap; gap: 16px; }
-  .facet-group { min-width: 150px; }
-  .nav-search { width: 150px; }
+  /* Finding 2a: facet groups become native <details> accordions at this
+     width (collapsed by default, per renderBrowse's isMobile check) — a
+     full-width stacked list reads better as an accordion than the wrapped
+     multi-column layout this replaced, which was built for groups that
+     were always fully expanded. */
+  .facet-col { flex-direction: column; gap: 4px; }
+  .facet-group summary {
+    font-family: var(--font-heading); font-weight: 800; font-size: 13px;
+    letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+    list-style: none; padding: 10px 2px;
+    border-bottom: 2px solid var(--color-divider);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .facet-group summary::-webkit-details-marker { display: none; }
+  .facet-group summary::after { content: '+'; font-size: 16px; font-weight: 400; }
+  .facet-group[open] summary::after { content: '\2212'; }
+  .facet-group[open] summary { margin-bottom: 4px; }
+  .nav-search { width: 100%; order: 1; }
   .gb-footer { padding: 14px 20px; }
   .gb-hit { padding: 13px 14px; }
   .gb-hit-title strong { font-size: 15px; }

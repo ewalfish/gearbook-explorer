@@ -78,8 +78,6 @@ export function attachTypeahead(container: HTMLElement, opts: TypeaheadOpts = {}
 
   const dropdown = document.createElement('div')
   dropdown.className = `ta-dropdown${opts.hero ? ' ta-dropdown-hero' : ''}`
-  dropdown.setAttribute('role', 'listbox')
-  dropdown.setAttribute('aria-label', 'Suggestions')
   dropdown.hidden = true
   container.appendChild(dropdown)
   container.classList.add('ta-container')
@@ -109,14 +107,17 @@ export function attachTypeahead(container: HTMLElement, opts: TypeaheadOpts = {}
     dropdown.hidden = false
     input.setAttribute('aria-expanded', 'true')
     const rows = hits.map((h, i) => hitRowHtml(h, i === active)).join('')
+    // The listbox holds only option rows — the footer is a sibling, not a
+    // child, so it never becomes non-option content inside role=listbox.
     dropdown.innerHTML = `
-      ${rows}
+      <div class="ta-listbox" role="listbox" aria-label="Suggestions">${rows}</div>
       <div class="ta-footer">
         <span class="ta-keys">↑↓ navigate · ↵ open · esc dismiss</span>
         <a href="#/search?q=${encodeURIComponent(q)}">See all results →</a>
       </div>`
     if (active >= 0) {
       input.setAttribute('aria-activedescendant', `ta-opt-${hits[active].id}`)
+      dropdown.querySelector('.is-selected')?.scrollIntoView({ block: 'nearest' })
     } else {
       input.removeAttribute('aria-activedescendant')
     }

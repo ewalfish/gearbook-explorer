@@ -23,25 +23,25 @@ function camera(data: GearRecord['data']): GearRecord {
 }
 
 describe('factsLine — synthetic fixtures, no asset dependency', () => {
-  it('a 35mm folding rangefinder states format, trait and finder together', () => {
+  it('a 35mm folding rangefinder states format and trait glued, then the body label — lowercased, no year', () => {
     const line = factsLine(camera({
       format: '35mm', body_type: 'rangefinder', traits: ['folding'], year_introduced: 1934,
     }), 'camera')
-    expect(line).toBe('35mm Folding Rangefinder · 1934')
+    expect(line).toBe('35mm folding · rangefinder')
   })
 
-  it('a digital SLR leads with "Digital" and shows sensor megapixels, not format', () => {
+  it('a digital SLR leads with "Digital" and shows sensor megapixels, not format — acronym case kept, no year', () => {
     const line = factsLine(camera({
       medium: 'digital', body_type: 'slr', sensor_resolution_mp: 12, year_introduced: 2008,
     }), 'camera')
-    expect(line).toBe('Digital SLR · 12MP · 2008')
+    expect(line).toBe('Digital SLR · 12MP')
   })
 
   it('suppresses the point-and-shoot trait next to a compact body — it would stutter', () => {
     const line = factsLine(camera({
       format: '35mm', body_type: 'compact', traits: ['point-and-shoot'], year_introduced: 1995,
     }), 'camera')
-    expect(line).toBe('35mm Compact · 1995')
+    expect(line).toBe('35mm · compact')
     expect(line).not.toMatch(/point.*shoot/i)
   })
 
@@ -49,13 +49,27 @@ describe('factsLine — synthetic fixtures, no asset dependency', () => {
     const line = factsLine(camera({
       format: '120', body_type: 'box', traits: ['stereo'], year_introduced: 1954,
     }), 'camera')
-    expect(line).toBe('120 Stereo Box · 1954')
+    expect(line).toBe('120 stereo · box')
   })
 
-  it('a record with neither body_type nor traits still renders format and year, and never throws', () => {
+  it('a record with neither body_type nor traits still renders format, and never throws or shows the year', () => {
     let line = ''
     expect(() => { line = factsLine(camera({ format: '120', year_introduced: 1950 }), 'camera') }).not.toThrow()
-    expect(line).toBe('120 · 1950')
+    expect(line).toBe('120')
+  })
+
+  it('a pseudo-TLR keeps its acronym casing whole mid-sentence, not just the TLR half', () => {
+    const line = factsLine(camera({
+      format: '35mm', body_type: 'pseudo-tlr', year_introduced: 1959,
+    }), 'camera')
+    expect(line).toBe('35mm · Pseudo TLR')
+  })
+
+  it('no factsLine output ever ends in a bare 4-digit year', () => {
+    const line = factsLine(camera({
+      format: '35mm', body_type: 'rangefinder', traits: ['folding'], year_introduced: 1934,
+    }), 'camera')
+    expect(line).not.toMatch(/\d{4}$/)
   })
 })
 
@@ -114,6 +128,49 @@ describe.skipIf(!built)(
     it('no curated href carries the retired ?type= param', () => {
       const bad = built!.curated.filter((c) => /[?&]type=/.test(c.href)).map((c) => c.href)
       expect(bad, 'curated hrefs still using ?type=').toEqual([])
+    })
+
+    it('the landing grid ships a 9th tile — subminiature cameras — filling the 3×3 grid', () => {
+      const tile = built!.curated.find((c) => c.title === 'Subminiature cameras')
+      expect(tile).toBeDefined()
+      expect(tile!.href).toBe('#/browse?traits=subminiature')
+      expect(tile!.unit).toBe('cameras')
+      // Measured on the published asset (2026-07-31): 791. Pinned to the same
+      // predicate the href filters by, with slack for asset drift.
+      expect(tile!.count).toBeGreaterThan(700)
+      expect(tile!.count).toBeLessThan(900)
+      expect(built!.curated.length).toBe(9)
+    })
+
+    it('catalog sort puts manufacturer+high-confidence records ahead of manufacturer-less junk', () => {
+      // Regression for the old localeCompare(name) sort, which put quoted
+      // ("Carmen") and digit-led (135mm f/2.8 Revuenon) names ahead of the
+      // alphabet because of ASCII order — the first unfiltered Browse screen
+      // led with the corpus's least representative records.
+      const firstNoMfr = built!.catalog.findIndex((row) => row[3] === '')
+      const lastWithMfr = built!.catalog.reduce(
+        (last, row, i) => (row[3] !== '' ? i : last), -1,
+      )
+      if (firstNoMfr !== -1 && lastWithMfr !== -1) {
+        expect(lastWithMfr).toBeLessThan(firstNoMfr)
+      }
+      // The display name itself is untouched by the sort key — only the sort
+      // order changes, never row[2].
+      const first = built!.catalog[0]
+      expect(first[2].length).toBeGreaterThan(0)
+    })
+
+    it('catalog sort is a stable total order — re-sorting produces the identical sequence', () => {
+      const ids = built!.catalog.map((row) => row[0])
+      const reSorted = [...built!.catalog].sort((a, b) => {
+        const strip = (s: string) => s.replace(/^[^\p{L}]+/u, '')
+        const tierOf = (r: typeof a) => (r[3] === '' ? 2 : r[5] === 'h' ? 0 : 1)
+        const ta = tierOf(a)
+        const tb = tierOf(b)
+        if (ta !== tb) return ta - tb
+        return strip(a[2]).localeCompare(strip(b[2])) || a[2].localeCompare(b[2]) || a[0].localeCompare(b[0])
+      })
+      expect(reSorted.map((row) => row[0])).toEqual(ids)
     })
   },
 )
