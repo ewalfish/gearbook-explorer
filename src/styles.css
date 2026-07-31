@@ -59,8 +59,6 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
 ::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
 
-.hr { height: 2px; border: 0; margin: 16px 0; background: var(--color-divider); }
-
 /* — skip link — */
 /* Visually hidden until it receives focus: the first tab stop on browse,
    where the facet sidebar can otherwise put ~70 stops between nav and the
@@ -87,6 +85,14 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 .btn-secondary { border-color: var(--color-divider); }
 .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
 .btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
+/* White text on the accent passes contrast at this weight/size (800 weight,
+   16px — comfortably past the WCAG large-text 3:1 threshold) but not at
+   body text sizes, so this is deliberately paired with .btn-lg wherever it
+   appears rather than used at the base 14px. */
+.btn-primary { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+.btn-primary:hover { background: var(--color-accent-800); border-color: var(--color-accent-800); }
+.btn-primary:active { background: var(--color-accent-700); border-color: var(--color-accent-700); }
+.btn-lg { padding: 13px 30px; font-size: 16px; border-radius: var(--radius-lg); }
 
 /* — tags — */
 .tag {
@@ -167,6 +173,10 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
   border: 1px solid var(--color-divider); padding: 3px 8px; border-radius: 6px;
 }
 .hero-status { font-size: 12px; margin: 10px 2px 0; }
+/* Second entry mode alongside the hero search — type a name, or just
+   browse. Centered independently of the rest of the hero, which is
+   left-aligned. */
+.hero-browse-cta { display: flex; justify-content: center; margin-top: 22px; }
 
 /* — typeahead dropdown — */
 .ta-container { position: relative; }
@@ -270,8 +280,17 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 .empty-note { padding: 20px; font-size: 14px; margin: 0; }
 
 /* — detail / spec sheet — */
-.detail { padding: 32px 48px 44px; }
+/* Baseline here is the 2a "measured column" revision — it is the fallback
+   at every width below 1400px (including phone, further tightened in the
+   mobile block at the bottom of this file), not a wide-only extra. The
+   wide-desktop (2b) layout is a separate DOM tree entirely (see renderDetail
+   / the `.detail-band` / `.band-*` rules below), scoped to its own
+   min-width media query since it only ever renders at that width. */
+.detail { padding: 34px 48px 44px; }
 .detail-loading { padding: 48px; }
+/* Content caps at 1180px so values never drift far from their labels — the
+   page padding above still runs edge to edge. */
+.detail-measure { max-width: 1180px; }
 .crumbs { font-size: 12px; margin-bottom: 22px; }
 .crumbs a { text-decoration: none; }
 .detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
@@ -284,21 +303,42 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 .detail-aka { font-size: 15px; margin-top: 6px; }
 .detail-aka strong { color: var(--ink); font-weight: 600; }
 .manual-btn { flex: none; }
+
+/* At-a-glance strip — the thrift-store facts (Takes / Battery / Lens / Type
+   for a camera, Mount / Focal / Aperture / Type for a lens), between the
+   header and the full spec table. A cell whose field is unrecorded is
+   omitted, never shown as "—". */
+.glance-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  background: var(--color-divider); border: 1px solid var(--color-divider);
+  border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
+  margin: 26px 0 32px;
+}
+.glance-cell { background: var(--color-bg); padding: 16px 18px; }
+.glance-kicker {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--color-accent); margin-bottom: 6px;
+}
+.glance-value { font-family: var(--font-heading); font-weight: 800; font-size: 24px; line-height: 1.1; }
+
 .detail-grid {
-  display: grid; grid-template-columns: 1fr 320px; gap: 56px;
+  display: grid; grid-template-columns: 1fr 300px; gap: 52px;
   align-items: start;
 }
-.spec-dl { margin: 0; display: grid; grid-template-columns: 190px 1fr; column-gap: 28px; }
+.spec-head { margin: 0 0 2px; border-bottom: 2px solid var(--color-divider); padding-bottom: 10px; }
+.spec-note { font-size: 13px; margin: 16px 0 0; }
+/* Grid hairline is a border-bottom on the value cell only — a border-top on
+   both cells (the pre-revision scheme) reads as a double rule between rows. */
+.spec-dl { margin: 0; display: grid; grid-template-columns: 150px 1fr; column-gap: 24px; }
 .spec-dl dt {
-  grid-column: 1; padding: 12px 0; border-top: 1px solid var(--color-divider);
+  grid-column: 1; padding: 11px 0;
   font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
   color: color-mix(in srgb, var(--color-text) 55%, transparent);
 }
 .spec-dl dd {
-  grid-column: 2; margin: 0; padding: 12px 0;
-  border-top: 1px solid var(--color-divider); font-size: 15px;
+  grid-column: 2; margin: 0; padding: 11px 0;
+  border-bottom: 1px solid var(--color-divider); font-size: 15px;
 }
-.spec-dl dt:last-of-type, .spec-dl dd:last-of-type { border-bottom: 1px solid var(--color-divider); }
 .spec-dl a { text-decoration: none; }
 /* Traits row (finding 11): .chip pill is already the browse page's language
    for "this filters the catalog" — reused here so the spec sheet's trait
@@ -332,11 +372,70 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 .h6-note { font-weight: 400; text-transform: none; letter-spacing: 0; }
 .gb-related {
   display: flex; justify-content: space-between; gap: 12px;
-  text-decoration: none; color: inherit; padding: 8px 6px; font-size: 14px;
-  transition: background 0.12s ease;
+  text-decoration: none; color: inherit; padding: 9px 6px; font-size: 14px;
+  border-radius: var(--radius-sm); transition: background 0.12s ease;
 }
 .gb-related:hover { background: var(--color-accent-100); }
 .gb-related:hover .gb-arrow { transform: translateX(4px); color: var(--color-accent-700); }
+
+/* — wide-desktop spec page (2b) — a separate DOM tree renderDetail only
+   builds at >= 1400px (see the `isWide` branch); the class names below are
+   scoped to that same width so they can never leak into the 2a/mobile tree
+   these rules would otherwise conflict with (e.g. .spec-dl vs
+   .spec-dl-paired want different column counts). */
+@media (min-width: 1400px) {
+  .detail-band { background: var(--color-surface); border-bottom: 2px solid var(--color-divider); padding: 30px 48px 28px; }
+  .detail-band .crumbs { margin-bottom: 16px; }
+  .band-grid { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+  .band-h1 { font-size: 56px; line-height: 0.98; margin: 0 0 12px; max-width: 22ch; }
+  .band-facts { display: flex; align-items: flex-end; gap: 32px; }
+  .band-fact-kicker {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--color-accent); margin-bottom: 4px;
+  }
+  .band-fact-value { font-family: var(--font-heading); font-weight: 800; font-size: 30px; line-height: 1; }
+  .band-fact-divider { width: 1px; height: 46px; background: var(--color-divider); }
+  .band-facts .manual-btn { margin-left: 8px; }
+
+  .band-body { display: grid; grid-template-columns: 1fr 340px; }
+  .band-main { padding: 32px 48px 44px; border-right: 2px solid var(--color-divider); }
+  .spec-head-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 2px solid var(--color-divider); padding-bottom: 10px; margin-bottom: 4px;
+  }
+  .spec-head-row h6 { margin: 0; }
+
+  /* The paired spec grid: fields flow down the left label/value pair, then
+     the right one (see specDlPairedHtml). `.spec-filler` is the odd-trailing
+     -field pair and must never carry the row hairline. */
+  .spec-dl-paired { margin: 0; display: grid; grid-template-columns: 130px 1fr 130px 1fr; column-gap: 22px; }
+  .spec-dl-paired dt {
+    padding: 13px 0; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-text) 55%, transparent);
+    border-bottom: 1px solid var(--color-divider);
+  }
+  .spec-dl-paired dd { margin: 0; padding: 13px 0; font-size: 15px; border-bottom: 1px solid var(--color-divider); }
+  .spec-dl-paired dt.spec-filler, .spec-dl-paired dd.spec-filler { border-bottom: none; }
+  .spec-dl-paired a { text-decoration: none; }
+
+  /* Sparse-record filler ("Shooting it today" / "Checking one in hand") —
+     omitted by fillerPanelsHtml rather than rendered empty, so this grid
+     never appears with a blank cell. */
+  .filler-panels {
+    margin-top: 32px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    background: var(--color-divider); border: 1px solid var(--color-divider);
+    border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
+  }
+  .filler-cell { background: var(--color-bg); padding: 22px; }
+  .filler-cell h5 { margin: 0 0 8px; }
+  .filler-cell p { margin: 0; font-size: 13px; line-height: 1.55; }
+  .filler-note { font-size: 12px; margin: 14px 0 0; }
+
+  .band-rail { padding: 32px 32px 44px; display: flex; flex-direction: column; gap: 26px; background: var(--color-surface); }
+  .band-rail h6 { margin: 0 0 6px; border-bottom: 2px solid var(--color-divider); padding-bottom: 10px; }
+  .rail-tags { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 10px; }
+  .rail-correction { margin-top: auto; font-size: 12px; }
+}
 
 /* — browse — */
 .browse { padding: 32px 48px 44px; }
@@ -360,7 +459,30 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 }
 .browse-grid { display: grid; grid-template-columns: 230px 1fr; gap: 40px; align-items: start; }
 .facet-col { display: flex; flex-direction: column; gap: 22px; }
-.facet-group h6 { margin: 0 0 8px; border-bottom: 2px solid var(--color-divider); padding-bottom: 6px; }
+.facet-group-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  border-bottom: 2px solid var(--color-divider); margin-bottom: 8px; padding-bottom: 6px;
+}
+.facet-group-head h6 { margin: 0; border-bottom: none; padding-bottom: 0; }
+/* Per-group facet search (item G-1): the icon toggles an inline input;
+   typing rebuilds only that group's value list (attachFacetSearch in
+   views.ts), never the whole page. */
+.facet-search-toggle {
+  display: flex; align-items: center; justify-content: center; flex: none;
+  background: none; border: none; cursor: pointer; padding: 4px;
+  border-radius: var(--radius-sm); color: inherit; opacity: 0.55;
+}
+.facet-search-toggle:hover { opacity: 1; background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.facet-search-toggle svg { width: 14px; height: 14px; }
+.facet-search-row { margin: -2px 0 8px; }
+.facet-search-input {
+  width: 100%; box-sizing: border-box; font: inherit; font-size: 13px;
+  color: var(--color-text); background: var(--color-surface);
+  border: 1px solid var(--color-divider); border-radius: var(--radius-sm);
+  padding: 6px 10px; caret-color: var(--color-accent);
+}
+/* "No matches" / "Showing 50 of N matches" / the expand-cap note. */
+.facet-note { font-size: 12px; margin: 6px 0 0; }
 .facet-link {
   display: flex; justify-content: space-between; gap: 10px;
   font-size: 13px; text-decoration: none; color: inherit;
@@ -398,6 +520,7 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
   .hero-search input { font-size: 16px; }
   .hero-search svg { width: 18px; height: 18px; }
   .kbd-chip { display: none; }
+  .hero-browse-cta { margin-top: 16px; }
   .curated { padding: 4px 20px 32px; }
   .curated-grid { grid-template-columns: 1fr; border-radius: var(--radius-md); }
   .gb-entry { min-height: 0; padding: 15px 16px; flex-direction: row; align-items: center; gap: 10px; }
@@ -411,11 +534,15 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
   .manual-btn { width: 100%; justify-content: flex-start; }
   .manual-btn svg { margin-left: auto; }
   .detail-grid { grid-template-columns: 1fr; gap: 28px; }
+  /* The base rule's border-bottom on dd already separates every stacked
+     row (including the last) — no per-row special-casing needed here. */
   .spec-dl { grid-template-columns: 1fr; }
-  .spec-dl dt { padding-bottom: 0; border-top: 1px solid var(--color-divider); }
-  .spec-dl dd { grid-column: 1; border-top: 0; padding-top: 2px; }
-  .spec-dl dd:last-of-type { border-bottom: 1px solid var(--color-divider); }
-  .spec-dl dt:last-of-type { border-bottom: 0; }
+  .spec-dl dt { padding-bottom: 0; }
+  .spec-dl dd { grid-column: 1; padding-top: 2px; }
+  /* 4 columns of thrift-store facts don't fit a phone width — 2x2 instead. */
+  .glance-strip { grid-template-columns: repeat(2, 1fr); margin: 20px 0 26px; }
+  .glance-cell { padding: 13px 14px; }
+  .glance-value { font-size: 20px; }
   .variants-grid.cols-2, .variants-grid.cols-3 { grid-template-columns: 1fr; }
   .browse { padding: 20px 16px 32px; }
   .browse-grid { grid-template-columns: 1fr; gap: 20px; }
@@ -436,6 +563,10 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
   .facet-group summary::after { content: '+'; font-size: 16px; font-weight: 400; }
   .facet-group[open] summary::after { content: '\2212'; }
   .facet-group[open] summary { margin-bottom: 4px; }
+  /* The search toggle sits after </summary>, not inside it (see facetGroup
+     in views.ts) — it renders as its own small row rather than sharing the
+     summary's flex line. */
+  .facet-group > .facet-search-toggle { margin: 0 0 6px; opacity: 0.7; }
   .nav-search { width: 100%; order: 1; }
   .gb-footer { padding: 14px 20px; }
   .gb-hit { padding: 13px 14px; }
