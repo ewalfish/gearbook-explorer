@@ -8,6 +8,7 @@ import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import {
   validateAsset, formatValidation, ASSET_CONTRACT, BODY_TYPES, TRAITS,
+  BODY_TYPE_LABELS, TRAIT_LABELS,
   names, otherMarketNames, buildRedirectIndex, explain, hazards, hasHazard,
   parseJsonl, type AliasLike, type RedirectLike,
 } from '../src/engine/index'
@@ -124,7 +125,7 @@ describe('the displayed name speaks the buyer’s language', () => {
   })
 
   it('no displayed name carries an accented French common noun', () => {
-    const FR = /(modèle|première|évolution|édition|génération|boîtier)/i
+    const FR = /(modèle|première|évolution|édition|génération|boîtier)/i
     const bad = [...cameras, ...lenses].filter((r) => FR.test(r.recommended_name))
     expect(bad.map((r) => r.recommended_name).slice(0, 5)).toEqual([])
   })
@@ -743,7 +744,7 @@ describe('body_type + traits', () => {
     const dir = join(__dirname, '..', 'src', 'engine')
     const offenders = readdirSync(dir)
       .filter((f) => f.endsWith('.ts') && !['schema.ts', 'index.ts'].includes(f))
-      .filter((f) => /camera_type|body_type|traits/.test(readFileSync(join(dir, f), 'utf8')))
+      .filter((f) => /camera_type|body_type|traits/.test(readFileSync(join(dir, f), 'utf8')))
     expect(offenders, 'matching must not depend on the type axes').toEqual([])
   })
 
@@ -768,6 +769,20 @@ describe('body_type + traits', () => {
       for (const t of d.traits ?? []) if (!traitOk.has(t)) bad.push(`${c.name}: trait "${t}"`)
     }
     expect(bad, 'out-of-vocabulary type axes').toEqual([])
+  })
+})
+
+// ── labels ──────────────────────────────────────────────────────────────────
+// The label maps are part of the vocabulary's contract: a value with no label
+// is as broken as a value outside the vocabulary, and a label with no value
+// is a stale entry nothing can ever select.
+describe('BODY_TYPE_LABELS and TRAIT_LABELS cover their vocabularies exactly', () => {
+  it('has a label for every body_type, and no extras', () => {
+    expect(Object.keys(BODY_TYPE_LABELS).sort()).toEqual([...BODY_TYPES].sort())
+  })
+
+  it('has a label for every trait, and no extras', () => {
+    expect(Object.keys(TRAIT_LABELS).sort()).toEqual([...TRAITS].sort())
   })
 })
 

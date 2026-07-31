@@ -86,6 +86,30 @@ export const BODY_TYPES = [
 export type BodyType = (typeof BODY_TYPES)[number]
 
 /**
+ * Display label for each BODY_TYPES value. Ships with the vocabulary rather
+ * than living app-side because every consumer was hand-rolling this exact
+ * map — camera-inventory's storefront kept its own copy
+ * (`lib/specs/vocabulary.ts`) that had to be kept in sync by hand across
+ * repos. The label IS part of the vocabulary's contract: a new value with no
+ * corresponding label is as broken as a value outside BODY_TYPES, which is
+ * what the contract test below checks.
+ */
+export const BODY_TYPE_LABELS: Readonly<Record<BodyType, string>> = {
+  'slr': 'SLR',
+  'tlr': 'TLR',
+  'pseudo-tlr': 'Pseudo TLR',
+  'rangefinder': 'Rangefinder',
+  'viewfinder': 'Viewfinder',
+  'view': 'View camera',
+  'box': 'Box',
+  'compact': 'Compact',
+  'bridge': 'Bridge',
+  'mirrorless': 'Mirrorless',
+  'pinhole': 'Pinhole',
+  'other': 'Other',
+}
+
+/**
  * Orthogonal modifiers — form factor and purpose. Multi-valued, because a
  * `klapp stéréo` is genuinely both folding and stereo, and the old model made
  * that unsayable: 425 records in the source corpus name two axes and shipped
@@ -134,6 +158,24 @@ export const TRAITS = [
   'point-and-shoot',
 ] as const
 export type Trait = (typeof TRAITS)[number]
+
+/** Display label for each TRAITS value. See BODY_TYPE_LABELS for why these ship with the vocab. */
+export const TRAIT_LABELS: Readonly<Record<Trait, string>> = {
+  'folding': 'Folding',
+  'subminiature': 'Subminiature',
+  'panoramic': 'Panoramic',
+  'stereo': 'Stereo',
+  'press': 'Press',
+  'aerial': 'Aerial',
+  'detective': 'Detective',
+  'movie': 'Movie',
+  'underwater': 'Underwater',
+  'toy': 'Toy',
+  'magazine': 'Magazine',
+  'instant-print': 'Instant print',
+  'motorized': 'Motorized',
+  'point-and-shoot': 'Point & shoot',
+}
 
 /**
  * A lens is sold in the mounts it is sold in — that is a SET, and it was
