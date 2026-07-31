@@ -39,7 +39,7 @@ export function footerHtml(): string {
   const version = getFacets()?.version ?? '…'
   return `
   <footer class="gb-footer">
-    <span>GEARBOOK · anonymized fact index</span>
+    <span>GEARBOOK · fact-only spec index</span>
     <span>data version ${esc(version)}</span>
   </footer>`
 }
