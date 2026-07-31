@@ -29,6 +29,14 @@ window.addEventListener('hashchange', () => {
   void route()
 })
 
+// The detail view picks its wide/narrow markup at render time while the CSS
+// switches on a media query — crossing 1400px with stale markup renders the
+// wide tree as naked unstyled text (a window snap from maximized is exactly
+// this gesture). Re-route on the boundary so markup and CSS agree again.
+window.matchMedia('(min-width: 1400px)').addEventListener('change', () => {
+  if (parseRoute(location.hash).view === 'detail') void route()
+})
+
 async function start(): Promise<void> {
   // Paint the shell immediately; the index streams in behind it.
   void route()
@@ -36,9 +44,13 @@ async function start(): Promise<void> {
     await boot((frac) => updateIndexStatus(frac, false))
     booted = true
     updateIndexStatus(null, true)
-    // Landing renders before facets/counts arrive — re-render once ready.
+    // Landing and search both render before the index arrives — the landing
+    // just lacks its counts, but a cold-loaded search URL computed its hits
+    // against a not-yet-loaded engine and showed "No matches" forever.
+    // Re-render either once the index is ready.
     const r = parseRoute(location.hash)
     if (r.view === 'landing') renderLanding()
+    else if (r.view === 'search') await renderSearch(r.q)
   } catch (err) {
     const el = document.getElementById('index-status')
     if (el) {

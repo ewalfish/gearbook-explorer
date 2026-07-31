@@ -537,6 +537,18 @@ function yearDistance(year: number, baseYear: number): number {
 }
 
 /**
+ * Comparator form of yearDistance. Two undated records both measure
+ * Infinity, and Infinity - Infinity is NaN — which a sort comparator must
+ * never return — so equality short-circuits to 0 first.
+ */
+function yearCmp(a: number, b: number, baseYear: number): number {
+  const da = yearDistance(a, baseYear)
+  const db = yearDistance(b, baseYear)
+  if (da === db) return 0
+  return da - db
+}
+
+/**
  * Freeform-value fallback formatter — dash-to-space, no casing table. Used
  * for lens types (never enumerated, so there is no label map for them) and
  * as the fallback for anything BODY_TYPE_LABELS/TRAIT_LABELS doesn't cover.
@@ -583,7 +595,10 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
       const oa = recTraits.filter((t) => a.traits.includes(t)).length
       const ob = recTraits.filter((t) => b.traits.includes(t)).length
       if (oa !== ob) return ob - oa
-      if (recYear) return Math.abs((a.year || recYear) - recYear) - Math.abs((b.year || recYear) - recYear)
+      // `a.year || recYear` was the old fallback here — it scored an UNDATED
+      // record as distance 0, beating every genuinely close sibling (year-0
+      // EOS Rebels led the 1976 AE-1's rail). Undated sorts last instead.
+      if (recYear) return yearCmp(a.year, b.year, recYear)
       return 0
     })
     .slice(0, 4)
@@ -600,7 +615,7 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
           const ma = a.manufacturer === d.manufacturer ? 0 : 1
           const mb = b.manufacturer === d.manufacturer ? 0 : 1
           if (ma !== mb) return ma - mb
-          return yearDistance(a.year, recYear) - yearDistance(b.year, recYear)
+          return yearCmp(a.year, b.year, recYear)
         })
         .slice(0, 4)
     : []
@@ -716,6 +731,7 @@ export async function renderDetail(kind: Kind, id: string): Promise<void> {
             </div>
             <aside class="detail-aside">
               ${relatedRailHtml}
+              ${browseFromHereTags(kind, d)}
             </aside>
           </div>
         </div>

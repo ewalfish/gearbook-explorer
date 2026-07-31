@@ -6,6 +6,12 @@
   --color-bg: #f3f2f2;
   --color-surface: #eae9e9;
   --color-text: #201e1d;
+  /* #ec3013 is the brand color for marks, borders, and surfaces WITHOUT
+     text on them — never a text color, never a background behind text.
+     White-on-accent measures 4.20:1 and accent-on-bg 3.76:1; both fail AA
+     below the 18.66px-bold large-text threshold, and this has shipped as a
+     defect three separate times (links, tags, the Browse button). Text-sized
+     accent is always --color-accent-700. */
   --color-accent: #ec3013;
   --color-divider: color-mix(in srgb, #201e1d 40%, transparent);
 
@@ -85,13 +91,13 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 .btn-secondary { border-color: var(--color-divider); }
 .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
 .btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
-/* White text on the accent passes contrast at this weight/size (800 weight,
-   16px — comfortably past the WCAG large-text 3:1 threshold) but not at
-   body text sizes, so this is deliberately paired with .btn-lg wherever it
-   appears rather than used at the base 14px. */
-.btn-primary { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
+/* accent-700, not accent: the WCAG large-text exemption starts at 18.66px
+   BOLD, so 16px/800 is still normal text and needs 4.5:1 — white on #ec3013
+   is 4.20:1 (fails), white on accent-700 ≈ 6.3:1 (passes at any size). See
+   the note on --color-accent. */
+.btn-primary { background: var(--color-accent-700); color: #fff; border-color: var(--color-accent-700); }
 .btn-primary:hover { background: var(--color-accent-800); border-color: var(--color-accent-800); }
-.btn-primary:active { background: var(--color-accent-700); border-color: var(--color-accent-700); }
+.btn-primary:active { background: var(--color-accent-800); border-color: var(--color-accent-800); }
 .btn-lg { padding: 13px 30px; font-size: 16px; border-radius: var(--radius-lg); }
 
 /* — tags — */
@@ -176,7 +182,9 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 /* Second entry mode alongside the hero search — type a name, or just
    browse. Centered independently of the rest of the hero, which is
    left-aligned. */
-.hero-browse-cta { display: flex; justify-content: center; margin-top: 22px; }
+/* flex-start, not center: the whole hero (H1, subtitle, search box) is
+   left-anchored, so a viewport-centered button floats aligned to nothing. */
+.hero-browse-cta { display: flex; justify-content: flex-start; margin-top: 22px; }
 
 /* — typeahead dropdown — */
 .ta-container { position: relative; }
@@ -377,6 +385,9 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 }
 .gb-related:hover { background: var(--color-accent-100); }
 .gb-related:hover .gb-arrow { transform: translateX(4px); color: var(--color-accent-700); }
+/* Outside the 1400px block on purpose: "Browse from here" renders in BOTH
+   detail layouts (the wide rail and the narrow aside). */
+.rail-tags { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 10px; }
 
 /* — wide-desktop spec page (2b) — a separate DOM tree renderDetail only
    builds at >= 1400px (see the `isWide` branch); the class names below are
@@ -433,7 +444,6 @@ a { color: var(--color-accent-700); text-underline-offset: 3px; }
 
   .band-rail { padding: 32px 32px 44px; display: flex; flex-direction: column; gap: 26px; background: var(--color-surface); }
   .band-rail h6 { margin: 0 0 6px; border-bottom: 2px solid var(--color-divider); padding-bottom: 10px; }
-  .rail-tags { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 10px; }
   .rail-correction { margin-top: auto; font-size: 12px; }
 }
 
